@@ -13,7 +13,6 @@ target 'Shopify' do
   pod 'SwiftyGif'
   pod 'Floaty', '~> 4.1.0'
   pod 'ImageSlideshow', '~> 1.9.0'
-  pod 'paper-onboarding', '~> 6.1'
 
   target 'ShopifyTests' do
     inherit! :search_paths
