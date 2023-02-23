@@ -3,86 +3,64 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
-        <scene sceneID="tne-QT-ifu">
+        <!--homeVC-->
+        <scene sceneID="EqS-ry-3kM">
             <objects>
-                <viewController storyboardIdentifier="HomeScreen" title="Home" id="BYZ-38-t0r" customClass="HomeScreenController" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="RaJ-bS-O0d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="HomeSB" referencedIdentifier="homeVC" id="ZXX-C5-Wm7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="DcA-bo-hcq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="phF-hQ-CzQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621" y="-416"/>
+            <point key="canvasLocation" x="-35" y="-42"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--categoriesVC-->
+        <scene sceneID="j9z-kG-SbF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CategoriesSB" referencedIdentifier="categoriesVC" id="drF-Y8-vF4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="EtH-Bw-k5F"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KRR-4u-dPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="249"/>
+        </scene>
+        <!--profileVC-->
+        <scene sceneID="YZX-IS-xKb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileSB" referencedIdentifier="profileVC" id="lfg-0V-D2L" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="aJK-HK-BUl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtS-3C-LjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-40" y="539"/>
+        </scene>
+        <!--Custom Tab Bar-->
         <scene sceneID="VV0-yf-MAV">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RcS-kV-Xbc" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RcS-kV-Xbc" customClass="CustomTabBar" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eea-P9-zOO">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="vsH-oA-DVZ"/>
-                        <segue destination="rns-D5-dWd" kind="relationship" relationship="viewControllers" id="rwd-AI-QPh"/>
-                        <segue destination="csU-Bc-a1Z" kind="relationship" relationship="viewControllers" id="uzj-pZ-Qay"/>
+                        <segue destination="ZXX-C5-Wm7" kind="relationship" relationship="viewControllers" id="fHW-MB-Cac"/>
+                        <segue destination="drF-Y8-vF4" kind="relationship" relationship="viewControllers" id="hQb-Nh-BKf"/>
+                        <segue destination="lfg-0V-D2L" kind="relationship" relationship="viewControllers" id="Yra-dD-uS6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ag5-Li-hSs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-798" y="249"/>
         </scene>
-        <!--Categories-->
-        <scene sceneID="DD0-DM-nga">
-            <objects>
-                <viewController storyboardIdentifier="CategoriesScreen" id="rns-D5-dWd" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B32-RP-ZKS">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="uBX-dx-vcu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Categories" image="camera.filters" catalog="system" id="k9A-Ve-kxR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gFb-Od-Xt2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="621" y="249"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="64c-5u-xrF">
-            <objects>
-                <viewController storyboardIdentifier="ProfileScreen" title="Profile" id="csU-Bc-a1Z" customClass="ProfileVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8fW-hd-mZh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="E1q-Zq-bRb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="A8C-Mq-cNB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QYF-YL-IdW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="621" y="975"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="camera.filters" catalog="system" width="128" height="119"/>
-        <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="AccentColor">
+            <color red="0.19401872158050537" green="0.36496952176094055" blue="0.42645633220672607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
