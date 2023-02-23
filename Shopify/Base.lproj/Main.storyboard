@@ -46,6 +46,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="CoffeColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="ZXX-C5-Wm7" kind="relationship" relationship="viewControllers" id="fHW-MB-Cac"/>
@@ -60,7 +63,10 @@
     </scenes>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoffeColor">
+            <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

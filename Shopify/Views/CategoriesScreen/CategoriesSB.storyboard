@@ -13,13 +13,13 @@
         <!--Categories-->
         <scene sceneID="mWU-4x-A0O">
             <objects>
-                <viewController storyboardIdentifier="categoriesVC" id="kzp-Ae-MKh" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoriesVC1" id="kzp-Ae-MKh" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Whu-Zc-462">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-Ja-uCk">
-                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
+                                <rect key="frame" x="2" y="103" width="393" height="44"/>
                                 <items>
                                     <barButtonItem title="Women" id="Iwv-jY-Ycj">
                                         <color key="tintColor" name="AccentColor"/>
@@ -58,9 +58,8 @@
                                     <outlet property="delegate" destination="kzp-Ae-MKh" id="SbI-bE-Cex"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-0q-OTK" customClass="Floaty" customModule="Floaty">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-0q-OTK" customClass="Floaty" customModule="Floaty">
                                 <rect key="frame" x="317" y="709" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
@@ -81,16 +80,33 @@
                         <viewLayoutGuide key="safeArea" id="JLz-qj-Aww"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" id="5B3-b7-5Ev"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" id="5ce-Vw-jhr"/>
-                            <constraint firstItem="JLz-qj-Aww" firstAttribute="bottom" secondItem="A4n-u3-YEw" secondAttribute="bottom" constant="38" id="EET-zg-ffV"/>
-                            <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="iPo-n7-AB2"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" id="jrb-RR-fdg"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" id="pRQ-27-f5G"/>
-                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="pvv-Rm-bce"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="bottom" secondItem="A4n-u3-YEw" secondAttribute="bottom" constant="38" id="5ac-kn-iOk"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="2" id="LKe-Tu-bKQ"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="317" id="OlW-Rj-nEL"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="QSz-Wc-NIa"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" constant="2" id="VM6-v2-3ts"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="W8b-wy-68B"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" id="X57-p4-aiF"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="Xvc-Ih-n4N"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" id="aRF-Du-kpm"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" constant="562" id="jga-9D-6bb"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp"/>
+                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="8Y9-Ga-wux">
+                            <color key="tintColor" name="CoffeColor"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="heart" catalog="system" style="plain" id="WMa-a1-cdD">
+                                <color key="tintColor" name="CoffeColor"/>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="cart" catalog="system" style="plain" id="fSt-MI-qLt">
+                                <color key="tintColor" name="CoffeColor"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
                         <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
@@ -99,42 +115,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ocu-kg-Ngx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3399.2366412213737" y="248.59154929577466"/>
+            <point key="canvasLocation" x="4325.9541984732823" y="248.59154929577466"/>
         </scene>
         <!--Catigories-->
-        <scene sceneID="UhJ-ZJ-Qu5">
+        <scene sceneID="mMz-Kf-Ih4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jcb-Di-6KN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Catigories" id="JQe-ne-bXI">
-                        <imageReference key="image" image="circle.grid.2x2.fill" catalog="system" symbolScale="large"/>
-                        <color key="badgeColor" red="0.68627450980392157" green="0.55686274509803924" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                <navigationController storyboardIdentifier="categoriesVC" automaticallyAdjustsScrollViewInsets="NO" id="zEj-yE-J4V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Catigories" id="X37-cq-CyI">
+                        <imageReference key="image" image="circle.grid.2x2.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color name="CoffeColor"/>
+                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                        <color key="badgeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S4D-Oq-2me">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8L0-u6-TaY">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="CoffeeColor"/>
+                            <color key="textColor" name="CoffeColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="kzp-Ae-MKh" kind="relationship" relationship="rootViewController" id="DOm-8M-fID"/>
+                        <segue destination="kzp-Ae-MKh" kind="relationship" relationship="rootViewController" id="ePC-hm-YgX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fhD-CD-ATh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ny-sB-jhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472.5190839694656" y="248.59154929577466"/>
+            <point key="canvasLocation" x="3399.2366412213737" y="248.59154929577466"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cart" catalog="system" width="128" height="102"/>
         <image name="circle.grid.2x2.fill" catalog="system" width="128" height="111"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="CoffeeColor">
+        <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
