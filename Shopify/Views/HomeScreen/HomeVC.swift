@@ -116,6 +116,8 @@ extension HomeVC : UICollectionViewDelegateFlowLayout
         switch collectionView {
             case OfferCV:
                 return CGSize(width: OfferCV.layer.frame.size.width - 16, height: OfferCV.layer.frame.size.height - 20)
+            case BrandsCV:
+                return CGSize(width: BrandsCV.layer.frame.size.width/2 - 16, height: BrandsCV.layer.frame.size.height/2 - 10)
             default:
                 return CGSize(width: (UIScreen.main.bounds.size.width/2) - 50, height: (UIScreen.main.bounds.size.height/6) - 10)
         }
