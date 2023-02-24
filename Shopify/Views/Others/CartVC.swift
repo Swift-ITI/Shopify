@@ -56,7 +56,7 @@ extension CartVC : UITableViewDataSource{
         
         cartProductscell.layer.borderWidth = 3
         cartProductscell.layer.borderColor = UIColor(named: "CoffeColor")?.cgColor
-        cartProductscell.layer.cornerRadius = 30
+        cartProductscell.layer.cornerRadius = 20
         
         
         return cartProductscell

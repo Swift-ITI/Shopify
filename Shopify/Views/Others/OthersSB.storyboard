@@ -26,7 +26,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1G-Pz-H5C">
-                                <rect key="frame" x="105" y="783" width="182" height="35"/>
+                                <rect key="frame" x="105.66666666666669" y="783" width="182" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout">
                                     <color key="baseBackgroundColor" name="CoffeColor"/>
@@ -52,8 +52,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="357-p7-GI9" secondAttribute="trailing" constant="171" id="R42-Fa-NIa"/>
                             <constraint firstItem="357-p7-GI9" firstAttribute="top" secondItem="H9a-zl-Sii" secondAttribute="bottom" constant="4" id="VFe-Zg-cYg"/>
                             <constraint firstItem="K1G-Pz-H5C" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="a1O-wP-J39"/>
-                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="105" id="aUf-Tc-bIF"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="K1G-Pz-H5C" secondAttribute="trailing" constant="106" id="gLl-he-tiN"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fVY-SH-NTN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H9a-zl-Sii" secondAttribute="trailing" constant="16" id="j6F-9i-IIT"/>
                         </constraints>
                     </view>
@@ -107,7 +106,7 @@
     </scenes>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
