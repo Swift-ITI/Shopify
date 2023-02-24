@@ -36,11 +36,11 @@ class HomeVC: UIViewController {
         /*let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(search))
          self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "AccentColor")
          navigationItem.leftBarButtonItem = search*/
-        OfferCV.layer.cornerRadius = 25
+        OfferCV.layer.cornerRadius = 20
         OfferCV.layer.borderWidth = 5
         OfferCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
         
-        BrandsCV.layer.cornerRadius = 25
+        BrandsCV.layer.cornerRadius = 20
         BrandsCV.layer.borderWidth = 5
         BrandsCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
     }
@@ -68,45 +68,57 @@ class HomeVC: UIViewController {
 extension HomeVC : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == OfferCV
-        {
-            return 8
+        switch collectionView {
+            case OfferCV:
+                return 8
+            case BrandsCV:
+                return 10
+            default:
+                return 0
         }
-        else
-        {
-            return 10
-            
-        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
-        cell.offerbrandimg.image = UIImage(named: "coupon")
-        
-        return cell
+        switch collectionView {
+            case OfferCV:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
+                
+                cell.offerbrandimg.image = UIImage(named: "coupon")
+                return cell
+            case BrandsCV:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
+                cell.offerbrandimg.image = UIImage(named: "coupon")
+                return cell
+            default:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+                return cell
+        }
     }
 
 }
 extension HomeVC : UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == BrandsCV
-        {
-            let productobj : ProductsVC = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
-            self.navigationController?.pushViewController(productobj, animated: true)
+        switch collectionView {
+            case BrandsCV:
+                let productobj : ProductsVC = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+                self.navigationController?.pushViewController(productobj, animated: true)
+            default:
+                break
         }
-        
     }
 }
 
 extension HomeVC : UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == OfferCV
-        {
-            return CGSize(width: OfferCV.layer.frame.size.width - 5, height: OfferCV.layer.frame.size.height - 5)
-        }
-            return CGSize(width: (UIScreen.main.bounds.size.width/2) - 50, height: (UIScreen.main.bounds.size.height/6) - 10)
+        switch collectionView {
+            case OfferCV:
+                return CGSize(width: OfferCV.layer.frame.size.width - 16, height: OfferCV.layer.frame.size.height - 20)
+            default:
+                return CGSize(width: (UIScreen.main.bounds.size.width/2) - 50, height: (UIScreen.main.bounds.size.height/6) - 10)
         }
         
     }
+}
