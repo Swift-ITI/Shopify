@@ -3,56 +3,154 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CategoriesVC-->
-        <scene sceneID="s0d-6b-0kx">
+        <!--Categories-->
+        <scene sceneID="mWU-4x-A0O">
             <objects>
-                <viewController storyboardIdentifier="categoriesVC" id="Y6W-OH-hqX" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                <viewController storyboardIdentifier="categoriesVC1" id="kzp-Ae-MKh" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Whu-Zc-462">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfc-y9-gYA">
-                                <rect key="frame" x="118" y="387" width="146" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-Ja-uCk">
+                                <rect key="frame" x="2" y="103" width="393" height="44"/>
+                                <items>
+                                    <barButtonItem title="Women" id="Iwv-jY-Ycj">
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <connections>
+                                            <action selector="ShowWomenFashion:" destination="kzp-Ae-MKh" id="c2s-LP-1vL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZY2-Ac-DjG"/>
+                                    <barButtonItem title="Kid" id="8an-KE-6W8">
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <connections>
+                                            <action selector="ShowKidsFashoin:" destination="kzp-Ae-MKh" id="5Cr-gG-3sf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Coy-Wl-zwo"/>
+                                    <barButtonItem title="Men" id="P0U-AZ-WlS">
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <connections>
+                                            <action selector="ShowMenFashoin:" destination="kzp-Ae-MKh" id="HEC-D8-QqM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-u3-YEw">
+                                <rect key="frame" x="8" y="147" width="377" height="584"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qAZ-dN-cUe">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kzp-Ae-MKh" id="EQZ-TU-bbQ"/>
+                                    <outlet property="delegate" destination="kzp-Ae-MKh" id="SbI-bE-Cex"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-0q-OTK" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="317" y="709" width="60" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonShadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="itemButtonColor">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <viewLayoutGuide key="safeArea" id="JLz-qj-Aww"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="bottom" secondItem="A4n-u3-YEw" secondAttribute="bottom" constant="38" id="5ac-kn-iOk"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="2" id="LKe-Tu-bKQ"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="317" id="OlW-Rj-nEL"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="QSz-Wc-NIa"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" constant="2" id="VM6-v2-3ts"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="W8b-wy-68B"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" id="X57-p4-aiF"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="Xvc-Ih-n4N"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" id="aRF-Du-kpm"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" constant="562" id="jga-9D-6bb"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Bbp-zo-UFW"/>
+                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="8Y9-Ga-wux">
+                            <color key="tintColor" name="CoffeColor"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="heart" catalog="system" style="plain" id="WMa-a1-cdD">
+                                <color key="tintColor" name="CoffeColor"/>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="cart" catalog="system" style="plain" id="fSt-MI-qLt">
+                                <color key="tintColor" name="CoffeColor"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
+                        <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
+                        <outlet property="toolBar" destination="Mkw-Ja-uCk" id="jng-KD-PMp"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ocu-kg-Ngx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970.2290076335878" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="4325.9541984732823" y="248.59154929577466"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DyX-lV-VNA">
+        <!--Categories-->
+        <scene sceneID="mMz-Kf-Ih4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="htV-c3-cIl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="categoriesVC" automaticallyAdjustsScrollViewInsets="NO" id="zEj-yE-J4V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Categories" image="circle.grid.2x2.fill" catalog="system" id="RdX-bn-vBg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vFj-hS-MSf">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8L0-u6-TaY">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="CoffeColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="6Ns-dD-0Qb"/>
+                        <segue destination="kzp-Ae-MKh" kind="relationship" relationship="rootViewController" id="ePC-hm-YgX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e86-1X-vDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ny-sB-jhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43.511450381679388" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="3399.2366412213737" y="248.59154929577466"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="circle.grid.2x2.fill" catalog="system" width="128" height="111"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <namedColor name="AccentColor">
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoffeColor">
+            <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
