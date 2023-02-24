@@ -8,6 +8,7 @@
 import UIKit
 import Floaty
 
+
 class CategoriesVC: UIViewController {
 
     @IBOutlet weak var toolBar: UIToolbar!
@@ -75,7 +76,7 @@ class CategoriesVC: UIViewController {
         subCategory.addItem(icon: UIImage(named: "accesserios")) { _ in
             
             var product = Product()
-            product.nameOfProduct = "accesserios"
+            product.nameOfProduct = "accesseriosaccesseriosaccesseriosaccesserios"
             product.priceOfProduct = "20$"
             product.imgOfProuct = "accesserios"
             
@@ -175,6 +176,8 @@ extension CategoriesVC: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/4) - 30)
+        return CGSize(width: productsCollectionView.layer.frame.size.width/2 - 5, height: productsCollectionView.layer.frame.size.height/3 - 5)
+        
+        //return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/4) - 30)
     }
 }
