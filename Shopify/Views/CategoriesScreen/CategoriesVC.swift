@@ -29,6 +29,14 @@ class CategoriesVC: UIViewController {
         kidsProducts = []
         menProducts = []
         
+        var product = Product()
+        product.nameOfProduct = "accesserios"
+        product.priceOfProduct = "20$"
+        for _ in 0...10 {
+            womenProducts?.append(product)
+        }
+        products = womenProducts
+        
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
         productsCollectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         
