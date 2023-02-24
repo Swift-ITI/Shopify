@@ -104,7 +104,7 @@ extension HomeVC : UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == OfferCV
         {
-            return CGSize(width: (UIScreen.main.bounds.size.width), height: (UIScreen.main.bounds.size.height))
+            return CGSize(width: OfferCV.layer.frame.size.width - 5, height: OfferCV.layer.frame.size.height - 5)
         }
             return CGSize(width: (UIScreen.main.bounds.size.width/2) - 50, height: (UIScreen.main.bounds.size.height/6) - 10)
         }

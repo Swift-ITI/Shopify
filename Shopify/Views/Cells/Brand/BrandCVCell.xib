@@ -33,7 +33,7 @@
             </constraints>
             <size key="customSize" width="268" height="175"/>
             <connections>
-                <outlet property="offerbrandimg" destination="SEG-jJ-SGb" id="ix0-b4-0mZ"/>
+                <outlet property="offerbrandimg" destination="SEG-jJ-SGb" id="bd2-Xv-JtR"/>
             </connections>
             <point key="canvasLocation" x="296.18320610687022" y="-55.281690140845072"/>
         </collectionViewCell>
