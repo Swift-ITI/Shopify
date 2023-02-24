@@ -13,5 +13,6 @@ class BrandCVCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    @IBOutlet weak var offerbrandimg: UIImageView!
+    
 }
