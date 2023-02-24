@@ -11,7 +11,7 @@
         <!--ProfileVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="profileVC1" id="Y6W-OH-hqX" customClass="ProfileVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileVC" id="Y6W-OH-hqX" customClass="ProfileVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ACv-29-CBi">
             <objects>
-                <navigationController storyboardIdentifier="profileVC" automaticallyAdjustsScrollViewInsets="NO" id="v9T-Hn-rrV" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v9T-Hn-rrV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DtP-yD-TAm">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
