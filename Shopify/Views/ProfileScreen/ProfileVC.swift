@@ -10,10 +10,11 @@ import UIKit
 class ProfileVC: UIViewController
 {
 
-    @IBOutlet var orders: UILabel!
-    @IBOutlet var wishList: UILabel!
-    @IBOutlet var wishlistSeeMore: UIButton!
-    @IBOutlet var ordersSeeMore: UIButton!
+    @IBOutlet var usersNameLabel: UILabel!
+    @IBOutlet var ordersLabel: UILabel!
+    @IBOutlet var wishListLabel: UILabel!
+    @IBOutlet var wishListSeeMoreButton: UIButton!
+    @IBOutlet var ordersSeeMoreButton: UIButton!
     
     @IBOutlet var wishListTable: UITableView!
     {
@@ -47,25 +48,27 @@ class ProfileVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        //self.navigationController?.navigationBar.layer.cornerRadius = 30
-        orders.layer.masksToBounds = true
-        orders.layer.cornerRadius = orders.frame.width/10
-        wishList.layer.masksToBounds = true
-        wishList.layer.cornerRadius = wishList.frame.width/12
-        wishlistSeeMore.layer.masksToBounds = true
-        wishlistSeeMore.layer.cornerRadius = wishlistSeeMore.frame.width/8
-        ordersSeeMore.layer.masksToBounds = true
-        ordersSeeMore.layer.cornerRadius = ordersSeeMore.frame.width/8
+        ordersLabel.layer.masksToBounds = true
+        ordersLabel.layer.cornerRadius = ordersLabel.frame.width/10
+        wishListLabel.layer.masksToBounds = true
+        wishListLabel.layer.cornerRadius = wishListLabel.frame.width/12
+        wishListSeeMoreButton.layer.masksToBounds = true
+        wishListSeeMoreButton.layer.cornerRadius = wishListSeeMoreButton.frame.width/8
+        ordersSeeMoreButton.layer.masksToBounds = true
+        ordersSeeMoreButton.layer.cornerRadius = ordersSeeMoreButton.frame.width/8
     }
     
     @IBAction func cartButton(_ sender: Any)
     {
+        performSegue(withIdentifier: "goToCart", sender: self)
         print("cart")
     }
     
     @IBAction func settingButton(_ sender: Any)
     {
         print("setting")
+        let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
+        navigationController?.pushViewController(settingView, animated: true)
     }
     
     /*
