@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,6 +30,9 @@
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" red="0.96862745100000003" green="0.65490196079999996" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </textAttributes>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -108,20 +112,82 @@
                     <view key="view" contentMode="scaleToFill" id="efe-Ds-c79">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eE3-UN-cJZ">
+                                <rect key="frame" x="8" y="83" width="270" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qOZ-Oq-tMM" id="EWn-u6-DlO"/>
+                                </connections>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e3U-mP-nsU">
+                                <rect key="frame" x="8" y="147" width="377" height="639"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="79g-Gy-erA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdH-ND-Cal">
+                                <rect key="frame" x="326" y="83" width="51" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vdH-ND-Cal" secondAttribute="height" multiplier="51:35" id="hJp-ZX-X71"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="B6S-W3-20C"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vdH-ND-Cal" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" constant="24" id="17F-le-bxZ"/>
+                            <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="vdH-ND-Cal" secondAttribute="trailing" constant="16" id="9az-B0-2mK"/>
+                            <constraint firstItem="eE3-UN-cJZ" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" constant="24" id="S0f-L0-lRs"/>
+                            <constraint firstItem="e3U-mP-nsU" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="Tzh-3d-cLC"/>
+                            <constraint firstItem="eE3-UN-cJZ" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="b6Q-Uu-4OH"/>
+                            <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="e3U-mP-nsU" secondAttribute="trailing" constant="8" id="gPo-Bj-fjy"/>
+                            <constraint firstItem="e3U-mP-nsU" firstAttribute="top" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="8" id="lMu-h3-8g4"/>
+                            <constraint firstItem="vdH-ND-Cal" firstAttribute="leading" secondItem="eE3-UN-cJZ" secondAttribute="trailing" constant="48" id="uXW-Da-SZp"/>
+                            <constraint firstItem="B6S-W3-20C" firstAttribute="bottom" secondItem="e3U-mP-nsU" secondAttribute="bottom" constant="32" id="uy8-pP-QiX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ProductCV" destination="e3U-mP-nsU" id="c26-co-bjn"/>
+                        <outlet property="pulldown" destination="vdH-ND-Cal" id="t73-3d-qiH"/>
+                        <outlet property="searchbar" destination="eE3-UN-cJZ" id="BKs-5f-ieH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TI-Pq-FVO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="-32"/>
+            <point key="canvasLocation" x="1446.5648854961833" y="-27.464788732394368"/>
+        </scene>
+        <!--Product DetailsVC-->
+        <scene sceneID="xGa-Gl-eaS">
+            <objects>
+                <viewController storyboardIdentifier="productdetails" id="lRg-EQ-mqH" customClass="ProductDetailsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KUu-mD-eVt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ynd-R7-Wbf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vH-PX-yJT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2188" y="-14"/>
         </scene>
     </scenes>
     <color key="tintColor" name="BeigeColor"/>
     <resources>
         <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BeigeColor">
             <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
