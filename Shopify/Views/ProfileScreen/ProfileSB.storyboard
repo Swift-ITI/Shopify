@@ -303,6 +303,133 @@
             </objects>
             <point key="canvasLocation" x="1797.709923664122" y="510.56338028169017"/>
         </scene>
+        <!--Add Address VC-->
+        <scene sceneID="XhV-gx-zZf">
+            <objects>
+                <viewController storyboardIdentifier="addaddressVC" id="CGM-Qh-Eft" userLabel="Add Address VC" customClass="AddAddressVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4ay-jj-GZ9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Addresses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGK-x8-kdL">
+                                <rect key="frame" x="16" y="75" width="219" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhv-Gg-YK7">
+                                <rect key="frame" x="16" y="127" width="92" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E87-b0-G4A">
+                                <rect key="frame" x="16" y="223" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gYE-K6-5LX">
+                                <rect key="frame" x="16" y="319" width="94" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Phone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIE-rW-cie">
+                                <rect key="frame" x="16" y="415" width="72.333333333333329" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GtO-Tw-H9e">
+                                <rect key="frame" x="16" y="173" width="361" height="34"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8RE-z6-sL8">
+                                <rect key="frame" x="16" y="269" width="361" height="34"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q7d-h5-gxT">
+                                <rect key="frame" x="16" y="365" width="361" height="34"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWB-vZ-hwy">
+                                <rect key="frame" x="16" y="461" width="361" height="34"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9l-PU-XVC">
+                                <rect key="frame" x="16" y="752" width="361" height="50"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save New Address">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
+                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveNewAddressActionButton:" destination="CGM-Qh-Eft" eventType="touchUpInside" id="zw7-Gd-4aj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="F8d-PU-5js"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="trailing" secondItem="8RE-z6-sL8" secondAttribute="trailing" constant="16" id="0nb-UJ-bZr"/>
+                            <constraint firstItem="AWB-vZ-hwy" firstAttribute="top" secondItem="bIE-rW-cie" secondAttribute="bottom" constant="16" id="2WK-DC-oza"/>
+                            <constraint firstItem="vhv-Gg-YK7" firstAttribute="top" secondItem="YGK-x8-kdL" secondAttribute="bottom" constant="16" id="2zA-sj-VrE"/>
+                            <constraint firstItem="E87-b0-G4A" firstAttribute="top" secondItem="GtO-Tw-H9e" secondAttribute="bottom" constant="16" id="5RJ-C1-sZn"/>
+                            <constraint firstItem="8RE-z6-sL8" firstAttribute="top" secondItem="E87-b0-G4A" secondAttribute="bottom" constant="16" id="5vx-5C-ibL"/>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="trailing" secondItem="z9l-PU-XVC" secondAttribute="trailing" constant="16" id="6p4-hX-sRu"/>
+                            <constraint firstItem="gYE-K6-5LX" firstAttribute="top" secondItem="8RE-z6-sL8" secondAttribute="bottom" constant="16" id="7Hy-sM-Squ"/>
+                            <constraint firstItem="8RE-z6-sL8" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="Ahu-mL-qWQ"/>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="trailing" secondItem="GtO-Tw-H9e" secondAttribute="trailing" constant="16" id="GsR-5A-648"/>
+                            <constraint firstItem="AWB-vZ-hwy" firstAttribute="width" secondItem="q7d-h5-gxT" secondAttribute="width" id="Gxm-Ut-AsI"/>
+                            <constraint firstItem="E87-b0-G4A" firstAttribute="height" secondItem="vhv-Gg-YK7" secondAttribute="height" id="Ief-Ds-LtF"/>
+                            <constraint firstItem="z9l-PU-XVC" firstAttribute="top" secondItem="AWB-vZ-hwy" secondAttribute="bottom" constant="64" id="Iey-uj-pjO"/>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="trailing" secondItem="q7d-h5-gxT" secondAttribute="trailing" constant="16" id="KXe-yF-xsg"/>
+                            <constraint firstItem="q7d-h5-gxT" firstAttribute="width" secondItem="8RE-z6-sL8" secondAttribute="width" id="LAf-Iz-dmT"/>
+                            <constraint firstItem="q7d-h5-gxT" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="LsK-kG-EOf"/>
+                            <constraint firstItem="AWB-vZ-hwy" firstAttribute="height" secondItem="q7d-h5-gxT" secondAttribute="height" id="O7o-R0-SPE"/>
+                            <constraint firstItem="GtO-Tw-H9e" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="P9S-mz-h5o"/>
+                            <constraint firstItem="z9l-PU-XVC" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="Rfm-we-K1P"/>
+                            <constraint firstItem="gYE-K6-5LX" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="Rkv-HN-UfN"/>
+                            <constraint firstItem="YGK-x8-kdL" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="ThA-VS-z7c"/>
+                            <constraint firstItem="q7d-h5-gxT" firstAttribute="height" secondItem="8RE-z6-sL8" secondAttribute="height" id="VfR-D9-dFB"/>
+                            <constraint firstItem="YGK-x8-kdL" firstAttribute="top" secondItem="F8d-PU-5js" secondAttribute="top" constant="16" id="cs4-E8-RwJ"/>
+                            <constraint firstItem="bIE-rW-cie" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="dhe-md-hxe"/>
+                            <constraint firstItem="bIE-rW-cie" firstAttribute="height" secondItem="gYE-K6-5LX" secondAttribute="height" id="hYe-k0-uFf"/>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="trailing" secondItem="AWB-vZ-hwy" secondAttribute="trailing" constant="16" id="iJt-Wk-Xae"/>
+                            <constraint firstItem="AWB-vZ-hwy" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="l5b-oK-BCN"/>
+                            <constraint firstItem="8RE-z6-sL8" firstAttribute="height" secondItem="GtO-Tw-H9e" secondAttribute="height" id="nJa-Y1-uSa"/>
+                            <constraint firstItem="bIE-rW-cie" firstAttribute="top" secondItem="q7d-h5-gxT" secondAttribute="bottom" constant="16" id="oHI-7U-WGA"/>
+                            <constraint firstItem="F8d-PU-5js" firstAttribute="bottom" secondItem="z9l-PU-XVC" secondAttribute="bottom" constant="16" id="oOZ-f6-dzh"/>
+                            <constraint firstItem="8RE-z6-sL8" firstAttribute="width" secondItem="GtO-Tw-H9e" secondAttribute="width" id="sOa-wy-C7x"/>
+                            <constraint firstItem="E87-b0-G4A" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="tEs-an-jsq"/>
+                            <constraint firstItem="vhv-Gg-YK7" firstAttribute="leading" secondItem="F8d-PU-5js" secondAttribute="leading" constant="16" id="v0N-m6-usq"/>
+                            <constraint firstItem="gYE-K6-5LX" firstAttribute="height" secondItem="E87-b0-G4A" secondAttribute="height" id="vX7-Gw-jcc"/>
+                            <constraint firstItem="q7d-h5-gxT" firstAttribute="top" secondItem="gYE-K6-5LX" secondAttribute="bottom" constant="16" id="y0g-hs-VMY"/>
+                            <constraint firstItem="GtO-Tw-H9e" firstAttribute="top" secondItem="vhv-Gg-YK7" secondAttribute="bottom" constant="16" id="yI7-Th-vd5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="q7d-h5-gxT" id="jE6-hb-z1c"/>
+                        <outlet property="cityTextField" destination="8RE-z6-sL8" id="lQL-Fi-P0J"/>
+                        <outlet property="countryTextField" destination="GtO-Tw-H9e" id="B03-UZ-165"/>
+                        <outlet property="phoneTextField" destination="AWB-vZ-hwy" id="hGt-Ih-emy"/>
+                        <outlet property="saveNewAddressButton" destination="z9l-PU-XVC" id="vfJ-Ja-Nh7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dm4-DV-paR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2771.7557251908397" y="510.56338028169017"/>
+        </scene>
         <!--About Us VC-->
         <scene sceneID="dOE-1P-hHC">
             <objects>

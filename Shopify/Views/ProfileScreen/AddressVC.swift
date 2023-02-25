@@ -37,6 +37,8 @@ class AddressVC: UIViewController
     @IBAction func addNewAddressButtonAction(_ sender: Any)
     {
         print("working")
+        let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+        navigationController?.pushViewController(addAddressView, animated: true)
     }
 }
 
