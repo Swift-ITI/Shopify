@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-Ja-uCk">
-                                <rect key="frame" x="2" y="103" width="393" height="44"/>
+                                <rect key="frame" x="8" y="103" width="377" height="44"/>
                                 <items>
                                     <barButtonItem title="Women" id="Iwv-jY-Ycj">
                                         <color key="tintColor" name="AccentColor"/>
@@ -43,7 +43,7 @@
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-u3-YEw">
-                                <rect key="frame" x="8" y="147" width="377" height="584"/>
+                                <rect key="frame" x="8" y="147" width="377" height="622"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qAZ-dN-cUe">
                                     <size key="itemSize" width="128" height="128"/>
@@ -60,6 +60,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-0q-OTK" customClass="Floaty" customModule="Floaty">
                                 <rect key="frame" x="317" y="709" width="60" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="5XQ-gD-V2w"/>
+                                    <constraint firstAttribute="height" constant="60" id="lwU-lB-cPM"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
                                         <color key="value" name="AccentColor"/>
@@ -79,16 +83,14 @@
                         <viewLayoutGuide key="safeArea" id="JLz-qj-Aww"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JLz-qj-Aww" firstAttribute="bottom" secondItem="A4n-u3-YEw" secondAttribute="bottom" constant="38" id="5ac-kn-iOk"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="2" id="LKe-Tu-bKQ"/>
-                            <constraint firstItem="7gg-0q-OTK" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="317" id="OlW-Rj-nEL"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="7P4-If-lz5"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="LKe-Tu-bKQ"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="LLe-er-cVr"/>
                             <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="QSz-Wc-NIa"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" constant="2" id="VM6-v2-3ts"/>
-                            <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="W8b-wy-68B"/>
+                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" constant="-8" id="VM6-v2-3ts"/>
                             <constraint firstItem="Mkw-Ja-uCk" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" id="X57-p4-aiF"/>
-                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="Xvc-Ih-n4N"/>
                             <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" id="aRF-Du-kpm"/>
-                            <constraint firstItem="7gg-0q-OTK" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" constant="562" id="jga-9D-6bb"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="b7L-zL-0oj"/>
                             <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
                         </constraints>
                     </view>

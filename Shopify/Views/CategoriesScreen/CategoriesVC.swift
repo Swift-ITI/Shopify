@@ -159,9 +159,6 @@ extension CategoriesVC:  UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
-        productCell.layer.borderWidth = 2
-        productCell.layer.borderColor = UIColor(named: "CoffeColor")?.cgColor
-        productCell.layer.cornerRadius = CGFloat(20)
         
         productCell.nameOfProduct.text = products?[indexPath.row].nameOfProduct
         productCell.priceOfProduct.text = products?[indexPath.row].priceOfProduct
