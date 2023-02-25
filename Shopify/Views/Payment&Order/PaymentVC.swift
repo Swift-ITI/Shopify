@@ -14,7 +14,7 @@ class PaymentVC: UIViewController {
     var radioBtn: SSRadioButtonsController? {
         didSet {
             radioBtn?.delegate = self
-            // radioBtn?.shouldLetDeSelect = true
+             radioBtn?.shouldLetDeSelect = true
         }
     }
 
@@ -26,6 +26,10 @@ class PaymentVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
     }
+    
+    @IBAction func proceedOrderBtn(_ sender: Any) {
+    }
+    
 }
 
 extension PaymentVC: SSRadioButtonControllerDelegate {

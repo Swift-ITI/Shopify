@@ -80,6 +80,9 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="proceedOrderBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LX4-80-KUo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
