@@ -14,12 +14,13 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var pulldowncolor: UIButton!
     @IBOutlet weak var pulldownsize: UIButton!
     @IBOutlet weak var ItemCV: UICollectionView!
-    @IBOutlet weak var productdescription: UILabel!
+    @IBOutlet weak var productdescription: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        productfilter(sender: pulldownsize)
+        productfilter(sender: pulldowncolor)
         ItemCV.delegate = self
         ItemCV.dataSource = self
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
