@@ -3,30 +3,73 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CartVC-->
+        <!--Shopping Cart-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CartVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartid" id="Y6W-OH-hqX" customClass="CartVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H9a-zl-Sii">
+                                <rect key="frame" x="16" y="103" width="361" height="638"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="qeX-7X-bJu"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="s3p-gM-N9d"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1G-Pz-H5C">
+                                <rect key="frame" x="105.66666666666669" y="783" width="182" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout">
+                                    <color key="baseBackgroundColor" name="CoffeColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="proceedToCheckout:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="78c-Sb-beb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Total : 200.0 USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="357-p7-GI9">
+                                <rect key="frame" x="16" y="745" width="206" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="H9a-zl-Sii" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1Ba-wl-Sti"/>
+                            <constraint firstItem="357-p7-GI9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="6zi-2W-n7R"/>
+                            <constraint firstItem="H9a-zl-Sii" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="ALI-NJ-huf"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="top" secondItem="357-p7-GI9" secondAttribute="bottom" constant="14" id="DGf-1u-Cb8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="357-p7-GI9" secondAttribute="trailing" constant="171" id="R42-Fa-NIa"/>
+                            <constraint firstItem="357-p7-GI9" firstAttribute="top" secondItem="H9a-zl-Sii" secondAttribute="bottom" constant="4" id="VFe-Zg-cYg"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="a1O-wP-J39"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fVY-SH-NTN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H9a-zl-Sii" secondAttribute="trailing" constant="16" id="j6F-9i-IIT"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Shopping Cart" id="qAR-Pz-Wsf"/>
+                    <connections>
+                        <outlet property="cartProducts" destination="H9a-zl-Sii" id="Ixn-7C-q4b"/>
+                        <outlet property="subTotal" destination="357-p7-GI9" id="YaV-Cd-eoe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="-27"/>
+            <point key="canvasLocation" x="889.3129770992366" y="-27.464788732394368"/>
         </scene>
         <!--Wish ListVC-->
         <scene sceneID="zDa-zI-prD">
             <objects>
-                <viewController id="0Uv-yt-JuZ" customClass="WishListVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favid" id="0Uv-yt-JuZ" customClass="WishListVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BcR-ae-xPJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,8 +81,36 @@
             </objects>
             <point key="canvasLocation" x="-37" y="-701"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DQX-Ma-7sf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ttY-Wb-eFG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BK8-Ud-nwf">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="CoffeColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="pVU-zl-Jcu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ds2-jA-Fk5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37.404580152671755" y="-27.464788732394368"/>
+        </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoffeColor">
+            <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

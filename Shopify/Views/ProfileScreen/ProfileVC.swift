@@ -22,7 +22,7 @@ class ProfileVC: UIViewController
         {
             wishListTable.delegate = self
             wishListTable.dataSource = self
-            wishListTable.layer.borderColor = UIColor(red: 0.686, green: 0.557, blue: 0.451, alpha: 1).cgColor
+            wishListTable.layer.borderColor = UIColor(named:"CoffeeColor")?.cgColor
             wishListTable.layer.borderWidth = 1.5
             wishListTable.layer.cornerRadius = 20
             
@@ -36,7 +36,7 @@ class ProfileVC: UIViewController
         {
             ordersTable.delegate = self
             ordersTable.dataSource = self
-            ordersTable.layer.borderColor = UIColor(red: 0.686, green: 0.557, blue: 0.451, alpha: 1).cgColor
+            ordersTable.layer.borderColor = UIColor(named:"CoffeeColor")?.cgColor
             ordersTable.layer.borderWidth = 1.5
             ordersTable.layer.cornerRadius = 20
             
