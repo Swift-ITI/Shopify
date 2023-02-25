@@ -9,61 +9,35 @@ import UIKit
 
 class AddAddressVC: UIViewController
 {
+    @IBOutlet var phoneTextField: UITextField! { didSet { renderTxtFields(txtField: phoneTextField) }}
 
-    @IBOutlet var phoneTextField: UITextField!
-    {
-        didSet
-        {
-            phoneTextField.layer.borderWidth = 2
-            phoneTextField.layer.cornerRadius = 20
-            //phoneTextField.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+    @IBOutlet var addressTextField: UITextField! { didSet { renderTxtFields(txtField: addressTextField) }}
+
+    @IBOutlet var cityTextField: UITextField! { didSet { renderTxtFields(txtField: cityTextField) }}
+
+    @IBOutlet var countryTextField: UITextField! { didSet { renderTxtFields(txtField: countryTextField) }}
+
+    @IBOutlet var saveNewAddressButton: UIButton! {
+        didSet {
+            // saveNewAddressButton.layer.masksToBounds = true
+            saveNewAddressButton.layer.cornerRadius = saveNewAddressButton.frame.width / 18
         }
     }
-    @IBOutlet var addressTextField: UITextField!
-    {
-        didSet
-        {
-            addressTextField.layer.borderWidth = 2
-            addressTextField.layer.cornerRadius = 20
-            //addressTextField.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
-        }
-    }
-    @IBOutlet var cityTextField: UITextField!
-    {
-        didSet
-        {
-            cityTextField.layer.borderWidth = 2
-            cityTextField.layer.cornerRadius = 20
-            //cityTextField.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
-        }
-    }
-    @IBOutlet var countryTextField: UITextField!
-    {
-        didSet
-        {
-            countryTextField.layer.borderWidth = 2
-            countryTextField.layer.cornerRadius = 20
-            //countryTextField.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
-        }
-    }
-    @IBOutlet var saveNewAddressButton: UIButton!
-    {
-        didSet
-        {
-            //saveNewAddressButton.layer.masksToBounds = true
-            saveNewAddressButton.layer.cornerRadius = saveNewAddressButton.frame.width/18
-        }
-    }
-    
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
-    
-    @IBAction func saveNewAddressActionButton(_ sender: Any)
-    {
+    @IBAction func saveNewAddressActionButton(_ sender: Any) {
         print("Address Saved")
+    }
+}
+
+extension AddAddressVC
+{
+    func renderTxtFields(txtField: UITextField) {
+        txtField.layer.borderWidth = 2
+        txtField.layer.cornerRadius = 20
+        txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
     }
 }
