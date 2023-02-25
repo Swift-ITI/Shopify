@@ -38,8 +38,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-q6-WO4">
                         <rect key="frame" x="109" y="4" width="54" height="84.666666666666671"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO3-Ho-4oA">
-                                <rect key="frame" x="3" y="0.0" width="54" height="34.333333333333336"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO3-Ho-4oA">
+                                <rect key="frame" x="0.0" y="0.0" width="54" height="34.333333333333336"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                     <color key="baseForegroundColor" name="AccentColor"/>
@@ -59,6 +59,9 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="jvB-I9-Jdx" firstAttribute="width" secondItem="RO3-Ho-4oA" secondAttribute="width" id="bJu-Rg-FMu"/>
+                        </constraints>
                     </stackView>
                 </subviews>
             </view>

@@ -114,14 +114,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eE3-UN-cJZ">
-                                <rect key="frame" x="8" y="83" width="270" height="56"/>
+                                <rect key="frame" x="8" y="59" width="326" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="qOZ-Oq-tMM" id="EWn-u6-DlO"/>
                                 </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e3U-mP-nsU">
-                                <rect key="frame" x="8" y="147" width="377" height="639"/>
+                                <rect key="frame" x="8" y="115" width="377" height="701"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="79g-Gy-erA">
                                     <size key="itemSize" width="128" height="128"/>
@@ -132,10 +132,7 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdH-ND-Cal">
-                                <rect key="frame" x="326" y="83" width="51" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vdH-ND-Cal" secondAttribute="height" multiplier="51:35" id="hJp-ZX-X71"/>
-                                </constraints>
+                                <rect key="frame" x="334" y="59" width="51" height="50"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
@@ -145,15 +142,16 @@
                         <viewLayoutGuide key="safeArea" id="B6S-W3-20C"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vdH-ND-Cal" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" constant="24" id="17F-le-bxZ"/>
-                            <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="vdH-ND-Cal" secondAttribute="trailing" constant="16" id="9az-B0-2mK"/>
-                            <constraint firstItem="eE3-UN-cJZ" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" constant="24" id="S0f-L0-lRs"/>
+                            <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="vdH-ND-Cal" secondAttribute="trailing" constant="8" id="3J5-x9-e47"/>
+                            <constraint firstItem="eE3-UN-cJZ" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" id="AZD-1b-x3n"/>
+                            <constraint firstItem="e3U-mP-nsU" firstAttribute="top" secondItem="eE3-UN-cJZ" secondAttribute="bottom" id="Ee1-ki-Gtx"/>
+                            <constraint firstItem="vdH-ND-Cal" firstAttribute="leading" secondItem="eE3-UN-cJZ" secondAttribute="trailing" id="T9t-UI-0XF"/>
                             <constraint firstItem="e3U-mP-nsU" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="Tzh-3d-cLC"/>
+                            <constraint firstItem="B6S-W3-20C" firstAttribute="bottom" secondItem="e3U-mP-nsU" secondAttribute="bottom" constant="2" id="ULf-Bl-Nz1"/>
+                            <constraint firstItem="vdH-ND-Cal" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" id="W5e-gV-Uhu"/>
                             <constraint firstItem="eE3-UN-cJZ" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="b6Q-Uu-4OH"/>
+                            <constraint firstItem="vdH-ND-Cal" firstAttribute="bottom" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="-6" id="c2e-f3-dI6"/>
                             <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="e3U-mP-nsU" secondAttribute="trailing" constant="8" id="gPo-Bj-fjy"/>
-                            <constraint firstItem="e3U-mP-nsU" firstAttribute="top" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="8" id="lMu-h3-8g4"/>
-                            <constraint firstItem="vdH-ND-Cal" firstAttribute="leading" secondItem="eE3-UN-cJZ" secondAttribute="trailing" constant="48" id="uXW-Da-SZp"/>
-                            <constraint firstItem="B6S-W3-20C" firstAttribute="bottom" secondItem="e3U-mP-nsU" secondAttribute="bottom" constant="32" id="uy8-pP-QiX"/>
                         </constraints>
                     </view>
                     <connections>
