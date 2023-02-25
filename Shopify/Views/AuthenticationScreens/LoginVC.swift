@@ -28,12 +28,12 @@ class LoginVC: UIViewController {
             loginImage.layer.cornerRadius = 10
             loginImage.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             loginImage.layer.borderWidth = 2
+            loginImage.image = UIImage(named: "Login 1")
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loginImage.image = UIImage(named: "Login 1")
         // Do any additional setup after loading the view.
     }
     
