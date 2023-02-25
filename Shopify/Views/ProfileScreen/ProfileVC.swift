@@ -60,6 +60,7 @@ class ProfileVC: UIViewController
     
     @IBAction func cartButton(_ sender: Any)
     {
+        performSegue(withIdentifier: "goToCart", sender: self)
         print("cart")
     }
     

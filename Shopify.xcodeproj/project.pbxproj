@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1223C13FE981FE60D5475357 /* Pods_ShopifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D8FE1153E713768EEDF06D /* Pods_ShopifyTests.framework */; };
 		29F3A602E19A30743431FF10 /* Pods_Shopify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D76B3A69142FBA7583CA2EA /* Pods_Shopify.framework */; };
+		3D1EE21C29A815D000F8F43D /* CartProductCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1EE21A29A815D000F8F43D /* CartProductCV.swift */; };
+		3D1EE21D29A815D000F8F43D /* CartProductCV.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EE21B29A815D000F8F43D /* CartProductCV.xib */; };
 		4C3B902829AA2D1A008F15F9 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B902729AA2D1A008F15F9 /* AboutUsVC.swift */; };
 		4C3B902A29AA2E7C008F15F9 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B902929AA2E7C008F15F9 /* ContactUsVC.swift */; };
 		4C521EB729AA43B3004D4BBF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C521EB629AA43B3004D4BBF /* SettingsVC.swift */; };
@@ -188,6 +190,15 @@
 				B1321B15F2977909A7FC984B /* Pods-ShopifyTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3D1EE21929A8155600F8F43D /* CartProducts */ = {
+			isa = PBXGroup;
+			children = (
+				3D1EE21A29A815D000F8F43D /* CartProductCV.swift */,
+				3D1EE21B29A815D000F8F43D /* CartProductCV.xib */,
+			);
+			path = CartProducts;
 			sourceTree = "<group>";
 		};
 		4C521EBE29AA4B1D004D4BBF /* Addresses */ = {
@@ -373,6 +384,7 @@
 		DE923E8529A4E3C000AF628D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3D1EE21929A8155600F8F43D /* CartProducts */,
 				4C521EBE29AA4B1D004D4BBF /* Addresses */,
 				3D1EE21929A8155600F8F43D /* CartProducts */,
 				4C97ADBD29A8624900775773 /* ProfileWishLists */,
