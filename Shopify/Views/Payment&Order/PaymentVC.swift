@@ -11,6 +11,17 @@ class PaymentVC: UIViewController {
     @IBOutlet var applePayBtn: UIButton!
     @IBOutlet var visaBtn: UIButton!
 
+    @IBOutlet weak var addressTable: UITableView!{
+        didSet{
+            addressTable.delegate = self
+            addressTable.dataSource = self
+            let nib = UINib(nibName: "AddressesCell", bundle: nil)
+            addressTable.register(nib, forCellReuseIdentifier: "addressesCell")
+            addressTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            addressTable.layer.borderWidth = 1.5
+            addressTable.layer.cornerRadius = 20
+        }
+    }
     var radioBtn: SSRadioButtonsController? {
         didSet {
             radioBtn?.delegate = self
@@ -47,4 +58,16 @@ extension PaymentVC: SSRadioButtonControllerDelegate {
         }
 
     }
+}
+extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
+        return cell
+    }
+    
+    
 }
