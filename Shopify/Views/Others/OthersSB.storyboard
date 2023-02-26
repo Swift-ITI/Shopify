@@ -60,11 +60,22 @@
                     <connections>
                         <outlet property="cartProducts" destination="H9a-zl-Sii" id="Ixn-7C-q4b"/>
                         <outlet property="subTotal" destination="357-p7-GI9" id="YaV-Cd-eoe"/>
+                        <segue destination="bJ8-xI-i6i" kind="show" identifier="goToPayment" id="JaB-BT-irf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889.3129770992366" y="-27.464788732394368"/>
+        </scene>
+        <!--paymentVC-->
+        <scene sceneID="yub-RR-OnS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Payment&amp;OrderSB" referencedIdentifier="paymentVC" id="bJ8-xI-i6i" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zQG-f8-Wac"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I2J-0J-laJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471" y="-34"/>
         </scene>
         <!--Wish ListVC-->
         <scene sceneID="zDa-zI-prD">
