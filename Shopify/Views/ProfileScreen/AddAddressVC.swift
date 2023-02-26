@@ -37,7 +37,7 @@ extension AddAddressVC
 {
     func renderTxtFields(txtField: UITextField) {
         txtField.layer.borderWidth = 2
-        txtField.layer.cornerRadius = 20
+        txtField.layer.cornerRadius = 10
         txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
     }
 }
