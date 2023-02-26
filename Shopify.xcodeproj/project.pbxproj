@@ -65,6 +65,8 @@
 		DED7EA7529A020AF000CC25C /* ShopifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7429A020AF000CC25C /* ShopifyTests.swift */; };
 		DED7EA7F29A020AF000CC25C /* ShopifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */; };
 		DED7EA8129A020AF000CC25C /* ShopifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */; };
+		DEF7A9C329AA6906001DCA0B /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7A9C129AA6906001DCA0B /* SSRadioButton.swift */; };
+		DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7A9C229AA6906001DCA0B /* SSRadioButtonsController.swift */; };
 		E5BA3EC644ABE0FDC0407142 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38EAD909D88B2723D102351 /* Pods_Shopify_ShopifyUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +157,8 @@
 		DED7EA7A29A020AF000CC25C /* ShopifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITests.swift; sourceTree = "<group>"; };
 		DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DEF7A9C129AA6906001DCA0B /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
+		DEF7A9C229AA6906001DCA0B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +490,7 @@
 		DED7EA5929A020AB000CC25C /* Shopify */ = {
 			isa = PBXGroup;
 			children = (
+				DEF7A9C029AA68EB001DCA0B /* CustomClasses */,
 				DE923E6D29A4DECD00AF628D /* Assets */,
 				DE923E6E29A4DED500AF628D /* Core */,
 				DE923E6C29A4DEBA00AF628D /* ViewModels */,
@@ -514,6 +519,15 @@
 				DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */,
 			);
 			path = ShopifyUITests;
+			sourceTree = "<group>";
+		};
+		DEF7A9C029AA68EB001DCA0B /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7A9C129AA6906001DCA0B /* SSRadioButton.swift */,
+				DEF7A9C229AA6906001DCA0B /* SSRadioButtonsController.swift */,
+			);
+			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -770,6 +784,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE923E7D29A4E31400AF628D /* NetworkService.swift in Sources */,
+				DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */,
 				DE923E9529A4E56000AF628D /* OnBoardingVC.swift in Sources */,
 				4C97ADBB29A85BF600775773 /* OrdersCell.swift in Sources */,
 				4C951B3629AAD3A50052E5CC /* WishListSeeMoreVC.swift in Sources */,
@@ -784,6 +799,8 @@
 				DE923E8F29A4E43700AF628D /* BrandCVCell.swift in Sources */,
 				4CB4C75429AA4BA3004B9BE2 /* AddressesCell.swift in Sources */,
 				DED7EA5B29A020AB000CC25C /* AppDelegate.swift in Sources */,
+				DE7BBDBD29A66FE3009622B3 /* SettingsVC.swift in Sources */,
+				DEF7A9C329AA6906001DCA0B /* SSRadioButton.swift in Sources */,
 				DE923E7529A4E24000AF628D /* ProductDetail.swift in Sources */,
 				DE7BBDAB29A66DA9009622B3 /* WishListVC.swift in Sources */,
 				4C97ADC029A8627700775773 /* WishListsCell.swift in Sources */,

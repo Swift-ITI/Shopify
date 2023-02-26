@@ -22,6 +22,7 @@ class CartVC: UIViewController {
     }
     
     @IBAction func proceedToCheckout(_ sender: Any) {
+        performSegue(withIdentifier: "goToPayment", sender: self)
         print("Proceed to checkout")
     }
 

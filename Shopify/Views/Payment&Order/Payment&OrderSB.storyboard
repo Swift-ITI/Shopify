@@ -1,32 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RdQ-8F-3z2">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PaymentVC-->
+        <!--Payement-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="PaymentVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paymentVC" id="Y6W-OH-hqX" customClass="PaymentVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuD-3E-3sp">
+                                <rect key="frame" x="16" y="107" width="194.66666666666666" height="34.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pn-qi-DiJ">
+                                <rect key="frame" x="16" y="149.33333333333334" width="361" height="52.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="87" id="zuv-5R-aZd"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Visa Card">
+                                    <color key="titleColor" name="AccentColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="gray" title="Visa" cornerStyle="capsule">
+                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="65" bottom="0.0" trailing="0.0"/>
+                                    <color key="baseForegroundColor" name="AccentColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC0-ap-T9d">
+                                <rect key="frame" x="16" y="210" width="361" height="52.666666666666686"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Visa Card">
+                                    <color key="titleColor" name="AccentColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="gray" title="Apple Pay" cornerStyle="capsule">
+                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="65" bottom="0.0" trailing="0.0"/>
+                                    <color key="baseForegroundColor" name="AccentColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-Hu-A0n">
+                                <rect key="frame" x="16" y="270.66666666666669" width="72.333333333333329" height="35"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-av-bPo">
+                                <rect key="frame" x="16" y="313.66666666666669" width="361" height="52.333333333333314"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Visa Card">
+                                    <color key="titleColor" name="AccentColor"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="gray" title="Cash on Delivery (CoD)" cornerStyle="capsule">
+                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="65" bottom="0.0" trailing="0.0"/>
+                                    <color key="baseForegroundColor" name="AccentColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usg-ba-dBa" userLabel="Order">
+                                <rect key="frame" x="16" y="429" width="361" height="50"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Visa Card"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Proceed to Order" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" name="CoffeColor"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="proceedOrderBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LX4-80-KUo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xA-nf-jaT">
+                                <rect key="frame" x="16" y="382" width="104" height="35"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7ru-ox-Hp6">
+                                <rect key="frame" x="16" y="425" width="361" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="top" secondItem="7ru-ox-Hp6" secondAttribute="bottom" constant="4" id="15k-fB-mHg"/>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="2Xs-e6-J8m"/>
+                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.102113" id="3Rd-T4-MxM"/>
+                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="Mra-av-bPo" secondAttribute="height" id="49K-9B-Nlt"/>
+                            <constraint firstItem="5xA-nf-jaT" firstAttribute="top" secondItem="Mra-av-bPo" secondAttribute="bottom" constant="16" id="4C0-Jy-UY0"/>
+                            <constraint firstItem="nC0-ap-T9d" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="5XW-3E-LDc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1pn-qi-DiJ" secondAttribute="trailing" constant="16" id="6Ee-rn-kgT"/>
+                            <constraint firstItem="Mra-av-bPo" firstAttribute="top" secondItem="xAo-Hu-A0n" secondAttribute="bottom" constant="8" id="9xi-IN-IWD"/>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="DB6-A4-KQN"/>
+                            <constraint firstItem="xAo-Hu-A0n" firstAttribute="top" secondItem="nC0-ap-T9d" secondAttribute="bottom" constant="8" id="FBa-7I-p1Q"/>
+                            <constraint firstItem="Mra-av-bPo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="MO2-gX-V0F"/>
+                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="top" secondItem="QuD-3E-3sp" secondAttribute="bottom" constant="8" id="PiG-i5-6Yq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Usg-ba-dBa" secondAttribute="bottom" constant="2" id="QE5-tS-Odb"/>
+                            <constraint firstItem="nC0-ap-T9d" firstAttribute="top" secondItem="1pn-qi-DiJ" secondAttribute="bottom" constant="8" id="RK0-rO-JBF"/>
+                            <constraint firstItem="7ru-ox-Hp6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Tf5-B6-ljo"/>
+                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="nC0-ap-T9d" secondAttribute="height" id="ThD-rp-JNH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Usg-ba-dBa" secondAttribute="trailing" constant="16" id="YRg-4c-1q8"/>
+                            <constraint firstItem="QuD-3E-3sp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="cz2-02-3cc"/>
+                            <constraint firstItem="5xA-nf-jaT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dun-LJ-0rb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mra-av-bPo" secondAttribute="trailing" constant="16" id="iGd-Zy-N59"/>
+                            <constraint firstItem="xAo-Hu-A0n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iRa-ST-hJ1"/>
+                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="isS-wJ-cVf"/>
+                            <constraint firstItem="7ru-ox-Hp6" firstAttribute="top" secondItem="5xA-nf-jaT" secondAttribute="bottom" constant="8" id="l6I-il-Bvl"/>
+                            <constraint firstItem="QuD-3E-3sp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="4" id="o3V-MD-qkX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Usg-ba-dBa" secondAttribute="trailing" constant="16" id="oJQ-SJ-2i2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7ru-ox-Hp6" secondAttribute="trailing" constant="16" id="ooE-dH-gEt"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nC0-ap-T9d" secondAttribute="trailing" constant="16" id="zRD-Hb-bfr"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Payement" id="cRU-zH-l8q"/>
+                    <connections>
+                        <outlet property="addressTable" destination="7ru-ox-Hp6" id="NMp-Es-7TN"/>
+                        <outlet property="applePayBtn" destination="nC0-ap-T9d" id="8Ie-V4-uKF"/>
+                        <outlet property="codBtn" destination="Mra-av-bPo" id="DAv-vT-cwi"/>
+                        <outlet property="visaBtn" destination="1pn-qi-DiJ" id="1AI-yy-mf1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45" y="-34"/>
+            <point key="canvasLocation" x="970.2290076335878" y="-34.507042253521128"/>
         </scene>
         <!--OrderVC-->
         <scene sceneID="ewx-H9-QM5">
             <objects>
-                <viewController id="4S0-Zb-cte" customClass="OrderVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderVC" id="4S0-Zb-cte" customClass="OrderVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q4K-vH-R4Z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,10 +154,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNe-y1-kcC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="-35"/>
+            <point key="canvasLocation" x="1828.2442748091603" y="-35.211267605633807"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ld5-VJ-ub0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RdQ-8F-3z2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cfT-uJ-gtj">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="CoffeeColor"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="EHQ-KM-q7x"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ta-SI-DcU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="43.511450381679388" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoffeColor">
+            <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CoffeeColor">
+            <color red="0.68627450980392157" green="0.55686274509803924" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
