@@ -6,6 +6,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,14 +32,14 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Orders     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sA-I8-7o3">
                                 <rect key="frame" x="16" y="149" width="133" height="30"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="CoffeColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Wish List     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvC-JG-d3j">
                                 <rect key="frame" x="16" y="427.66666666666669" width="159.66666666666666" height="30"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="CoffeColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -49,12 +50,15 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvd-qZ-sd3">
                                 <rect key="frame" x="246" y="375.66666666666669" width="131" height="44"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="CoffeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="ordersSeeMoreActionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="X1f-hG-vYH"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kYI-dB-cfG">
                                 <rect key="frame" x="16" y="465.66666666666669" width="361" height="243.33333333333331"/>
@@ -62,12 +66,15 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7W-yc-U3o">
                                 <rect key="frame" x="246" y="717" width="131" height="44"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="CoffeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                     <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="wishListSeeMoreActionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="h28-sR-BNg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -102,13 +109,13 @@
                     <navigationItem key="navigationItem" title="Profile" id="jHX-l7-hyu">
                         <rightBarButtonItems>
                             <barButtonItem image="gearshape.fill" catalog="system" id="7l3-me-FOC">
-                                <color key="tintColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="CoffeColor"/>
                                 <connections>
                                     <action selector="settingButton:" destination="Y6W-OH-hqX" id="yzD-Wr-Atl"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="cart.fill" catalog="system" id="r8y-89-9lo">
-                                <color key="tintColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="CoffeColor"/>
                                 <connections>
                                     <action selector="cartButton:" destination="Y6W-OH-hqX" id="5KT-qC-97o"/>
                                 </connections>
@@ -128,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724.4274809160306" y="-256.33802816901408"/>
+            <point key="canvasLocation" x="1798" y="-256"/>
         </scene>
         <!--cartid-->
         <scene sceneID="PdT-k7-AeF">
@@ -138,7 +145,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2m-o1-f8F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3383.2061068702287" y="-333.0985915492958"/>
+            <point key="canvasLocation" x="2843" y="-256"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="DAW-0A-3TV">
@@ -195,7 +202,7 @@
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89m-rm-GfL">
                                 <rect key="frame" x="123.66666666666669" y="443" width="146" height="56"/>
-                                <color key="backgroundColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="CoffeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log out">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="35"/>
@@ -583,6 +590,63 @@
             </objects>
             <point key="canvasLocation" x="1798" y="1215"/>
         </scene>
+        <!--Wish List See More VC-->
+        <scene sceneID="Kw6-ia-56Z">
+            <objects>
+                <viewController storyboardIdentifier="wishlistseemoreVC" id="iz5-KM-iut" userLabel="Wish List See More VC" customClass="WishListSeeMoreVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="K3o-vW-Vke">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zFz-k6-GWi">
+                                <rect key="frame" x="16" y="75" width="361" height="761"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="m7O-2u-T2J">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ymu-hh-A1t">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Q7L-g3-TdU">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Iop-XD-OuF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zFz-k6-GWi" firstAttribute="leading" secondItem="Iop-XD-OuF" secondAttribute="leading" constant="16" id="0IU-XJ-OoS"/>
+                            <constraint firstItem="Iop-XD-OuF" firstAttribute="trailing" secondItem="zFz-k6-GWi" secondAttribute="trailing" constant="16" id="I2G-3j-Veb"/>
+                            <constraint firstItem="zFz-k6-GWi" firstAttribute="top" secondItem="Iop-XD-OuF" secondAttribute="top" constant="16" id="fVf-Zo-0T0"/>
+                            <constraint firstAttribute="bottom" secondItem="zFz-k6-GWi" secondAttribute="bottom" constant="16" id="rHr-nw-jHY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="productsCollection" destination="zFz-k6-GWi" id="bb9-vN-VbU"/>
+                        <segue destination="CQp-4b-0uu" kind="show" identifier="goToCart" id="gFB-VO-LGz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZI-eb-g2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2771.7557251908397" y="1214.7887323943662"/>
+        </scene>
+        <!--cartid-->
+        <scene sceneID="BZc-mL-I0V">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OthersSB" referencedIdentifier="cartid" id="CQp-4b-0uu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Pba-Za-9Dl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aw4-gN-BPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3476" y="1215"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="Ibx-3L-XpS">
             <objects>
@@ -595,9 +659,18 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <color key="tintColor" name="CoffeColor"/>
+                        <color key="barTintColor" name="AccentColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="CoffeColor"/>
                         </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -606,7 +679,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1n9-xd-iHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797.709923664122" y="-256.33802816901408"/>
+            <point key="canvasLocation" x="781" y="-256"/>
         </scene>
     </scenes>
     <resources>
