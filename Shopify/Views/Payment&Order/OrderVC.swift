@@ -29,14 +29,18 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        orderDetails.layer.borderWidth = 2
+        orderDetails.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
         
-        //orderDetails.layer.borderWidth = 2
+        adresses.layer.borderWidth = 2
+        adresses.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+                //orderDetails.layer.borderWidth = 2
        //adresses.layer.borderWidth = 2
       //scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 400)
         let tableViewCellnib = UINib(nibName: "AddressesCell", bundle: nil)
         adresses.register(tableViewCellnib, forCellReuseIdentifier: "addressesCell")
-        let collectionViwCellnib = UINib(nibName: "ProductCVCell", bundle: nil)
-        orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "productCell")
+        let collectionViwCellnib = UINib(nibName: "OrderDetailsCollectionViewCell", bundle: nil)
+        orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
 
     }
     
@@ -71,12 +75,13 @@ extension OrderVC:  UICollectionViewDataSource{
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
-        productCell.layer.borderWidth = 2
-        productCell.priceOfProduct.text = "10"
+        let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
+        ordercell.orderimage.image = UIImage(named: "coupon")
+       
+        
 
 
-        return productCell
+        return ordercell
     }
 }
 
@@ -105,7 +110,6 @@ extension OrderVC : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let addressesCell : AddressesCell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
-        addressesCell.layer.borderWidth = 2
         addressesCell.cityLabel.text = "imbabh"
 
         return addressesCell
