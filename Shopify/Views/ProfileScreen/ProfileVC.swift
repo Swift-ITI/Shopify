@@ -27,7 +27,7 @@ class ProfileVC: UIViewController
             wishListTable.layer.cornerRadius = 20
             
             let wishListCellNib = UINib(nibName: "WishListsCell", bundle: nil)
-            wishListTable.register(wishListCellNib, forCellReuseIdentifier: "wishListCell")
+            wishListTable.register(wishListCellNib, forCellReuseIdentifier: "wishListsCell")
         }
     }
     @IBOutlet var ordersTable: UITableView!
@@ -69,6 +69,17 @@ class ProfileVC: UIViewController
         print("setting")
         let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
         navigationController?.pushViewController(settingView, animated: true)
+    }
+    
+    @IBAction func ordersSeeMoreActionButton(_ sender: Any)
+    {
+        print("orders See More")
+    }
+    
+    @IBAction func wishListSeeMoreActionButton(_ sender: Any)
+    {
+        let wishListView = storyboard?.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
+        navigationController?.pushViewController(wishListView, animated: true)
     }
     
     /*
@@ -116,13 +127,13 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource
             return cell
             
         case wishListTable:
-            let cell : WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListsCell
+            let cell : WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListsCell", for: indexPath) as! WishListsCell
                 cell.price.text = "1234 $"
                 cell.clothType.text = "Sweet Shit"
                 return cell
         
         default:
-            let cell : WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListCell", for: indexPath) as! WishListsCell
+            let cell : WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListsCell", for: indexPath) as! WishListsCell
             return cell
         }
     }
