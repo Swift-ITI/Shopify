@@ -94,19 +94,7 @@
                             <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="8Y9-Ga-wux">
-                            <color key="tintColor" name="CoffeColor"/>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="heart" catalog="system" style="plain" id="WMa-a1-cdD">
-                                <color key="tintColor" name="CoffeColor"/>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="cart" catalog="system" style="plain" id="fSt-MI-qLt">
-                                <color key="tintColor" name="CoffeColor"/>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
@@ -131,7 +119,21 @@
                         <color key="backgroundColor" name="AccentColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="CoffeColor"/>
+                            <color key="textShadowColor" name="BeigeColor"/>
                         </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="BeigeColor"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="BeigeColor"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" name="BeigeColor"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -143,12 +145,14 @@
             <point key="canvasLocation" x="3399.2366412213737" y="248.59154929577466"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="BeigeColor"/>
     <resources>
-        <image name="cart" catalog="system" width="128" height="102"/>
         <image name="circle.grid.2x2.fill" catalog="system" width="128" height="111"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <namedColor name="AccentColor">
             <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BeigeColor">
+            <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

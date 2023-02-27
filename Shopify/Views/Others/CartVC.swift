@@ -58,8 +58,13 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderWidth = 3
         cartProductscell.layer.borderColor = UIColor(named: "CoffeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
+        if (Int(cartProductscell.quantity.text ?? "") == 12) {
+            cartProductscell.plusQuantity.isUserInteractionEnabled = false
+           // cartProductscell.
+        }
         
         
         return cartProductscell
     }
+    
 }

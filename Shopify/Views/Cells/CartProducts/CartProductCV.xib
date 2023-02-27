@@ -54,6 +54,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="minusQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lMs-Io-wYd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY2-xv-fyU">
                                 <rect key="frame" x="39.666666666666686" y="0.0" width="18" height="34.333333333333336"/>
@@ -67,6 +70,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wuY-1B-CLR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -93,6 +99,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteProduct" destination="pR6-qE-hZ3" id="oLZ-eD-SVL"/>
+                <outlet property="minusQuantity" destination="53v-Uc-zxQ" id="H6C-aw-4Fa"/>
+                <outlet property="plusQuantity" destination="Z1c-gT-6Zh" id="PfW-Do-1Xf"/>
                 <outlet property="productImg" destination="ZnH-Ln-WTd" id="JkL-jJ-5KG"/>
                 <outlet property="productName" destination="nNg-Pm-TNq" id="sbb-mq-H2o"/>
                 <outlet property="productPrice" destination="3cL-Qg-3wT" id="s5g-PX-9wm"/>

@@ -23,6 +23,8 @@ class CategoriesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addBarButtonItems()
+        
         productsCollectionView.layer.cornerRadius = CGFloat(20)
         //will be comment it after fetch data from api
         products = []
@@ -91,6 +93,40 @@ class CategoriesVC: UIViewController {
        // self.productsCollectionView.reloadData()
     }
     
+    func addBarButtonItems(){
+        let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+        
+        let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+        
+        navigationItem.rightBarButtonItems = [fav , cart]
+        
+        let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navsearch))
+         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+         navigationItem.leftBarButtonItem = search
+        
+    }
+    
+    @objc func navfav()
+    {
+        let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
+        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
+        self.navigationController?.pushViewController(favobj, animated: true)
+    }
+    @objc func navcart()
+    {
+        let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
+        let cartobj =
+        CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
+        self.navigationController?.pushViewController(cartobj, animated: true)
+    }
+    @objc func navsearch()
+    {
+        print("aa")
+//        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+//        self.navigationController?.pushViewController(searchobj, animated: true)
+    }
     
     @IBAction func ShowWomenFashion(_ sender: Any) {
         
@@ -141,7 +177,9 @@ class CategoriesVC: UIViewController {
 extension CategoriesVC: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        let storyBoard = UIStoryboard(name: "HomeSB", bundle: nil)
+        let prodetailsobj = storyBoard.instantiateViewController(withIdentifier: "productdetails") as! ProductDetailsVC
+        self.navigationController?.pushViewController(prodetailsobj, animated: true)
     }
 }
 

@@ -9,46 +9,53 @@ import UIKit
 
 class HomeVC: UIViewController {
     
-    @IBOutlet weak var OfferCV: UICollectionView!
-    @IBOutlet weak var BrandsCV: UICollectionView!
+    @IBOutlet weak var OfferCV: UICollectionView!{
+        didSet{
+            OfferCV.delegate = self
+            OfferCV.dataSource = self
+            OfferCV.layer.cornerRadius = 20
+            OfferCV.layer.borderWidth = 5
+            OfferCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        }
+    }
+    @IBOutlet weak var BrandsCV: UICollectionView!{
+        didSet{
+            BrandsCV.dataSource = self
+            BrandsCV.delegate = self
+            BrandsCV.layer.cornerRadius = 20
+            BrandsCV.layer.borderWidth = 5
+            BrandsCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        OfferCV.delegate = self
-        OfferCV.dataSource = self
-        
-        BrandsCV.dataSource = self
-        BrandsCV.delegate = self
 
-        
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
         OfferCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         BrandsCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
         
-        let fav = UIBarButtonItem(image: UIImage(systemName: "heart.fill"),style: .plain , target: self, action: #selector(navfav))
+        addBarButtonItems()
+    }
+    func addBarButtonItems(){
+        let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
         
-        let cartt = UIBarButtonItem(image: UIImage(systemName: "cart.fill"), style: .plain, target: self, action: #selector(navcart))
+        let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
-        navigationItem.rightBarButtonItems = [fav , cartt]
         
-        /*let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(search))
-         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "AccentColor")
-         navigationItem.leftBarButtonItem = search*/
-        OfferCV.layer.cornerRadius = 20
-        OfferCV.layer.borderWidth = 5
-        OfferCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        navigationItem.rightBarButtonItems = [fav , cart]
         
-        BrandsCV.layer.cornerRadius = 20
-        BrandsCV.layer.borderWidth = 5
-        BrandsCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navsearch))
+         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+         navigationItem.leftBarButtonItem = search
+        
     }
     
     @objc func navfav()
     {
-        let FavouriteStoryBoardd = UIStoryboard(name: "OthersSB", bundle: nil)
-        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "favid") as! WishListVC
+        let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
+        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
         self.navigationController?.pushViewController(favobj, animated: true)
     }
     @objc func navcart()
@@ -58,11 +65,12 @@ class HomeVC: UIViewController {
         CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
         self.navigationController?.pushViewController(cartobj, animated: true)
     }
-    /*@objc func search()
+    @objc func navsearch()
     {
-        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-        self.navigationController?.pushViewController(searchobj, animated: true)
-    }*/
+        print("aa")
+//        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
+//        self.navigationController?.pushViewController(searchobj, animated: true)
+    }
 }
         
 extension HomeVC : UICollectionViewDataSource

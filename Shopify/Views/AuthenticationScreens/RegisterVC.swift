@@ -38,8 +38,10 @@ class RegisterVC: UIViewController {
      */
 
     @IBAction func registerBtn(_ sender: Any) {
+        performSegue(withIdentifier: "goToHome", sender: self)
     }
     @IBAction func loginBtn(_ sender: Any) {
+        performSegue(withIdentifier: "goToLogIn", sender: self)
     }
     
 }

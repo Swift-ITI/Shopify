@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sYx-sw-hfo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -9,10 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Main-->
+        <scene sceneID="qn3-6G-S58">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="JBT-IK-fff" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bQ-TK-d6Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-749" y="387"/>
+        </scene>
         <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LoginVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="logInScreen" id="Y6W-OH-hqX" customClass="LoginVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,6 +114,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xlR-nT-Aux"/>
+                                    <segue destination="JBT-IK-fff" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="IGY-mk-LUU"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYA-St-pzC">
@@ -131,6 +140,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="registerBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zms-rc-dqY"/>
+                                            <segue destination="sYx-sw-hfo" kind="presentation" identifier="goToRegister" modalPresentationStyle="fullScreen" id="Pgo-xX-OJP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -176,7 +186,7 @@
         <!--RegisterVC-->
         <scene sceneID="jce-hY-b0v">
             <objects>
-                <viewController id="sYx-sw-hfo" customClass="RegisterVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="register" id="sYx-sw-hfo" customClass="RegisterVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PnH-tZ-FOH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -293,6 +303,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="registerBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="flO-k4-mei"/>
+                                    <segue destination="CUh-R5-szw" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="zxa-lm-MQt"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-H7-8HJ">
@@ -312,6 +323,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="xRc-d8-yOj"/>
+                                            <segue destination="Y6W-OH-hqX" kind="presentation" identifier="goToLogIn" modalPresentationStyle="fullScreen" id="7ld-XI-Kf9"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-Ef-7CH">
@@ -368,7 +380,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cja-Sc-kOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.94656488549617" y="-35.211267605633807"/>
+            <point key="canvasLocation" x="1095" y="-35"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="cYO-3z-jUo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="CUh-R5-szw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iqx-rg-EnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778" y="-35"/>
         </scene>
     </scenes>
     <resources>

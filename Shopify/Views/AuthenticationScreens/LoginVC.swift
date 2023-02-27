@@ -51,7 +51,9 @@ class LoginVC: UIViewController {
     @IBAction func forgotPWBtn(_ sender: Any) {
     }
     @IBAction func registerBtn(_ sender: Any) {
+        performSegue(withIdentifier: "goToRegister", sender: self)
     }
     @IBAction func loginBtn(_ sender: Any) {
+        performSegue(withIdentifier: "goToHome", sender: self)
     }
 }

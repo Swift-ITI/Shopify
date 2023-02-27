@@ -62,7 +62,7 @@ class SettingsVC: UIViewController
     
     @IBAction func logOutButtonAction(_ sender: Any)
     {
-        print("Log Out")
+        performSegue(withIdentifier: "goToLogin", sender: self)
     }
     
 }
