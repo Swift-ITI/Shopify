@@ -39,6 +39,9 @@ class PaymentVC: UIViewController {
     }
     
     @IBAction func proceedOrderBtn(_ sender: Any) {
+        let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+        
+        self.navigationController?.pushViewController(orderObj, animated: true)
     }
     
 }

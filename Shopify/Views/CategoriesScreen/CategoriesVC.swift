@@ -110,8 +110,8 @@ class CategoriesVC: UIViewController {
     
     @objc func navfav()
     {
-        let FavouriteStoryBoardd = UIStoryboard(name: "OthersSB", bundle: nil)
-        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "favid") as! WishListVC
+        let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
+        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
         self.navigationController?.pushViewController(favobj, animated: true)
     }
     @objc func navcart()

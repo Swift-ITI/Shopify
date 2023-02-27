@@ -58,6 +58,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="ordersSeeMoreActionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="X1f-hG-vYH"/>
+                                    <segue destination="SRT-4u-vaw" kind="presentation" identifier="goToOrders" id="kwv-Hr-s9Z"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kYI-dB-cfG">
@@ -147,6 +148,36 @@
             </objects>
             <point key="canvasLocation" x="2843" y="-256"/>
         </scene>
+        <!--Previous OrdersVC-->
+        <scene sceneID="yNo-le-PV0">
+            <objects>
+                <viewController storyboardIdentifier="previousOrder" id="SRT-4u-vaw" customClass="PreviousOrdersVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uNh-I9-39T">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oEG-Bo-PiF">
+                                <rect key="frame" x="0.0" y="59" width="393" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0sM-zl-V36"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oEG-Bo-PiF" firstAttribute="leading" secondItem="0sM-zl-V36" secondAttribute="leading" id="F5b-sP-s4N"/>
+                            <constraint firstItem="oEG-Bo-PiF" firstAttribute="bottom" secondItem="0sM-zl-V36" secondAttribute="bottom" id="UJE-Pn-guT"/>
+                            <constraint firstItem="oEG-Bo-PiF" firstAttribute="top" secondItem="0sM-zl-V36" secondAttribute="top" id="Xqq-Vr-owx"/>
+                            <constraint firstItem="oEG-Bo-PiF" firstAttribute="trailing" secondItem="0sM-zl-V36" secondAttribute="trailing" id="odh-Az-KvK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ordersTableView" destination="oEG-Bo-PiF" id="TU1-LA-o5s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ACJ-1G-4dl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="-346"/>
+        </scene>
         <!--SettingsVC-->
         <scene sceneID="DAW-0A-3TV">
             <objects>
@@ -210,6 +241,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="logOutButtonAction:" destination="jWH-IC-hIk" eventType="touchUpInside" id="Nhc-5g-c55"/>
+                                    <segue destination="R2P-HO-Qka" kind="presentation" identifier="goToLogin" modalPresentationStyle="fullScreen" id="93x-3f-iUe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i2j-ye-Oo5">
@@ -266,6 +298,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGy-QN-TUR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="791.60305343511448" y="510.56338028169017"/>
+        </scene>
+        <!--AuthenticationSB-->
+        <scene sceneID="UJQ-wS-z1U">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AuthenticationSB" id="R2P-HO-Qka" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F1G-Ey-9ZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1373" y="494"/>
         </scene>
         <!--Address VC-->
         <scene sceneID="8Jk-Yx-T5k">
@@ -670,6 +710,9 @@
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
                             <color key="shadowColor" name="AccentColor"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" name="BeigeColor"/>
+                            </textAttributes>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -688,6 +731,9 @@
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BeigeColor">
+            <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
