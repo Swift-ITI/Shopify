@@ -97,6 +97,9 @@ extension HomeVC : UICollectionViewDataSource
             case BrandsCV:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
                 cell.offerbrandimg.image = UIImage(named: "coupon")
+                cell.layer.cornerRadius = 20
+                cell.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+                cell.layer.borderWidth = 2
                 return cell
             default:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
