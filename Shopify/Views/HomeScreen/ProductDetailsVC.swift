@@ -45,6 +45,9 @@ class ProductDetailsVC: UIViewController {
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
         ItemCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         
+        let nibT = UINib(nibName: "ReviewTVCell", bundle: nil)
+        reviewTableView.register(nibT, forCellReuseIdentifier: "reviewTVCell")
+        
         
 //        descriptionLabel.layer.cornerRadius = 15
 //        descriptionLabel.layer.masksToBounds = true
@@ -133,13 +136,16 @@ extension ProductDetailsVC : UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1
+        return 5
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        90
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Cell Static Data"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewTVCell", for: indexPath) as! ReviewTVCell
+       
+        
         return cell
     }
 }

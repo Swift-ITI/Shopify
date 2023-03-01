@@ -76,6 +76,8 @@
 		DED7EA7529A020AF000CC25C /* ShopifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7429A020AF000CC25C /* ShopifyTests.swift */; };
 		DED7EA7F29A020AF000CC25C /* ShopifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */; };
 		DED7EA8129A020AF000CC25C /* ShopifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */; };
+		DEE8BB6529B017950008A698 /* ReviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE8BB6329B017950008A698 /* ReviewTVCell.swift */; };
+		DEE8BB6629B017950008A698 /* ReviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE8BB6429B017950008A698 /* ReviewTVCell.xib */; };
 		DEF7A9C329AA6906001DCA0B /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7A9C129AA6906001DCA0B /* SSRadioButton.swift */; };
 		DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7A9C229AA6906001DCA0B /* SSRadioButtonsController.swift */; };
 		E5BA3EC644ABE0FDC0407142 /* Pods_Shopify_ShopifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38EAD909D88B2723D102351 /* Pods_Shopify_ShopifyUITests.framework */; };
@@ -179,6 +181,8 @@
 		DED7EA7A29A020AF000CC25C /* ShopifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITests.swift; sourceTree = "<group>"; };
 		DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DEE8BB6329B017950008A698 /* ReviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTVCell.swift; sourceTree = "<group>"; };
+		DEE8BB6429B017950008A698 /* ReviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTVCell.xib; sourceTree = "<group>"; };
 		DEF7A9C129AA6906001DCA0B /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		DEF7A9C229AA6906001DCA0B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -450,6 +454,7 @@
 		DE923E8529A4E3C000AF628D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				DEE8BB6229B017770008A698 /* Review */,
 				38D0B8A129AC23FD007726AC /* OrderDetailsCell */,
 				4C951B3029AACEE60052E5CC /* WishLists */,
 				4C521EBE29AA4B1D004D4BBF /* Addresses */,
@@ -568,6 +573,15 @@
 				DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */,
 			);
 			path = ShopifyUITests;
+			sourceTree = "<group>";
+		};
+		DEE8BB6229B017770008A698 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				DEE8BB6329B017950008A698 /* ReviewTVCell.swift */,
+				DEE8BB6429B017950008A698 /* ReviewTVCell.xib */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		DEF7A9C029AA68EB001DCA0B /* CustomClasses */ = {
@@ -693,6 +707,7 @@
 				DED7EA6A29A020AD000CC25C /* LaunchScreen.storyboard in Resources */,
 				DED7EA6729A020AD000CC25C /* Assets.xcassets in Resources */,
 				DE7BBD9829A6698D009622B3 /* CategoriesSB.storyboard in Resources */,
+				DEE8BB6629B017950008A698 /* ReviewTVCell.xib in Resources */,
 				DE923E8B29A4E41700AF628D /* ProductCVCell.xib in Resources */,
 				DE7BBD9A29A669EB009622B3 /* ProfileSB.storyboard in Resources */,
 				DE923E9329A4E53F00AF628D /* OnBoardingSB.storyboard in Resources */,
@@ -843,6 +858,7 @@
 				4C97ADBB29A85BF600775773 /* OrdersCell.swift in Sources */,
 				4C951B3629AAD3A50052E5CC /* WishListSeeMoreVC.swift in Sources */,
 				DE7BBDB929A66ED8009622B3 /* LoginVC.swift in Sources */,
+				DEE8BB6529B017950008A698 /* ReviewTVCell.swift in Sources */,
 				DE7BBDB429A66E6B009622B3 /* OrderVC.swift in Sources */,
 				DE923E7929A4E25300AF628D /* Profile.swift in Sources */,
 				DE923E7129A4E22000AF628D /* ViewModel.swift in Sources */,

@@ -209,8 +209,11 @@
                                             <constraint firstAttribute="height" constant="100" id="uBI-Di-g3K"/>
                                         </constraints>
                                     </tableView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter coupon" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-1c-oae">
-                                        <rect key="frame" x="16" y="729" width="145" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter coupon" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-1c-oae">
+                                        <rect key="frame" x="16" y="729" width="201" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="201" id="ViY-xk-FzA"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
