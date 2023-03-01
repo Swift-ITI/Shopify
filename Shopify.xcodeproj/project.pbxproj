@@ -32,6 +32,8 @@
 		4C97ADBC29A85BF600775773 /* OrdersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C97ADBA29A85BF600775773 /* OrdersCell.xib */; };
 		4C97ADC029A8627700775773 /* WishListsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97ADBE29A8627600775773 /* WishListsCell.swift */; };
 		4C97ADC129A8627700775773 /* WishListsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C97ADBF29A8627600775773 /* WishListsCell.xib */; };
+		4CAC435129AED06200DA7E17 /* WishListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC434F29AED06200DA7E17 /* WishListTableCell.swift */; };
+		4CAC435229AED06200DA7E17 /* WishListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC435029AED06200DA7E17 /* WishListTableCell.xib */; };
 		4CB4C75429AA4BA3004B9BE2 /* AddressesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4C75329AA4BA3004B9BE2 /* AddressesCell.swift */; };
 		4CB4C75629AA4BE2004B9BE2 /* AddressesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB4C75529AA4BE2004B9BE2 /* AddressesCell.xib */; };
 		DE59EF4E29A6F78D00D50A91 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59EF4D29A6F78D00D50A91 /* CustomTabBar.swift */; };
@@ -122,6 +124,8 @@
 		4C97ADBA29A85BF600775773 /* OrdersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersCell.xib; sourceTree = "<group>"; };
 		4C97ADBE29A8627600775773 /* WishListsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListsCell.swift; sourceTree = "<group>"; };
 		4C97ADBF29A8627600775773 /* WishListsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListsCell.xib; sourceTree = "<group>"; };
+		4CAC434F29AED06200DA7E17 /* WishListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListTableCell.swift; sourceTree = "<group>"; };
+		4CAC435029AED06200DA7E17 /* WishListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListTableCell.xib; sourceTree = "<group>"; };
 		4CB4C75329AA4BA3004B9BE2 /* AddressesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesCell.swift; sourceTree = "<group>"; };
 		4CB4C75529AA4BE2004B9BE2 /* AddressesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressesCell.xib; sourceTree = "<group>"; };
 		4D8596E578E9FE2D42DCB254 /* Pods-Shopify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify.release.xcconfig"; path = "Target Support Files/Pods-Shopify/Pods-Shopify.release.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 			children = (
 				4C951B3129AACF510052E5CC /* WishListCell.swift */,
 				4C951B3229AACF510052E5CC /* WishListCell.xib */,
+				4CAC434F29AED06200DA7E17 /* WishListTableCell.swift */,
+				4CAC435029AED06200DA7E17 /* WishListTableCell.xib */,
 			);
 			path = WishLists;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				DE923E8B29A4E41700AF628D /* ProductCVCell.xib in Resources */,
 				DE7BBD9A29A669EB009622B3 /* ProfileSB.storyboard in Resources */,
 				DE923E9329A4E53F00AF628D /* OnBoardingSB.storyboard in Resources */,
+				4CAC435229AED06200DA7E17 /* WishListTableCell.xib in Resources */,
 				DE7BBDB029A66E4D009622B3 /* Payment&OrderSB.storyboard in Resources */,
 				3D1EE21D29A815D000F8F43D /* CartProductCV.xib in Resources */,
 				DE923E9029A4E43700AF628D /* BrandCVCell.xib in Resources */,
@@ -829,6 +836,7 @@
 			files = (
 				DE923E7D29A4E31400AF628D /* NetworkService.swift in Sources */,
 				DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */,
+				4CAC435129AED06200DA7E17 /* WishListTableCell.swift in Sources */,
 				38842ECE29AE8E41002E2EA8 /* Brands.swift in Sources */,
 				DE923E9529A4E56000AF628D /* OnBoardingVC.swift in Sources */,
 				38842ED929AEBA3E002E2EA8 /* Discount.swift in Sources */,

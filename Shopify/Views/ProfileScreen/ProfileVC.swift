@@ -10,6 +10,7 @@ import UIKit
 class ProfileVC: UIViewController
 {
 
+    @IBOutlet var ordersNumberLabel: UILabel!
     @IBOutlet var usersNameLabel: UILabel!
     @IBOutlet var ordersLabel: UILabel!
     @IBOutlet var wishListLabel: UILabel!
@@ -56,6 +57,8 @@ class ProfileVC: UIViewController
         wishListSeeMoreButton.layer.cornerRadius = wishListSeeMoreButton.frame.width/8
         ordersSeeMoreButton.layer.masksToBounds = true
         ordersSeeMoreButton.layer.cornerRadius = ordersSeeMoreButton.frame.width/8
+        let ordersScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
+        ordersNumberLabel.text = "\(ordersScreen.productsNumber) Orders"
     }
     
     @IBAction func cartButton(_ sender: Any)
@@ -93,6 +96,8 @@ class ProfileVC: UIViewController
     */
 
 }
+
+// MARK: - Table View Extension
 
 extension ProfileVC : UITableViewDelegate , UITableViewDataSource
 {
@@ -136,5 +141,10 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource
             let cell : WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListsCell", for: indexPath) as! WishListsCell
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 90
     }
 }

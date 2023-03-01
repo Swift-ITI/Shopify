@@ -249,8 +249,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-PD-p8t">
-                                        <rect key="frame" x="0.0" y="70.333333333333314" width="78" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-PD-p8t">
+                                        <rect key="frame" x="0.0" y="70.333333333333314" width="48.333333333333336" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -260,8 +260,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-xM-s00">
-                                        <rect key="frame" x="0.0" y="140.66666666666669" width="143.33333333333334" height="20.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-xM-s00">
+                                        <rect key="frame" x="0.0" y="140.66666666666669" width="73.333333333333329" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -370,11 +370,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confirmPWTxtField" destination="ltS-2O-kHu" id="5Yn-Lc-ERY"/>
                         <outlet property="emailTxtField" destination="5xx-hM-20Z" id="fMA-fR-y3L"/>
                         <outlet property="firstNameTxtField" destination="Isy-ZG-9qQ" id="9nb-7g-0OU"/>
                         <outlet property="lastNameTxtField" destination="eJd-sZ-v7r" id="1Yt-d2-snG"/>
-                        <outlet property="passwordTxtField" destination="hMB-ZW-ETA" id="Pnu-wA-dRn"/>
+                        <outlet property="passwordTxtField" destination="ltS-2O-kHu" id="Bq6-fQ-jJk"/>
+                        <outlet property="phoneTxtField" destination="hMB-ZW-ETA" id="WDz-2H-Uu0"/>
                         <outlet property="registerImage" destination="kyL-hJ-Fqt" id="JAo-5h-rVy"/>
                     </connections>
                 </viewController>
