@@ -47,9 +47,9 @@ class HomeVC: UIViewController {
     
         Brandviewmodel = BrandViewModel()
         Brandviewmodel?.getdata(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json")
-        Brandviewmodel?.bindResultToHomeViewController = { () in
+        Brandviewmodel?.bindResultOfBrandsToHomeViewController = { () in
             DispatchQueue.main.async {
-                self.BrandCollectionviewresponse = self.Brandviewmodel?.DataofBrands
+                self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
                 self.BrandsCV.reloadData()
             }
             
@@ -61,9 +61,9 @@ class HomeVC: UIViewController {
         
         Offerviewmodel = OfferViewModel()
         Offerviewmodel?.getoffer(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/price_rules/1380100899094/discount_codes.json")
-        Offerviewmodel?.bindResultToHomeViewController = { () in
+        Offerviewmodel?.bindResultOfOffersToHomeViewController = { () in
             DispatchQueue.main.async {
-                self.OfferCollectionviewresponse = self.Offerviewmodel?.DataofOffers
+                self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
                 self.OfferCV.reloadData()
             }
         }

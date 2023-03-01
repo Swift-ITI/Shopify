@@ -11,86 +11,164 @@ import Floaty
 
 class CategoriesVC: UIViewController {
 
-    @IBOutlet weak var toolBar: UIToolbar!
-    @IBOutlet weak var productsCollectionView: UICollectionView!
+    @IBOutlet weak var catiroriesSegmentes: UISegmentedControl!
+    @IBOutlet weak var productsCollectionView: UICollectionView!{didSet{productsCollectionView.layer.cornerRadius = CGFloat(20)}}
     @IBOutlet weak var subCategory: Floaty!
     
-    var products: [Product]?
-    var womenProducts: [Product]?
-    var kidsProducts: [Product]?
-    var menProducts: [Product]?
+    var products : Products?
+    var catigoriesViewModel : CatigoriesViewModel?
+    var flag : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addBarButtonItems()
         
-        productsCollectionView.layer.cornerRadius = CGFloat(20)
-        //will be comment it after fetch data from api
-        products = []
-        womenProducts = []
-        kidsProducts = []
-        menProducts = []
-        
-        var product = Product()
-        product.nameOfProduct = "accesserios"
-        product.priceOfProduct = "20$"
-        for _ in 0...10 {
-            womenProducts?.append(product)
-        }
-        products = womenProducts
-        
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
         productsCollectionView.register(nib, forCellWithReuseIdentifier: "productCell")
         
+        catigoriesViewModel = CatigoriesViewModel()
+        catigoriesViewModel?.getProducts(target: .allProducts)
+        catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+            self.renderView()
+        }
+        
         addIconsToFloatingActionBtn()
+    }
+    
+    
+    @IBAction func selectedCategories(_ sender: Any) {
+        switch catiroriesSegmentes.selectedSegmentIndex{
+        case 0 :
+            flag = 1
+            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.kids.id))
+            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 1 :
+            flag = 2
+            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.men.id))
+            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 2 :
+            flag = 3
+            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.sale.id))
+            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 3 :
+            flag = 4
+            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.women.id))
+            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        default : break
+        }
+    }
+    
+    func renderView () {
+        DispatchQueue.main.async {
+            self.products = self.catigoriesViewModel?.DataOfProducts
+            self.productsCollectionView.reloadData()
+        }
     }
     
     func addIconsToFloatingActionBtn(){
         
         subCategory.addItem(icon: UIImage(named: "shoes")) { _ in
-            
-            var product = Product()
-            product.nameOfProduct = "shoes"
-            product.priceOfProduct = "50$"
-            product.imgOfProuct = "shoes"
-            
-            for _ in 0...10 {
-                self.products?.append(product)
+            switch self.flag {
+            case 0 :
+                self.filter(flag: self.flag, target: .shoes(id:""))
+                
+            case 1 :
+                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.kids.id))
+                
+            case 2 :
+                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.men.id))
+                
+            case 3 :
+                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.sale.id))
+            case 4 :
+                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.women.id))
+            default : break
+                
             }
-            
-            self.productsCollectionView.reloadData()
             
         }
-        subCategory.addItem(icon: UIImage(named: "clothes")) { _ in
-            
-            var product = Product()
-            product.nameOfProduct = "clothes"
-            product.priceOfProduct = "200$"
-            product.imgOfProuct = "clothes"
-            
-            for _ in 0...10 {
-                self.products?.append(product)
+        subCategory.addItem(icon: UIImage(named: "T-shirt")) { _ in
+            switch self.flag {
+            case 0 :
+                self.filter(flag: self.flag, target: .tshirts(id:""))
+                
+            case 1 :
+                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.kids.id))
+                
+            case 2 :
+                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.men.id))
+                
+            case 3 :
+                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.sale.id))
+            case 4 :
+                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.women.id))
+            default : break
+                
             }
             
-            self.productsCollectionView.reloadData()
         }
         subCategory.addItem(icon: UIImage(named: "accesserios")) { _ in
-            
-            var product = Product()
-            product.nameOfProduct = "accesseriosaccesseriosaccesseriosaccesserios"
-            product.priceOfProduct = "20$"
-            product.imgOfProuct = "accesserios"
-            
-            for _ in 0...10 {
-                self.products?.append(product)
+            switch self.flag {
+            case 0 :
+                self.filter(flag: self.flag, target: .accessories(id:""))
+                
+            case 1 :
+                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.kids.id))
+                
+            case 2 :
+                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.men.id))
+                
+            case 3 :
+                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.sale.id))
+            case 4 :
+                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.women.id))
+            default : break
+                
             }
-            
-            self.productsCollectionView.reloadData()
         }
         
         self.view.addSubview(subCategory)
-       // self.productsCollectionView.reloadData()
+    }
+    
+    func filter (flag : Int , target : EndPoints) {
+        switch flag {
+        case 0 :
+            self.catigoriesViewModel?.getProducts(target:target)
+            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 1 :
+            self.catigoriesViewModel?.getProducts(target: target)
+            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 2 :
+            self.catigoriesViewModel?.getProducts(target: target)
+            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 3 :
+            self.catigoriesViewModel?.getProducts(target: target)
+            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        case 4 :
+            self.catigoriesViewModel?.getProducts(target: target)
+            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+                self.renderView()
+            }
+        default : break
+            
+        }
     }
     
     func addBarButtonItems(){
@@ -127,51 +205,6 @@ class CategoriesVC: UIViewController {
 //        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
 //        self.navigationController?.pushViewController(searchobj, animated: true)
     }
-    
-    @IBAction func ShowWomenFashion(_ sender: Any) {
-        
-        var product = Product()
-        product.nameOfProduct = "Woman"
-        product.priceOfProduct = "200$"
-        
-        for _ in 0...10 {
-            womenProducts?.append(product)
-        }
-        
-        self.products = womenProducts
-        self.productsCollectionView.reloadData()
-    }
-    
-    
-    @IBAction func ShowKidsFashoin(_ sender: Any) {
-        
-        var product = Product()
-        product.nameOfProduct = "kid"
-        product.priceOfProduct = "50$"
-        
-        for _ in 0...10 {
-            kidsProducts?.append(product)
-        }
-        
-        self.products = kidsProducts
-        self.productsCollectionView.reloadData()
-    }
-    
-    
-    @IBAction func ShowMenFashoin(_ sender: Any) {
-        
-        var product = Product()
-        product.nameOfProduct = "man"
-        product.priceOfProduct = "100$"
-        
-        for _ in 0...10 {
-            menProducts?.append(product)
-        }
-        
-        self.products = menProducts
-        self.productsCollectionView.reloadData()
-    }
-
 }
 //MARK: extension1
 extension CategoriesVC: UICollectionViewDelegate{
@@ -191,16 +224,16 @@ extension CategoriesVC:  UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products?.count ?? 0
+        return products?.products.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
         
-        productCell.nameOfProduct.text = products?[indexPath.row].nameOfProduct
-        productCell.priceOfProduct.text = products?[indexPath.row].priceOfProduct
-        productCell.imgOfProduct.image = UIImage(named: products?[indexPath.row].imgOfProuct ?? "No image")
+        productCell.nameOfProduct.text = products?.products[indexPath.row].title
+        productCell.priceOfProduct.text = products?.products[indexPath.row].variants?[0].price
+        productCell.imgOfProduct.kf.setImage(with: URL(string: products?.products[indexPath.row].image?.src ?? ""))
         
         return productCell
     }
@@ -212,7 +245,5 @@ extension CategoriesVC: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: productsCollectionView.layer.frame.size.width/2 - 5, height: productsCollectionView.layer.frame.size.height/3 - 5)
-        
-        //return CGSize(width: (UIScreen.main.bounds.size.width/2) - 30, height: (UIScreen.main.bounds.size.height/4) - 30)
     }
 }
