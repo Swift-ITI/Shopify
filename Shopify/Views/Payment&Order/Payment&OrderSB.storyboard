@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Payement-->
+        <!--Payment-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="paymentVC" id="Y6W-OH-hqX" customClass="PaymentVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="paymentVC" title="Payment" id="Y6W-OH-hqX" customClass="PaymentVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuD-3E-3sp">
-                                <rect key="frame" x="16" y="107" width="194.66666666666666" height="34.333333333333343"/>
+                                <rect key="frame" x="16" y="63" width="194.66666666666666" height="34.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -356,7 +356,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xk-0x-m9a">
-                                <rect key="frame" x="0.0" y="59" width="393" height="1407"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="1363"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="i8K-pI-KzX">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1064"/>
@@ -638,6 +638,7 @@
                             <constraint firstItem="2Xk-0x-m9a" firstAttribute="top" secondItem="Fan-k0-Qpz" secondAttribute="top" id="fsO-4O-tdf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Order Details" id="DuD-tK-UYb"/>
                     <size key="freeformSize" width="393" height="1500"/>
                     <connections>
                         <outlet property="discount" destination="NkL-OA-a7V" id="lkk-6f-ud1"/>
@@ -658,22 +659,27 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <color key="barTintColor" name="CoffeeColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="CoffeeColor"/>
+                            <color key="textShadowColor" name="CoffeeColor"/>
                         </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
                             <textAttributes key="titleTextAttributes">
-                                <color key="textColor" name="BeigeColor"/>
+                                <color key="textColor" name="CoffeeColor"/>
+                                <color key="textShadowColor" name="CoffeeColor"/>
                             </textAttributes>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="EHQ-KM-q7x"/>
+                        <segue destination="4S0-Zb-cte" kind="relationship" relationship="rootViewController" id="JSY-oF-KFN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ta-SI-DcU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -681,13 +687,10 @@
             <point key="canvasLocation" x="-228" y="-50"/>
         </scene>
     </scenes>
-    <color key="tintColor" name="BeigeColor"/>
+    <color key="tintColor" name="CoffeeColor"/>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="BeigeColor">
-            <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

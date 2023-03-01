@@ -21,18 +21,25 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iCo-d4-Vnl">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                         <color key="tintColor" name="BeigeColor"/>
-                        <color key="barTintColor" name="AccentColor"/>
+                        <color key="barTintColor" name="CoffeeColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="BeigeColor"/>
                         </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="CoffeeColor"/>
+                        </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="AccentColor"/>
                             <textAttributes key="titleTextAttributes">
-                                <color key="textColor" red="0.96862745100000003" green="0.65490196079999996" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="CoffeeColor"/>
+                                <color key="textShadowColor" name="CoffeeColor"/>
                             </textAttributes>
                         </navigationBarAppearance>
                     </navigationBar>
@@ -53,15 +60,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-M3-yaZ">
-                                <rect key="frame" x="117" y="401" width="158" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vyv-RV-VRR">
-                                <rect key="frame" x="32" y="453" width="329" height="284"/>
+                                <rect key="frame" x="16" y="441" width="361" height="312"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SOX-ii-LjU">
                                     <size key="itemSize" width="128" height="128"/>
@@ -82,18 +82,27 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-M3-yaZ">
+                                <rect key="frame" x="151" y="397" width="91" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wWB-vf-R6d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xt4-M3-yaZ" firstAttribute="top" secondItem="Le5-wb-mnR" secondAttribute="bottom" constant="32" id="BW0-4P-QNU"/>
+                            <constraint firstItem="xt4-M3-yaZ" firstAttribute="centerX" secondItem="v1j-Xw-nvD" secondAttribute="centerX" id="CUE-wY-Lch"/>
+                            <constraint firstItem="vyv-RV-VRR" firstAttribute="height" secondItem="v1j-Xw-nvD" secondAttribute="height" multiplier="0.366197" id="MBi-Ju-pDa"/>
                             <constraint firstItem="Le5-wb-mnR" firstAttribute="leading" secondItem="wWB-vf-R6d" secondAttribute="leading" constant="32" id="Nku-N3-4P2"/>
-                            <constraint firstItem="vyv-RV-VRR" firstAttribute="height" secondItem="v1j-Xw-nvD" secondAttribute="height" multiplier="1:3" id="cf9-Xh-b1V"/>
                             <constraint firstItem="Le5-wb-mnR" firstAttribute="height" secondItem="v1j-Xw-nvD" secondAttribute="height" multiplier="0.27" id="eVh-3G-A7m"/>
-                            <constraint firstItem="vyv-RV-VRR" firstAttribute="leading" secondItem="wWB-vf-R6d" secondAttribute="leading" constant="32" id="f9F-3r-aa3"/>
-                            <constraint firstItem="wWB-vf-R6d" firstAttribute="trailing" secondItem="vyv-RV-VRR" secondAttribute="trailing" constant="32" id="m6f-tm-XWU"/>
+                            <constraint firstItem="vyv-RV-VRR" firstAttribute="leading" secondItem="wWB-vf-R6d" secondAttribute="leading" constant="16" id="f9F-3r-aa3"/>
+                            <constraint firstItem="wWB-vf-R6d" firstAttribute="trailing" secondItem="vyv-RV-VRR" secondAttribute="trailing" constant="16" id="m6f-tm-XWU"/>
                             <constraint firstItem="Le5-wb-mnR" firstAttribute="top" secondItem="wWB-vf-R6d" secondAttribute="top" constant="32" id="mHN-R1-Vh1"/>
                             <constraint firstItem="wWB-vf-R6d" firstAttribute="trailing" secondItem="Le5-wb-mnR" secondAttribute="trailing" constant="32" id="oAd-QS-bJA"/>
-                            <constraint firstItem="wWB-vf-R6d" firstAttribute="bottom" secondItem="vyv-RV-VRR" secondAttribute="bottom" constant="32" id="vaF-Yb-W48"/>
+                            <constraint firstItem="wWB-vf-R6d" firstAttribute="bottom" secondItem="vyv-RV-VRR" secondAttribute="bottom" constant="16" id="vaF-Yb-W48"/>
+                            <constraint firstItem="vyv-RV-VRR" firstAttribute="top" secondItem="xt4-M3-yaZ" secondAttribute="bottom" constant="8" id="xIo-Ya-xfW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="b8t-fB-qaV"/>
@@ -106,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="693.89312977099235" y="-27.464788732394368"/>
         </scene>
-        <!--ProductsVC-->
+        <!--Products-->
         <scene sceneID="JHx-1p-YrT">
             <objects>
-                <viewController storyboardIdentifier="productsid" id="qOZ-Oq-tMM" customClass="ProductsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productsid" title="Products" id="qOZ-Oq-tMM" customClass="ProductsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="efe-Ds-c79">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,10 +174,10 @@
             </objects>
             <point key="canvasLocation" x="1446.5648854961833" y="-27.464788732394368"/>
         </scene>
-        <!--View Controller-->
+        <!--Product Details-->
         <scene sceneID="lhj-fu-tEr">
             <objects>
-                <viewController id="KY9-tq-Rzc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productdetails" title="Product Details" id="KY9-tq-Rzc" customClass="ProductDetailsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PHy-zY-fBn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -553,14 +562,6 @@
             <point key="canvasLocation" x="3677.0992366412211" y="-5.6338028169014089"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="2CE-ty-g2b">
-            <size key="intrinsicContentSize" width="170" height="30"/>
-        </designable>
-        <designable name="NOT-9B-AyB">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <color key="tintColor" name="BeigeColor"/>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
@@ -574,9 +575,9 @@
         <namedColor name="BeigeColor">
             <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="CoffeeColor">
+            <color red="0.68627450980392157" green="0.55686274509803924" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
