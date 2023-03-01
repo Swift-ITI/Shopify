@@ -32,7 +32,7 @@ class CategoriesVC: UIViewController {
         kidsProducts = []
         menProducts = []
         
-        var product = Product()
+        let product = Product()
         product.nameOfProduct = "accesserios"
         product.priceOfProduct = "20$"
         for _ in 0...10 {
@@ -50,7 +50,7 @@ class CategoriesVC: UIViewController {
         
         subCategory.addItem(icon: UIImage(named: "shoes")) { _ in
             
-            var product = Product()
+            let product = Product()
             product.nameOfProduct = "shoes"
             product.priceOfProduct = "50$"
             product.imgOfProuct = "shoes"
@@ -64,7 +64,7 @@ class CategoriesVC: UIViewController {
         }
         subCategory.addItem(icon: UIImage(named: "clothes")) { _ in
             
-            var product = Product()
+            let product = Product()
             product.nameOfProduct = "clothes"
             product.priceOfProduct = "200$"
             product.imgOfProuct = "clothes"
@@ -77,7 +77,7 @@ class CategoriesVC: UIViewController {
         }
         subCategory.addItem(icon: UIImage(named: "accesserios")) { _ in
             
-            var product = Product()
+            let product = Product()
             product.nameOfProduct = "accesseriosaccesseriosaccesseriosaccesserios"
             product.priceOfProduct = "20$"
             product.imgOfProuct = "accesserios"
@@ -130,7 +130,7 @@ class CategoriesVC: UIViewController {
     
     @IBAction func ShowWomenFashion(_ sender: Any) {
         
-        var product = Product()
+        let product = Product()
         product.nameOfProduct = "Woman"
         product.priceOfProduct = "200$"
         
@@ -145,7 +145,7 @@ class CategoriesVC: UIViewController {
     
     @IBAction func ShowKidsFashoin(_ sender: Any) {
         
-        var product = Product()
+        let product = Product()
         product.nameOfProduct = "kid"
         product.priceOfProduct = "50$"
         
@@ -160,7 +160,7 @@ class CategoriesVC: UIViewController {
     
     @IBAction func ShowMenFashoin(_ sender: Any) {
         
-        var product = Product()
+        let product = Product()
         product.nameOfProduct = "man"
         product.priceOfProduct = "100$"
         
