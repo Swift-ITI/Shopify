@@ -24,14 +24,14 @@ class CategoriesVC: UIViewController {
         super.viewDidLoad()
         
         addBarButtonItems()
-        
+
         productsCollectionView.layer.cornerRadius = CGFloat(20)
         //will be comment it after fetch data from api
         products = []
         womenProducts = []
         kidsProducts = []
         menProducts = []
-        
+
         var product = Product()
         product.nameOfProduct = "accesserios"
         product.priceOfProduct = "20$"
