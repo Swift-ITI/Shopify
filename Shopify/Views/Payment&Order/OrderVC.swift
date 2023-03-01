@@ -13,12 +13,16 @@ class OrderVC: UIViewController {
         didSet {
             orderDetails.delegate = self
             orderDetails.dataSource = self
+            orderDetails.layer.borderWidth = 2
+            orderDetails.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
         }
     }
     @IBOutlet weak var adresses: UITableView!{
         didSet{
             adresses.delegate = self
             adresses.dataSource = self
+            adresses.layer.borderWidth = 2
+            adresses.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
         }
     }
     @IBOutlet weak var coupon: UITextField!
@@ -29,16 +33,15 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        orderDetails.layer.borderWidth = 2
-        orderDetails.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
         
-        adresses.layer.borderWidth = 2
-        adresses.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        
+        
                 //orderDetails.layer.borderWidth = 2
        //adresses.layer.borderWidth = 2
       //scroll.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height + 400)
         let tableViewCellnib = UINib(nibName: "AddressesCell", bundle: nil)
         adresses.register(tableViewCellnib, forCellReuseIdentifier: "addressesCell")
+        
         let collectionViwCellnib = UINib(nibName: "OrderDetailsCollectionViewCell", bundle: nil)
         orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
 
@@ -99,7 +102,7 @@ extension OrderVC: UICollectionViewDelegateFlowLayout{
 
 extension OrderVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 128
+        return 100
     }
 }
 extension OrderVC : UITableViewDataSource {

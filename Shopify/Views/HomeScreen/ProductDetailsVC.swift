@@ -17,8 +17,8 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var ItemCV: UICollectionView!
     @IBOutlet var reviewTableView: UITableView!
     @IBOutlet weak var productdescription: UITextView!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet var reviewLabel: UILabel!
+    //@IBOutlet weak var descriptionLabel: UILabel!
+    //@IBOutlet var reviewLabel: UILabel!
     @IBOutlet weak var favbtn: UIButton!
     
     override func viewDidLoad() {
@@ -46,12 +46,12 @@ class ProductDetailsVC: UIViewController {
         ItemCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         
         
-        descriptionLabel.layer.cornerRadius = 15
-        descriptionLabel.layer.masksToBounds = true
-        descriptionLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
-        reviewLabel.layer.cornerRadius = 15
-        reviewLabel.layer.masksToBounds = true
-        reviewLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+//        descriptionLabel.layer.cornerRadius = 15
+//        descriptionLabel.layer.masksToBounds = true
+ //       descriptionLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+  //      reviewLabel.layer.cornerRadius = 15
+  //      reviewLabel.layer.masksToBounds = true
+  //      reviewLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
     }
     
     @IBAction func addtocart(_ sender: Any) {
