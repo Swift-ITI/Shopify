@@ -8,7 +8,7 @@
 import UIKit
 
 class CartVC: UIViewController {
-
+    
     @IBOutlet weak var cartProducts: UITableView!
     
     @IBOutlet weak var subTotal: UILabel!
@@ -40,6 +40,26 @@ extension CartVC : UITableViewDelegate{
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Cart", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+                print("Deleted")
+                tableView.deleteSections([indexPath.section], with: .left)
+                tableView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+        tableView.reloadData()
+    }
 }
 
 extension CartVC : UITableViewDataSource{

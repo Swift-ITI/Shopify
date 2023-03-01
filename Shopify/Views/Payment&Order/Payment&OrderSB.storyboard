@@ -73,7 +73,7 @@
                                 <rect key="frame" x="16" y="429" width="361" height="50"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Visa Card"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Proceed to Order" cornerStyle="capsule">
+                                <buttonConfiguration key="configuration" style="plain" title="Place Order" cornerStyle="capsule">
                                     <backgroundConfiguration key="background">
                                         <color key="backgroundColor" name="CoffeColor"/>
                                     </backgroundConfiguration>
@@ -193,7 +193,7 @@
                                                     <constraint firstAttribute="height" constant="36" id="hmZ-Gr-zCg"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Button" cornerStyle="capsule">
+                                                <buttonConfiguration key="configuration" style="filled" title="Pay Method" cornerStyle="capsule">
                                                     <color key="baseBackgroundColor" name="CoffeColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -384,7 +384,7 @@
                                                     <color key="baseBackgroundColor" name="CoffeColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="placeOrder:" destination="4S0-Zb-cte" eventType="touchUpInside" id="GzN-2w-9Ci"/>
+                                                    <action selector="placeOrder:" destination="4S0-Zb-cte" eventType="touchUpInside" id="Ykx-Ze-0bX"/>
                                                 </connections>
                                             </button>
                                         </subviews>

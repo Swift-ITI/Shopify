@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="889.3129770992366" y="-27.464788732394368"/>
         </scene>
-        <!--paymentVC-->
+        <!--orderVC-->
         <scene sceneID="yub-RR-OnS">
             <objects>
-                <viewControllerPlaceholder storyboardName="Payment&amp;OrderSB" referencedIdentifier="paymentVC" id="bJ8-xI-i6i" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Payment&amp;OrderSB" referencedIdentifier="orderVC" id="bJ8-xI-i6i" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="zQG-f8-Wac"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2J-0J-laJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

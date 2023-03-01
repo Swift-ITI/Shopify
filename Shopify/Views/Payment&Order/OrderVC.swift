@@ -45,6 +45,8 @@ class OrderVC: UIViewController {
     }
     
     @IBAction func paymentMethod(_ sender: Any) {
+        let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
+        navigationController?.pushViewController(paymentView, animated: true)
     }
 
     @IBAction func validateCoupon(_ sender: Any) {

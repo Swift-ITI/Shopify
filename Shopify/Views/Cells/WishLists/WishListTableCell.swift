@@ -1,18 +1,20 @@
 //
-//  OrdersCell.swift
+//  WishListTableCell.swift
 //  Shopify
 //
-//  Created by Michael Hany on 24/02/2023.
+//  Created by Michael Hany on 01/03/2023.
 //
 
 import UIKit
 
-class OrdersCell: UITableViewCell
+class WishListTableCell: UITableViewCell
 {
 
-    @IBOutlet var itemsNumberLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var cartButton: UIButton!
+    @IBOutlet var trashButton: UIButton!
+    @IBOutlet var productPriceLabel: UILabel!
+    @IBOutlet var productNameLabel: UILabel!
+    @IBOutlet var productImage: UIImageView!
     
     override func awakeFromNib()
     {
