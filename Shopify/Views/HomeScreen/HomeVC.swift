@@ -6,8 +6,22 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeVC: UIViewController {
+    
+    var Brandviewmodel : BrandViewModel?
+    var BrandCollectionviewresponse : Brands?
+    
+    var Offerviewmodel : OfferViewModel?
+    var OfferCollectionviewresponse : Discounts?
+    
+    var arrayofimg = [UIImage(named: "coupon"),UIImage(named: "sale")]
+    var timer : Timer?
+    var currentcellindex = 0
+    
+    
+    @IBOutlet weak var pagecontroller: UIPageControl!
     
     @IBOutlet weak var OfferCV: UICollectionView!{
         didSet{
@@ -30,13 +44,53 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        Brandviewmodel = BrandViewModel()
+        Brandviewmodel?.getdata(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json")
+        Brandviewmodel?.bindResultToHomeViewController = { () in
+            DispatchQueue.main.async {
+                self.BrandCollectionviewresponse = self.Brandviewmodel?.DataofBrands
+                self.BrandsCV.reloadData()
+            }
+            
+        }
+        self.BrandsCV.reloadData()
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
         OfferCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         BrandsCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
         
+        Offerviewmodel = OfferViewModel()
+        Offerviewmodel?.getoffer(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/price_rules/1380100899094/discount_codes.json")
+        Offerviewmodel?.bindResultToHomeViewController = { () in
+            DispatchQueue.main.async {
+                self.OfferCollectionviewresponse = self.Offerviewmodel?.DataofOffers
+                self.OfferCV.reloadData()
+            }
+        }
         addBarButtonItems()
+        startTimer()
+        pagecontroller.numberOfPages = arrayofimg.count
     }
+
+    func startTimer()
+    {
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(movetonext), userInfo: nil, repeats: true)
+    }
+    
+    @objc func movetonext()
+    {
+        if currentcellindex < arrayofimg.count - 1
+        {
+            currentcellindex += 1
+        }
+        else
+        {
+            currentcellindex = 0
+        }
+        OfferCV.scrollToItem(at: IndexPath(item: currentcellindex, section: 0), at: .centeredHorizontally, animated: true)
+        pagecontroller.currentPage = currentcellindex
+    }
+    
     func addBarButtonItems(){
         let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
@@ -78,9 +132,9 @@ extension HomeVC : UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
             case OfferCV:
-                return 8
+            return arrayofimg.count
             case BrandsCV:
-                return 10
+            return BrandCollectionviewresponse?.smart_collections.count ?? 0
             default:
                 return 0
         }
@@ -91,12 +145,12 @@ extension HomeVC : UICollectionViewDataSource
         switch collectionView {
             case OfferCV:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
-                
-                cell.offerbrandimg.image = UIImage(named: "coupon")
-                return cell
+            cell.offerbrandimg.image = arrayofimg[indexPath.row]
+            return cell
+            
             case BrandsCV:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
-                cell.offerbrandimg.image = UIImage(named: "coupon")
+            cell.offerbrandimg.kf.setImage(with: URL(string: BrandCollectionviewresponse?.smart_collections[indexPath.row].image.src ?? ""),placeholder: UIImage(named: "loading.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
                 cell.layer.cornerRadius = 20
                 cell.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
                 cell.layer.borderWidth = 2

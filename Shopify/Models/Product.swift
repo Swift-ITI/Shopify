@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Product {
-    
+class Product
+{
     var nameOfProduct: String?
     var priceOfProduct: String?
     var imgOfProuct: String?
