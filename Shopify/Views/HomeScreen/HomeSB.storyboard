@@ -177,7 +177,7 @@
         <!--Product Details-->
         <scene sceneID="lhj-fu-tEr">
             <objects>
-                <viewController storyboardIdentifier="productdetails" title="Product Details" id="KY9-tq-Rzc" customClass="ProductDetailsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Product Details" id="KY9-tq-Rzc" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PHy-zY-fBn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -562,6 +562,11 @@
             <point key="canvasLocation" x="3677.0992366412211" y="-5.6338028169014089"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2CE-ty-g2b">
+            <size key="intrinsicContentSize" width="170" height="30"/>
+        </designable>
+    </designables>
     <color key="tintColor" name="BeigeColor"/>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
@@ -578,6 +583,9 @@
         <namedColor name="CoffeeColor">
             <color red="0.68627450980392157" green="0.55686274509803924" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
