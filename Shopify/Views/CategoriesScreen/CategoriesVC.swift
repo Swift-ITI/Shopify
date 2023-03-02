@@ -213,6 +213,9 @@ extension CategoriesVC: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "HomeSB", bundle: nil)
         let prodetailsobj = storyBoard.instantiateViewController(withIdentifier: "productdetails") as! ProductDetailsVC
+        
+        prodetailsobj.detailedProduct = products?.products[indexPath.row]
+        
         self.navigationController?.pushViewController(prodetailsobj, animated: true)
     }
 }

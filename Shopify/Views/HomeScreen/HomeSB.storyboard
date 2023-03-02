@@ -90,20 +90,18 @@
                                     <outlet property="delegate" destination="Yyx-qf-uhK" id="pGA-vX-Y33"/>
                                 </connections>
                             </collectionView>
-
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-M3-yaZ">
                                 <rect key="frame" x="151" y="397" width="91" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="PNK-hi-Jlc">
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="PNK-hi-Jlc">
                                 <rect key="frame" x="138.66666666666666" y="339" width="116" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" name="BeigeColor"/>
                                 <color key="currentPageIndicatorTintColor" name="AccentColor"/>
                             </pageControl>
-
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wWB-vf-R6d"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -117,10 +115,8 @@
                             <constraint firstItem="wWB-vf-R6d" firstAttribute="trailing" secondItem="vyv-RV-VRR" secondAttribute="trailing" constant="16" id="m6f-tm-XWU"/>
                             <constraint firstItem="Le5-wb-mnR" firstAttribute="top" secondItem="wWB-vf-R6d" secondAttribute="top" constant="32" id="mHN-R1-Vh1"/>
                             <constraint firstItem="wWB-vf-R6d" firstAttribute="trailing" secondItem="Le5-wb-mnR" secondAttribute="trailing" constant="32" id="oAd-QS-bJA"/>
-
                             <constraint firstItem="wWB-vf-R6d" firstAttribute="bottom" secondItem="vyv-RV-VRR" secondAttribute="bottom" constant="16" id="vaF-Yb-W48"/>
                             <constraint firstItem="vyv-RV-VRR" firstAttribute="top" secondItem="xt4-M3-yaZ" secondAttribute="bottom" constant="8" id="xIo-Ya-xfW"/>
-
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="b8t-fB-qaV"/>
@@ -351,11 +347,11 @@
             <objects>
                 <viewController storyboardIdentifier="productdetails" id="xjY-8C-rga" customClass="ProductDetailsVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wbd-hj-0Gf">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3li-2i-aav">
-                                <rect key="frame" x="0.0" y="59" width="393" height="1041"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="941"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tfx-HV-sJ3">
                                         <rect key="frame" x="8" y="8" width="377" height="180"/>
@@ -363,7 +359,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="180" id="E2V-oa-zV7"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1F2-cG-veu">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1F2-cG-veu">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -423,19 +419,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVW-tg-kLS">
-                                                <rect key="frame" x="90" y="48.666666666666686" width="48" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="GVW-tg-kLS" secondAttribute="height" multiplier="48:35" id="tap-dJ-i6n"/>
-                                                </constraints>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVW-tg-kLS">
+                                                <rect key="frame" x="90" y="46" width="48" height="77"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZ7-91-JGe">
-                                                <rect key="frame" x="65" y="81.666666666666686" width="72" height="52.333333333333343"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="fZ7-91-JGe" secondAttribute="height" multiplier="48:35" id="58c-oX-60d"/>
-                                                </constraints>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZ7-91-JGe">
+                                                <rect key="frame" x="90" y="98.666666666666742" width="47.666666666666515" height="34.333333333333343"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                                             </button>
@@ -444,21 +436,16 @@
                                         <constraints>
                                             <constraint firstItem="bwT-QF-Umv" firstAttribute="top" secondItem="BZW-s9-HF1" secondAttribute="top" constant="8" id="6Uz-Vp-GJH"/>
                                             <constraint firstItem="NOT-9B-AyB" firstAttribute="leading" secondItem="bEw-R8-7Fq" secondAttribute="trailing" constant="144" id="8nO-DR-pyY"/>
-                                            <constraint firstAttribute="trailing" secondItem="fZ7-91-JGe" secondAttribute="trailing" constant="240" id="CfU-e0-KF5"/>
                                             <constraint firstItem="NOT-9B-AyB" firstAttribute="top" secondItem="bwT-QF-Umv" secondAttribute="bottom" constant="8" id="DfE-a8-wF7"/>
                                             <constraint firstItem="acG-SD-eFc" firstAttribute="top" secondItem="bEw-R8-7Fq" secondAttribute="bottom" constant="8" id="FDb-OX-NH1"/>
                                             <constraint firstItem="Cjt-rg-YSl" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="GTm-Pk-LaB"/>
-                                            <constraint firstItem="fZ7-91-JGe" firstAttribute="leading" secondItem="Cjt-rg-YSl" secondAttribute="trailing" constant="20" id="Jck-Fz-Nqx"/>
                                             <constraint firstAttribute="bottom" secondItem="Cjt-rg-YSl" secondAttribute="bottom" constant="22" id="Mfo-cw-cJ8"/>
                                             <constraint firstItem="bEw-R8-7Fq" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="Oq9-b6-skQ"/>
                                             <constraint firstItem="acG-SD-eFc" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="Xb9-wZ-HWk"/>
                                             <constraint firstAttribute="trailing" secondItem="NOT-9B-AyB" secondAttribute="trailing" constant="8" id="YNq-Yc-cA5"/>
                                             <constraint firstAttribute="height" constant="150" id="Zxd-rF-8xG"/>
-                                            <constraint firstAttribute="bottom" secondItem="fZ7-91-JGe" secondAttribute="bottom" constant="16" id="aI2-x5-Ze8"/>
-                                            <constraint firstItem="GVW-tg-kLS" firstAttribute="leading" secondItem="acG-SD-eFc" secondAttribute="trailing" constant="34" id="cwW-wD-UuC"/>
                                             <constraint firstItem="Cjt-rg-YSl" firstAttribute="top" secondItem="acG-SD-eFc" secondAttribute="bottom" constant="8" id="i3M-wY-9Eo"/>
                                             <constraint firstItem="bwT-QF-Umv" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="jaY-Nr-Lqo"/>
-                                            <constraint firstItem="fZ7-91-JGe" firstAttribute="top" secondItem="GVW-tg-kLS" secondAttribute="bottom" constant="-2" id="kDw-EE-E5v"/>
                                             <constraint firstItem="bEw-R8-7Fq" firstAttribute="top" secondItem="bwT-QF-Umv" secondAttribute="bottom" constant="8" id="kPz-f5-OEo"/>
                                             <constraint firstAttribute="bottom" secondItem="NOT-9B-AyB" secondAttribute="bottom" constant="66" id="vKJ-gS-SCH"/>
                                         </constraints>
@@ -564,7 +551,7 @@
                             <constraint firstAttribute="bottom" secondItem="3li-2i-aav" secondAttribute="bottom" id="hfj-OW-IXO"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="1100"/>
+                    <size key="freeformSize" width="393" height="1000"/>
                     <connections>
                         <outlet property="ItemCV" destination="tfx-HV-sJ3" id="Yfb-QV-2rn"/>
                         <outlet property="favbtn" destination="Irx-Ut-PMt" id="qTu-x7-LCH"/>
@@ -584,6 +571,9 @@
     <designables>
         <designable name="2CE-ty-g2b">
             <size key="intrinsicContentSize" width="170" height="30"/>
+        </designable>
+        <designable name="NOT-9B-AyB">
+            <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
     </designables>
     <color key="tintColor" name="BeigeColor"/>
