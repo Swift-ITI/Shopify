@@ -20,6 +20,7 @@ enum EndPoints {
     case shoes (id : String) //"SHOES"
     case accessories (id : String) //"ACCESSORIES"
     case tshirts (id : String) //"T-SHIRTS"
+    case brandproducts (id : String)
     var path : String {
         switch self{
         case .allProducts:
@@ -40,6 +41,8 @@ enum EndPoints {
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=ACCESSORIES"
         case .tshirts (id : let id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=T-SHIRTS"
+        case .brandproducts(id : let id):
+            return "\(BaseUrl)/products.json?collection_id=\(id)"
         }
     }
     
