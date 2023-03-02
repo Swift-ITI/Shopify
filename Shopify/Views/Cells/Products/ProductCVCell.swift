@@ -11,6 +11,9 @@ class ProductCVCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.layer.borderWidth = 2
+        self.layer.borderColor = UIColor(named: "CoffeColor")?.cgColor
+        self.layer.cornerRadius = CGFloat(20)
         // Initialization code
     }
 

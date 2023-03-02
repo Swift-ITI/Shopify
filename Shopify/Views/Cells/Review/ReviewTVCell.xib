@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reviewTVCell" rowHeight="84" id="KGk-i7-Jjw" customClass="ReviewTVCell" customModule="Shopify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="Y3K-fF-IAw">
+                        <rect key="frame" x="16" y="12" width="288" height="22"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAAAAAA BBBBBBBB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lS-95-x6L">
+                                <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5 ⭐️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9Q-2Y-Tew">
+                                <rect key="frame" x="236.33333333333334" y="0.0" width="51.666666666666657" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="This product is so good and highly recommended" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3He-nM-MbC">
+                        <rect key="frame" x="16" y="42" width="288" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Y3K-fF-IAw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1iQ-Kh-9ub"/>
+                    <constraint firstItem="3He-nM-MbC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="P6t-WR-L2r"/>
+                    <constraint firstAttribute="bottom" secondItem="3He-nM-MbC" secondAttribute="bottom" constant="6" id="W0y-7S-MJf"/>
+                    <constraint firstAttribute="trailing" secondItem="3He-nM-MbC" secondAttribute="trailing" constant="16" id="bOk-qK-ai1"/>
+                    <constraint firstItem="Y3K-fF-IAw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="dGP-CT-fwz"/>
+                    <constraint firstItem="3He-nM-MbC" firstAttribute="top" secondItem="Y3K-fF-IAw" secondAttribute="bottom" constant="8" id="p0j-df-nb0"/>
+                    <constraint firstAttribute="trailing" secondItem="Y3K-fF-IAw" secondAttribute="trailing" constant="16" id="tqs-Ex-ssh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameTxt" destination="3lS-95-x6L" id="ScR-fs-JVv"/>
+                <outlet property="ratingText" destination="R9Q-2Y-Tew" id="EEk-Qw-K32"/>
+                <outlet property="reviewText" destination="3He-nM-MbC" id="PgD-zF-4JV"/>
+            </connections>
+            <point key="canvasLocation" x="-88.549618320610676" y="-9.1549295774647899"/>
+        </tableViewCell>
+    </objects>
+</document>

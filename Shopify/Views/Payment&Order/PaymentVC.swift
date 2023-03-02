@@ -6,24 +6,71 @@
 //
 
 import UIKit
-
 class PaymentVC: UIViewController {
+    @IBOutlet var codBtn: UIButton!
+    @IBOutlet var applePayBtn: UIButton!
+    @IBOutlet var visaBtn: UIButton!
+
+    @IBOutlet weak var addressTable: UITableView!{
+        didSet{
+            addressTable.delegate = self
+            addressTable.dataSource = self
+            let nib = UINib(nibName: "AddressesCell", bundle: nil)
+            addressTable.register(nib, forCellReuseIdentifier: "addressesCell")
+            addressTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            addressTable.layer.borderWidth = 1.5
+            addressTable.layer.cornerRadius = 20
+        }
+    }
+    var radioBtn: SSRadioButtonsController? {
+        didSet {
+            radioBtn?.delegate = self
+             radioBtn?.shouldLetDeSelect = true
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        radioBtn = SSRadioButtonsController(buttons: visaBtn, applePayBtn, codBtn)
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
     }
-    */
+    
+    @IBAction func proceedOrderBtn(_ sender: Any) {
+        let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+        
+        self.navigationController?.pushViewController(orderObj, animated: true)
+    }
+    
+}
 
+extension PaymentVC: SSRadioButtonControllerDelegate {
+    func didSelectButton(selectedButton: UIButton?) {
+        
+        switch selectedButton {
+        case visaBtn:
+            print("Visa")
+        case codBtn:
+            print("CoD")
+        case applePayBtn:
+            print("Apple")
+        default:
+            print("NoBtn")
+        }
+
+    }
+}
+extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
+        return cell
+    }
+    
+    
 }

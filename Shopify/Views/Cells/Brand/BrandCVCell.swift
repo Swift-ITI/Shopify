@@ -9,8 +9,10 @@ import UIKit
 
 class BrandCVCell: UICollectionViewCell {
 
+    @IBOutlet weak var offerbrandimg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+       
         // Initialization code
     }
 

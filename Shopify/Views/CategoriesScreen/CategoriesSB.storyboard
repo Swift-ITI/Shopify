@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,31 +17,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfc-y9-gYA">
-                                <rect key="frame" x="118" y="387" width="146" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-u3-YEw">
+                                <rect key="frame" x="8" y="148" width="377" height="621"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qAZ-dN-cUe">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kzp-Ae-MKh" id="EQZ-TU-bbQ"/>
+                                    <outlet property="delegate" destination="kzp-Ae-MKh" id="SbI-bE-Cex"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-0q-OTK" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="317" y="709" width="60" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="5XQ-gD-V2w"/>
+                                    <constraint firstAttribute="height" constant="60" id="lwU-lB-cPM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonShadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="itemButtonColor">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="mHK-Wo-6RZ">
+                                <rect key="frame" x="16" y="109" width="361" height="32"/>
+                                <segments>
+                                    <segment title="Kids"/>
+                                    <segment title="Men"/>
+                                    <segment title="Sale"/>
+                                    <segment title="Women"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectedCategories:" destination="kzp-Ae-MKh" eventType="valueChanged" id="Igb-J3-Ge8"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="7P4-If-lz5"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="mHK-Wo-6RZ" secondAttribute="trailing" constant="16" id="KRu-q8-ulG"/>
+                            <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="LLe-er-cVr"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="QSz-Wc-NIa"/>
+                            <constraint firstItem="mHK-Wo-6RZ" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" constant="6" id="VRs-CC-fXI"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="b7L-zL-0oj"/>
+                            <constraint firstItem="mHK-Wo-6RZ" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="16" id="mQA-fp-P8z"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="mHK-Wo-6RZ" secondAttribute="bottom" constant="8" id="upk-hr-Tcz"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Bbp-zo-UFW"/>
+                    <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="catiroriesSegmentes" destination="mHK-Wo-6RZ" id="A1p-Jq-goP"/>
+                        <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
+                        <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="970.2290076335878" y="-34.507042253521128"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DyX-lV-VNA">
+        <!--Categories-->
+        <scene sceneID="mMz-Kf-Ih4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="htV-c3-cIl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="categoriesVC" automaticallyAdjustsScrollViewInsets="NO" id="zEj-yE-J4V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Categories" image="circle.grid.2x2.fill" catalog="system" id="RdX-bn-vBg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vFj-hS-MSf">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="CoffeColor"/>
+                            <color key="textShadowColor" name="BeigeColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="BeigeColor"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" name="AccentColor"/>
+                            <color key="shadowColor" name="BeigeColor"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" name="BeigeColor"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -52,7 +131,18 @@
             <point key="canvasLocation" x="43.511450381679388" y="-34.507042253521128"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="BeigeColor"/>
     <resources>
+        <image name="circle.grid.2x2.fill" catalog="system" width="128" height="111"/>
+        <namedColor name="AccentColor">
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BeigeColor">
+            <color red="0.67843137254901964" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="CoffeColor">
+            <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
