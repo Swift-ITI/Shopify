@@ -9,6 +9,7 @@ import UIKit
 
 class PreviousOrdersVC: UIViewController {
 
+    var productsNumber: Int = 10
     @IBOutlet weak var ordersTableView: UITableView! {
         didSet {
             ordersTableView.delegate = self
@@ -29,7 +30,7 @@ extension PreviousOrdersVC : UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return productsNumber
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

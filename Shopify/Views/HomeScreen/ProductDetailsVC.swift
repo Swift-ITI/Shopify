@@ -15,8 +15,10 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var pulldowncolor: UIButton!
     @IBOutlet weak var pulldownsize: UIButton!
     @IBOutlet weak var ItemCV: UICollectionView!
+    @IBOutlet var reviewTableView: UITableView!
     @IBOutlet weak var productdescription: UITextView!
-    @IBOutlet weak var DescriptionLabel: UILabel!
+    //@IBOutlet weak var descriptionLabel: UILabel!
+    //@IBOutlet var reviewLabel: UILabel!
     @IBOutlet weak var favbtn: UIButton!
     
     override func viewDidLoad() {
@@ -34,13 +36,25 @@ class ProductDetailsVC: UIViewController {
         ItemCV.delegate = self
         ItemCV.dataSource = self
         
+        reviewTableView.delegate = self
+        reviewTableView.dataSource = self
+        reviewTableView.layer.borderColor = UIColor(named:"CoffeeColor")?.cgColor
+        reviewTableView.layer.borderWidth = 1.5
+        reviewTableView.layer.cornerRadius = 20
+        
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
         ItemCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         
+        let nibT = UINib(nibName: "ReviewTVCell", bundle: nil)
+        reviewTableView.register(nibT, forCellReuseIdentifier: "reviewTVCell")
         
-        DescriptionLabel.layer.cornerRadius = 15
-        DescriptionLabel.layer.masksToBounds = true
-        DescriptionLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+        
+//        descriptionLabel.layer.cornerRadius = 15
+//        descriptionLabel.layer.masksToBounds = true
+ //       descriptionLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+  //      reviewLabel.layer.cornerRadius = 15
+  //      reviewLabel.layer.masksToBounds = true
+  //      reviewLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
     }
     
     @IBAction func addtocart(_ sender: Any) {
@@ -84,6 +98,8 @@ class ProductDetailsVC: UIViewController {
     
 }
 
+// MARK: - Collection View Extension
+
 extension ProductDetailsVC : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -94,12 +110,42 @@ extension ProductDetailsVC : UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
         return cell
     }
-    
 }
+
 extension ProductDetailsVC : UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: ItemCV.layer.frame.size.width - 5, height: ItemCV.layer.frame.size.height - 5)
+    }
+}
+
+// MARK: - Table View Extension
+
+extension ProductDetailsVC : UITableViewDelegate
+{
+    
+}
+
+extension ProductDetailsVC : UITableViewDataSource
+{
+    func numberOfSections(in collectionView: UICollectionView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 5
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        90
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewTVCell", for: indexPath) as! ReviewTVCell
+       
+        
+        return cell
     }
 }

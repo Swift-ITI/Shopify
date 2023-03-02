@@ -3,63 +3,90 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderCell" rowHeight="70" id="KGk-i7-Jjw" customClass="OrdersCell" customModule="Shopify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="361" height="64"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderCell" rowHeight="82" id="KGk-i7-Jjw" customClass="OrdersCell" customModule="Shopify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="361" height="64"/>
+                <rect key="frame" x="0.0" y="0.0" width="361" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Price:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ne-IZ-4Zg">
-                        <rect key="frame" x="16" y="0.0" width="52" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="252" text="Price:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ne-IZ-4Zg">
+                        <rect key="frame" x="8" y="8" width="52" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                        <color key="textColor" red="0.1215686275" green="0.34509803919999998" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Created at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBl-RC-5oc">
-                        <rect key="frame" x="16" y="40" width="100" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBl-RC-5oc">
+                        <rect key="frame" x="8" y="40" width="99.666666666666671" height="28"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                        <color key="textColor" red="0.1215686275" green="0.34509803919999998" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" name="AccentColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2023/02/10 10:30 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5h-XP-2if">
+                        <rect key="frame" x="111.66666666666667" y="40" width="233.33333333333331" height="28"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" name="AccentColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLv-Sb-C4t">
+                        <rect key="frame" x="324" y="8" width="21" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" name="AccentColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="No. of Items:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41H-qa-Ocy">
+                        <rect key="frame" x="194.33333333333334" y="8" width="113.66666666666666" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                        <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avz-Y7-8sL">
-                        <rect key="frame" x="132" y="8" width="49" height="24"/>
+                        <rect key="frame" x="63.999999999999993" y="8" width="66.333333333333286" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <color key="textColor" red="0.1215686275" green="0.34509803919999998" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - 02 - 10 10:30 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5h-XP-2if">
-                        <rect key="frame" x="132" y="40" width="217" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <color key="textColor" red="0.1215686275" green="0.34509803919999998" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="bBl-RC-5oc" secondAttribute="bottom" id="Ara-cm-Rec"/>
-                    <constraint firstItem="avz-Y7-8sL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GfN-0T-liF"/>
-                    <constraint firstItem="6ne-IZ-4Zg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ilv-Ue-JRy"/>
-                    <constraint firstItem="avz-Y7-8sL" firstAttribute="leading" secondItem="6ne-IZ-4Zg" secondAttribute="trailing" constant="64" id="KJ1-n8-pxT"/>
-                    <constraint firstItem="bBl-RC-5oc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Vq9-fg-e65"/>
-                    <constraint firstItem="bBl-RC-5oc" firstAttribute="top" secondItem="6ne-IZ-4Zg" secondAttribute="bottom" constant="8" id="cF9-cm-xHG"/>
-                    <constraint firstAttribute="bottom" secondItem="N5h-XP-2if" secondAttribute="bottom" id="f2o-v2-cPd"/>
-                    <constraint firstItem="N5h-XP-2if" firstAttribute="top" secondItem="avz-Y7-8sL" secondAttribute="bottom" constant="8" id="fbR-LW-c6h"/>
-                    <constraint firstItem="N5h-XP-2if" firstAttribute="leading" secondItem="bBl-RC-5oc" secondAttribute="trailing" constant="16" id="qsJ-F4-Jfv"/>
-                    <constraint firstItem="6ne-IZ-4Zg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zE7-nm-KRP"/>
+                    <constraint firstItem="bBl-RC-5oc" firstAttribute="top" secondItem="6ne-IZ-4Zg" secondAttribute="bottom" constant="8" id="58u-u2-VZa"/>
+                    <constraint firstAttribute="bottom" secondItem="N5h-XP-2if" secondAttribute="bottom" constant="8" id="7Bk-br-q4u"/>
+                    <constraint firstItem="6ne-IZ-4Zg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="8vT-QD-sHd"/>
+                    <constraint firstAttribute="trailing" secondItem="N5h-XP-2if" secondAttribute="trailing" constant="16" id="9dv-fG-KTb"/>
+                    <constraint firstItem="6ne-IZ-4Zg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OLV-yQ-u7f"/>
+                    <constraint firstItem="aLv-Sb-C4t" firstAttribute="leading" secondItem="41H-qa-Ocy" secondAttribute="trailing" constant="16" id="VhE-Sg-PEP"/>
+                    <constraint firstItem="aLv-Sb-C4t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="YDe-no-apK"/>
+                    <constraint firstAttribute="bottom" secondItem="bBl-RC-5oc" secondAttribute="bottom" constant="8" id="bdg-nJ-lXf"/>
+                    <constraint firstItem="N5h-XP-2if" firstAttribute="top" secondItem="41H-qa-Ocy" secondAttribute="bottom" constant="8" id="dmJ-dS-EiX"/>
+                    <constraint firstItem="avz-Y7-8sL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fMD-58-kzE"/>
+                    <constraint firstItem="bBl-RC-5oc" firstAttribute="top" secondItem="avz-Y7-8sL" secondAttribute="bottom" constant="8" id="g2z-Mm-XpN"/>
+                    <constraint firstItem="N5h-XP-2if" firstAttribute="leading" secondItem="bBl-RC-5oc" secondAttribute="trailing" constant="4" id="gQl-na-jfu"/>
+                    <constraint firstAttribute="trailing" secondItem="aLv-Sb-C4t" secondAttribute="trailing" constant="16" id="i9i-6w-UfG"/>
+                    <constraint firstItem="41H-qa-Ocy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="iSy-DF-YuJ"/>
+                    <constraint firstItem="N5h-XP-2if" firstAttribute="top" secondItem="aLv-Sb-C4t" secondAttribute="bottom" constant="8" id="jTT-Ec-S3d"/>
+                    <constraint firstItem="41H-qa-Ocy" firstAttribute="leading" secondItem="avz-Y7-8sL" secondAttribute="trailing" constant="64" id="owr-0C-1OO"/>
+                    <constraint firstItem="bBl-RC-5oc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="sLS-83-2GF"/>
+                    <constraint firstItem="avz-Y7-8sL" firstAttribute="leading" secondItem="6ne-IZ-4Zg" secondAttribute="trailing" constant="4" id="uBD-YI-Yq8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateLabel" destination="N5h-XP-2if" id="L67-hA-vuy"/>
+                <outlet property="itemsNumberLabel" destination="aLv-Sb-C4t" id="Jrx-kj-IaI"/>
                 <outlet property="priceLabel" destination="avz-Y7-8sL" id="1yF-AB-sJi"/>
             </connections>
-            <point key="canvasLocation" x="138.1679389312977" y="29.577464788732396"/>
+            <point key="canvasLocation" x="138.1679389312977" y="33.802816901408455"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

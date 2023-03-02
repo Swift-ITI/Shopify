@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,17 +47,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <color key="tintColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" systemColor="systemBrownColor"/>
+                        <color key="barTintColor" name="CoffeeColor"/>
+                        <color key="selectedImageTintColor" name="CoffeeColor"/>
                         <tabBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
                             <color key="shadowColor" name="AccentColor"/>
-                            <color key="selectionIndicatorTintColor" name="AccentColor"/>
+                            <color key="selectionIndicatorTintColor" name="CoffeeColor"/>
                         </tabBarAppearance>
                         <tabBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
                             <color key="shadowColor" name="AccentColor"/>
-                            <color key="selectionIndicatorTintColor" name="AccentColor"/>
+                            <color key="selectionIndicatorTintColor" name="CoffeeColor"/>
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
@@ -77,8 +76,8 @@
         <namedColor name="AccentColor">
             <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <namedColor name="CoffeeColor">
+            <color red="0.68627450980392157" green="0.55686274509803924" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -93,6 +93,7 @@ class CategoriesVC: UIViewController {
                 self.filter(flag: self.flag, target: .shoes(id:CatigoryID.women.id))
             default : break
                 
+
             }
             
         }
@@ -112,7 +113,7 @@ class CategoriesVC: UIViewController {
             case 4 :
                 self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.women.id))
             default : break
-                
+
             }
             
         }
@@ -132,7 +133,7 @@ class CategoriesVC: UIViewController {
             case 4 :
                 self.filter(flag: self.flag, target: .accessories(id:CatigoryID.women.id))
             default : break
-                
+
             }
         }
         

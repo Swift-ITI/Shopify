@@ -20,8 +20,8 @@ class RegisterVC: UIViewController {
     @IBOutlet var firstNameTxtField: UITextField! { didSet { renderTxtFields(txtField: firstNameTxtField) }}
     @IBOutlet var lastNameTxtField: UITextField! { didSet { renderTxtFields(txtField: lastNameTxtField) }}
     @IBOutlet var emailTxtField: UITextField! { didSet { renderTxtFields(txtField: emailTxtField) }}
+    @IBOutlet var phoneTxtField: UITextField! { didSet { renderTxtFields(txtField: phoneTxtField) }}
     @IBOutlet var passwordTxtField: UITextField! { didSet { renderTxtFields(txtField: passwordTxtField) }}
-    @IBOutlet var confirmPWTxtField: UITextField! { didSet { renderTxtFields(txtField: confirmPWTxtField) }}
 
     override func viewDidLoad() {
         super.viewDidLoad()
