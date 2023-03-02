@@ -20,7 +20,7 @@ class ProductDetailsVC: UIViewController {
             ItemCV.delegate = self
             ItemCV.dataSource = self
             ItemCV.layer.borderWidth = 2
-            ItemCV.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+            ItemCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             ItemCV.layer.masksToBounds = true
             ItemCV.layer.cornerRadius = 15
             let nib = UINib(nibName: "BrandCVCell", bundle: nil)
@@ -57,10 +57,10 @@ class ProductDetailsVC: UIViewController {
     
 //        descriptionLabel.layer.cornerRadius = 15
 //        descriptionLabel.layer.masksToBounds = true
- //       descriptionLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+ //       descriptionLabel.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
   //      reviewLabel.layer.cornerRadius = 15
   //      reviewLabel.layer.masksToBounds = true
-  //      reviewLabel.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+  //      reviewLabel.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
     }
     
     @IBAction func addtocart(_ sender: Any) {
