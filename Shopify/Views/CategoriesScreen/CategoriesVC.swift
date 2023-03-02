@@ -174,15 +174,15 @@ class CategoriesVC: UIViewController {
     
     func addBarButtonItems(){
         let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
         
         let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
         
         navigationItem.rightBarButtonItems = [fav , cart]
         
         let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navsearch))
-         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "BeigeColor")
+         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
          navigationItem.leftBarButtonItem = search
         
     }
