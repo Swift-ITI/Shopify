@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--CategoriesVC-->
-        <scene sceneID="s0d-6b-0kx">
+        <!--Categories-->
+        <scene sceneID="mWU-4x-A0O">
             <objects>
-                <viewController storyboardIdentifier="categoriesVC" id="Y6W-OH-hqX" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                <viewController storyboardIdentifier="categoriesVC1" id="kzp-Ae-MKh" customClass="CategoriesVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Whu-Zc-462">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -67,7 +67,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <viewLayoutGuide key="safeArea" id="JLz-qj-Aww"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="7P4-If-lz5"/>
@@ -89,9 +89,9 @@
                         <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ocu-kg-Ngx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="970.2290076335878" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="4325.9541984732823" y="248.59154929577466"/>
         </scene>
         <!--Categories-->
         <scene sceneID="mMz-Kf-Ih4">
@@ -99,7 +99,8 @@
                 <navigationController storyboardIdentifier="categoriesVC" automaticallyAdjustsScrollViewInsets="NO" id="zEj-yE-J4V" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Categories" image="circle.grid.2x2.fill" catalog="system" id="RdX-bn-vBg"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vFj-hS-MSf">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8L0-u6-TaY">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
@@ -123,12 +124,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="6Ns-dD-0Qb"/>
+                        <segue destination="kzp-Ae-MKh" kind="relationship" relationship="rootViewController" id="ePC-hm-YgX"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e86-1X-vDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ny-sB-jhH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43.511450381679388" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="3399.2366412213737" y="248.59154929577466"/>
         </scene>
     </scenes>
     <color key="tintColor" name="BeigeColor"/>

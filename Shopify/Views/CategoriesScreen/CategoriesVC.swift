@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Floaty
 
 
 class CategoriesVC: UIViewController {
@@ -219,10 +220,11 @@ extension CategoriesVC: UICollectionViewDelegate{
     }
 }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//MARK: extension2
+extension CategoriesVC:  UICollectionViewDataSource{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
