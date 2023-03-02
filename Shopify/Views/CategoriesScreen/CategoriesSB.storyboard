@@ -17,33 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-Ja-uCk">
-                                <rect key="frame" x="8" y="103" width="377" height="44"/>
-                                <items>
-                                    <barButtonItem title="Women" id="Iwv-jY-Ycj">
-                                        <color key="tintColor" name="AccentColor"/>
-                                        <connections>
-                                            <action selector="ShowWomenFashion:" destination="kzp-Ae-MKh" id="c2s-LP-1vL"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZY2-Ac-DjG"/>
-                                    <barButtonItem title="Kid" id="8an-KE-6W8">
-                                        <color key="tintColor" name="AccentColor"/>
-                                        <connections>
-                                            <action selector="ShowKidsFashoin:" destination="kzp-Ae-MKh" id="5Cr-gG-3sf"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Coy-Wl-zwo"/>
-                                    <barButtonItem title="Men" id="P0U-AZ-WlS">
-                                        <color key="tintColor" name="AccentColor"/>
-                                        <connections>
-                                            <action selector="ShowMenFashoin:" destination="kzp-Ae-MKh" id="HEC-D8-QqM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A4n-u3-YEw">
-                                <rect key="frame" x="8" y="147" width="377" height="622"/>
+                                <rect key="frame" x="8" y="148" width="377" height="621"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qAZ-dN-cUe">
                                     <size key="itemSize" width="128" height="128"/>
@@ -79,27 +54,39 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="mHK-Wo-6RZ">
+                                <rect key="frame" x="16" y="109" width="361" height="32"/>
+                                <segments>
+                                    <segment title="Kids"/>
+                                    <segment title="Men"/>
+                                    <segment title="Sale"/>
+                                    <segment title="Women"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectedCategories:" destination="kzp-Ae-MKh" eventType="valueChanged" id="Igb-J3-Ge8"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JLz-qj-Aww"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="7gg-0q-OTK" secondAttribute="trailing" constant="16" id="7P4-If-lz5"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="LKe-Tu-bKQ"/>
+                            <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="mHK-Wo-6RZ" secondAttribute="trailing" constant="16" id="KRu-q8-ulG"/>
                             <constraint firstItem="7gg-0q-OTK" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="LLe-er-cVr"/>
                             <constraint firstItem="JLz-qj-Aww" firstAttribute="trailing" secondItem="A4n-u3-YEw" secondAttribute="trailing" constant="8" id="QSz-Wc-NIa"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="trailing" secondItem="JLz-qj-Aww" secondAttribute="trailing" constant="-8" id="VM6-v2-3ts"/>
-                            <constraint firstItem="Mkw-Ja-uCk" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" id="X57-p4-aiF"/>
-                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="Mkw-Ja-uCk" secondAttribute="bottom" id="aRF-Du-kpm"/>
+                            <constraint firstItem="mHK-Wo-6RZ" firstAttribute="top" secondItem="JLz-qj-Aww" secondAttribute="top" constant="6" id="VRs-CC-fXI"/>
                             <constraint firstItem="A4n-u3-YEw" firstAttribute="bottom" secondItem="JLz-qj-Aww" secondAttribute="bottom" id="b7L-zL-0oj"/>
+                            <constraint firstItem="mHK-Wo-6RZ" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="16" id="mQA-fp-P8z"/>
+                            <constraint firstItem="A4n-u3-YEw" firstAttribute="top" secondItem="mHK-Wo-6RZ" secondAttribute="bottom" constant="8" id="upk-hr-Tcz"/>
                             <constraint firstItem="A4n-u3-YEw" firstAttribute="leading" secondItem="JLz-qj-Aww" secondAttribute="leading" constant="8" id="w8B-4L-tpS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Categories" id="ZbF-8i-9fp"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="catiroriesSegmentes" destination="mHK-Wo-6RZ" id="A1p-Jq-goP"/>
                         <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
                         <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
-                        <outlet property="toolBar" destination="Mkw-Ja-uCk" id="jng-KD-PMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ocu-kg-Ngx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

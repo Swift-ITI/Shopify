@@ -8,5 +8,8 @@
 import Foundation
 class Image : Decodable
 {
+    var id : Int?
+    var product_id : Int?
+    var position : Int?
     var src : String
 }

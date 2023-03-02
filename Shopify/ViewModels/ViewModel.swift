@@ -8,19 +8,19 @@
 import Foundation
 class BrandViewModel
 {
-    var bindResultToHomeViewController : ( ()->() ) = {}
+    var bindResultOfBrandsToHomeViewController : ( ()->() ) = {}
     
-    var DataofBrands : Brands!
+    var DataOfBrands : Brands!
     {
         didSet
         {
-            bindResultToHomeViewController()
+            bindResultOfBrandsToHomeViewController()
         }
     }
     func getdata (url : String)
     {
         NetworkServices.fetch(url: url) { result in
-            self.DataofBrands = result
+            self.DataOfBrands = result
         }
     }
 }
@@ -28,20 +28,40 @@ class BrandViewModel
 
 class OfferViewModel
 {
-    var bindResultToHomeViewController : ( ()->() ) = {}
+    var bindResultOfOffersToHomeViewController : ( ()->() ) = {}
     
-    var DataofOffers : Discounts!
+    var DataOfOffers : Discounts!
     {
         didSet
         {
-            bindResultToHomeViewController
+            bindResultOfOffersToHomeViewController()
         }
     }
     
     func getoffer (url : String)
     {
         NetworkServices.fetch(url: url) { result in
-            self.DataofOffers = result
+            self.DataOfOffers = result
+        }
+    }
+}
+
+class CatigoriesViewModel
+{
+    var bindResultOfCatigoriesToCatigorieViewController : ( ()->() ) = {}
+    
+    var DataOfProducts : Products!
+    {
+        didSet
+        {
+            bindResultOfCatigoriesToCatigorieViewController()
+        }
+    }
+    
+    func getProducts (target : EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfProducts = result
         }
     }
 }

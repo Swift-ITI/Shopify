@@ -9,6 +9,8 @@ import Foundation
 class Brand : Decodable
 {
     var id : Int
+    var handle : String?
     var title : String
+    var body_html : String?
     var image : Image
 }
