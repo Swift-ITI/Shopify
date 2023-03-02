@@ -65,3 +65,23 @@ class CatigoriesViewModel
         }
     }
 }
+
+class BrandproductsViewModel
+{
+    var bindResultOfBrandproductToProductdetailsViewController : ( ()->() ) = {}
+    
+    var DataOfBrandProduct : Products!
+    {
+        didSet
+        {
+            bindResultOfBrandproductToProductdetailsViewController()
+        }
+    }
+    
+    func getBrandProducts (target : EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfBrandProduct = result
+        }
+    }
+}

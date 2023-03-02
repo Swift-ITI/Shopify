@@ -166,8 +166,12 @@ extension HomeVC : UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
+            case OfferCV:
+               let pasteboard = UIPasteboard.general
+               pasteboard.string = OfferCollectionviewresponse?.discount_codes[0].code
             case BrandsCV:
                 let productobj : ProductsVC = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+            productobj.brandId = String(BrandCollectionviewresponse?.smart_collections[indexPath.row].id ?? 0)
                 self.navigationController?.pushViewController(productobj, animated: true)
             default:
                 break
