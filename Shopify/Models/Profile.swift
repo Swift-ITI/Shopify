@@ -36,3 +36,26 @@ class UserResult : Decodable
 {
     var customers : User
 }
+
+// MARK: Orders & Items Part
+
+class Orders : Decodable
+{
+    var id : Int?
+    var current_total_price : String?
+    var created_at : String?
+    var line_items : [LineItems]?
+}
+
+class LineItems : Decodable
+{
+    var id : Int?
+    var price : String?
+    var quantity : Int?
+    var title : String?
+}
+
+class OrderResult : Decodable
+{
+    var orders : [Orders]
+}

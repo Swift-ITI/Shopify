@@ -89,6 +89,8 @@ class ProfileVC: UIViewController
     
     var userDetails : User?
     var profileView : ProfileView?
+    var orderDetails : [Orders]?
+    var orderView : OrderView?
     var id : Int?
     var logged : Bool = true
     
@@ -103,10 +105,19 @@ class ProfileVC: UIViewController
 // To Check If Logged In or Not
             if logged                       // if logged in to the app
             {
+                // Profile Part
                 profileView = ProfileView()
-                profileView?.getUser(id: id ?? 6810321649942)
-                profileView?.bindResultToProfileVC = { () in self.renderView() }
+                profileView?.getUser(id: id ?? 6810321223958)
+                profileView?.bindResultToProfileVC = { () in self.renderProfileView() }
+                
+                // Orders Part
+                orderView = OrderView()
+                orderView?.getOrders(id: id ?? 5260762251542)
+                orderView?.bindResultToProfileVC = { () in self.renderOrderView() }
+                
+                // Continue
                 usersNameLabel.text = "\(userDetails?.first_name ?? "No") \(userDetails?.last_name ?? "User")"
+                ordersNumberLabel.text = "\(userDetails?.orders_count ?? 0)"
             }
             else
             {
@@ -135,7 +146,7 @@ class ProfileVC: UIViewController
         }
     }
     
-    func renderView()
+    func renderProfileView()
     {
         DispatchQueue.main.async
         {
@@ -143,35 +154,38 @@ class ProfileVC: UIViewController
         }
     }
     
-// MARK: - IBActions
-        ordersLabel.layer.masksToBounds = true
-        ordersLabel.layer.cornerRadius = ordersLabel.frame.width/10
-        wishListLabel.layer.masksToBounds = true
-        wishListLabel.layer.cornerRadius = wishListLabel.frame.width/12
-        wishListSeeMoreButton.layer.masksToBounds = true
-        wishListSeeMoreButton.layer.cornerRadius = wishListSeeMoreButton.frame.width/8
-        ordersSeeMoreButton.layer.masksToBounds = true
-        ordersSeeMoreButton.layer.cornerRadius = ordersSeeMoreButton.frame.width/8
-        let ordersScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
-        ordersNumberLabel.text = "\(ordersScreen.productsNumber) Orders"
+    func renderOrderView()
+    {
+        DispatchQueue.main.async
+        {
+            self.orderDetails = self.orderView?.orderResult ?? []
+        }
     }
     
+// MARK: - IBActions
+    
+    @IBAction func settingActionButton(_ sender: Any)
+    {
+        print("setting")
+        let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
+        navigationController?.pushViewController(settingView, animated: true)
+    }
+
+    
+
     @IBAction func cartButton(_ sender: Any)
     {
         performSegue(withIdentifier: "goToCart", sender: self)
         print("cart")
     }
     
-    @IBAction func settingButton(_ sender: Any)
-    {
-        print("setting")
-        let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
-        navigationController?.pushViewController(settingView, animated: true)
-    }
-    
     @IBAction func ordersSeeMoreActionButton(_ sender: Any)
     {
         print("orders See More")
+        let previousOrderScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
+        previousOrderScreen.userID = userDetails?.id
+        previousOrderScreen.orders = orderDetails
+        self.present(previousOrderScreen, animated: true, completion: nil)
     }
     
     @IBAction func wishListSeeMoreActionButton(_ sender: Any)
@@ -179,16 +193,6 @@ class ProfileVC: UIViewController
         let wishListView = storyboard?.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
         navigationController?.pushViewController(wishListView, animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -227,8 +231,9 @@ extension ProfileVC : UITableViewDataSource
         {
         case ordersTable:
         let cell : OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
-            cell.priceLabel.text = "1234 $"
-            cell.dateLabel.text = "13 - 03 - 2023 12:00 PM"
+            cell.priceLabel.text = orderDetails?[indexPath.row].current_total_price
+            cell.dateLabel.text = orderDetails?[indexPath.row].created_at
+            cell.itemsNumberLabel.text = "\(orderDetails?[indexPath.row].line_items?.count ?? 0)"
             return cell
             
         case wishListTable:
