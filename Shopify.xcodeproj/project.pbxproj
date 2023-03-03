@@ -35,6 +35,9 @@
 		4C97ADC129A8627700775773 /* WishListsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C97ADBF29A8627600775773 /* WishListsCell.xib */; };
 		4CAC435129AED06200DA7E17 /* WishListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC434F29AED06200DA7E17 /* WishListTableCell.swift */; };
 		4CAC435229AED06200DA7E17 /* WishListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CAC435029AED06200DA7E17 /* WishListTableCell.xib */; };
+		4C99BCF129AFACB40049FB65 /* ProfileScreenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C99BCF029AFACB40049FB65 /* ProfileScreenProtocol.swift */; };
+		4C99BCF329AFBAEB0049FB65 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C99BCF229AFBAEB0049FB65 /* ProfileScreen.swift */; };
+		4C99BCF529AFC2450049FB65 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C99BCF429AFC2450049FB65 /* ProfileViewModel.swift */; };
 		4CB4C75429AA4BA3004B9BE2 /* AddressesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4C75329AA4BA3004B9BE2 /* AddressesCell.swift */; };
 		4CB4C75629AA4BE2004B9BE2 /* AddressesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB4C75529AA4BE2004B9BE2 /* AddressesCell.xib */; };
 		DE59EF4E29A6F78D00D50A91 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE59EF4D29A6F78D00D50A91 /* CustomTabBar.swift */; };
@@ -130,6 +133,9 @@
 		4C97ADBF29A8627600775773 /* WishListsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListsCell.xib; sourceTree = "<group>"; };
 		4CAC434F29AED06200DA7E17 /* WishListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListTableCell.swift; sourceTree = "<group>"; };
 		4CAC435029AED06200DA7E17 /* WishListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListTableCell.xib; sourceTree = "<group>"; };
+		4C99BCF029AFACB40049FB65 /* ProfileScreenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenProtocol.swift; sourceTree = "<group>"; };
+		4C99BCF229AFBAEB0049FB65 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		4C99BCF429AFC2450049FB65 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4CB4C75329AA4BA3004B9BE2 /* AddressesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesCell.swift; sourceTree = "<group>"; };
 		4CB4C75529AA4BE2004B9BE2 /* AddressesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressesCell.xib; sourceTree = "<group>"; };
 		4D8596E578E9FE2D42DCB254 /* Pods-Shopify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify.release.xcconfig"; path = "Target Support Files/Pods-Shopify/Pods-Shopify.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +300,15 @@
 			path = ProfileWishLists;
 			sourceTree = "<group>";
 		};
+		4C99BCEF29AFAC8A0049FB65 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4C99BCF029AFACB40049FB65 /* ProfileScreenProtocol.swift */,
+				4C99BCF229AFBAEB0049FB65 /* ProfileScreen.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		AF071E866C91FA177DDA212D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				DE923E7029A4E22000AF628D /* ViewModel.swift */,
+				4C99BCF429AFC2450049FB65 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -430,6 +446,7 @@
 		DE923E7A29A4E28B00AF628D /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				4C99BCEF29AFAC8A0049FB65 /* Profile */,
 				DE923E7C29A4E31400AF628D /* NetworkService.swift */,
 			);
 			path = NetworkServices;
@@ -852,6 +869,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C99BCF129AFACB40049FB65 /* ProfileScreenProtocol.swift in Sources */,
 				DE923E7D29A4E31400AF628D /* NetworkService.swift in Sources */,
 				DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */,
 				4CAC435129AED06200DA7E17 /* WishListTableCell.swift in Sources */,
@@ -885,6 +903,7 @@
 				38842ED029AE9036002E2EA8 /* Brand.swift in Sources */,
 				DE7BBD9D29A66C33009622B3 /* ProductsVC.swift in Sources */,
 				4C3B902829AA2D1A008F15F9 /* AboutUsVC.swift in Sources */,
+				4C99BCF329AFBAEB0049FB65 /* ProfileScreen.swift in Sources */,
 				DE923E8429A4E3B000AF628D /* ProductDetailsVC.swift in Sources */,
 				DE7BBDBB29A66EEB009622B3 /* RegisterVC.swift in Sources */,
 				DE7BBDB229A66E5D009622B3 /* PaymentVC.swift in Sources */,
@@ -895,6 +914,7 @@
 				DE923E7329A4E23000AF628D /* Products.swift in Sources */,
 				4C951B3329AACF510052E5CC /* WishListCell.swift in Sources */,
 				DE7BBDA929A66D97009622B3 /* CartVC.swift in Sources */,
+				4C99BCF529AFC2450049FB65 /* ProfileViewModel.swift in Sources */,
 				38842ED729AEB8B7002E2EA8 /* Discounts.swift in Sources */,
 				38842ED529AE93B7002E2EA8 /* Network.swift in Sources */,
 				4C521EB929AA4907004D4BBF /* AddressVC.swift in Sources */,
