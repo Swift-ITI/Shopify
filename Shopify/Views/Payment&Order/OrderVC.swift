@@ -14,7 +14,7 @@ class OrderVC: UIViewController {
             orderDetails.delegate = self
             orderDetails.dataSource = self
             orderDetails.layer.borderWidth = 2
-            orderDetails.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+            orderDetails.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
     @IBOutlet weak var adresses: UITableView!{
@@ -22,7 +22,7 @@ class OrderVC: UIViewController {
             adresses.delegate = self
             adresses.dataSource = self
             adresses.layer.borderWidth = 2
-            adresses.layer.borderColor = UIColor(named: "BeigeColor")?.cgColor
+            adresses.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
     @IBOutlet weak var coupon: UITextField!
