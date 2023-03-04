@@ -51,6 +51,19 @@ class ProductsVC: UIViewController {
  
     @IBAction func slider(_ sender: UISlider)
     {
+        titles = []
+        if (sender.value) == 0
+        {
+            titles = BrandproudctResponse?.products
+        }
+        for pricee in BrandproudctResponse?.products ?? []
+        {
+            if Double(pricee.variants?[0].price ?? "" ) ?? 0 < Double(sender.value)
+            {
+                titles?.append(pricee)
+            }
+        }
+        ProductCV.reloadData()
         price.text = String(Int(sender.value))
     }
     
