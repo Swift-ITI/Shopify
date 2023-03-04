@@ -10,7 +10,7 @@ import Foundation
 class ProfileView
 {
     var bindResultToProfileVC : (()->()) = {}
-    var userResult : User?
+    var userResult : [User]?
     {
         didSet
         {

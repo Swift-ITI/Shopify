@@ -87,10 +87,12 @@ class ProfileVC: UIViewController
     
 // MARK: - ProfileVC
     
-    var userDetails : User?
+    var userDetails : [User]?
     var profileView : ProfileView?
+    
     var orderDetails : [Orders]?
     var orderView : OrderView?
+    
     var id : Int?
     var logged : Bool = true
     
@@ -108,16 +110,20 @@ class ProfileVC: UIViewController
                 // Profile Part
                 profileView = ProfileView()
                 profileView?.getUser(id: id ?? 6810321223958)
-                profileView?.bindResultToProfileVC = { () in self.renderProfileView() }
+                profileView?.bindResultToProfileVC = { () in self.renderProfileView()
+                    self.ordersTable.reloadData()}
+                self.ordersTable.reloadData()
                 
                 // Orders Part
                 orderView = OrderView()
-                orderView?.getOrders(id: id ?? 5260762251542)
-                orderView?.bindResultToProfileVC = { () in self.renderOrderView() }
+                orderView?.getOrders(id: id ?? 6810321223958) //5260762251542
+                orderView?.bindResultToProfileVC = { () in self.renderOrderView()
+                    self.ordersTable.reloadData()}
+                self.ordersTable.reloadData()
                 
                 // Continue
-                usersNameLabel.text = "\(userDetails?.first_name ?? "No") \(userDetails?.last_name ?? "User")"
-                ordersNumberLabel.text = "\(userDetails?.orders_count ?? 0)"
+                usersNameLabel.text = "\(userDetails?[0].first_name ?? "No") \(userDetails?[0].last_name ?? "User")"
+                ordersNumberLabel.text = "\(orderDetails?.count ?? 0)" //"\(userDetails?.orders_count ?? 0)"
             }
             else
             {
@@ -150,7 +156,8 @@ class ProfileVC: UIViewController
     {
         DispatchQueue.main.async
         {
-            self.userDetails = self.profileView?.userResult!
+            self.userDetails = self.profileView?.userResult ?? []
+            //self.ordersTable.reloadData()
         }
     }
     
@@ -159,6 +166,7 @@ class ProfileVC: UIViewController
         DispatchQueue.main.async
         {
             self.orderDetails = self.orderView?.orderResult ?? []
+            self.ordersTable.reloadData()
         }
     }
     
@@ -183,7 +191,7 @@ class ProfileVC: UIViewController
     {
         print("orders See More")
         let previousOrderScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
-        previousOrderScreen.userID = userDetails?.id
+        previousOrderScreen.userID = userDetails?[0].id
         previousOrderScreen.orders = orderDetails
         self.present(previousOrderScreen, animated: true, completion: nil)
     }
@@ -215,7 +223,7 @@ extension ProfileVC : UITableViewDataSource
         switch tableView
         {
         case ordersTable:
-            return userDetails?.orders_count ?? 2
+            return orderDetails?.count ?? 0
             
         case wishListTable:
             return 4

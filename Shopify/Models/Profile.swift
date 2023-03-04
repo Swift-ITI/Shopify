@@ -34,7 +34,7 @@ class Address:Decodable
 
 class UserResult : Decodable
 {
-    var customers : User
+    var customers : [User]
 }
 
 // MARK: Orders & Items Part

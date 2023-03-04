@@ -21,7 +21,7 @@ class PreviousOrdersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productsNumber = orders?.count ?? 1
+        productsNumber = orders?.count ?? 0
         let orderCellNib = UINib(nibName: "OrdersCell", bundle: nil)
         ordersTableView.register(orderCellNib, forCellReuseIdentifier: "orderCell")
     }
