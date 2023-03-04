@@ -20,7 +20,7 @@ class ProductsVC: UIViewController {
     var brandId : String?
     var Brandproductviewmodel : BrandproductsViewModel?
     var BrandproudctResponse : Products?
-    var titles : Products?
+    var titles : [Product]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ProductsVC: UIViewController {
         ProductCV.delegate = self
         ProductCV.dataSource = self
         
-      //  titles = BrandproudctResponse?.products
+        
         
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
         ProductCV.register(nib, forCellWithReuseIdentifier: "productCell")
@@ -40,6 +40,7 @@ class ProductsVC: UIViewController {
         Brandproductviewmodel?.bindResultOfBrandproductToProductdetailsViewController = {
             DispatchQueue.main.async {
                 self.BrandproudctResponse = self.Brandproductviewmodel?.DataOfBrandProduct
+                self.titles = self.BrandproudctResponse?.products
                 self.ProductCV.reloadData()
             }
         }
@@ -70,6 +71,20 @@ extension ProductsVC : UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        titles = []
+        
+        if searchText == ""
+        {
+            titles = BrandproudctResponse?.products
+        }
+        for word in BrandproudctResponse?.products ?? []
+        {
+            if word.title.uppercased().contains(searchText.uppercased())
+            {
+                titles?.append(word)
+            }
+        }
+        ProductCV.reloadData()
     }
 }
 extension ProductsVC : UICollectionViewDelegate
@@ -83,14 +98,14 @@ extension ProductsVC : UICollectionViewDelegate
 extension ProductsVC : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return BrandproudctResponse?.products.count ?? 0
+        return titles?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
-        cell.nameOfProduct.text = BrandproudctResponse?.products[indexPath.row].title
-        cell.priceOfProduct.text = BrandproudctResponse?.products[indexPath.row].variants?[0].price
-        cell.imgOfProduct.kf.setImage(with: URL(string: BrandproudctResponse?.products[indexPath.row].image?.src ?? ""))
+        cell.nameOfProduct.text = titles?[indexPath.row].title
+        cell.priceOfProduct.text = titles?[indexPath.row].variants?[0].price
+        cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
         return cell
     }
     
