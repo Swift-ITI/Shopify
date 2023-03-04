@@ -121,9 +121,9 @@ class HomeVC: UIViewController {
     }
     @objc func navsearch()
     {
-        print("aa")
-//        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-//        self.navigationController?.pushViewController(searchobj, animated: true)
+    
+     let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+     self.navigationController?.pushViewController(searchobj, animated: true)
     }
 }
         
@@ -168,7 +168,7 @@ extension HomeVC : UICollectionViewDelegate
         switch collectionView {
             case OfferCV:
                let pasteboard = UIPasteboard.general
-               pasteboard.string = OfferCollectionviewresponse?.discount_codes[0].code
+            pasteboard.string = OfferCollectionviewresponse?.discount_codes[indexPath.row].code
             case BrandsCV:
                 let productobj : ProductsVC = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
             productobj.brandId = String(BrandCollectionviewresponse?.smart_collections[indexPath.row].id ?? 0)
