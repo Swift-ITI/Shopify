@@ -21,6 +21,7 @@ enum EndPoints {
     case accessories (id : String) //"ACCESSORIES"
     case tshirts (id : String) //"T-SHIRTS"
     case brandproducts (id : String)
+    case searchCustomer(email : String)
     var path : String {
         switch self{
         case .allProducts:
@@ -43,6 +44,9 @@ enum EndPoints {
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=T-SHIRTS"
         case .brandproducts(id : let id):
             return "\(BaseUrl)/products.json?collection_id=\(id)"
+        
+            case .searchCustomer(email: let email) :
+                return "\(BaseUrl)/customers/search.json?query=email:\(email)"
         }
     }
     

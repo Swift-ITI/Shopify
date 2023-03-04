@@ -25,7 +25,6 @@ class BrandViewModel
     }
 }
 
-
 class OfferViewModel
 {
     var bindResultOfOffersToHomeViewController : ( ()->() ) = {}
@@ -82,6 +81,20 @@ class BrandproductsViewModel
     {
         NetworkServices.fetch(url: target.path) { result in
             self.DataOfBrandProduct = result
+        }
+    }
+}
+
+class UserViewModel {
+    var bindDataToVC:(()->()) = {}
+    var users: Customers? {
+        didSet{
+            bindDataToVC()
+        }
+    }
+    func fetchUsers(target : EndPoints) {
+        NetworkServices.fetch(url: target.path) { result in
+            self.users = result
         }
     }
 }

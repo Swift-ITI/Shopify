@@ -17,39 +17,52 @@ class RegisterVC: UIViewController {
         }
     }
 
-    @IBOutlet var firstNameTxtField: UITextField! { didSet { renderTxtFields(txtField: firstNameTxtField) }}
-    @IBOutlet var lastNameTxtField: UITextField! { didSet { renderTxtFields(txtField: lastNameTxtField) }}
-    @IBOutlet var emailTxtField: UITextField! { didSet { renderTxtFields(txtField: emailTxtField) }}
-    @IBOutlet var phoneTxtField: UITextField! { didSet { renderTxtFields(txtField: phoneTxtField) }}
-    @IBOutlet var passwordTxtField: UITextField! { didSet { renderTxtFields(txtField: passwordTxtField) }}
-
+    @IBOutlet var firstNameTxtField: UITextField!
+    @IBOutlet var lastNameTxtField: UITextField!
+    @IBOutlet var emailTxtField: UITextField!
+    @IBOutlet var phoneTxtField: UITextField!
+    @IBOutlet var passwordTxtField: UITextField!
+    var userVM = UserViewModel()
+    var user:Customers?
+    var isFound:Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
+        renderTxtFields(txtFields: [firstNameTxtField, lastNameTxtField, emailTxtField, phoneTxtField, passwordTxtField])
+        
+        
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
 
     @IBAction func registerBtn(_ sender: Any) {
-        performSegue(withIdentifier: "goToHome", sender: self)
-    }
-    @IBAction func loginBtn(_ sender: Any) {
-        performSegue(withIdentifier: "goToLogIn", sender: self)
-    }
-    
+     
+        
+        
+//            performSegue(withIdentifier: "goToHome", sender: self)
+//            showAlert()
+        
 }
+
+    @IBAction func loginBtn(_ sender: Any) {
+
+    }
+  
+}
+
 // MARK: Rendering
 extension RegisterVC {
-    func renderTxtFields(txtField: UITextField) {
-        txtField.layer.cornerRadius = 10
-        txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
-        txtField.layer.borderWidth = 2
+    func renderTxtFields(txtFields: [UITextField]) {
+        for txtField in txtFields {
+            txtField.layer.cornerRadius = 10
+            txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            txtField.layer.borderWidth = 2
+        }
+    }
+
+    func showAlert() {
+        let alert = UIAlertController(title: "Missing Data!", message: "Please, Check ur data", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 }
+
