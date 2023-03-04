@@ -8,12 +8,12 @@
 import Foundation
 
 class Customers: Decodable {
-    var customers: [User]?
+    var customers: [User]
 }
 
 class User: Decodable {
-    var id: Int?
-    var email: String?
+    var id: Int
+    var email: String
     var first_name: String?
     var last_name: String?
     //var orders_count: Int?
