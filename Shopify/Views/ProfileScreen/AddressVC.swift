@@ -10,6 +10,8 @@ import UIKit
 class AddressVC: UIViewController
 {
 
+// MARK: - IBOutlets Part
+
     @IBOutlet var addressesTable: UITableView!
     {
         didSet
@@ -25,22 +27,37 @@ class AddressVC: UIViewController
         }
     }
     @IBOutlet var addNewAddressButton: UIButton!
+    {
+        didSet
+        {
+            addNewAddressButton.layer.masksToBounds = true
+            addNewAddressButton.layer.cornerRadius = addNewAddressButton.frame.width/18
+        }
+    }
+    
+// MARK: - AddressVC Part
+
+    var userID : Int?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        addNewAddressButton.layer.masksToBounds = true
-        addNewAddressButton.layer.cornerRadius = addNewAddressButton.frame.width/18
+
     }
+
+// MARK: - IBActions Part
 
     @IBAction func addNewAddressButtonAction(_ sender: Any)
     {
         print("working")
         let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+        addAddressView.userID = userID ?? 6810321223958
         navigationController?.pushViewController(addAddressView, animated: true)
     }
 }
+
+// MARK: - Table View Extension
 
 extension AddressVC : UITableViewDelegate, UITableViewDataSource
 {

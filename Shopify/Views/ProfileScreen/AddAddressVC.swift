@@ -24,6 +24,8 @@ class AddAddressVC: UIViewController
         }
     }
 
+    var userID : Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

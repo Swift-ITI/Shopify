@@ -11,7 +11,7 @@ import Reachability
 class ProfileVC: UIViewController
 {
 
-// MARK: - IBOutlets
+// MARK: - IBOutlets Part
     
     @IBOutlet var ordersNumberLabel: UILabel!
     @IBOutlet var usersNameLabel: UILabel!
@@ -85,7 +85,7 @@ class ProfileVC: UIViewController
         }
     }
     
-// MARK: - ProfileVC
+// MARK: - ProfileVC Part
     
     var userDetails : Customers?
     var userVM : UserViewModel?
@@ -173,12 +173,13 @@ class ProfileVC: UIViewController
         }
     }
     
-// MARK: - IBActions
+// MARK: - IBActions Part
     
     @IBAction func settingActionButton(_ sender: Any)
     {
         print("setting")
         let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
+        settingView.userID = id ?? 6810321223958
         navigationController?.pushViewController(settingView, animated: true)
     }
 
