@@ -99,7 +99,6 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         
         if ((userDetails?.customers.first?.addresses?[indexPath.row].default) != nil)
         {
-            //heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             cell.checkMarkImage.image = UIImage(named: "checkmark.circle.fill")
             cell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
         }
@@ -107,4 +106,46 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let alert : UIAlertController = UIAlertController(title: "Address Interaction", message: "Please Select if you want to Edit Address or Select Address to be your Default", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Edit Address", style: .default, handler: {action in
+            print("edit address")
+            let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+            addAddressView.userID = self.userID ?? 6810321223958
+            addAddressView.addressesData = ["\(self.userDetails?.customers.first?.addresses?[indexPath.row].city ?? "No City")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].country ?? "No Country")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].address1 ?? "No Address")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].phone ?? "No Phone")"]
+            self.navigationController?.pushViewController(addAddressView, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Select Address", style: .default, handler: {action in
+            print("select address")
+            for defaultRow in self.userDetails?.customers.first?.addresses?.count
+            {
+                if userDetails?.customers.first?.addresses[defaultRow].default == true
+                {
+                    //self.userDetails?.customers.first?.addresses[defaultRow].default = false
+                }
+            }
+            //self.userDetails?.customers.first?.addresses?[indexPath.row].default = true
+        }))
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        tableView.reloadData()
+        if editingStyle == .delete
+        {
+            let alert : UIAlertController = UIAlertController(title: "Delete Address ?", message: "Are you sure that you want to delete this saved address !", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+                print("delete address")
+                // delete address from API
+            }))
+        }
+    }
 }
