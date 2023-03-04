@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol FetchUserDataProtocol
-{
-    static func fetchURLUser(compeletionHandeler : @escaping (UserResult?) -> Void, id : Int)
-}
+//protocol FetchUserDataProtocol
+//{
+//    static func fetchURLUser(compeletionHandeler : @escaping (UserResult?) -> Void, id : Int)
+//}

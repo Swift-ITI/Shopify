@@ -7,19 +7,19 @@
 
 import Foundation
 
-class OrderView
-{
-    var bindResultToProfileVC : (()->()) = {}
-    var orderResult : [Orders]?
-    {
-        didSet
-        {
-            bindResultToProfileVC()
-        }
-    }
-    
-    func getOrders (id : Int)
-    {
-        FetchOrdersData.fetchURLOrders(compeletionHandeler: {result in self.orderResult = result?.orders}, id: id)
-    }
-}
+//class OrderView
+//{
+//    var bindResultToProfileVC : (()->()) = {}
+//    var ordersResult : [Order]?
+//    {
+//        didSet
+//        {
+//            bindResultToProfileVC()
+//        }
+//    }
+//    
+//    func getOrders (id : Int)
+//    {
+//        FetchOrdersData.fetchURLOrders(compeletionHandeler: {result in self.ordersResult = result?.orders}, id: id)
+//    }
+//}

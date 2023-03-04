@@ -87,13 +87,14 @@ class ProfileVC: UIViewController
     
 // MARK: - ProfileVC
     
-    var userDetails : [User]?
-    var profileView : ProfileView?
+    var userDetails : Customers?
+    var userVM : UserViewModel?
     
-    var orderDetails : [Orders]?
-    var orderView : OrderView?
+    var orderDetails : OrdersResult?
+    var orderVM : OrderViewModel?
     
     var id : Int?
+    var email : String?
     var logged : Bool = true
     
     override func viewDidLoad()
@@ -105,29 +106,27 @@ class ProfileVC: UIViewController
             print("there's Network")
 
 // To Check If Logged In or Not
-            if logged                       // if logged in to the app
+            if logged
             {
                 // Profile Part
-                profileView = ProfileView()
-                profileView?.getUser(id: id ?? 6810321223958)
-                profileView?.bindResultToProfileVC = { () in self.renderProfileView()
-                    self.ordersTable.reloadData()}
-                self.ordersTable.reloadData()
+                userVM = UserViewModel()
+                userVM?.fetchUsers(target: .searchCustomer(email: email ?? "egnition_sample_3@egnition.com"))
+                userVM?.bindDataToVC = { () in self.renderProfileView()}
                 
                 // Orders Part
-                orderView = OrderView()
-                orderView?.getOrders(id: id ?? 6810321223958) //5260762251542
-                orderView?.bindResultToProfileVC = { () in self.renderOrderView()
+                orderVM = OrderViewModel()
+                orderVM?.getOrders(target: .orderPerCustomer(id: id ?? 6810321223958))
+                orderVM?.bindResultToProfileVC = { () in self.renderOrderView()
                     self.ordersTable.reloadData()}
                 self.ordersTable.reloadData()
                 
                 // Continue
-                usersNameLabel.text = "\(userDetails?[0].first_name ?? "No") \(userDetails?[0].last_name ?? "User")"
-                ordersNumberLabel.text = "\(orderDetails?.count ?? 0)" //"\(userDetails?.orders_count ?? 0)"
+
+                
             }
             else
             {
-                let alert : UIAlertController = UIAlertController(title: "Not Sign In", message: "You are not Signed-In so please Sign-In or Register Now", preferredStyle: .alert)
+                let alert : UIAlertController = UIAlertController(title: "Log In", message: "You are not Signed-In so please Register or Sign-In Now", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Log-In", style: .default, handler: {action in
                     let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
@@ -141,7 +140,7 @@ class ProfileVC: UIViewController
         }
         else
         {
-            let alert : UIAlertController = UIAlertController(title: "Network Error", message: "You are not connected to the Network so please check your Wi-Fi or Mobile Data Again", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title: "Connection Error", message: "You are not connected to the Network so please check your Wi-Fi or Mobile Data Again", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {action in
                 let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
@@ -156,16 +155,20 @@ class ProfileVC: UIViewController
     {
         DispatchQueue.main.async
         {
-            self.userDetails = self.profileView?.userResult ?? []
-            //self.ordersTable.reloadData()
+            self.userDetails = self.userVM?.users
+            print(self.userDetails?.customers.first?.email ?? "none")
+            self.usersNameLabel.text = "\(self.userDetails?.customers.first?.first_name ?? "No") \(self.userDetails?.customers.first?.last_name ?? "User")"
+            self.ordersNumberLabel.text = "\(self.userDetails?.customers.first?.orders_count ?? 0)"
+            //self.ordersNumberLabel.text = String(self.orderDetails?.orders.count ?? 0)
         }
+        print(userDetails?.customers.first?.email ?? "none")
     }
     
     func renderOrderView()
     {
         DispatchQueue.main.async
         {
-            self.orderDetails = self.orderView?.orderResult ?? []
+            self.orderDetails = self.orderVM?.ordersResult
             self.ordersTable.reloadData()
         }
     }
@@ -191,8 +194,8 @@ class ProfileVC: UIViewController
     {
         print("orders See More")
         let previousOrderScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
-        previousOrderScreen.userID = userDetails?[0].id
-        previousOrderScreen.orders = orderDetails
+        previousOrderScreen.userID = userDetails?.customers.first?.id
+        previousOrderScreen.orders = orderDetails?.orders
         self.present(previousOrderScreen, animated: true, completion: nil)
     }
     
@@ -223,7 +226,7 @@ extension ProfileVC : UITableViewDataSource
         switch tableView
         {
         case ordersTable:
-            return orderDetails?.count ?? 0
+            return orderDetails?.orders.count ?? 0
             
         case wishListTable:
             return 4
@@ -239,9 +242,9 @@ extension ProfileVC : UITableViewDataSource
         {
         case ordersTable:
         let cell : OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
-            cell.priceLabel.text = orderDetails?[indexPath.row].current_total_price
-            cell.dateLabel.text = orderDetails?[indexPath.row].created_at
-            cell.itemsNumberLabel.text = "\(orderDetails?[indexPath.row].line_items?.count ?? 0)"
+            cell.priceLabel.text = orderDetails?.orders[indexPath.row].current_total_price
+            cell.dateLabel.text = orderDetails?.orders[indexPath.row].created_at
+            cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
             return cell
             
         case wishListTable:

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FetchOrdersProtocol
-{
-    static func fetchURLOrders(compeletionHandeler : @escaping (OrderResult?) -> Void, id : Int)
-}
+//protocol FetchOrdersProtocol
+//{
+//    static func fetchURLOrders(compeletionHandeler : @escaping (OrdersResult?) -> Void, id : Int)
+//}

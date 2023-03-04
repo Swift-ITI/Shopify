@@ -10,7 +10,7 @@ import UIKit
 class PreviousOrdersVC: UIViewController {
 
     var userID : Int?
-    var orders : [Orders]?
+    var orders : [Order]?
     var productsNumber: Int?
     @IBOutlet weak var ordersTableView: UITableView! {
         didSet {
