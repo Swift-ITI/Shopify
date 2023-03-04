@@ -13,3 +13,8 @@ class Discount : Decodable
     var price_rule_id : Int
     var id : Int
 }
+
+class Discounts : Decodable
+{
+    var discount_codes : [Discount]
+}
