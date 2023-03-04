@@ -14,19 +14,24 @@ class ProductsVC: UIViewController {
     @IBOutlet weak var pulldown: UIButton!
     
     @IBOutlet weak var searchbar: UISearchBar!
-     
+    
+    @IBOutlet weak var price: UILabel!
+    
     var brandId : String?
     var Brandproductviewmodel : BrandproductsViewModel?
     var BrandproudctResponse : Products?
+    var titles : Products?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productfilter()
+        
+       // productfilter()
         searchbar.delegate = self
         ProductCV.delegate = self
         ProductCV.dataSource = self
         
-    
+      //  titles = BrandproudctResponse?.products
+        
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
         ProductCV.register(nib, forCellWithReuseIdentifier: "productCell")
 
@@ -40,8 +45,15 @@ class ProductsVC: UIViewController {
         }
         
     }
-  
-    @objc func productfilter()
+    
+    
+ 
+    @IBAction func slider(_ sender: UISlider)
+    {
+        price.text = String(Int(sender.value))
+    }
+    
+   /* @objc func productfilter()
     {
         let c = {(action : UIAction) in
                 }
@@ -50,7 +62,7 @@ class ProductsVC: UIViewController {
             UIAction(title: "Sort by name", handler: c)])
         pulldown.showsMenuAsPrimaryAction = true
     // pulldown.changesSelectionAsPrimaryAction = true
-    }
+    }*/
 
     
 }

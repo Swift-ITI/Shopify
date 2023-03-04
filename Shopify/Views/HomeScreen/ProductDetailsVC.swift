@@ -52,8 +52,8 @@ class ProductDetailsVC: UIViewController {
         productprice.text = detailedProduct?.variants?[0].price
         productdescription.text = detailedProduct?.body_html
 
-        productfilter(sender: pulldownsize)
-        productfilter(sender: pulldowncolor)
+      //  productfilter(sender: pulldownsize)
+      //  productfilter(sender: pulldowncolor)
     
 //        descriptionLabel.layer.cornerRadius = 15
 //        descriptionLabel.layer.masksToBounds = true
@@ -77,7 +77,7 @@ class ProductDetailsVC: UIViewController {
             flag = false
         }
     }
-    func productfilter(sender:UIButton)
+   /* func productfilter(sender:UIButton)
     {
         switch sender{
             
@@ -105,7 +105,7 @@ class ProductDetailsVC: UIViewController {
         default:
             print("no")
         }
-    }
+    }*/
     
 }
 
