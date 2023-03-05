@@ -6,79 +6,64 @@
 //
 
 import Foundation
-class BrandViewModel
-{
-    var bindResultOfBrandsToHomeViewController : ( ()->() ) = {}
-    
-    var DataOfBrands : Brands!
-    {
-        didSet
-        {
+class BrandViewModel {
+    var bindResultOfBrandsToHomeViewController: (() -> Void) = {}
+
+    var DataOfBrands: Brands! {
+        didSet {
             bindResultOfBrandsToHomeViewController()
         }
     }
-    func getdata (url : String)
-    {
+
+    func getdata(url: String) {
         NetworkServices.fetch(url: url) { result in
             self.DataOfBrands = result
         }
     }
 }
 
-class OfferViewModel
-{
-    var bindResultOfOffersToHomeViewController : ( ()->() ) = {}
-    
-    var DataOfOffers : Discounts!
-    {
-        didSet
-        {
+class OfferViewModel {
+    var bindResultOfOffersToHomeViewController: (() -> Void) = {}
+
+    var DataOfOffers: Discounts! {
+        didSet {
             bindResultOfOffersToHomeViewController()
         }
     }
-    
-    func getoffer (url : String)
-    {
+
+    func getoffer(url: String) {
         NetworkServices.fetch(url: url) { result in
             self.DataOfOffers = result
         }
     }
 }
 
-class CatigoriesViewModel
-{
-    var bindResultOfCatigoriesToCatigorieViewController : ( ()->() ) = {}
-    
-    var DataOfProducts : Products!
-    {
-        didSet
-        {
+class CatigoriesViewModel {
+    var bindResultOfCatigoriesToCatigorieViewController: (() -> Void) = {}
+
+    var DataOfProducts: Products! {
+        didSet {
             bindResultOfCatigoriesToCatigorieViewController()
         }
     }
-    
-    func getProducts (target : EndPoints)
-    {
+
+    func getProducts(target: EndPoints) {
         NetworkServices.fetch(url: target.path) { result in
             self.DataOfProducts = result
         }
     }
 }
 
-class BrandproductsViewModel
-{
-    var bindResultOfBrandproductToProductdetailsViewController : ( ()->() ) = {}
-    
-    var DataOfBrandProduct : Products!
-    {
-        didSet
-        {
+class BrandproductsViewModel {
+    var bindResultOfBrandproductToProductdetailsViewController: (() -> Void) = {}
+
+    var DataOfBrandProduct: Products! {
+        didSet {
             bindResultOfBrandproductToProductdetailsViewController()
         }
     }
-    
-    func getBrandProducts (target : EndPoints)
-    {
+
+    func getBrandProducts(target: EndPoints) {
         NetworkServices.fetch(url: target.path) { result in
             self.DataOfBrandProduct = result
         }
@@ -86,32 +71,29 @@ class BrandproductsViewModel
 }
 
 class UserViewModel {
-    var bindDataToVC:(()->()) = {}
+    var bindDataToVC: (() -> Void) = {}
     var users: Customers? {
-        didSet{
+        didSet {
             bindDataToVC()
         }
     }
-    func fetchUsers(target : EndPoints) {
+
+    func fetchUsers(target: EndPoints) {
         NetworkServices.fetch(url: target.path) { result in
             self.users = result
         }
     }
 }
 
-class OrderViewModel
-{
-    var bindResultToProfileVC : (()->()) = {}
-    var ordersResult : OrdersResult?
-    {
-        didSet
-        {
+class OrderViewModel {
+    var bindResultToProfileVC: (() -> Void) = {}
+    var ordersResult: OrdersResult? {
+        didSet {
             bindResultToProfileVC()
         }
     }
-    
-    func getOrders (target : EndPoints)
-    {
+
+    func getOrders(target: EndPoints) {
         NetworkServices.fetch(url: target.path) { result in
             self.ordersResult = result
         }
