@@ -10,42 +10,51 @@ import Foundation
 var BaseUrl = "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01"
 
 enum EndPoints {
-    
     case allProducts
     case catigoriesProducts (id : String)
-//    case womenProducts (id : String)
-//    case kidsProducts
-//    case saleProducts
-//    case menProducts
     case shoes (id : String) //"SHOES"
     case accessories (id : String) //"ACCESSORIES"
     case tshirts (id : String) //"T-SHIRTS"
     case brandproducts (id : String)
-    var path : String {
-        switch self{
+    case searchCustomer(email : String)
+    case orderPerCustomer(id: Int)
+    case allCustomers
+    case deleteProductByID(id: Int)
+    
+    var path: String {
+        switch self {
         case .allProducts:
             return "\(BaseUrl)/products.json"
-        case .catigoriesProducts (id : let id) :
+                
+        case let .catigoriesProducts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)"
-//        case .womenProducts (id : let id):
-//            return "\(BaseUrl)/products.json?collection_id=\(id)"
-//        case .kidsProducts:
-//            return "\(BaseUrl)/products.json?collection_id=436751368470"
-//        case .saleProducts:
-//            return "\(BaseUrl)/products.json?collection_id=436751401238"
-//        case .menProducts:
-//            return "\(BaseUrl)/products.json?collection_id=436751270166"
-        case .shoes (id : let id):
+
+        case let .shoes(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=SHOES"
-        case .accessories (id : let id):
+                
+        case let .accessories(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=ACCESSORIES"
-        case .tshirts (id : let id):
+                
+        case let .tshirts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=T-SHIRTS"
-        case .brandproducts(id : let id):
+                
+        case let .brandproducts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)"
+
+        case let .searchCustomer(email: email):
+            return "\(BaseUrl)/customers/search.json?query=email:\(email)"
+                
+        case .allCustomers:
+            return "\(BaseUrl)/customers.json"
+
+        case let .deleteProductByID(id: id):
+            return "\(BaseUrl)/products/\(id).json"
+  
+        case .orderPerCustomer(id: let id) :
+            return "\(BaseUrl)/customers/\(id)/orders.json"
+
         }
     }
-    
 }
 
 enum CatigoryID {
@@ -54,8 +63,8 @@ enum CatigoryID {
     case men
     case sale
     case women
-    
-    var id : String {
+
+    var id: String {
         switch self {
         case .homePage:
             return "436748681494"
@@ -70,5 +79,3 @@ enum CatigoryID {
         }
     }
 }
-
-

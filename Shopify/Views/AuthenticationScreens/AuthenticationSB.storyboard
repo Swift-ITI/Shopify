@@ -177,6 +177,7 @@
                         <outlet property="emailTxtField" destination="nIg-DG-cmH" id="TZl-bN-wMi"/>
                         <outlet property="loginImage" destination="Dri-mw-qeX" id="LUq-aW-fRS"/>
                         <outlet property="passwordTxtField" destination="KM1-za-4w8" id="jf3-eM-6cY"/>
+                        <segue destination="CUh-R5-szw" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="w7f-IV-od6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -223,12 +224,12 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Isy-ZG-9qQ">
                                         <rect key="frame" x="0.0" y="0.0" width="156.66666666666666" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="given-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJd-sZ-v7r">
                                         <rect key="frame" x="183.66666666666669" y="0.0" width="156.66666666666669" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -247,7 +248,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-hM-20Z">
                                         <rect key="frame" x="0.0" y="28.333333333333314" width="345" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-PD-p8t">
                                         <rect key="frame" x="0.0" y="70.333333333333314" width="48.333333333333336" height="20.333333333333329"/>
@@ -258,7 +259,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hMB-ZW-ETA">
                                         <rect key="frame" x="0.0" y="98.666666666666686" width="345" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-xM-s00">
                                         <rect key="frame" x="0.0" y="140.66666666666669" width="73.333333333333329" height="20.333333333333343"/>
@@ -269,7 +270,9 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltS-2O-kHu">
                                         <rect key="frame" x="0.0" y="169" width="345" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password">
+                                            <passwordRules key="passwordRules" passwordRulesDescriptor="regex"/>
+                                        </textInputTraits>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -303,7 +306,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="registerBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="flO-k4-mei"/>
-                                    <segue destination="CUh-R5-szw" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="zxa-lm-MQt"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-H7-8HJ">
@@ -323,7 +325,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="xRc-d8-yOj"/>
-                                            <segue destination="Y6W-OH-hqX" kind="presentation" identifier="goToLogIn" modalPresentationStyle="fullScreen" id="7ld-XI-Kf9"/>
+                                            <segue destination="Y6W-OH-hqX" kind="presentation" identifier="goToLogin" modalPresentationStyle="fullScreen" id="zFj-xu-Y7w"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-Ef-7CH">
@@ -359,7 +361,6 @@
                             <constraint firstItem="zgc-fa-pO5" firstAttribute="trailing" secondItem="kyL-hJ-Fqt" secondAttribute="trailing" constant="32" id="oqq-37-0Sj"/>
                             <constraint firstItem="4zj-6h-XQq" firstAttribute="centerX" secondItem="PnH-tZ-FOH" secondAttribute="centerX" id="p0s-jv-TUg"/>
                             <constraint firstItem="Isy-ZG-9qQ" firstAttribute="width" secondItem="Mzz-zY-qKJ" secondAttribute="width" multiplier="1.8:1" id="qKi-lm-dvv"/>
-                            <constraint firstItem="zgc-fa-pO5" firstAttribute="trailing" secondItem="DmH-7C-MYH" secondAttribute="trailing" constant="97.666666666666686" id="qUh-fC-fml"/>
                             <constraint firstItem="3Aj-Ii-o01" firstAttribute="top" secondItem="zgc-fa-pO5" secondAttribute="top" id="rC3-tc-xjT"/>
                             <constraint firstItem="dp3-uT-fXs" firstAttribute="leading" secondItem="zgc-fa-pO5" secondAttribute="leading" constant="24" id="rGL-aY-hpj"/>
                             <constraint firstItem="3Aj-Ii-o01" firstAttribute="centerX" secondItem="PnH-tZ-FOH" secondAttribute="centerX" id="rVU-sk-Y2C"/>
@@ -376,11 +377,12 @@
                         <outlet property="passwordTxtField" destination="ltS-2O-kHu" id="Bq6-fQ-jJk"/>
                         <outlet property="phoneTxtField" destination="hMB-ZW-ETA" id="WDz-2H-Uu0"/>
                         <outlet property="registerImage" destination="kyL-hJ-Fqt" id="JAo-5h-rVy"/>
+                        <segue destination="CUh-R5-szw" kind="presentation" identifier="goToHome" modalPresentationStyle="fullScreen" id="dAB-Nd-AVe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cja-Sc-kOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="-35"/>
+            <point key="canvasLocation" x="1266" y="-409"/>
         </scene>
         <!--Main-->
         <scene sceneID="cYO-3z-jUo">
@@ -388,12 +390,15 @@
                 <viewControllerPlaceholder storyboardName="Main" id="CUh-R5-szw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iqx-rg-EnA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="-35"/>
+            <point key="canvasLocation" x="865" y="51"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dAB-Nd-AVe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CoffeeColor">
             <color red="0.68627450980392157" green="0.55686274509803924" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

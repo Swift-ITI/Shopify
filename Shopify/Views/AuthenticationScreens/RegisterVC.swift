@@ -17,39 +17,88 @@ class RegisterVC: UIViewController {
         }
     }
 
-    @IBOutlet var firstNameTxtField: UITextField! { didSet { renderTxtFields(txtField: firstNameTxtField) }}
-    @IBOutlet var lastNameTxtField: UITextField! { didSet { renderTxtFields(txtField: lastNameTxtField) }}
-    @IBOutlet var emailTxtField: UITextField! { didSet { renderTxtFields(txtField: emailTxtField) }}
-    @IBOutlet var phoneTxtField: UITextField! { didSet { renderTxtFields(txtField: phoneTxtField) }}
-    @IBOutlet var passwordTxtField: UITextField! { didSet { renderTxtFields(txtField: passwordTxtField) }}
-
+    @IBOutlet var firstNameTxtField: UITextField!
+    @IBOutlet var lastNameTxtField: UITextField!
+    @IBOutlet var emailTxtField: UITextField!
+    @IBOutlet var phoneTxtField: UITextField!
+    @IBOutlet var passwordTxtField: UITextField!
+    var userVM: UserViewModel?
+    var postUserVM: PostUserViewModel?
+    var users: [User]?
+    var isFound: Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
+        renderTxtFields(txtFields: [firstNameTxtField, lastNameTxtField, emailTxtField, phoneTxtField, passwordTxtField])
+        passwordTxtField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; required: [-()/&*!@#$%] {>=1}; minlength: 8;")
+        
+        userVM = UserViewModel()
+        postUserVM = PostUserViewModel()
+        userVM?.fetchUsers(target: .allCustomers)
+        userVM?.bindDataToVC = { () in
+            DispatchQueue.main.async {
+                self.users = self.userVM?.users?.customers
+                // print(self.users?[0].email ?? "No")
+            }
+        }
     }
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
 
     @IBAction func registerBtn(_ sender: Any) {
-        performSegue(withIdentifier: "goToHome", sender: self)
+        if emailTxtField.text != "" && firstNameTxtField.text != "" && lastNameTxtField.text != "" && phoneTxtField.text != "" && passwordTxtField.text != "" {
+            isFound = searchForUser(email: emailTxtField.text ?? "")
+            if isFound {
+                print("found")
+                showAlert(title: "Already Registered", msg: "Email is registered! , Login instead")
+            } else {
+                print("Not found")
+                let parameters: [String: Any] = [
+                    "customer": [
+                        "first_name": firstNameTxtField.text,
+                        "last_name": lastNameTxtField.text,
+                        "email": emailTxtField.text,
+                        "phone": phoneTxtField.text,
+                        "tags": passwordTxtField.text,
+                    ],
+                ]
+                postUserVM?.postCustomer(target: .allCustomers, parameters: parameters)
+               
+                //performSegue(withIdentifier: "goToHome", sender: self)
+            }
+        } else {
+            showAlert(title: "Missing Data", msg: "Fill all the fields")
+        }
     }
+
+    func searchForUser(email: String) -> Bool {
+        var flag = false
+
+        for user in users! {
+            if user.email == email {
+                flag = true
+            }
+        }
+        return flag
+    }
+
     @IBAction func loginBtn(_ sender: Any) {
-        performSegue(withIdentifier: "goToLogIn", sender: self)
     }
-    
 }
+
 // MARK: Rendering
+
 extension RegisterVC {
-    func renderTxtFields(txtField: UITextField) {
-        txtField.layer.cornerRadius = 10
-        txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
-        txtField.layer.borderWidth = 2
+    func renderTxtFields(txtFields: [UITextField]) {
+        for txtField in txtFields {
+            txtField.layer.cornerRadius = 10
+            txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            txtField.layer.borderWidth = 2
+        }
+    }
+
+    func showAlert(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 }

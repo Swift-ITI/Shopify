@@ -55,12 +55,6 @@ class ProductDetailsVC: UIViewController {
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
     
-//        descriptionLabel.layer.cornerRadius = 15
-//        descriptionLabel.layer.masksToBounds = true
- //       descriptionLabel.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
-  //      reviewLabel.layer.cornerRadius = 15
-  //      reviewLabel.layer.masksToBounds = true
-  //      reviewLabel.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
     }
     
     @IBAction func addtocart(_ sender: Any) {
@@ -77,7 +71,7 @@ class ProductDetailsVC: UIViewController {
             flag = false
         }
     }
-    func productfilter(sender:UIButton)
+   func productfilter(sender:UIButton)
     {
         switch sender{
             
