@@ -121,13 +121,12 @@ extension ProductsVC : UICollectionViewDataSource
         cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
         return cell
     }
-    
-    
 }
+
 extension ProductsVC : UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: ProductCV.layer.frame.size.width/2 - 5, height: ProductCV.layer.frame.size.height/3 - 5)
+        return CGSize(width: ProductCV.layer.frame.size.width/2 - 5, height: ProductCV.layer.frame.size.height/2 - 5)
     
         }
 }
