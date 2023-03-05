@@ -130,7 +130,8 @@ class ProfileVC: UIViewController
                 
                 alert.addAction(UIAlertAction(title: "Log-In", style: .default, handler: {action in
                     let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
-                    self.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.pushViewController(loginView, animated: true)
+                    //self.navigationController?.popToRootViewController(animated: true)
                 }))
                 //alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alert, animated: true, completion: nil)
@@ -144,7 +145,8 @@ class ProfileVC: UIViewController
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {action in
                 let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.pushViewController(loginView, animated: true)
+                //self.navigationController?.popToRootViewController(animated: true)
             }))
             //alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self.present(alert, animated: true, completion: nil)

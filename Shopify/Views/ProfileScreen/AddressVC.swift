@@ -40,12 +40,14 @@ class AddressVC: UIViewController
     var userID : Int?
     var userDetails : Customers?
     var userVM : UserViewModel?
+    var deleteVM : deleteCode?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         userVM = UserViewModel()
+        deleteVM = deleteCode()
         userVM?.fetchUsers(target: .searchCustomerByID(id: userID ?? 6810321223958))
         userVM?.bindDataToVC = { () in self.renderAddressView()
             self.addressesTable.reloadData()}
@@ -119,15 +121,16 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         }))
         alert.addAction(UIAlertAction(title: "Select Address", style: .default, handler: {action in
             print("select address")
-            for defaultRow in self.userDetails?.customers.first?.addresses?.count
+            /*for defaultRow in self.userDetails?.customers.first?.addresses ?? []
             {
-                if userDetails?.customers.first?.addresses[defaultRow].default == true
+                if userDetails?.customers.first?.addresses?[defaultRow].default == true
                 {
                     //self.userDetails?.customers.first?.addresses[defaultRow].default = false
                 }
-            }
+            }*/
             //self.userDetails?.customers.first?.addresses?[indexPath.row].default = true
         }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
@@ -137,15 +140,16 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
-        tableView.reloadData()
+        //tableView.reloadData()
         if editingStyle == .delete
         {
-            let alert : UIAlertController = UIAlertController(title: "Delete Address ?", message: "Are you sure that you want to delete this saved address !", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+            let alerts : UIAlertController = UIAlertController(title: "Delete Address ?", message: "Are you sure that you want to delete this saved address !", preferredStyle: .alert)
+            alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alerts.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+                self.deleteVM?.deleteCode(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.userDetails?.customers.first?.addresses?[indexPath.row].id ?? 9050959642902))
                 print("delete address")
-                // delete address from API
             }))
+            self.present(alerts, animated: true, completion: nil)
         }
     }
 }

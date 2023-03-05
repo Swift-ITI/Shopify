@@ -117,3 +117,10 @@ class OrderViewModel
         }
     }
 }
+class deleteCode
+{
+    func deleteCode(target: EndPoints)
+    {
+        NetworkServices.delete(url: target.path)
+    }
+}
