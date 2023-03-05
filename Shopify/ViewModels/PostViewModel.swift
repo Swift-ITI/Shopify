@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class PostUserViewModel {
+    func postCustomer(target: EndPoints,parameters:[String:Any]){
+        NetworkServices.postData(url: target.path, parameters: parameters )
+    }
+
+}

@@ -22,38 +22,55 @@ class RegisterVC: UIViewController {
     @IBOutlet var emailTxtField: UITextField!
     @IBOutlet var phoneTxtField: UITextField!
     @IBOutlet var passwordTxtField: UITextField!
-    var userVM : UserViewModel?
-    var users:[User]?
-    var isFound:Bool!
+    var userVM: UserViewModel?
+    var postUserVM: PostUserViewModel?
+    var users: [User]?
+    var isFound: Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
         renderTxtFields(txtFields: [firstNameTxtField, lastNameTxtField, emailTxtField, phoneTxtField, passwordTxtField])
+        passwordTxtField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; required: [-()/&*!@#$%] {>=1}; minlength: 8;")
         
         userVM = UserViewModel()
+        postUserVM = PostUserViewModel()
         userVM?.fetchUsers(target: .allCustomers)
-        userVM?.bindDataToVC = {() in
+        userVM?.bindDataToVC = { () in
             DispatchQueue.main.async {
                 self.users = self.userVM?.users?.customers
-               // print(self.users?[0].email ?? "No")
+                // print(self.users?[0].email ?? "No")
             }
         }
     }
 
     @IBAction func registerBtn(_ sender: Any) {
- 
-        isFound = searchForUser(email: emailTxtField.text ?? "")
-        if  isFound {
-            print ("found")
-            showAlert()
+        if emailTxtField.text != "" && firstNameTxtField.text != "" && lastNameTxtField.text != "" && phoneTxtField.text != "" && passwordTxtField.text != "" {
+            isFound = searchForUser(email: emailTxtField.text ?? "")
+            if isFound {
+                print("found")
+                showAlert(title: "Already Registered", msg: "Email is registered! , Login instead")
+            } else {
+                print("Not found")
+                let parameters: [String: Any] = [
+                    "customer": [
+                        "first_name": firstNameTxtField.text,
+                        "last_name": lastNameTxtField.text,
+                        "email": emailTxtField.text,
+                        "phone": phoneTxtField.text,
+                        "tags": passwordTxtField.text,
+                    ],
+                ]
+                postUserVM?.postCustomer(target: .allCustomers, parameters: parameters)
+               
+                //performSegue(withIdentifier: "goToHome", sender: self)
+            }
         } else {
-            print ("Not found")
-            performSegue(withIdentifier: "goToHome", sender: self)
+            showAlert(title: "Missing Data", msg: "Fill all the fields")
         }
-        
-}
-    func searchForUser(email : String) -> Bool {
+    }
+
+    func searchForUser(email: String) -> Bool {
         var flag = false
-        
+
         for user in users! {
             if user.email == email {
                 flag = true
@@ -63,12 +80,11 @@ class RegisterVC: UIViewController {
     }
 
     @IBAction func loginBtn(_ sender: Any) {
-
     }
-  
 }
 
 // MARK: Rendering
+
 extension RegisterVC {
     func renderTxtFields(txtFields: [UITextField]) {
         for txtField in txtFields {
@@ -78,12 +94,11 @@ extension RegisterVC {
         }
     }
 
-    func showAlert() {
-        let alert = UIAlertController(title: "Missing Data!", message: "Please, Check ur data", preferredStyle: UIAlertController.Style.alert)
+    func showAlert(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
         present(alert, animated: true, completion: nil)
     }
 }
-
