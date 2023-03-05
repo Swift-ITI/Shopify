@@ -14,3 +14,16 @@ class Brand : Decodable
     var body_html : String?
     var image : Image
 }
+
+class Brands : Decodable
+{
+    var smart_collections : [Brand]
+}
+
+class Image : Decodable
+{
+    var id : Int?
+    var product_id : Int?
+    var position : Int?
+    var src : String
+}

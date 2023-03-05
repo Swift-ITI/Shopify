@@ -23,12 +23,13 @@ class User: Decodable {
     //var note: String?
     //var verified_email: Bool?
     //var tax_exempt: Bool?
-    //var tags: String?
+    var tags: String?
     //var last_order_name: String?
     var currency: String?
-    //var phone: String?
+    var phone: String?
     var addresses: [Address]?
     var deafult_address: Address?
+
 }
 
 class Address: Decodable {
