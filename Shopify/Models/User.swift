@@ -12,11 +12,11 @@ class Customers: Decodable {
 }
 
 class User: Decodable {
-    var id: Int
-    var email: String
+    var id: Int?
+    var email: String?
     var first_name: String?
     var last_name: String?
-    //var orders_count: Int?
+    var orders_count: Int?
     //var state: String?
     //var total_spent: String?
     //var last_order_id: Int?
@@ -25,10 +25,11 @@ class User: Decodable {
     //var tax_exempt: Bool?
     var tags: String?
     //var last_order_name: String?
-    //var currency: String?
+    var currency: String?
     var phone: String?
-    //var addresses: [Address]?
-    //var deafult_address: Address?
+    var addresses: [Address]?
+    var deafult_address: Address?
+
 }
 
 class Address: Decodable {

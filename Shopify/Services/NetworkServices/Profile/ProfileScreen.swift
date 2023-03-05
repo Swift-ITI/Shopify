@@ -1,0 +1,22 @@
+//
+//  ProfileScreen.swift
+//  Shopify
+//
+//  Created by Michael Hany on 01/03/2023.
+//
+
+import Foundation
+import Alamofire
+
+//class FetchUserData : FetchUserDataProtocol
+//{
+//    static func fetchURLUser(compeletionHandeler: @escaping (UserResult?) -> Void, id: Int)
+//    {
+//        AF.request("https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/customers/search.json?query=id:\(id)")
+//            .validate()
+//            .responseDecodable(of: UserResult.self) { (data) in
+//                guard let data = data.value else {return}
+//                compeletionHandeler(data)
+//            }
+//    }
+//}

@@ -11,14 +11,16 @@ var BaseUrl = "https://29f36923749f191f42aa83c96e5786c5:shpat_9afaa4d7d43638b532
 
 enum EndPoints {
     case allProducts
-    case catigoriesProducts(id: String)
-    case shoes(id: String) // "SHOES"
-    case accessories(id: String) // "ACCESSORIES"
-    case tshirts(id: String) // "T-SHIRTS"
-    case brandproducts(id: String)
-    case searchCustomer(email: String)
+    case catigoriesProducts (id : String)
+    case shoes (id : String) //"SHOES"
+    case accessories (id : String) //"ACCESSORIES"
+    case tshirts (id : String) //"T-SHIRTS"
+    case brandproducts (id : String)
+    case searchCustomer(email : String)
+    case orderPerCustomer(id: Int)
     case allCustomers
     case deleteProductByID(id: Int)
+    
     var path: String {
         switch self {
         case .allProducts:
@@ -47,6 +49,10 @@ enum EndPoints {
 
         case let .deleteProductByID(id: id):
             return "\(BaseUrl)/products/\(id).json"
+  
+        case .orderPerCustomer(id: let id) :
+            return "\(BaseUrl)/customers/\(id)/orders.json"
+
         }
     }
 }

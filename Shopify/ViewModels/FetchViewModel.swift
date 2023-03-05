@@ -98,3 +98,22 @@ class UserViewModel {
         }
     }
 }
+
+class OrderViewModel
+{
+    var bindResultToProfileVC : (()->()) = {}
+    var ordersResult : OrdersResult?
+    {
+        didSet
+        {
+            bindResultToProfileVC()
+        }
+    }
+    
+    func getOrders (target : EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.ordersResult = result
+        }
+    }
+}

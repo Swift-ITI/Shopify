@@ -57,7 +57,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="ordersSeeMoreActionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="X1f-hG-vYH"/>
-                                    <segue destination="SRT-4u-vaw" kind="presentation" identifier="goToOrders" id="kwv-Hr-s9Z"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kYI-dB-cfG">
@@ -122,13 +121,13 @@
                             <barButtonItem image="gearshape" catalog="system" id="7l3-me-FOC">
                                 <color key="tintColor" name="CoffeColor"/>
                                 <connections>
-                                    <action selector="settingButton:" destination="Y6W-OH-hqX" id="yzD-Wr-Atl"/>
+                                    <action selector="settingActionButton:" destination="Y6W-OH-hqX" id="dOK-A6-SHd"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="cart" catalog="system" id="r8y-89-9lo">
                                 <color key="tintColor" name="CoffeColor"/>
                                 <connections>
-                                    <action selector="cartButton:" destination="Y6W-OH-hqX" id="5KT-qC-97o"/>
+                                    <action selector="cartButton:" destination="Y6W-OH-hqX" id="fCS-8h-zHW"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -164,11 +163,11 @@
             <objects>
                 <viewController storyboardIdentifier="previousOrder" id="SRT-4u-vaw" customClass="PreviousOrdersVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNh-I9-39T">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oEG-Bo-PiF">
-                                <rect key="frame" x="0.0" y="59" width="393" height="724"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -187,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACJ-1G-4dl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3268" y="-346"/>
+            <point key="canvasLocation" x="2772" y="-256"/>
         </scene>
         <!--Settings-->
         <scene sceneID="DAW-0A-3TV">
@@ -736,7 +735,7 @@
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="CoffeColor">
             <color red="0.68235294117647061" green="0.5607843137254902" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
