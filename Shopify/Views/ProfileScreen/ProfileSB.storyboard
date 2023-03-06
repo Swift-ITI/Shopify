@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lRw-0R-JLS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a20-04-XTe">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -156,7 +156,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2m-o1-f8F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2843" y="-256"/>
+            <point key="canvasLocation" x="2325" y="-382"/>
         </scene>
         <!--Previous OrdersVC-->
         <scene sceneID="yNo-le-PV0">
@@ -315,7 +315,7 @@
                 <viewControllerPlaceholder storyboardName="AuthenticationSB" id="R2P-HO-Qka" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1G-Ey-9ZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1373" y="494"/>
+            <point key="canvasLocation" x="1328" y="511"/>
         </scene>
         <!--Address VC-->
         <scene sceneID="8Jk-Yx-T5k">
@@ -681,20 +681,132 @@
             </objects>
             <point key="canvasLocation" x="3476" y="1215"/>
         </scene>
-        <!--View Controller-->
+        <!--NoUserProfile profileVC-->
         <scene sceneID="ULN-2e-YF0">
             <objects>
-                <viewController id="a20-04-XTe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="noUserProfileVC" id="a20-04-XTe" userLabel="NoUserProfile profileVC" customClass="NoUserProfileVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ezQ-LC-9MO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="1qK-vl-inJ">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <color key="tintColor" name="CoffeeColor"/>
+                                <color key="barTintColor" name="CoffeeColor"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="CoffeeColor"/>
+                                    <color key="textShadowColor" name="CoffeeColor"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" name="CoffeeColor"/>
+                                    <color key="textShadowColor" name="CoffeeColor"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Profile" id="Uma-0A-Bxo"/>
+                                </items>
+                                <navigationBarAppearance key="standardAppearance">
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <color key="shadowColor" name="AccentColor"/>
+                                </navigationBarAppearance>
+                                <navigationBarAppearance key="scrollEdgeAppearance">
+                                    <color key="backgroundColor" name="AccentColor"/>
+                                    <color key="shadowColor" name="AccentColor"/>
+                                </navigationBarAppearance>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Signed-In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9K-ZM-nO0">
+                                <rect key="frame" x="16" y="119" width="361" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grK-AB-dgk">
+                                <rect key="frame" x="16" y="283" width="361" height="83"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log-In">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
+                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginActionButton:" destination="a20-04-XTe" eventType="touchUpInside" id="UGr-Sm-f1X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAA-oC-hZN">
+                                <rect key="frame" x="16" y="494" width="361" height="83"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign-Up">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
+                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="signupActionButton:" destination="a20-04-XTe" eventType="touchUpInside" id="2Vy-TO-bTF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note: Signing-In will give you all the features that app provides" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loY-Vr-BGZ">
+                                <rect key="frame" x="16" y="705" width="361" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Ulw-vX-ATa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1qK-vl-inJ" firstAttribute="top" secondItem="Ulw-vX-ATa" secondAttribute="top" id="49X-dC-kBD"/>
+                            <constraint firstItem="fAA-oC-hZN" firstAttribute="top" secondItem="grK-AB-dgk" secondAttribute="bottom" constant="128" id="9eY-Z8-37C"/>
+                            <constraint firstItem="Ulw-vX-ATa" firstAttribute="trailing" secondItem="b9K-ZM-nO0" secondAttribute="trailing" constant="16" id="CLv-2H-4jH"/>
+                            <constraint firstItem="1qK-vl-inJ" firstAttribute="trailing" secondItem="Ulw-vX-ATa" secondAttribute="trailing" id="D7s-fs-SyQ"/>
+                            <constraint firstItem="Ulw-vX-ATa" firstAttribute="bottom" secondItem="loY-Vr-BGZ" secondAttribute="bottom" constant="16" id="JvL-GS-806"/>
+                            <constraint firstItem="fAA-oC-hZN" firstAttribute="leading" secondItem="Ulw-vX-ATa" secondAttribute="leading" constant="16" id="Kjh-fO-gfv"/>
+                            <constraint firstItem="grK-AB-dgk" firstAttribute="leading" secondItem="Ulw-vX-ATa" secondAttribute="leading" constant="16" id="Tjh-V8-nKy"/>
+                            <constraint firstItem="Ulw-vX-ATa" firstAttribute="trailing" secondItem="fAA-oC-hZN" secondAttribute="trailing" constant="16" id="XiC-AK-Qxz"/>
+                            <constraint firstItem="loY-Vr-BGZ" firstAttribute="top" secondItem="fAA-oC-hZN" secondAttribute="bottom" constant="128" id="aNc-yL-FCl"/>
+                            <constraint firstItem="1qK-vl-inJ" firstAttribute="leading" secondItem="Ulw-vX-ATa" secondAttribute="leading" id="egO-Yc-XQb"/>
+                            <constraint firstItem="fAA-oC-hZN" firstAttribute="height" secondItem="grK-AB-dgk" secondAttribute="height" id="fAF-cT-tb1"/>
+                            <constraint firstItem="b9K-ZM-nO0" firstAttribute="top" secondItem="1qK-vl-inJ" secondAttribute="bottom" constant="16" id="gYo-z7-NHk"/>
+                            <constraint firstItem="loY-Vr-BGZ" firstAttribute="height" secondItem="b9K-ZM-nO0" secondAttribute="height" multiplier="1.33333" id="put-JU-s8A"/>
+                            <constraint firstItem="loY-Vr-BGZ" firstAttribute="leading" secondItem="Ulw-vX-ATa" secondAttribute="leading" constant="16" id="qWR-F6-314"/>
+                            <constraint firstItem="Ulw-vX-ATa" firstAttribute="trailing" secondItem="grK-AB-dgk" secondAttribute="trailing" constant="16" id="u4c-az-kuy"/>
+                            <constraint firstItem="b9K-ZM-nO0" firstAttribute="height" secondItem="grK-AB-dgk" secondAttribute="height" multiplier="0.433735" id="uYz-6M-VNW"/>
+                            <constraint firstItem="grK-AB-dgk" firstAttribute="top" secondItem="b9K-ZM-nO0" secondAttribute="bottom" constant="128" id="wHK-fF-XkT"/>
+                            <constraint firstItem="b9K-ZM-nO0" firstAttribute="leading" secondItem="Ulw-vX-ATa" secondAttribute="leading" constant="16" id="wQJ-9E-6iC"/>
+                            <constraint firstItem="Ulw-vX-ATa" firstAttribute="trailing" secondItem="loY-Vr-BGZ" secondAttribute="trailing" constant="16" id="xfe-pM-FKl"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="U6G-8d-XnP"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="loginButton" destination="grK-AB-dgk" id="iK3-7F-0Ti"/>
+                        <outlet property="signupButton" destination="fAA-oC-hZN" id="0jG-vb-5PA"/>
+                        <segue destination="5A4-YL-Qn0" kind="presentation" identifier="login" id="ZQL-Js-idx"/>
+                        <segue destination="ohx-WF-pwO" kind="presentation" identifier="signup" id="NOe-3L-khd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tii-ft-1TI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-216" y="-256"/>
+            <point key="canvasLocation" x="-193.12977099236642" y="-256.33802816901408"/>
+        </scene>
+        <!--logInScreen-->
+        <scene sceneID="FzW-Qo-RDB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AuthenticationSB" referencedIdentifier="logInScreen" id="5A4-YL-Qn0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="t8s-6d-VMv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lI1-W3-zgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-415" y="220"/>
+        </scene>
+        <!--register-->
+        <scene sceneID="XBu-h7-ULc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AuthenticationSB" referencedIdentifier="register" id="ohx-WF-pwO" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dTC-dh-6kF"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgr-2G-73c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47" y="220"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Ibx-3L-XpS">
@@ -707,7 +819,7 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
-                        <color key="tintColor" name="CoffeColor"/>
+                        <color key="tintColor" name="CoffeeColor"/>
                         <color key="barTintColor" name="CoffeeColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="CoffeColor"/>
@@ -760,6 +872,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
