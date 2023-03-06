@@ -21,3 +21,23 @@ class PostUserViewModel {
     }
 
 }
+class PostAddressViewModel {
+    var bindErrorsToVC:(()->()) = {}
+    var errors:[String:Any]? {
+        didSet{
+            bindErrorsToVC()
+        }
+    }
+    func postAddress(target: EndPoints, parameters: [String : Any])
+        {
+            NetworkServices.postData(url: target.path, parameters: parameters,err:{errors in self.errors = errors })
+        }
+    func editAddress(target: EndPoints, parameters: [String : Any])
+        {
+            NetworkServices.putMethod(url: target.path, parameters: parameters,err:{errors in self.errors = errors })
+        }
+    func deleteAddress(target: EndPoints)
+    {
+        NetworkServices.delete(url: target.path)
+    }
+}
