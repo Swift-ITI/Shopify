@@ -26,6 +26,7 @@ enum EndPoints {
     case orderPerCustomer(id: Int)
     case allCustomers
     case deleteAddress(customerID: Int, addressID: Int)
+    case editAddress(customerID: Int, addressID: Int)
     case addAddress(id : Int)
     var path : String {
         switch self{
@@ -70,6 +71,9 @@ enum EndPoints {
             
         case .addAddress(id: let id) :
             return "\(BaseUrl)/customers/\(id)/addresses.json"
+            
+        case .editAddress(customerID: let cusID, addressID: let addID) :
+            return "\(BaseUrl)/xustomers/\(cusID)/addresses/\(addID).json"
         }
     }
     

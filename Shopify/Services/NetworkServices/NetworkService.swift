@@ -82,7 +82,44 @@ extension NetworkServices
             catch {
                 print(error)
             }
+        }.resume()
+    }
+}
+
+extension NetworkServices
+{
+    static func putMethod(url : String , parameters : [String:Any])
+    {
+        guard let url = URL(string: url) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        request.httpShouldHandleCookies = false
+        
+        print(parameters)
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+        //HTTP Headers
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+        session.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                return
+            }
                 
+            do {
+                let response = try JSONSerialization.jsonObject(with: data , options: .allowFragments)
+                    
+                print("SUCEES:\(response)")
+            }
+            catch {
+                print(error)
+            }
         }.resume()
     }
 }

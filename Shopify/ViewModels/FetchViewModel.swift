@@ -129,4 +129,9 @@ class AddressesFunctions
     {
         NetworkServices.postMethod(url: target.path, parameters: parameters)
     }
+    
+    func putCode(target: EndPoints, parameters: [String : Any])
+    {
+        NetworkServices.putMethod(url: target.path, parameters: parameters)
+    }
 }

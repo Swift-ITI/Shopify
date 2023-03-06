@@ -41,12 +41,14 @@ class AddressVC: UIViewController
     var userDetails : Customers?
     var userVM : UserViewModel?
     var deleteVM : AddressesFunctions?
+    var editVM : AddressesFunctions?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         userVM = UserViewModel()
+        editVM = AddressesFunctions()
         deleteVM = AddressesFunctions()
         userVM?.fetchUsers(target: .searchCustomerByID(id: userID ?? 6810321223958))
         userVM?.bindDataToVC = { () in self.renderAddressView()
@@ -55,6 +57,11 @@ class AddressVC: UIViewController
         print(userDetails?.customers.first?.addresses?.count ?? 0)
     }
 
+    override func viewWillAppear(_ animated: Bool)
+    {
+        addressesTable.reloadData()
+    }
+    
     func renderAddressView()
     {
         DispatchQueue.main.async
@@ -108,31 +115,46 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             cell.checkMarkImage.image = UIImage(named: "checkmark.circle.fill")
             cell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+// alert Part
+        
         let alert : UIAlertController = UIAlertController(title: "Address Interaction", message: "Please Select if you want to Edit Address or Select Address to be your Default", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+//edit part
+        
         alert.addAction(UIAlertAction(title: "Edit Address", style: .default, handler: {action in
             print("edit address")
             let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
             addAddressView.userID = self.userID ?? 6810321223958
+            addAddressView.addressID = self.userDetails?.customers.first?.addresses?[indexPath.row].id ?? 0
             addAddressView.addressesData = ["\(self.userDetails?.customers.first?.addresses?[indexPath.row].city ?? "No City")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].country ?? "No Country")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].address1 ?? "No Address")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].phone ?? "No Phone")"]
             self.navigationController?.pushViewController(addAddressView, animated: true)
         }))
+        
+// select part
+        
         alert.addAction(UIAlertAction(title: "Select Address", style: .default, handler: {action in
             print("select address")
-            /*for defaultRow in self.userDetails?.customers.first?.addresses ?? []
+            if ((self.userDetails?.customers.first?.addresses?[indexPath.row].default) != false)
             {
-                if userDetails?.customers.first?.addresses?[defaultRow].default == true
-                {
-                    //self.userDetails?.customers.first?.addresses[defaultRow].default = false
-                }
-            }*/
-            //self.userDetails?.customers.first?.addresses?[indexPath.row].default = true
+                self.editVM?.putCode(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.userDetails?.customers.first?.addresses?[indexPath.row].id ?? 0), parameters:
+                                        ["address" : [
+                                            "default":false
+                                        ]])
+            }
+            
+            else if ((self.userDetails?.customers.first?.addresses?[indexPath.row].default) != true)
+            {
+                self.editVM?.putCode(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.userDetails?.customers.first?.addresses?[indexPath.row].id ?? 0), parameters:
+                                        ["address" : [
+                                            "default":true
+                                        ]])
+            }
         }))
         self.present(alert, animated: true, completion: nil)
     }

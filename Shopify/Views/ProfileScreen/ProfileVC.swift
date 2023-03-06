@@ -100,6 +100,13 @@ class ProfileVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if UserDefaults.standard.bool(forKey: "isRegistered")
+        {
+            let noUserProfileView = storyboard?.instantiateViewController(withIdentifier: "noUserProfileVC") as! NoUserProfileVC
+            noUserProfileView.modalPresentationStyle = .fullScreen
+            self.present(noUserProfileView, animated: true, completion: nil)
+        }
+        
         let reachability : Reachability = Reachability.forInternetConnection()
         if reachability.isReachable()       // if connected to the internet
         {
@@ -119,10 +126,6 @@ class ProfileVC: UIViewController
                 orderVM?.bindResultToProfileVC = { () in self.renderOrderView()
                     self.ordersTable.reloadData()}
                 self.ordersTable.reloadData()
-                
-                // Continue
-
-                
             }
             else
             {
