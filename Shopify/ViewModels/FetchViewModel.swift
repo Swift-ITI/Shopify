@@ -111,3 +111,35 @@ class OrderViewModel {
         }
     }
 }
+
+class DraftOrderViewModel {
+    //MARK: for get draftOrder
+    var bindDraftOrderToCartVC : (() -> ()) = {}
+    
+    var draftOrderResults : DraftOrderResult? {
+        didSet {
+            bindDraftOrderToCartVC()
+        }
+    }
+    
+    
+    func getDraftOrders (target : EndPoints){
+        NetworkServices.fetch(url: target.path) { result in
+            self.draftOrderResults = result
+        }
+    }
+    
+    //MARK: for post line item in draftOrder
+    
+    var bindErrorToCartVC:(()->()) = {}
+    var error:[String:Any]? {
+        didSet{
+            bindErrorToCartVC()
+        }
+    }
+    func postNewDraftOrder(target : EndPoints , params : [String : Any]) {
+        NetworkServices.postData(url: target.path, parameters: params) { error in
+            self.error = error
+        }
+    }
+}

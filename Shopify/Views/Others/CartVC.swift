@@ -10,15 +10,28 @@ import UIKit
 class CartVC: UIViewController {
     
     @IBOutlet weak var cartProducts: UITableView!
-    
     @IBOutlet weak var subTotal: UILabel!
+    
+    var cartVM : DraftOrderViewModel?
+    var draftOrder : DraftOrderResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let nib = UINib(nibName: "CartProductCV", bundle: nil)
         cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
-
+        
+        cartVM = DraftOrderViewModel()
+        cartVM?.getDraftOrders(target: .draftOrder(id: "6839029793046"))
+        cartVM?.bindDraftOrderToCartVC = {() in
+            DispatchQueue.main.async {
+                self.draftOrder = self.cartVM?.draftOrderResults
+                self.cartProducts.reloadData()
+                
+            }
+           
+        }
+        
     }
     
     @IBAction func proceedToCheckout(_ sender: Any) {
@@ -65,7 +78,7 @@ extension CartVC : UITableViewDelegate{
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return draftOrder?.draft_orders?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -78,7 +91,14 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderWidth = 3
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
-        if (Int(cartProductscell.quantity.text ?? "") == 12) {
+        
+        cartProductscell.productName.text = draftOrder?.draft_orders?[indexPath.section].line_items?[0].title
+        
+        cartProductscell.productPrice.text = draftOrder?.draft_orders?[indexPath.section].line_items?[0].price
+        
+        cartProductscell.quantity.text = "1"
+        
+        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_orders?[indexPath.section].line_items?[0].quantity ) {
             cartProductscell.plusQuantity.isUserInteractionEnabled = false
            // cartProductscell.
         }

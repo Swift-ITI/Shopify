@@ -25,13 +25,17 @@ enum EndPoints {
     case deleteProductByID(id: Int)
     case brand
     case discounts
+
+    case draftOrder (id: String)
     case checkUser(email: String, pw: String)
     case deleteAddress(customerID: Int, addressID: Int)
     case editAddress(customerID: Int, addressID: Int)
     case addAddress(id : Int)
     case searchCustomerAddresses(id : Int)
+
     var path : String {
         switch self{
+
         case .allProducts:
             return "\(BaseUrl)/products.json"
             
@@ -70,6 +74,10 @@ enum EndPoints {
             
         case .discounts:
             return "\(BaseUrl)/price_rules/1380100899094/discount_codes.json"
+
+        case .draftOrder (id: let id) :
+            return "\(BaseUrl)/draft_orders.json?id=\(id)"
+
         case let .checkUser(email: email, pw: pw):
             return "\(BaseUrl)/customers/search.json?query=email:\(email)&query=tag:\(pw)"
             
@@ -84,6 +92,7 @@ enum EndPoints {
             
         case .searchCustomerAddresses(id: let id) :
             return "\(BaseUrl)/customers/\(id)/addresses.json"
+
         }
     }
 }
