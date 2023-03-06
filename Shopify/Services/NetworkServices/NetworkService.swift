@@ -13,7 +13,7 @@ protocol FETCH_DATA {
 }
 
 protocol POST_DATA {
-    static func postData(url: String?, parameters: [String: Any])
+    static func postData(url: String?, parameters: [String: Any],err: @escaping ([String:Any]?)-> Void)
 }
 
 class NetworkServices: FETCH_DATA {
@@ -33,7 +33,7 @@ class NetworkServices: FETCH_DATA {
 
 extension NetworkServices: POST_DATA {
     
-    static func postData(url: String?, parameters: [String: Any]) {
+    static func postData(url: String?, parameters: [String: Any],err: @escaping ([String:Any]?)->Void) {
         guard let url = URL(string: url ?? "") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -44,6 +44,7 @@ extension NetworkServices: POST_DATA {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
         } catch let error {
             print(error.localizedDescription)
+            //err(error)
         }
         
         // HTTP Headers
@@ -52,15 +53,18 @@ extension NetworkServices: POST_DATA {
         
         session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
+                //err(error)
                 return
             }
             
             do {
                 let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 
-                print(response)
+                print("test :\(response)")
+                err(response as? [String : Any])
             } catch {
-                print(error)
+                print("hii\(error)")
+                //err(error)
             }
             
         }.resume()
