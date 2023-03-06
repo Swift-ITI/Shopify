@@ -21,7 +21,7 @@ protocol DELETE_DATA {
 }
 
 protocol PUT_DATA {
-    static func putMethod(url: String, parameters: [String: Any])
+    static func putMethod(url: String, parameters: [String: Any],err: @escaping ([String: Any]?) -> Void)
 }
 
 class NetworkServices: FETCH_DATA {
@@ -96,7 +96,7 @@ extension NetworkServices: DELETE_DATA {
 }
 
 extension NetworkServices: PUT_DATA {
-    static func putMethod(url: String, parameters: [String: Any]) {
+    static func putMethod(url: String, parameters: [String: Any],err: @escaping ([String: Any]?) -> Void) {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -123,6 +123,7 @@ extension NetworkServices: PUT_DATA {
                 let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
                 print("SUCEES:\(response)")
+                err(response as? [String: Any])
             } catch {
                 print(error)
             }
