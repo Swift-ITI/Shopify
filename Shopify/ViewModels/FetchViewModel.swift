@@ -117,10 +117,16 @@ class OrderViewModel
         }
     }
 }
-class deleteCode
+
+class AddressesFunctions
 {
     func deleteCode(target: EndPoints)
     {
         NetworkServices.delete(url: target.path)
+    }
+    
+    func postCode(target: EndPoints, parameters: [String : Any])
+    {
+        NetworkServices.postMethod(url: target.path, parameters: parameters)
     }
 }

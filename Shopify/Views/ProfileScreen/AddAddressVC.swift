@@ -31,7 +31,8 @@ class AddAddressVC: UIViewController
     
     var userID : Int?
     var addressesData : [String]?  // City - Country - Address - Phone
-    
+    var addVM : AddressesFunctions?
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class AddAddressVC: UIViewController
             addressTextField.text = addressesData?[2] ?? ""
             phoneTextField.text = addressesData?[3] ?? ""
         }
+        addVM = AddressesFunctions()
     }
 
 // MARK: - IBAction Part
@@ -56,7 +58,27 @@ class AddAddressVC: UIViewController
         else if addressesData == nil
         {
             // should add the data to the API
+            let alerts : UIAlertController = UIAlertController(title: "Add Address ?", message: "Are you sure that you want to add this address !", preferredStyle: .alert)
+            alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alerts.addAction(UIAlertAction(title: "Add", style: .default, handler: {action in
+                self.addVM?.postCode(target: .addAddress(id: self.userID ?? 6810321223958), parameters:
+                                        ["address" : [
+                                            "city":"\(self.cityTextField.text ?? "No City")",
+                                            "country":"\(self.countryTextField.text ?? "No Country")",
+                                            "phone":self.phoneTextField.text ?? 0,
+                                            "address1":"\(self.addressTextField.text ?? "No Address")",
+                                            "default":false
+                                        ]
+                ])
+                print("add address")
+            }))
+            self.present(alerts, animated: true, completion: nil)
         }
+        print("Address")
+        let addressView = storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+        addressView.userID = userID ?? 6810321223958
+        navigationController?.popViewController(animated: true)
+        //pushViewController(addressView, animated: true)
     }
 }
 

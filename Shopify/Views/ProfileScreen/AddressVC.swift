@@ -40,14 +40,14 @@ class AddressVC: UIViewController
     var userID : Int?
     var userDetails : Customers?
     var userVM : UserViewModel?
-    var deleteVM : deleteCode?
+    var deleteVM : AddressesFunctions?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         userVM = UserViewModel()
-        deleteVM = deleteCode()
+        deleteVM = AddressesFunctions()
         userVM?.fetchUsers(target: .searchCustomerByID(id: userID ?? 6810321223958))
         userVM?.bindDataToVC = { () in self.renderAddressView()
             self.addressesTable.reloadData()}
@@ -99,7 +99,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         cell.phoneNumberLabel.text = userDetails?.customers.first?.addresses?[indexPath.row].phone
         cell.countryLabel.text = userDetails?.customers.first?.addresses?[indexPath.row].country
         
-        if ((userDetails?.customers.first?.addresses?[indexPath.row].default) != nil)
+        if ((userDetails?.customers.first?.addresses?[indexPath.row].default) != false)
         {
             cell.checkMarkImage.image = UIImage(named: "checkmark.circle.fill")
             cell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
@@ -150,6 +150,8 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
                 print("delete address")
             }))
             self.present(alerts, animated: true, completion: nil)
+            //addressesTable.reloadData()
         }
+        //addressesTable.reloadData()
     }
 }
