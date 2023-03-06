@@ -138,6 +138,7 @@ class AddAddressVC: UIViewController {
                        
                     }
                     print("edit address")
+                    self.navigationController?.popViewController(animated: true)
                 }))
                 present(alerts, animated: true, completion: nil)
             default:
