@@ -57,8 +57,8 @@ class ProductDetailsVC: UIViewController {
         productprice.text = detailedProduct?.variants?[0].price
         productdescription.text = detailedProduct?.body_html
         pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0
-        //  productfilter(sender: pulldownsize)
-      //  productfilter(sender: pulldowncolor)
+        productfilter(sender: pulldownsize)
+        productfilter(sender: pulldowncolor)
     
     }
     

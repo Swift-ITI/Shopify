@@ -16,8 +16,8 @@ class HomeVC: UIViewController {
     var Offerviewmodel : OfferViewModel?
     var OfferCollectionviewresponse : Discounts?
     
-    var arrayofimg : [String]?
-    var arrayofimg2 : [String]? = ["https://www.citypng.com/public/uploads/preview/hd-discount-30-percent-off-sale-red-badge-png-31632100045jywzxxkjkw.png","https://www.citypng.com/public/uploads/preview/30-percent-off-sale-sign-logo-hd-png-116676817578j6ock9fz6.png","https://www.citypng.com/public/uploads/preview/30-off-tag-red-label-sign-logo-hd-png-116682074589jvh3p0irr.png","https://www.citypng.com/public/uploads/preview/discount-30-percent-text-logo-sign-black-png-image-11668096874eu6qfscms5.png","https://www.pngall.com/wp-content/uploads/13/30-Discount-PNG-Image.png","https://pngimage.net/wp-content/uploads/2018/05/discount-logo-png-3.png","https://www.pngitem.com/pimgs/m/685-6852872_grunge-30-percent-label-psd-hd-png-download.png","https://www.citypng.com/public/uploads/preview/free-discount-big-sale-up-to-30-percent-png-11667685843lkrbyewb8h.png","https://images.getpng.net/uploads/preview/sale-discount-icons-special-offer-price-signs-5-10-20-30-40-50-60-70-80-90-percent-off-reduction30-1151634335821ttswcgo3fa.webp","https://mpng.vectorpng.com/20200421/yva/logo-yellow-number-for-discount-tag-5e9eef211bca35.39632767.jpg"]
+    var arrayofimg : [String] = []
+  
 
     var timer : Timer?
     var currentcellindex = 0
@@ -61,16 +61,15 @@ class HomeVC: UIViewController {
         Offerviewmodel = OfferViewModel()
         
         dispatchgroup.enter()
-        Brandviewmodel?.getdata(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json")
-     //   arrayofimg
-        
+        Brandviewmodel?.getdata(target: .brand)
+             
         Brandviewmodel?.bindResultOfBrandsToHomeViewController = { [self] () in
             self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
             dispatchgroup.leave()
         }
         
         dispatchgroup.enter()
-        Offerviewmodel?.getoffer(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/price_rules/1380100899094/discount_codes.json")
+        Offerviewmodel?.getoffer(target: .discounts)
             
         Offerviewmodel?.bindResultOfOffersToHomeViewController = { () in
             self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
@@ -80,14 +79,19 @@ class HomeVC: UIViewController {
                 
         dispatchgroup.notify(queue: .main)
         {
-            self.arrayofimg = self.arrayofimg2
+          //  self.arrayofimg = arrayofimg2
+            self.pagecontroller.numberOfPages = self.OfferCollectionviewresponse?.discount_codes.count ?? 0
+            for img in 0...(self.OfferCollectionviewresponse?.discount_codes.count ?? 0)-1
+            {
+                self.arrayofimg.append(arrayofimg2?[img] ?? "" )
+            }
             self.BrandsCV.reloadData()
             self.OfferCV.reloadData()
                     
         }
         addBarButtonItems()
         startTimer()
-        pagecontroller.numberOfPages = arrayofimg2?.count ?? 0
+       
         }
     
     func showimg()
@@ -102,7 +106,7 @@ class HomeVC: UIViewController {
         
         @objc func movetonext()
         {
-            if currentcellindex < (arrayofimg?.count ?? 0) - 1
+            if currentcellindex < (arrayofimg.count ?? 0) - 1
             {
                 currentcellindex += 1
             }
@@ -155,7 +159,7 @@ extension HomeVC : UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
             case OfferCV:
-            return arrayofimg?.count ?? 0
+            return arrayofimg.count
             case BrandsCV:
             return BrandCollectionviewresponse?.smart_collections.count ?? 0
             default:
@@ -168,7 +172,7 @@ extension HomeVC : UICollectionViewDataSource
         switch collectionView {
             case OfferCV:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
-            cell.offerbrandimg.kf.setImage(with: URL(string: arrayofimg?[indexPath.row] ?? ""),placeholder: UIImage(named: "loading.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
+            cell.offerbrandimg.kf.setImage(with: URL(string: arrayofimg[indexPath.row]),placeholder: UIImage(named: "loading.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             return cell
             
             case BrandsCV:
