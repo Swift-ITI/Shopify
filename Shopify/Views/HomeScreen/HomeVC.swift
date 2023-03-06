@@ -121,9 +121,9 @@ class HomeVC: UIViewController {
     }
     @objc func navsearch()
     {
-        print("aa")
-//        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-//        self.navigationController?.pushViewController(searchobj, animated: true)
+    
+     let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+     self.navigationController?.pushViewController(searchobj, animated: true)
     }
 }
         
@@ -168,7 +168,8 @@ extension HomeVC : UICollectionViewDelegate
         switch collectionView {
             case OfferCV:
                let pasteboard = UIPasteboard.general
-               pasteboard.string = OfferCollectionviewresponse?.discount_codes[0].code
+            pasteboard.string = OfferCollectionviewresponse?.discount_codes[indexPath.row].code
+                showToastMessage(message: "Code Copied", color: .green)
             case BrandsCV:
                 let productobj : ProductsVC = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
             productobj.brandId = String(BrandCollectionviewresponse?.smart_collections[indexPath.row].id ?? 0)
@@ -192,4 +193,23 @@ extension HomeVC : UICollectionViewDelegateFlowLayout
         }
         
     }
+    
+    func showToastMessage(message: String, color: UIColor) {
+          let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
+
+          toastLabel.textAlignment = .center
+          toastLabel.backgroundColor = color
+          toastLabel.textColor = .black
+          toastLabel.alpha = 1.0
+          toastLabel.layer.cornerRadius = 10
+          toastLabel.clipsToBounds = true
+          toastLabel.text = message
+          view.addSubview(toastLabel)
+
+          UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
+              toastLabel.alpha = 0.0
+          }) { _ in
+              toastLabel.removeFromSuperview()
+          }
+      }
 }
