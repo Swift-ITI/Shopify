@@ -24,6 +24,7 @@ enum EndPoints {
     case deleteProductByID(id: Int)
     case brand
     case discounts
+    case draftOrder (id: String)
     
     
     var path: String {
@@ -63,6 +64,8 @@ enum EndPoints {
             
         case .discounts:
             return "\(BaseUrl)/price_rules/1380100899094/discount_codes.json"
+        case .draftOrder (id: let id) :
+            return "\(BaseUrl)/draft_orders.json?id=\(id)"
         }
     }
 }

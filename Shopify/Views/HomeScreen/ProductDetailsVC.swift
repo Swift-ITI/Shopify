@@ -17,9 +17,7 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var productprice: UILabel!
     @IBOutlet weak var pulldowncolor: UIButton!
     @IBOutlet weak var pulldownsize: UIButton!
-    
     @IBOutlet weak var pagecontrol: UIPageControl!
-    
     @IBOutlet weak var ItemCV: UICollectionView! {
         didSet {
             ItemCV.delegate = self
@@ -44,11 +42,12 @@ class ProductDetailsVC: UIViewController {
         }
     }
     @IBOutlet weak var productdescription: UITextView!
-    //@IBOutlet weak var descriptionLabel: UILabel!
-    //@IBOutlet var reviewLabel: UILabel!
     @IBOutlet weak var favbtn: UIButton!
     
     var detailedProduct : Product?
+    
+    var cartVM : DraftOrderViewModel?
+   // var draftOrder : DraftOrderResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +58,8 @@ class ProductDetailsVC: UIViewController {
         pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
+        
+        cartVM = DraftOrderViewModel()
     
     }
     
@@ -81,6 +82,27 @@ class ProductDetailsVC: UIViewController {
    }
 
     @IBAction func addtocart(_ sender: Any) {
+        //6839029793046
+        //fatma@gmail.com
+        let params : [String : Any] = [
+            "draft_order" : [
+                "note" : "Cart",
+                "email" : "fatma@gmail.com",
+                "currency" : "EGP",
+                "line_items" : [
+                    [
+                        "title" : detailedProduct?.title,
+                        "vendor" : detailedProduct?.vendor,
+                        "quantity" : detailedProduct?.variants?[0].inventory_quantity,
+                        "price" : detailedProduct?.variants?[0].price
+                    ]
+                ]
+            ]
+        ]
+        
+        cartVM?.postNewDraftOrder(target: .draftOrder(id: "6839029793046"), params: params)
+        
+        
     }
     
     @IBAction func addtofavourite(_ sender: Any) {
