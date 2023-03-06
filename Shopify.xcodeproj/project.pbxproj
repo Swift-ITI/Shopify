@@ -69,6 +69,7 @@
 		DED7EA7529A020AF000CC25C /* ShopifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7429A020AF000CC25C /* ShopifyTests.swift */; };
 		DED7EA7F29A020AF000CC25C /* ShopifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */; };
 		DED7EA8129A020AF000CC25C /* ShopifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */; };
+		DEE2723B29B5E21A005FB267 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE2723A29B5E21A005FB267 /* PostViewModel.swift */; };
 		DEE5CEB229B0CB1D007E34A3 /* ProductCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE5CEB029B0CB1C007E34A3 /* ProductCVCell.xib */; };
 		DEE5CEB329B0CB1D007E34A3 /* ProductCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE5CEB129B0CB1D007E34A3 /* ProductCVCell.swift */; };
 		DEE5CEB629B0CC9F007E34A3 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE5CEB429B0CC9E007E34A3 /* CategoriesVC.swift */; };
@@ -171,6 +172,7 @@
 		DED7EA7A29A020AF000CC25C /* ShopifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShopifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED7EA7E29A020AF000CC25C /* ShopifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITests.swift; sourceTree = "<group>"; };
 		DED7EA8029A020AF000CC25C /* ShopifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DEE2723A29B5E21A005FB267 /* PostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		DEE5CEB029B0CB1C007E34A3 /* ProductCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCVCell.xib; sourceTree = "<group>"; };
 		DEE5CEB129B0CB1D007E34A3 /* ProductCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCVCell.swift; sourceTree = "<group>"; };
 		DEE5CEB429B0CC9E007E34A3 /* CategoriesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		DE923E6C29A4DEBA00AF628D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				DEE2723A29B5E21A005FB267 /* PostViewModel.swift */,
 				DE923E7029A4E22000AF628D /* FetchViewModel.swift */,
 			);
 			path = ViewModels;
@@ -832,7 +835,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE7CE6A429B25F93001CD397 /* PostViewModel.swift in Sources */,
 				DE923E7D29A4E31400AF628D /* NetworkService.swift in Sources */,
 				DEF7A9C429AA6906001DCA0B /* SSRadioButtonsController.swift in Sources */,
 				4CAC435129AED06200DA7E17 /* WishListTableCell.swift in Sources */,
@@ -856,7 +858,6 @@
 				DED7EA5B29A020AB000CC25C /* AppDelegate.swift in Sources */,
 				DEF7A9C329AA6906001DCA0B /* SSRadioButton.swift in Sources */,
 				4C1CECD329B571E1008E6565 /* NoUserProfileVC.swift in Sources */,
-				DE923E7529A4E24000AF628D /* ProductDetail.swift in Sources */,
 				DE7BBDAB29A66DA9009622B3 /* WishListVC.swift in Sources */,
 				4C97ADC029A8627700775773 /* WishListsCell.swift in Sources */,
 				DED7EA6529A020AB000CC25C /* Shopify.xcdatamodeld in Sources */,
@@ -875,8 +876,8 @@
 				DE923E7329A4E23000AF628D /* Products.swift in Sources */,
 				4C951B3329AACF510052E5CC /* WishListCell.swift in Sources */,
 				DE7BBDA929A66D97009622B3 /* CartVC.swift in Sources */,
-				38842ED729AEB8B7002E2EA8 /* Discounts.swift in Sources */,
 				4C521EB929AA4907004D4BBF /* AddressVC.swift in Sources */,
+				DEE2723B29B5E21A005FB267 /* PostViewModel.swift in Sources */,
 				4C3B902A29AA2E7C008F15F9 /* ContactUsVC.swift in Sources */,
 				4C521EB729AA43B3004D4BBF /* SettingsVC.swift in Sources */,
 				38D0B8A429AC2516007726AC /* OrderDetailsCollectionViewCell.swift in Sources */,
