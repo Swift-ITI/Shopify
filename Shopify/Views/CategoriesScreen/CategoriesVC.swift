@@ -18,6 +18,7 @@ class CategoriesVC: UIViewController {
     var products : Products?
     var catigoriesViewModel : CatigoriesViewModel?
     var flag : Int = 0
+    var subflag : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,28 +42,76 @@ class CategoriesVC: UIViewController {
         switch catiroriesSegmentes.selectedSegmentIndex{
         case 0 :
             flag = 1
-            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.kids.id))
+            switch subflag{
+            case 1:
+                filter(target: .shoes(id: CatigoryID.kids.id))
+            case 2:
+                filter(target: .tshirts(id: CatigoryID.kids.id))
+                
+            case 3:
+                filter(target:.accessories(id: CatigoryID.kids.id))
+                
+            default:
+                filter(target: .catigoriesProducts(id: CatigoryID.kids.id))
+            }
+            /*catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.kids.id))
             catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
                 self.renderView()
-            }
+        }*/
         case 1 :
             flag = 2
-            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.men.id))
+            switch subflag{
+            case 1:
+                filter(target: .shoes(id: CatigoryID.men.id))
+            case 2:
+                filter(target: .tshirts(id: CatigoryID.men.id))
+                
+            case 3:
+                filter(target:.accessories(id: CatigoryID.men.id))
+                
+            default:
+                filter(target: .catigoriesProducts(id: CatigoryID.men.id))
+            }
+           /* catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.men.id))
             catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
                 self.renderView()
-            }
+            }*/
         case 2 :
             flag = 3
-            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.sale.id))
+            switch subflag{
+            case 1:
+                filter(target: .shoes(id: CatigoryID.sale.id))
+            case 2:
+                filter(target: .tshirts(id: CatigoryID.sale.id))
+                
+            case 3:
+                filter(target:.accessories(id: CatigoryID.sale.id))
+                
+            default:
+                filter(target: .catigoriesProducts(id: CatigoryID.sale.id))
+            }
+           /* catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.sale.id))
             catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
                 self.renderView()
-            }
+            }*/
         case 3 :
             flag = 4
-            catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.women.id))
+            switch subflag{
+            case 1:
+                filter(target: .shoes(id: CatigoryID.women.id))
+            case 2:
+                filter(target: .tshirts(id: CatigoryID.women.id))
+                
+            case 3:
+                filter(target:.accessories(id: CatigoryID.women.id))
+                
+            default:
+                filter(target: .catigoriesProducts(id: CatigoryID.women.id))
+            }
+            /*catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.women.id))
             catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
                 self.renderView()
-            }
+            }*/
         default : break
         }
     }
@@ -77,20 +126,21 @@ class CategoriesVC: UIViewController {
     func addIconsToFloatingActionBtn(){
         
         subCategory.addItem(icon: UIImage(named: "shoes")) { _ in
+            self.subflag = 1
             switch self.flag {
             case 0 :
-                self.filter(flag: self.flag, target: .shoes(id:""))
+                self.filter(target: .shoes(id:""))
                 
             case 1 :
-                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.kids.id))
+                self.filter(target: .shoes(id:CatigoryID.kids.id))
                 
             case 2 :
-                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.men.id))
+                self.filter(target: .shoes(id:CatigoryID.men.id))
                 
             case 3 :
-                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.sale.id))
+                self.filter(target: .shoes(id:CatigoryID.sale.id))
             case 4 :
-                self.filter(flag: self.flag, target: .shoes(id:CatigoryID.women.id))
+                self.filter(target: .shoes(id:CatigoryID.women.id))
             default : break
                 
 
@@ -98,40 +148,42 @@ class CategoriesVC: UIViewController {
             
         }
         subCategory.addItem(icon: UIImage(named: "T-shirt")) { _ in
+            self.subflag = 2
             switch self.flag {
             case 0 :
-                self.filter(flag: self.flag, target: .tshirts(id:""))
+                self.filter( target: .tshirts(id:""))
                 
             case 1 :
-                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.kids.id))
+                self.filter(target: .tshirts(id:CatigoryID.kids.id))
                 
             case 2 :
-                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.men.id))
+                self.filter(target: .tshirts(id:CatigoryID.men.id))
                 
             case 3 :
-                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.sale.id))
+                self.filter(target: .tshirts(id:CatigoryID.sale.id))
             case 4 :
-                self.filter(flag: self.flag, target: .tshirts(id:CatigoryID.women.id))
+                self.filter(target: .tshirts(id:CatigoryID.women.id))
             default : break
 
             }
             
         }
         subCategory.addItem(icon: UIImage(named: "accesserios")) { _ in
+            self.subflag = 3
             switch self.flag {
             case 0 :
-                self.filter(flag: self.flag, target: .accessories(id:""))
+                self.filter(target: .accessories(id:""))
                 
             case 1 :
-                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.kids.id))
+                self.filter(target: .accessories(id:CatigoryID.kids.id))
                 
             case 2 :
-                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.men.id))
+                self.filter(target: .accessories(id:CatigoryID.men.id))
                 
             case 3 :
-                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.sale.id))
+                self.filter(target: .accessories(id:CatigoryID.sale.id))
             case 4 :
-                self.filter(flag: self.flag, target: .accessories(id:CatigoryID.women.id))
+                self.filter(target: .accessories(id:CatigoryID.women.id))
             default : break
 
             }
@@ -140,7 +192,7 @@ class CategoriesVC: UIViewController {
         self.view.addSubview(subCategory)
     }
     
-    func filter (flag : Int , target : EndPoints) {
+    /*func filter (flag : Int , target : EndPoints) {
         switch flag {
         case 0 :
             self.catigoriesViewModel?.getProducts(target:target)
@@ -169,6 +221,13 @@ class CategoriesVC: UIViewController {
             }
         default : break
             
+        }
+    }*/
+    func filter (target: EndPoints)
+    {
+        self.catigoriesViewModel?.getProducts(target:target)
+        self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
+            self.renderView()
         }
     }
     
