@@ -26,8 +26,10 @@ class RegisterVC: UIViewController {
     var postUserVM: PostUserViewModel?
     var users: [User]?
     var isFound: Bool!
+    var nsDefault = UserDefaults()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         renderTxtFields(txtFields: [firstNameTxtField, lastNameTxtField, emailTxtField, phoneTxtField, passwordTxtField])
         //passwordTxtField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; required: [-()/&*!@#$%] {>=1}; minlength: 8;")
         
@@ -67,6 +69,8 @@ class RegisterVC: UIViewController {
                                 let alert = UIAlertController(title: "Success", message: "Registered Successfully", preferredStyle: UIAlertController.Style.alert)
 
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+                                    self.nsDefault.set(true, forKey: "isRegistered")
+                                    self.nsDefault.set(true, forKey: "isLogged")
                                     self.performSegue(withIdentifier: "goToHome", sender: self)
                                 } ))
 
