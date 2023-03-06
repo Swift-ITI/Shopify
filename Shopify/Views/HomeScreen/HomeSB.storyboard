@@ -532,31 +532,23 @@
                                             <action selector="addtocart:" destination="xjY-8C-rga" eventType="touchUpInside" id="1zI-cx-AFy"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a58-DW-Mkp">
-                                        <rect key="frame" x="331" y="84" width="50" height="35"/>
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="greaterthan.circle.fill" catalog="system"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKi-6L-H2q">
-                                        <rect key="frame" x="13" y="84" width="50" height="35"/>
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="lessthan.circle.fill" catalog="system"/>
-                                    </button>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="KoO-Qz-1YJ">
+                                        <rect key="frame" x="138.66666666666666" y="162" width="116" height="26"/>
+                                        <color key="pageIndicatorTintColor" name="BeigeColor"/>
+                                        <color key="currentPageIndicatorTintColor" name="AccentColor"/>
+                                    </pageControl>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="KoO-Qz-1YJ" firstAttribute="centerX" secondItem="3li-2i-aav" secondAttribute="centerX" id="24d-Ac-O6S"/>
                                     <constraint firstItem="tfx-HV-sJ3" firstAttribute="centerX" secondItem="3li-2i-aav" secondAttribute="centerX" id="9ML-7i-mJM"/>
                                     <constraint firstItem="G38-v3-feh" firstAttribute="leading" secondItem="3li-2i-aav" secondAttribute="leading" constant="16" id="EM1-d3-xpx"/>
                                     <constraint firstItem="Jbf-7X-ITp" firstAttribute="top" secondItem="G38-v3-feh" secondAttribute="bottom" constant="8" id="FN1-GO-6H4"/>
-                                    <constraint firstItem="wKi-6L-H2q" firstAttribute="leading" secondItem="tfx-HV-sJ3" secondAttribute="leading" constant="5" id="Flr-lM-PaD"/>
                                     <constraint firstItem="BZW-s9-HF1" firstAttribute="top" secondItem="tfx-HV-sJ3" secondAttribute="bottom" constant="16" id="FpM-dh-SGf"/>
                                     <constraint firstAttribute="trailing" secondItem="slM-gg-01Q" secondAttribute="trailing" constant="16" id="LGr-rf-AXC"/>
                                     <constraint firstItem="tfx-HV-sJ3" firstAttribute="top" secondItem="3li-2i-aav" secondAttribute="top" constant="8" id="M9t-cd-SK5"/>
                                     <constraint firstItem="Jbf-7X-ITp" firstAttribute="centerX" secondItem="wCa-ZZ-K0h" secondAttribute="centerX" constant="-13" id="O3g-JK-cc6"/>
                                     <constraint firstItem="slM-gg-01Q" firstAttribute="leading" secondItem="3li-2i-aav" secondAttribute="leading" constant="16" id="RIV-GK-OY8"/>
                                     <constraint firstItem="Irx-Ut-PMt" firstAttribute="top" secondItem="Jbf-7X-ITp" secondAttribute="bottom" constant="60" id="SMo-xd-ftT"/>
-                                    <constraint firstItem="wKi-6L-H2q" firstAttribute="top" secondItem="tfx-HV-sJ3" secondAttribute="bottom" constant="-104" id="TPF-yK-NE1"/>
                                     <constraint firstItem="tfx-HV-sJ3" firstAttribute="leading" secondItem="3li-2i-aav" secondAttribute="leading" constant="8" id="Tnk-WS-jup"/>
                                     <constraint firstItem="QMZ-S1-UQ4" firstAttribute="top" secondItem="BZW-s9-HF1" secondAttribute="bottom" constant="32" id="UUD-Vp-XzN"/>
                                     <constraint firstItem="wCa-ZZ-K0h" firstAttribute="top" secondItem="Jbf-7X-ITp" secondAttribute="bottom" constant="60" id="VjW-uf-t8c"/>
@@ -567,10 +559,9 @@
                                     <constraint firstAttribute="bottom" secondItem="wCa-ZZ-K0h" secondAttribute="bottom" constant="110" id="dqx-sT-NlI"/>
                                     <constraint firstAttribute="trailing" secondItem="Jbf-7X-ITp" secondAttribute="trailing" constant="8" id="hCe-02-Rhp"/>
                                     <constraint firstItem="wCa-ZZ-K0h" firstAttribute="leading" secondItem="Irx-Ut-PMt" secondAttribute="trailing" constant="54" id="jBw-NA-BJn"/>
-                                    <constraint firstItem="a58-DW-Mkp" firstAttribute="top" secondItem="tfx-HV-sJ3" secondAttribute="bottom" constant="-104" id="kku-OL-cQG"/>
+                                    <constraint firstItem="KoO-Qz-1YJ" firstAttribute="bottom" secondItem="tfx-HV-sJ3" secondAttribute="bottom" id="lWh-kZ-4cM"/>
                                     <constraint firstItem="slM-gg-01Q" firstAttribute="top" secondItem="QMZ-S1-UQ4" secondAttribute="bottom" constant="8" id="m9C-WL-fPQ"/>
                                     <constraint firstAttribute="trailing" secondItem="BZW-s9-HF1" secondAttribute="trailing" constant="8" id="pXG-h9-8p7"/>
-                                    <constraint firstItem="a58-DW-Mkp" firstAttribute="trailing" secondItem="tfx-HV-sJ3" secondAttribute="trailing" constant="-4" id="qII-Pe-Ymn"/>
                                     <constraint firstItem="G38-v3-feh" firstAttribute="top" secondItem="slM-gg-01Q" secondAttribute="bottom" constant="32" id="qkD-t8-5mW"/>
                                     <constraint firstItem="Irx-Ut-PMt" firstAttribute="leading" secondItem="3li-2i-aav" secondAttribute="leading" constant="36" id="wI6-GM-oNo"/>
                                     <constraint firstAttribute="trailing" secondItem="tfx-HV-sJ3" secondAttribute="trailing" constant="8" id="xbD-9l-Jyw"/>
@@ -590,6 +581,7 @@
                     <connections>
                         <outlet property="ItemCV" destination="tfx-HV-sJ3" id="Yfb-QV-2rn"/>
                         <outlet property="favbtn" destination="Irx-Ut-PMt" id="qTu-x7-LCH"/>
+                        <outlet property="pagecontrol" destination="KoO-Qz-1YJ" id="bqd-uP-EHb"/>
                         <outlet property="productdescription" destination="slM-gg-01Q" id="o6P-ap-QCX"/>
                         <outlet property="productname" destination="bwT-QF-Umv" id="DoU-av-ioh"/>
                         <outlet property="productprice" destination="bEw-R8-7Fq" id="vVi-V5-7i9"/>
@@ -614,11 +606,9 @@
     <color key="tintColor" name="BeigeColor"/>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
-        <image name="greaterthan.circle.fill" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
-        <image name="lessthan.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
+        <image name="line.3.horizontal.decrease" catalog="system" width="32" height="32"/>
         <image name="suit.heart" catalog="system" width="128" height="107"/>
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
