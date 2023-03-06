@@ -41,16 +41,16 @@ class AddressVC: UIViewController
     var userDetails : Customers?
     var arrOfAddresses : AddressesResult?
     var userVM : UserViewModel?
-    var deleteVM : AddressesFunctions?
-    var editVM : AddressesFunctions?
+    var deleteVM : PostAddressViewModel?
+    var editVM : PostAddressViewModel?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         userVM = UserViewModel()
-        editVM = AddressesFunctions()
-        deleteVM = AddressesFunctions()
+        editVM = PostAddressViewModel()
+        deleteVM = PostAddressViewModel()
         userVM?.fetchUsers(target: .searchCustomerByID(id: userID ?? 6810321223958))
         userVM?.fetchAddresses(target: .searchCustomerAddresses(id: userID ?? 6810321223958))
         userVM?.bindDataToVC = { () in self.renderDataView()
@@ -62,11 +62,13 @@ class AddressVC: UIViewController
 
     override func viewWillAppear(_ animated: Bool)
     {
-        userVM = UserViewModel()
         userVM?.fetchAddresses(target: .searchCustomerAddresses(id: userID ?? 6810321223958))
         userVM?.bindAddressToVC = { () in self.renderAddressView()
-            self.addressesTable.reloadData()}
-        addressesTable.reloadData()
+            self.addressesTable.reloadData()
+            
+        }
+        //addressesTable.reloadData()
+//        self.renderAddressView()
     }
     
     func renderDataView()
@@ -85,7 +87,7 @@ class AddressVC: UIViewController
             self.arrOfAddresses = self.userVM?.addresses
             self.addressesTable.reloadData()
         }
-        addressesTable.reloadData()
+        //addressesTable.reloadData()
     }
     
 // MARK: - IBActions Part
@@ -93,13 +95,10 @@ class AddressVC: UIViewController
     @IBAction func addNewAddressButtonAction(_ sender: Any)
     {
         print("working")
-        /*let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
-        addAddressView.userID = userID ?? 6810321223958
-        navigationController?.pushViewController(addAddressView, animated: true)*/
         let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
-        addAddressView.modalPresentationStyle = .fullScreen
         addAddressView.userID = userID ?? 6810321223958
-        self.present(addAddressView, animated: true, completion: nil)
+        addAddressView.flag = 1
+        navigationController?.pushViewController(addAddressView, animated: true)
     }
 }
 
@@ -125,13 +124,15 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         cell.phoneNumberLabel.text = arrOfAddresses?.addresses?[indexPath.row].phone
         cell.countryLabel.text = arrOfAddresses?.addresses?[indexPath.row].country
         
-        if ((arrOfAddresses?.addresses?[indexPath.row].default) != false)
+        if arrOfAddresses?.addresses?[indexPath.row].default == true
         {
-            cell.checkMarkImage.image = UIImage(named: "checkmark.circle.fill")
             cell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
+        }else{
+            cell.checkMarkImage.image = UIImage(systemName: "checkmark.circle")
         }
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
@@ -146,32 +147,37 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             print("edit address")
             let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
             addAddressView.userID = self.userID ?? 6810321223958
-            addAddressView.addressID = self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0
-            addAddressView.addressesData = ["\(self.arrOfAddresses?.addresses?[indexPath.row].city ?? "No City")","\(self.arrOfAddresses?.addresses?[indexPath.row].country ?? "No Country")", "\(self.arrOfAddresses?.addresses?[indexPath.row].address1 ?? "No Address")", "\(self.arrOfAddresses?.addresses?[indexPath.row].phone ?? "No Phone")"]
-            //self.navigationController?.pushViewController(addAddressView, animated: true)
-            addAddressView.modalPresentationStyle = .fullScreen
-            self.present(addAddressView, animated: true, completion: nil)
+            addAddressView.flag = 2
+            addAddressView.address = self.arrOfAddresses?.addresses?[indexPath.row]
+            self.navigationController?.pushViewController(addAddressView, animated: true)
         }))
         
 // select part
         
         alert.addAction(UIAlertAction(title: "Select Address", style: .default, handler: {action in
             print("select address")
-            if ((self.arrOfAddresses?.addresses?[indexPath.row].default) != false)
+            if self.arrOfAddresses?.addresses?[indexPath.row].default == true
             {
-                self.editVM?.putCode(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
+                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
                                         ["address" : [
                                             "default":false
                                         ]])
+                
+                self.renderAddressView()
+                //self.addressesTable.reloadData()
             }
             
-            else if ((self.userDetails?.customers.first?.addresses?[indexPath.row].default) != true)
+            else if self.arrOfAddresses?.addresses?[indexPath.row].default == false
             {
-                self.editVM?.putCode(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
+                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
                                         ["address" : [
                                             "default":true
                                         ]])
+                self.renderAddressView()
+                //self.addressesTable.reloadData()
             }
+            
+            self.renderAddressView()
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -189,7 +195,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             let alerts : UIAlertController = UIAlertController(title: "Delete Address ?", message: "Are you sure that you want to delete this saved address !", preferredStyle: .alert)
             alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alerts.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
-                self.deleteVM?.deleteCode(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 9050959642902))
+                self.deleteVM?.deleteAddress(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 9050959642902))
                 print("delete address")
                 self.arrOfAddresses?.addresses?.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)

@@ -21,16 +21,16 @@ class PostUserViewModel {
     }
 
 }
-class AddressesFunctions {
-    func postCode(target: EndPoints, parameters: [String : Any])
+class PostAddressViewModel {
+    func postAddress(target: EndPoints, parameters: [String : Any])
         {
             NetworkServices.postData(url: target.path, parameters: parameters,err:{_ in })
         }
-    func putCode(target: EndPoints, parameters: [String : Any])
+    func editAddress(target: EndPoints, parameters: [String : Any])
         {
             NetworkServices.putMethod(url: target.path, parameters: parameters)
         }
-    func deleteCode(target: EndPoints)
+    func deleteAddress(target: EndPoints)
     {
         NetworkServices.delete(url: target.path)
     }
