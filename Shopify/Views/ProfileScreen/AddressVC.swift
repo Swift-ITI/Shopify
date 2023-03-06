@@ -133,7 +133,9 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             addAddressView.userID = self.userID ?? 6810321223958
             addAddressView.addressID = self.userDetails?.customers.first?.addresses?[indexPath.row].id ?? 0
             addAddressView.addressesData = ["\(self.userDetails?.customers.first?.addresses?[indexPath.row].city ?? "No City")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].country ?? "No Country")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].address1 ?? "No Address")", "\(self.userDetails?.customers.first?.addresses?[indexPath.row].phone ?? "No Phone")"]
-            self.navigationController?.pushViewController(addAddressView, animated: true)
+            //self.navigationController?.pushViewController(addAddressView, animated: true)
+            addAddressView.modalPresentationStyle = .fullScreen
+            self.present(addAddressView, animated: true, completion: nil)
         }))
         
 // select part

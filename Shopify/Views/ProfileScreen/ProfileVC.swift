@@ -100,7 +100,7 @@ class ProfileVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        if UserDefaults.standard.bool(forKey: "isRegistered")
+        if !UserDefaults.standard.bool(forKey: "isLogged")
         {
             let noUserProfileView = storyboard?.instantiateViewController(withIdentifier: "noUserProfileVC") as! NoUserProfileVC
             noUserProfileView.modalPresentationStyle = .fullScreen
