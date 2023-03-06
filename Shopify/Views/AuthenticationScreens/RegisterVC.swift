@@ -29,7 +29,7 @@ class RegisterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         renderTxtFields(txtFields: [firstNameTxtField, lastNameTxtField, emailTxtField, phoneTxtField, passwordTxtField])
-        passwordTxtField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; required: [-()/&*!@#$%] {>=1}; minlength: 8;")
+        //passwordTxtField.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; required: [-()/&*!@#$%] {>=1}; minlength: 8;")
         
         userVM = UserViewModel()
         postUserVM = PostUserViewModel()
@@ -60,7 +60,40 @@ class RegisterVC: UIViewController {
                     ],
                 ]
                 postUserVM?.postCustomer(target: .allCustomers, parameters: parameters)
-               
+                postUserVM?.bindErrorToVC = {
+                    DispatchQueue.main.async {
+                        switch self.postUserVM?.error?.keys.formatted() {
+                            case "customer":
+                                let alert = UIAlertController(title: "Success", message: "Registered Successfully", preferredStyle: UIAlertController.Style.alert)
+
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+                                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                                } ))
+
+                                self.present(alert, animated: true, completion: nil)
+                                
+                            case "errors":
+                                var errorMessages = ""
+
+                                if let errors = self.postUserVM?.error?["errors"] as? [String: Any] {
+                                    for (field, messages) in errors {
+                                        errorMessages += "\(field.capitalized): "
+                                        if let messages = messages as? [String] {
+                                            for message in messages {
+                                                errorMessages += " \(message)\n"
+                                            }
+                                        }
+                                    }
+                                }
+                                self.showAlert(title: "Error", msg: errorMessages )
+                            default:
+                                print("done")
+                        }
+                    }
+                   
+                }
+                
+                
                 //performSegue(withIdentifier: "goToHome", sender: self)
             }
         } else {

@@ -8,8 +8,16 @@
 import Foundation
 
 class PostUserViewModel {
+    var bindErrorToVC:(()->()) = {}
+    var error:[String:Any]? {
+        didSet{
+            bindErrorToVC()
+        }
+    }
     func postCustomer(target: EndPoints,parameters:[String:Any]){
-        NetworkServices.postData(url: target.path, parameters: parameters )
+        NetworkServices.postData(url: target.path, parameters: parameters, err: {error in
+            self.error = error
+        } )
     }
 
 }
