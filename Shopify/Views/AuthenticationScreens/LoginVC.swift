@@ -52,6 +52,7 @@ class LoginVC: UIViewController {
                         self.showAlert(title: "Done", msg: "Successfully Logged") { action in
                             
                             self.nsDefault.set(true, forKey: "isLogged")
+                            self.nsDefault.set(self.userVM?.users?.customers.first?.id, forKey: "customerID")
                             self.performSegue(withIdentifier: "goToHome", sender: self)
                         }
                     }else{

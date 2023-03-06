@@ -61,9 +61,12 @@ class RegisterVC: UIViewController {
                     DispatchQueue.main.async {
                         switch self.postUserVM?.error?.keys.formatted() {
                             case "customer":
-                                self.showAlert(title: "Successful", msg: "Successfully") { action in
+                                var customerDict = self.postUserVM?.error?["customer"] as? [String:Any]
+                                self.showAlert(title: "Successful", msg: "Successfully Registered") { action in
                                     self.nsDefault.set(true, forKey: "isRegistered")
                                     self.nsDefault.set(true, forKey: "isLogged")
+                                    self.nsDefault.set(customerDict?["id"] as? Int, forKey: "customerID")
+                                    print("id : \(customerDict?["id"] as? Int ?? 0)")
                                     self.performSegue(withIdentifier: "goToHome", sender: self)
                                 }
                                 
