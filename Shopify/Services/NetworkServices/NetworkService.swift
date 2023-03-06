@@ -71,3 +71,22 @@ extension NetworkServices: POST_DATA {
     }
         
 }
+
+extension NetworkServices
+{
+     static func delete(url: String)
+     {
+         var headers = HTTPHeaders()
+         headers.add(name: "Content-Type", value: "application/json")
+         headers.add(name: "Accept", value: "application/json")
+
+         AF.request(url, method: .delete, headers: headers).response { response in
+             switch response.result {
+             case .success:
+                 print("Deleted")
+             case .failure:
+                 print("Failed to delete")
+             }
+         }
+     }
+ }

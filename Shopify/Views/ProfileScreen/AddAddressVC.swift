@@ -9,6 +9,9 @@ import UIKit
 
 class AddAddressVC: UIViewController
 {
+    
+// MARK: - IBOutlets Part
+    
     @IBOutlet var phoneTextField: UITextField! { didSet { renderTxtFields(txtField: phoneTextField) }}
 
     @IBOutlet var addressTextField: UITextField! { didSet { renderTxtFields(txtField: addressTextField) }}
@@ -24,18 +27,100 @@ class AddAddressVC: UIViewController
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+// MARK: - AddAddressVc Part
+    
+    var userID : Int?
+    var addressID : Int?
+    var addressesData : [String]?  // City - Country - Address - Phone
+    var addVM : AddressesFunctions?
+    var editVM : AddressesFunctions?
 
-    @IBAction func saveNewAddressActionButton(_ sender: Any) {
-        print("Address Saved")
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        if addressesData != nil
+        {
+            cityTextField.text = addressesData?[0] ?? ""
+            countryTextField.text = addressesData?[1] ?? ""
+            addressTextField.text = addressesData?[2] ?? ""
+            phoneTextField.text = addressesData?[3] ?? ""
+        }
+        addVM = AddressesFunctions()
+        editVM = AddressesFunctions()
+    }
+    
+// MARK: - IBAction Part
+    
+    @IBAction func saveNewAddressActionButton(_ sender: Any)
+    {
+        print("Address")
+        if addressesData != nil
+        {
+            // should edit the data on the API
+            let alerts : UIAlertController = UIAlertController(title: "Edit Address?", message: "Are you sure that you want to Edit this address!", preferredStyle: .alert)
+            alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alerts.addAction(UIAlertAction(title: "Edit", style: .default, handler: {action in
+                self.editVM?.putCode(target: .editAddress(customerID: self.userID ?? 6810321223958, addressID: self.addressID ?? 0), parameters:
+                                        ["address" : [
+                                            "city":"\(self.cityTextField.text ?? "No City")",
+                                            "country":"\(self.countryTextField.text ?? "No Country")",
+                                            "phone":self.phoneTextField.text ?? 0,
+                                            "address1":"\(self.addressTextField.text ?? "No Address")",
+                                            "default":false
+                                        ]
+                                        ])
+                print("edit address")
+                let addressView = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+                addressView.userID = self.userID ?? 6810321223958
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alerts, animated: true, completion: nil)
+        }
+        
+        
+        else if addressesData == nil && cityTextField.text == "" && countryTextField.text == "" && addressTextField.text == "" && phoneTextField.text == ""
+        {
+            print("cancel")
+            let addressView = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+            addressView.userID = self.userID ?? 6810321223958
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        
+        else if addressesData == nil
+        {
+            // should add the data to the API
+            let alerts : UIAlertController = UIAlertController(title: "Add Address?", message: "Are you sure that you want to add this address!", preferredStyle: .alert)
+            alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alerts.addAction(UIAlertAction(title: "Add", style: .default, handler: {action in
+                self.addVM?.postCode(target: .addAddress(id: self.userID ?? 6810321223958), parameters:
+                                        ["address" : [
+                                            "city":"\(self.cityTextField.text ?? "No City")",
+                                            "country":"\(self.countryTextField.text ?? "No Country")",
+                                            "phone":self.phoneTextField.text ?? 0,
+                                            "address1":"\(self.addressTextField.text ?? "No Address")",
+                                            "default":false
+                                        ]
+                ])
+                print("add address")
+                let addressView = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+                addressView.userID = self.userID ?? 6810321223958
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alerts, animated: true, completion: nil)
+        }
+        print("Address Saved or Edited or Cancel")
+//        let addressView = storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+//        addressView.userID = userID ?? 6810321223958
+//        dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: true)
     }
 }
 
 extension AddAddressVC
 {
-    func renderTxtFields(txtField: UITextField) {
+    func renderTxtFields(txtField: UITextField)
+    {
         txtField.layer.borderWidth = 2
         txtField.layer.cornerRadius = 10
         txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor

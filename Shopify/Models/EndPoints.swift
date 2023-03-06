@@ -19,15 +19,18 @@ enum EndPoints {
     case tshirts(id: String) // "T-SHIRTS"
     case brandproducts(id: String)
     case searchCustomer(email: String)
+    case searchCustomerByID(id : Int)
     case orderPerCustomer(id: Int)
     case allCustomers
     case deleteProductByID(id: Int)
     case brand
     case discounts
     case checkUser(email: String, pw: String)
-
-    var path: String {
-        switch self {
+    case deleteAddress(customerID: Int, addressID: Int)
+    case editAddress(customerID: Int, addressID: Int)
+    case addAddress(id : Int)
+    var path : String {
+        switch self{
         case .allProducts:
             return "\(BaseUrl)/products.json"
 
@@ -48,8 +51,11 @@ enum EndPoints {
 
         case let .searchCustomer(email: email):
             return "\(BaseUrl)/customers/search.json?query=email:\(email)"
-
-        case .allCustomers:
+            
+        case .searchCustomerByID(id: let id) :
+            return "\(BaseUrl)/customers/search.json?query=id:\(id)"
+            
+        case .allCustomers :
             return "\(BaseUrl)/customers.json"
 
         case let .deleteProductByID(id: id):
@@ -65,6 +71,15 @@ enum EndPoints {
             return "\(BaseUrl)/price_rules/1380100899094/discount_codes.json"
         case let .checkUser(email: email, pw: pw):
             return "\(BaseUrl)/customers/search.json?query=email:\(email)&query=tag:\(pw)"
+            
+        case .deleteAddress(customerID: let cusID, addressID: let addID) :
+            return "\(BaseUrl)/customers/\(cusID)/addresses/\(addID).json"
+            
+        case .addAddress(id: let id) :
+            return "\(BaseUrl)/customers/\(id)/addresses.json"
+            
+        case .editAddress(customerID: let cusID, addressID: let addID) :
+            return "\(BaseUrl)/xustomers/\(cusID)/addresses/\(addID).json"
         }
     }
 }

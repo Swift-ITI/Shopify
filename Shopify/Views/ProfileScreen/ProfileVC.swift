@@ -11,7 +11,7 @@ import Reachability
 class ProfileVC: UIViewController
 {
 
-// MARK: - IBOutlets
+// MARK: - IBOutlets Part
     
     @IBOutlet var ordersNumberLabel: UILabel!
     @IBOutlet var usersNameLabel: UILabel!
@@ -85,7 +85,7 @@ class ProfileVC: UIViewController
         }
     }
     
-// MARK: - ProfileVC
+// MARK: - ProfileVC Part
     
     var userDetails : Customers?
     var userVM : UserViewModel?
@@ -100,6 +100,13 @@ class ProfileVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if !UserDefaults.standard.bool(forKey: "isLogged")
+        {
+            let noUserProfileView = storyboard?.instantiateViewController(withIdentifier: "noUserProfileVC") as! NoUserProfileVC
+            noUserProfileView.modalPresentationStyle = .fullScreen
+            self.present(noUserProfileView, animated: true, completion: nil)
+        }
+        
         let reachability : Reachability = Reachability.forInternetConnection()
         if reachability.isReachable()       // if connected to the internet
         {
@@ -119,10 +126,6 @@ class ProfileVC: UIViewController
                 orderVM?.bindResultToProfileVC = { () in self.renderOrderView()
                     self.ordersTable.reloadData()}
                 self.ordersTable.reloadData()
-                
-                // Continue
-
-                
             }
             else
             {
@@ -130,7 +133,8 @@ class ProfileVC: UIViewController
                 
                 alert.addAction(UIAlertAction(title: "Log-In", style: .default, handler: {action in
                     let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
-                    self.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.pushViewController(loginView, animated: true)
+                    //self.navigationController?.popToRootViewController(animated: true)
                 }))
                 //alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                 self.present(alert, animated: true, completion: nil)
@@ -144,7 +148,8 @@ class ProfileVC: UIViewController
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {action in
                 let loginView = self.storyboard?.instantiateViewController(withIdentifier: "logInScreen") as! LoginVC
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.pushViewController(loginView, animated: true)
+                //self.navigationController?.popToRootViewController(animated: true)
             }))
             //alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self.present(alert, animated: true, completion: nil)
@@ -173,12 +178,13 @@ class ProfileVC: UIViewController
         }
     }
     
-// MARK: - IBActions
+// MARK: - IBActions Part
     
     @IBAction func settingActionButton(_ sender: Any)
     {
         print("setting")
         let settingView = storyboard?.instantiateViewController(withIdentifier: "settingsVC") as! SettingsVC
+        settingView.userID = id ?? 6810321223958
         navigationController?.pushViewController(settingView, animated: true)
     }
 
