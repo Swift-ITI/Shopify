@@ -69,6 +69,7 @@ class SettingsVC: UIViewController
 // MARK: - SettingVC Part
 
     var userID : Int?
+    var nsDefaults = UserDefaults()
     
     override func viewDidLoad()
     {
@@ -109,6 +110,7 @@ class SettingsVC: UIViewController
     
     @IBAction func logOutButtonAction(_ sender: Any)
     {
+        nsDefaults.set(false, forKey: "isLogged")
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
     
