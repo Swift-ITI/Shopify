@@ -50,11 +50,16 @@ class AddAddressVC: UIViewController
     
     @IBAction func saveNewAddressActionButton(_ sender: Any)
     {
-        print("Address Saved or Edited")
+        print("Address")
         if addressesData != nil
         {
             // should edit the data on the API
         }
+        else if addressesData == nil && cityTextField.text == "" && countryTextField.text == "" && addressTextField.text == "" && phoneTextField.text == ""
+        {
+            print("cancel")
+        }
+        
         else if addressesData == nil
         {
             // should add the data to the API
@@ -71,14 +76,17 @@ class AddAddressVC: UIViewController
                                         ]
                 ])
                 print("add address")
+                let addressView = self.storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+                addressView.userID = self.userID ?? 6810321223958
+                self.dismiss(animated: true, completion: nil)
             }))
             self.present(alerts, animated: true, completion: nil)
         }
-        print("Address")
-        let addressView = storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
-        addressView.userID = userID ?? 6810321223958
-        navigationController?.popViewController(animated: true)
-        //pushViewController(addressView, animated: true)
+        print("Address Saved or Edited or Cancel")
+//        let addressView = storyboard?.instantiateViewController(withIdentifier: "addressVC") as! AddressVC
+//        addressView.userID = userID ?? 6810321223958
+//        dismiss(animated: true, completion: nil)
+        //navigationController?.popViewController(animated: true)
     }
 }
 

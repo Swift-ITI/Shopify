@@ -71,9 +71,13 @@ class AddressVC: UIViewController
     @IBAction func addNewAddressButtonAction(_ sender: Any)
     {
         print("working")
-        let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+        /*let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
         addAddressView.userID = userID ?? 6810321223958
-        navigationController?.pushViewController(addAddressView, animated: true)
+        navigationController?.pushViewController(addAddressView, animated: true)*/
+        let addAddressView = storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+        addAddressView.modalPresentationStyle = .fullScreen
+        addAddressView.userID = userID ?? 6810321223958
+        self.present(addAddressView, animated: true, completion: nil)
     }
 }
 
