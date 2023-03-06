@@ -15,8 +15,8 @@ class BrandViewModel {
         }
     }
 
-    func getdata(url: String) {
-        NetworkServices.fetch(url: url) { result in
+    func getdata(target: EndPoints) {
+        NetworkServices.fetch(url: target.path) { result in
             self.DataOfBrands = result
         }
     }
@@ -31,8 +31,8 @@ class OfferViewModel {
         }
     }
 
-    func getoffer(url: String) {
-        NetworkServices.fetch(url: url) { result in
+    func getoffer(target: EndPoints) {
+        NetworkServices.fetch(url: target.path) { result in
             self.DataOfOffers = result
         }
     }

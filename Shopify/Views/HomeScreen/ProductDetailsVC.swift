@@ -11,10 +11,15 @@ import Kingfisher
 
 class ProductDetailsVC: UIViewController {
     private var flag : Bool = false
+    var  currentcellindex = 0
+    var timer : Timer?
     @IBOutlet weak var productname: UILabel!
     @IBOutlet weak var productprice: UILabel!
     @IBOutlet weak var pulldowncolor: UIButton!
     @IBOutlet weak var pulldownsize: UIButton!
+    
+    @IBOutlet weak var pagecontrol: UIPageControl!
+    
     @IBOutlet weak var ItemCV: UICollectionView! {
         didSet {
             ItemCV.delegate = self
@@ -47,16 +52,34 @@ class ProductDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startTimer()
         productname.text = detailedProduct?.title
         productprice.text = detailedProduct?.variants?[0].price
         productdescription.text = detailedProduct?.body_html
-
+        pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
     
     }
     
+    func startTimer()
+    {
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(movetonext), userInfo: nil, repeats: true)
+    }
+     @objc func movetonext()
+   {
+       if currentcellindex < (detailedProduct?.images?.count ?? 0)-1
+       {
+           currentcellindex += 1
+       }
+       else
+       {
+           currentcellindex = 0
+       }
+       ItemCV.scrollToItem(at: IndexPath(item: currentcellindex, section: 0), at: .centeredHorizontally, animated: true)
+       pagecontrol.currentPage = currentcellindex
+   }
+
     @IBAction func addtocart(_ sender: Any) {
     }
     
