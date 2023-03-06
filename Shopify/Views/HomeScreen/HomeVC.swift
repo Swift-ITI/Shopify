@@ -16,9 +16,13 @@ class HomeVC: UIViewController {
     var Offerviewmodel : OfferViewModel?
     var OfferCollectionviewresponse : Discounts?
     
-    var arrayofimg = [UIImage(named: "coupon"),UIImage(named: "sale")]
+    var arrayofimg : [String] = []
+  
+
     var timer : Timer?
     var currentcellindex = 0
+    var numberofdots : Int?
+    //var arrimg : []?
     
     
     @IBOutlet weak var pagecontroller: UIPageControl!
@@ -41,92 +45,115 @@ class HomeVC: UIViewController {
             BrandsCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
+        let dispatchgroup = DispatchGroup()
+        
         Brandviewmodel = BrandViewModel()
-        Brandviewmodel?.getdata(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/smart_collections.json")
-        Brandviewmodel?.bindResultOfBrandsToHomeViewController = { () in
-            DispatchQueue.main.async {
-                self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
-                self.BrandsCV.reloadData()
-            }
-            
-        }
-        self.BrandsCV.reloadData()
+        
         let nib = UINib(nibName: "BrandCVCell", bundle: nil)
         OfferCV.register(nib,forCellWithReuseIdentifier: "offerbrandcell")
         BrandsCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
         
         Offerviewmodel = OfferViewModel()
-        Offerviewmodel?.getoffer(url: "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/price_rules/1380100899094/discount_codes.json")
+        
+        dispatchgroup.enter()
+        Brandviewmodel?.getdata(target: .brand)
+             
+        Brandviewmodel?.bindResultOfBrandsToHomeViewController = { [self] () in
+            self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
+            dispatchgroup.leave()
+        }
+        
+        dispatchgroup.enter()
+        Offerviewmodel?.getoffer(target: .discounts)
+            
         Offerviewmodel?.bindResultOfOffersToHomeViewController = { () in
-            DispatchQueue.main.async {
-                self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
-                self.OfferCV.reloadData()
+            self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
+            self.numberofdots = self.OfferCollectionviewresponse?.discount_codes.count
+            dispatchgroup.leave()
+        }
+                
+        dispatchgroup.notify(queue: .main)
+        {
+          //  self.arrayofimg = arrayofimg2
+            self.pagecontroller.numberOfPages = self.OfferCollectionviewresponse?.discount_codes.count ?? 0
+            for img in 0...(self.OfferCollectionviewresponse?.discount_codes.count ?? 0)-1
+            {
+                self.arrayofimg.append(arrayofimg2?[img] ?? "" )
             }
+            self.BrandsCV.reloadData()
+            self.OfferCV.reloadData()
+                    
         }
         addBarButtonItems()
         startTimer()
-        pagecontroller.numberOfPages = arrayofimg.count
+       
+        }
+    
+    func showimg()
+    {
+        
+    }
+        
+        func startTimer()
+        {
+            timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(movetonext), userInfo: nil, repeats: true)
+        }
+        
+        @objc func movetonext()
+        {
+            if currentcellindex < (arrayofimg.count ?? 0) - 1
+            {
+                currentcellindex += 1
+            }
+            else
+            {
+                currentcellindex = 0
+            }
+            OfferCV.scrollToItem(at: IndexPath(item: currentcellindex, section: 0), at: .centeredHorizontally, animated: true)
+            pagecontroller.currentPage = currentcellindex
+        }
+        
+        func addBarButtonItems(){
+            let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
+            
+            let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
+            
+            navigationItem.rightBarButtonItems = [fav , cart]
+            
+            let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navsearch))
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
+            navigationItem.leftBarButtonItem = search
+            
+        }
+        
+        @objc func navfav()
+        {
+            let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
+            let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
+            self.navigationController?.pushViewController(favobj, animated: true)
+        }
+        @objc func navcart()
+        {
+            let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
+            let cartobj =
+            CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
+            self.navigationController?.pushViewController(cartobj, animated: true)
+        }
+        @objc func navsearch()
+        {
+            
+            let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+            self.navigationController?.pushViewController(searchobj, animated: true)
+        }
     }
 
-    func startTimer()
-    {
-        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(movetonext), userInfo: nil, repeats: true)
-    }
-    
-    @objc func movetonext()
-    {
-        if currentcellindex < arrayofimg.count - 1
-        {
-            currentcellindex += 1
-        }
-        else
-        {
-            currentcellindex = 0
-        }
-        OfferCV.scrollToItem(at: IndexPath(item: currentcellindex, section: 0), at: .centeredHorizontally, animated: true)
-        pagecontroller.currentPage = currentcellindex
-    }
-    
-    func addBarButtonItems(){
-        let fav = UIBarButtonItem(image: UIImage(systemName: "heart"),style: .plain , target: self, action: #selector(navfav))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
-        
-        let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
-        
-        navigationItem.rightBarButtonItems = [fav , cart]
-        
-        let search =  UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navsearch))
-         self.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
-         navigationItem.leftBarButtonItem = search
-        
-    }
-    
-    @objc func navfav()
-    {
-        let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
-        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
-        self.navigationController?.pushViewController(favobj, animated: true)
-    }
-    @objc func navcart()
-    {
-        let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
-        let cartobj =
-        CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
-        self.navigationController?.pushViewController(cartobj, animated: true)
-    }
-    @objc func navsearch()
-    {
-    
-     let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
-     self.navigationController?.pushViewController(searchobj, animated: true)
-    }
-}
-        
 extension HomeVC : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -145,7 +172,7 @@ extension HomeVC : UICollectionViewDataSource
         switch collectionView {
             case OfferCV:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
-            cell.offerbrandimg.image = arrayofimg[indexPath.row]
+            cell.offerbrandimg.kf.setImage(with: URL(string: arrayofimg[indexPath.row]),placeholder: UIImage(named: "loading.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             return cell
             
             case BrandsCV:
