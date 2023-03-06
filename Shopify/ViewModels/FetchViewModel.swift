@@ -72,15 +72,27 @@ class BrandproductsViewModel {
 
 class UserViewModel {
     var bindDataToVC: (() -> Void) = {}
+    var bindAddressToVC: (() -> Void) = {}
     var users: Customers? {
         didSet {
             bindDataToVC()
         }
     }
-
+    var addresses: AddressesResult? {
+        didSet {
+            bindAddressToVC()
+        }
+    }
+    
     func fetchUsers(target: EndPoints) {
         NetworkServices.fetch(url: target.path) { result in
             self.users = result
+        }
+    }
+    
+    func fetchAddresses(target:EndPoints){
+        NetworkServices.fetch(url: target.path) { result in
+            self.addresses = result
         }
     }
 }

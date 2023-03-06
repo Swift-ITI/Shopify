@@ -31,7 +31,9 @@ class User: Decodable {
     var deafult_address: Address?
 
 }
-
+class AddressesResult:Decodable{
+    var addresses: [Address]?
+}
 class Address: Decodable {
     var id: Int?
     var customer_id: Int?
