@@ -56,7 +56,7 @@ class AddAddressVC: UIViewController
         print("Address")
         if addressesData != nil
         {
-            // should edit the data on the API
+// should edit the data on the API
             let alerts : UIAlertController = UIAlertController(title: "Edit Address?", message: "Are you sure that you want to Edit this address!", preferredStyle: .alert)
             alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alerts.addAction(UIAlertAction(title: "Edit", style: .default, handler: {action in
@@ -65,8 +65,7 @@ class AddAddressVC: UIViewController
                                             "city":"\(self.cityTextField.text ?? "No City")",
                                             "country":"\(self.countryTextField.text ?? "No Country")",
                                             "phone":self.phoneTextField.text ?? 0,
-                                            "address1":"\(self.addressTextField.text ?? "No Address")",
-                                            "default":false
+                                            "address1":"\(self.addressTextField.text ?? "No Address")"
                                         ]
                                         ])
                 print("edit address")
@@ -89,7 +88,7 @@ class AddAddressVC: UIViewController
         
         else if addressesData == nil
         {
-            // should add the data to the API
+// should add the data to the API
             let alerts : UIAlertController = UIAlertController(title: "Add Address?", message: "Are you sure that you want to add this address!", preferredStyle: .alert)
             alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alerts.addAction(UIAlertAction(title: "Add", style: .default, handler: {action in

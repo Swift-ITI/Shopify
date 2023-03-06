@@ -788,10 +788,10 @@
             </objects>
             <point key="canvasLocation" x="-193.12977099236642" y="-256.33802816901408"/>
         </scene>
-        <!--logInScreen-->
+        <!--loginVC-->
         <scene sceneID="FzW-Qo-RDB">
             <objects>
-                <viewControllerPlaceholder storyboardName="AuthenticationSB" referencedIdentifier="logInScreen" id="5A4-YL-Qn0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="AuthenticationSB" referencedIdentifier="loginVC" id="5A4-YL-Qn0" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="t8s-6d-VMv"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lI1-W3-zgg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

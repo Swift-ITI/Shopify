@@ -29,26 +29,27 @@ enum EndPoints {
     case deleteAddress(customerID: Int, addressID: Int)
     case editAddress(customerID: Int, addressID: Int)
     case addAddress(id : Int)
+    case searchCustomerAddresses(id : Int)
     var path : String {
         switch self{
         case .allProducts:
             return "\(BaseUrl)/products.json"
-
+            
         case let .catigoriesProducts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)"
-
+            
         case let .shoes(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=SHOES"
-
+            
         case let .accessories(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=ACCESSORIES"
-
+            
         case let .tshirts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)&product_type=T-SHIRTS"
-
+            
         case let .brandproducts(id: id):
             return "\(BaseUrl)/products.json?collection_id=\(id)"
-
+            
         case let .searchCustomer(email: email):
             return "\(BaseUrl)/customers/search.json?query=email:\(email)"
             
@@ -57,16 +58,16 @@ enum EndPoints {
             
         case .allCustomers :
             return "\(BaseUrl)/customers.json"
-
+            
         case let .deleteProductByID(id: id):
             return "\(BaseUrl)/products/\(id).json"
-
+            
         case let .orderPerCustomer(id: id):
             return "\(BaseUrl)/customers/\(id)/orders.json"
-
+            
         case .brand:
             return "\(BaseUrl)/smart_collections.json"
-
+            
         case .discounts:
             return "\(BaseUrl)/price_rules/1380100899094/discount_codes.json"
         case let .checkUser(email: email, pw: pw):
@@ -79,7 +80,10 @@ enum EndPoints {
             return "\(BaseUrl)/customers/\(id)/addresses.json"
             
         case .editAddress(customerID: let cusID, addressID: let addID) :
-            return "\(BaseUrl)/xustomers/\(cusID)/addresses/\(addID).json"
+            return "\(BaseUrl)/customers/\(cusID)/addresses/\(addID).json"
+            
+        case .searchCustomerAddresses(id: let id) :
+            return "\(BaseUrl)/customers/\(id)/addresses.json"
         }
     }
 }
