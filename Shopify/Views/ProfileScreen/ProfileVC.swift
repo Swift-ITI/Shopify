@@ -87,6 +87,7 @@ class ProfileVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        id = nsDefaults.value(forKey: "customerID") as? Int
         let reachability: Reachability = Reachability.forInternetConnection()
         if reachability.isReachable()
         // if connected to the internet
@@ -95,7 +96,7 @@ class ProfileVC: UIViewController {
                 performSegue(withIdentifier: "goToNoUser", sender: self)
             } else {
                 userVM = UserViewModel()
-                userVM?.fetchUsers(target: .searchCustomer(email: email ?? "egnition_sample_3@egnition.com"))
+                userVM?.fetchUsers(target: .searchCustomerByID(id: id ?? 6810321223958))
                 userVM?.bindDataToVC = { () in self.renderProfileView() }
 
                 // Orders Part
@@ -149,7 +150,7 @@ class ProfileVC: UIViewController {
     @IBAction func ordersSeeMoreActionButton(_ sender: Any) {
         print("orders See More")
         let previousOrderScreen = storyboard?.instantiateViewController(withIdentifier: "previousOrder") as! PreviousOrdersVC
-        previousOrderScreen.userID = userDetails?.customers.first?.id
+        previousOrderScreen.userID = id
         previousOrderScreen.orders = orderDetails?.orders
         present(previousOrderScreen, animated: true, completion: nil)
     }
