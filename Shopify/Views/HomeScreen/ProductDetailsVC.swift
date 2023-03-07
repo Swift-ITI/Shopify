@@ -47,7 +47,10 @@ class ProductDetailsVC: UIViewController {
     var detailedProduct : Product?
     
     var cartVM : DraftOrderViewModel?
-   // var draftOrder : DraftOrderResult?
+    var draftOrder : DraftOrderResult?
+    var nsDefault = UserDefaults()
+    var lineItems : [[String : Any]] = []
+    var lineItem : [String : Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,23 +85,79 @@ class ProductDetailsVC: UIViewController {
    }
 
     @IBAction func addtocart(_ sender: Any) {
+        
         //6839029793046
         //fatma@gmail.com
-        let params : [String : Any] = [
+        var params : [String : Any] = [
             "draft_order" : [
-                "note" : "Cart",
-                "email" : "fatma@gmail.com",
+                "note" : "created",
+                "email" : nsDefault.value(forKey: "customerEmail") as? String ?? "",
                 "currency" : "EGP",
                 "line_items" : [
                     [
-                        "title" : detailedProduct?.title,
-                        "vendor" : detailedProduct?.vendor,
-                        "quantity" : detailedProduct?.variants?[0].inventory_quantity,
-                        "price" : detailedProduct?.variants?[0].price
+                        "title" : detailedProduct?.title ?? "",
+                        "vendor" : detailedProduct?.vendor ?? "",
+                        "quantity" : 1,
+                        "price" : detailedProduct?.variants?[0].price ?? ""
                     ]
                 ]
             ]
         ]
+        
+        if nsDefault.value(forKey: "note") as? String == "first"
+        {
+            cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
+            nsDefault.set("created", forKey: "note")
+            cartVM?.bindErrorToCartVC = {
+                DispatchQueue.main.async {
+                    switch self.cartVM?.error?.keys.formatted() {
+                    case "draft_order":
+                        var draftOrderDict = self.cartVM?.error?["draft_order"] as? [String : Any]
+                        self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
+                    case "error":
+                        break
+                    default :
+                        break
+                    }
+                }
+            }
+        }else {
+            cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int)?.formatted() ?? ""))
+            cartVM?.bindDraftOrderToCartVC = {
+                DispatchQueue.main.async {
+                    self.draftOrder = self.cartVM?.draftOrderResults
+                    for lineItem in self.draftOrder?.draft_orders?[0].line_items ?? [] {
+                        self.lineItem = [
+                            "title" : lineItem.title ?? "",
+                            "vendor" : lineItem.vendor ?? "",
+                            "quantity" : 1,
+                            "price" : lineItem.price ?? ""
+                        ]
+                        self.lineItems.append(self.lineItem ?? [:])
+                    }
+                }
+            }
+            lineItem =  [
+                "title" : detailedProduct?.title ?? "",
+                "vendor" : detailedProduct?.vendor ?? "",
+                "quantity" : 1,
+                "price" : detailedProduct?.variants?[0].price ?? ""
+            ]
+            self.lineItems.append(self.lineItem ?? [:])
+            
+            params = [
+                "draft_order" : [
+                    "line_items" : [lineItems]
+                ]
+            ]
+            
+            cartVM?.editDraftOrder(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int)?.formatted() ?? ""), params: params)
+            
+            
+           
+            
+        }
+ 
         
         cartVM?.postNewDraftOrder(target: .draftOrder(id: "6839029793046"), params: params)
         

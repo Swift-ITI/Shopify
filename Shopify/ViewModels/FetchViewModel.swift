@@ -121,8 +121,6 @@ class DraftOrderViewModel {
             bindDraftOrderToCartVC()
         }
     }
-    
-    
     func getDraftOrders (target : EndPoints){
         NetworkServices.fetch(url: target.path) { result in
             self.draftOrderResults = result
@@ -141,5 +139,20 @@ class DraftOrderViewModel {
         NetworkServices.postData(url: target.path, parameters: params) { error in
             self.error = error
         }
+    }
+    
+    //MARK: for edit line item in draftOrder
+    
+    var bindErrorToEditCartVC:(()->()) = {}
+    var err:[String:Any]? {
+        didSet{
+            bindErrorToEditCartVC()
+        }
+    }
+    func editDraftOrder(target : EndPoints , params : [String : Any]) {
+        NetworkServices.putMethod(url: target.path, parameters: params) { err in
+            self.err = err
+        }
+        
     }
 }

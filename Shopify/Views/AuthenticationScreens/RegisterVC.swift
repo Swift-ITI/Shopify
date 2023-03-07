@@ -66,6 +66,8 @@ class RegisterVC: UIViewController {
                                     self.nsDefault.set(true, forKey: "isRegistered")
                                     self.nsDefault.set(true, forKey: "isLogged")
                                     self.nsDefault.set(customerDict?["id"] as? Int, forKey: "customerID")
+                                    self.nsDefault.set(customerDict?["email"] as? Int, forKey: "customerEmail")
+                                    self.nsDefault.set("first", forKey: "note")
                                     print("id : \(customerDict?["id"] as? Int ?? 0)")
                                     self.performSegue(withIdentifier: "goToHome", sender: self)
                                 }
