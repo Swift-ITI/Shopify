@@ -50,7 +50,7 @@ class ProductDetailsVC: UIViewController {
     var draftOrder : DraftOrderResult?
     var nsDefault = UserDefaults()
     var lineItems : [[String : Any]] = []
-    var lineItem : [String : Any]?
+    var lineItem : [String : Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +114,7 @@ class ProductDetailsVC: UIViewController {
                     case "draft_order":
                         let draftOrderDict = self.cartVM?.error?["draft_order"] as? [String : Any]
                         self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
+                        print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                     case "error":
                         break
                     default :
@@ -133,7 +134,7 @@ class ProductDetailsVC: UIViewController {
                             "quantity" : 1,
                             "price" : lineItem.price ?? ""
                         ]
-                        self.lineItems.append(self.lineItem ?? [:])
+                        self.lineItems.append(self.lineItem )
                     }
                 }
             }
@@ -143,7 +144,7 @@ class ProductDetailsVC: UIViewController {
                 "quantity" : 1,
                 "price" : detailedProduct?.variants?[0].price ?? ""
             ]
-            self.lineItems.append(self.lineItem ?? [:])
+            self.lineItems.append(self.lineItem )
             
             params = [
                 "draft_order" : [
