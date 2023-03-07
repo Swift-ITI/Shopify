@@ -158,3 +158,25 @@ class DraftOrderViewModel {
         
     }
 }
+
+
+class OrderDetailsViewModel
+{
+    var bindResultOfCartToOrderDetailsViewController: (() -> Void) = {}
+    
+    
+    var DataOfOrderDetails : DraftOrderResult!
+    {
+        didSet
+        {
+            bindResultOfCartToOrderDetailsViewController()
+        }
+    }
+    
+    func getDataOfOrderDetails (target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfOrderDetails = result
+        }
+    }
+}

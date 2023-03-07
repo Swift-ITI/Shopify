@@ -28,7 +28,7 @@ class User: Decodable {
     var currency: String?
     var phone: String?
     var addresses: [Address]?
-    var deafult_address: Address?
+    var default_address: Address?
 
 }
 class AddressesResult:Decodable{
