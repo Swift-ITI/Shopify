@@ -112,7 +112,7 @@ class ProductDetailsVC: UIViewController {
                 DispatchQueue.main.async {
                     switch self.cartVM?.error?.keys.formatted() {
                     case "draft_order":
-                        var draftOrderDict = self.cartVM?.error?["draft_order"] as? [String : Any]
+                        let draftOrderDict = self.cartVM?.error?["draft_order"] as? [String : Any]
                         self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
                     case "error":
                         break
