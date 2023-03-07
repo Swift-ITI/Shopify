@@ -10,6 +10,10 @@ class DraftOrderResult : Decodable {
     var draft_orders : [DraftOrder]?
 }
 
+class SingleDraftOrder : Decodable {
+    var draft_order : DraftOrder?
+}
+
 class DraftOrder : Decodable {
     var id : Int?
     var name : String?

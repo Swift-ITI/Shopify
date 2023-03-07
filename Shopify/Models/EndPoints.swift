@@ -26,7 +26,7 @@ enum EndPoints {
     case brand
     case discounts
 
-    case draftOrder (id: String)
+    case draftOrder (id: Int)
     case alldraftOrders
     case checkUser(email: String, pw: String)
     case deleteAddress(customerID: Int, addressID: Int)

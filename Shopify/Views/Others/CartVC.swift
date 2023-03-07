@@ -13,7 +13,7 @@ class CartVC: UIViewController {
     @IBOutlet weak var subTotal: UILabel!
     
     var cartVM : DraftOrderViewModel?
-    var draftOrder : DraftOrderResult?
+    var draftOrder : SingleDraftOrder?
     let nsDefault = UserDefaults()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class CartVC: UIViewController {
         cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
         
         cartVM = DraftOrderViewModel()
-        cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int)?.formatted() ?? ""))
+        cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
         cartVM?.bindDraftOrderToCartVC = {() in
             DispatchQueue.main.async {
                 self.draftOrder = self.cartVM?.draftOrderResults
@@ -79,7 +79,7 @@ extension CartVC : UITableViewDelegate{
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return draftOrder?.draft_orders?[0].line_items?.count ?? 0
+        return draftOrder?.draft_order?.line_items?.count ?? 0
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -93,13 +93,13 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
-        cartProductscell.productName.text = draftOrder?.draft_orders?[0].line_items?[indexPath.section].title
+        cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
         
-        cartProductscell.productPrice.text = draftOrder?.draft_orders?[0].line_items?[indexPath.section].price
+        cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
         
         cartProductscell.quantity.text = "1"
         
-        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_orders?[0].line_items?[indexPath.section].quantity ) {
+        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_order?.line_items?[indexPath.section].quantity ) {
             cartProductscell.plusQuantity.isUserInteractionEnabled = false
            // cartProductscell.
         }

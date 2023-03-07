@@ -49,8 +49,8 @@ class ProductDetailsVC: UIViewController {
     var detailedProduct: Product?
 
     var cartVM: DraftOrderViewModel?
-    var draftOrder: DraftOrderResult?
-    var draftOrders: [DraftOrder] = []
+    var draftOrder: SingleDraftOrder?
+   // var draftOrders: [DraftOrder] = []
     var nsDefault = UserDefaults()
     var lineItems: [[String: Any]] = []
     var lineItem: [String: Any] = [:]
@@ -122,7 +122,8 @@ class ProductDetailsVC: UIViewController {
             }
         } else {
            
-            
+           
+
             self.lineItem = [
                 "title": self.detailedProduct?.title ?? "",
                 "vendor": self.detailedProduct?.vendor ?? "",
@@ -137,27 +138,28 @@ class ProductDetailsVC: UIViewController {
                 ],
             ]
 
-            self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int)?.formatted() ?? ""), params: params)
+            self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
         }
     }
 
     func getOrders(){
         print("NS: \(String(describing: nsDefault.value(forKey: "draftOrderID")))")
-        cartVM?.getDraftOrders(target: .draftOrder(id: (nsDefault.value(forKey: "draftOrderID") as? Int)?.formatted() ?? ""))
+        cartVM?.getDraftOrders(target: .draftOrder(id: (nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
         cartVM?.bindDraftOrderToCartVC = {
             DispatchQueue.main.async {
-                self.draftOrders = self.cartVM?.draftOrderResults?.draft_orders ?? []
+                self.draftOrder = self.cartVM?.draftOrderResults
                 //self.lineItems = self.cartVM?.draftOrderResults?.draft_orders?.first?.line_items as! [[String : Any]]
+                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
+                    let tmp : [String : Any] = [
+                        "title": lineItem.title ?? "",
+                        "vendor": lineItem.vendor ?? "",
+                        "quantity": 1,
+                        "price": lineItem.price ?? "",
+                    ]
+                    self.lineItems.append(tmp)
+                }
+                print("ccccccccccccc\(self.lineItems)")
             }
-        }
-        for lineItem in self.draftOrders.first?.line_items ?? [] {
-            let tmp : [String : Any] = [
-                "title": lineItem.title ?? "",
-                "vendor": lineItem.vendor ?? "",
-                "quantity": 1,
-                "price": lineItem.price ?? "",
-            ]
-            self.lineItems.append(tmp)
         }
     }
     @IBAction func addtofavourite(_ sender: Any) {

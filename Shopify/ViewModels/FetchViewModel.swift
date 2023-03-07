@@ -113,10 +113,11 @@ class OrderViewModel {
 }
 
 class DraftOrderViewModel {
+    
     //MARK: for get draftOrder
     var bindDraftOrderToCartVC : (() -> ()) = {}
     
-    var draftOrderResults : DraftOrderResult? {
+    var draftOrderResults : SingleDraftOrder? {
         didSet {
             bindDraftOrderToCartVC()
         }
@@ -124,6 +125,7 @@ class DraftOrderViewModel {
     func getDraftOrders (target : EndPoints){
         NetworkServices.fetch(url: target.path) { result in
             self.draftOrderResults = result
+            print(self.draftOrderResults?.draft_order?.line_items?.count)
         }
     }
     
