@@ -26,7 +26,8 @@ enum EndPoints {
     case brand
     case discounts
 
-    case draftOrder (id: String)
+    case draftOrder (id: Int)
+    case alldraftOrders
     case checkUser(email: String, pw: String)
     case deleteAddress(customerID: Int, addressID: Int)
     case editAddress(customerID: Int, addressID: Int)
@@ -76,8 +77,11 @@ enum EndPoints {
             return "\(BaseUrl)/price_rules/1380100899094/discount_codes.json"
 
         case .draftOrder (id: let id) :
-            return "\(BaseUrl)/draft_orders.json?id=\(id)"
-
+            return "\(BaseUrl)/draft_orders/\(id).json"
+        
+        case .alldraftOrders:
+            return "\(BaseUrl)/draft_orders.json"
+            
         case let .checkUser(email: email, pw: pw):
             return "\(BaseUrl)/customers/search.json?query=email:\(email)&query=tag:\(pw)"
             
