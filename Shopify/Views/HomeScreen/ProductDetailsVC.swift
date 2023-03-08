@@ -55,6 +55,9 @@ class ProductDetailsVC: UIViewController {
     var lineItems: [[String: Any]] = []
     var lineItem: [String: Any] = [:]
     
+    var coreDataVM : CoreDataViewModel?
+    var coreData : CoreDataManager?
+    
    
 
     override func viewDidLoad() {
@@ -67,6 +70,9 @@ class ProductDetailsVC: UIViewController {
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
 
+        coreDataVM = CoreDataViewModel()
+        coreData = coreDataVM?.getInstance()
+        
         cartVM = DraftOrderViewModel()
         getOrders()
         
@@ -110,6 +116,8 @@ class ProductDetailsVC: UIViewController {
                 ],
             ]
             cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
+            coreData?.SaveToCoreData(id: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+            isDuplicated = 1
 
             cartVM?.bindErrorToCartVC = {
                 DispatchQueue.main.async {
@@ -157,6 +165,7 @@ class ProductDetailsVC: UIViewController {
             ]
 
             self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+            coreData?.SaveToCoreData(id: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
         default:
             break
         }

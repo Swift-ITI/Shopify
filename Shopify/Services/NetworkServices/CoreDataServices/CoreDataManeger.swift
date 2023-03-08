@@ -6,18 +6,20 @@
 //
 
 import Foundation
-import Foundation
 import UIKit
 import CoreData
 
 protocol CoreDataOpe {
     func saveToCoreData(lineItem : LineItem)
+    func SaveToCoreData(id: Int , title: String , price: String , quantity : Int)
     func deleteFromCoreData(lineItemId : Int)
     func deleteAllLineItems()
     func fetchFromCoreData() -> [NSManagedObject]
     func isInCart(lineItemId : Int) -> Bool
 }
 class CoreDataManager : CoreDataOpe{
+ 
+    
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext : NSManagedObjectContext!
@@ -48,6 +50,21 @@ class CoreDataManager : CoreDataOpe{
         draftOrders.setValue(lineItem.title, forKey: "title")
         draftOrders.setValue(lineItem.price, forKey: "price")
         draftOrders.setValue(lineItem.quantity, forKey: "qunatity")
+        
+        do{
+            try managedContext.save()
+        }catch let error {
+            print (error)
+        }
+    }
+    func SaveToCoreData(id: Int, title: String, price: String, quantity: Int) {
+    
+        let draftOrders = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        draftOrders.setValue(id, forKey: "id")
+        draftOrders.setValue(title, forKey: "title")
+        draftOrders.setValue(price, forKey: "price")
+        draftOrders.setValue(quantity, forKey: "qunatity")
         
         do{
             try managedContext.save()

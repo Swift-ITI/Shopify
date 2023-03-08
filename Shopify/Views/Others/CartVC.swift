@@ -38,16 +38,14 @@ class CartVC: UIViewController {
             DispatchQueue.main.async {
                 self.draftOrder = self.cartVM?.draftOrderResults
                // self.cartProducts.reloadData()
-                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
-                    print("for : \(lineItem.id)")
-                    if !((self.coreData?.isInCart(lineItemId: lineItem.id ?? 0))!) {
-                        print("cc\(lineItem.id)")
-                        self.coreData?.saveToCoreData(lineItem: lineItem)
-                    }
+//                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
+//                        self.coreData?.saveToCoreData(lineItem: lineItem)
+//                    }
+                self.lineItemsFromCoreData = self.coreData?.fetchFromCoreData()
+                self.cartProducts.reloadData()
                 }
             }
         }
-    }
     override func viewWillAppear(_ animated: Bool) {
         self.lineItemsFromCoreData = coreData?.fetchFromCoreData()
         cartProducts.reloadData()
