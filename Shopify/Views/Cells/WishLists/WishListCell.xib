@@ -18,21 +18,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yF0-WA-O2F">
-                        <rect key="frame" x="287.33333333333331" y="16" width="96.666666666666686" height="67.666666666666671"/>
+                        <rect key="frame" x="255" y="16" width="129" height="34.333333333333343"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system">
                             <color key="baseForegroundColor" name="AccentColor"/>
                         </buttonConfiguration>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKf-ra-8fF">
-                        <rect key="frame" x="276" y="99.666666666666671" width="108" height="34.333333333333329"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="cart" catalog="system">
-                            <color key="baseForegroundColor" name="AccentColor"/>
-                        </buttonConfiguration>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shoes" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-qW-Yns">
-                        <rect key="frame" x="150" y="16" width="121.33333333333331" height="78"/>
+                        <rect key="frame" x="166" y="16" width="73" height="78"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100.00 USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqc-cw-2YP">
-                        <rect key="frame" x="150" y="110" width="110" height="24"/>
+                        <rect key="frame" x="166" y="110" width="110" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
@@ -57,25 +50,17 @@
             <constraints>
                 <constraint firstItem="Wio-qW-Yns" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="2mB-Mv-gYf"/>
                 <constraint firstAttribute="trailing" secondItem="yF0-WA-O2F" secondAttribute="trailing" constant="16" id="3am-mf-0k0"/>
-                <constraint firstItem="BKf-ra-8fF" firstAttribute="leading" secondItem="Iqc-cw-2YP" secondAttribute="trailing" constant="16" id="6Iz-nR-EXc"/>
-                <constraint firstItem="Wio-qW-Yns" firstAttribute="leading" secondItem="47Q-uf-FcI" secondAttribute="trailing" constant="16" id="8D3-th-n4h"/>
-                <constraint firstItem="BKf-ra-8fF" firstAttribute="top" secondItem="yF0-WA-O2F" secondAttribute="bottom" constant="16" id="97L-9x-7qc"/>
+                <constraint firstItem="Wio-qW-Yns" firstAttribute="leading" secondItem="47Q-uf-FcI" secondAttribute="trailing" constant="32" id="8D3-th-n4h"/>
                 <constraint firstItem="47Q-uf-FcI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="BKX-8X-5fK"/>
                 <constraint firstItem="yF0-WA-O2F" firstAttribute="leading" secondItem="Wio-qW-Yns" secondAttribute="trailing" constant="16" id="DnE-gP-Ecj"/>
-                <constraint firstItem="BKf-ra-8fF" firstAttribute="top" secondItem="yF0-WA-O2F" secondAttribute="bottom" constant="16" id="Fer-qD-kL0"/>
                 <constraint firstItem="47Q-uf-FcI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="IDl-L6-QnP"/>
                 <constraint firstAttribute="bottom" secondItem="Iqc-cw-2YP" secondAttribute="bottom" constant="16" id="MLq-ad-nxF"/>
                 <constraint firstItem="yF0-WA-O2F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="QNn-06-Oo4"/>
-                <constraint firstItem="yF0-WA-O2F" firstAttribute="height" secondItem="BKf-ra-8fF" secondAttribute="height" multiplier="1.97087" id="S2v-iK-ZxG"/>
                 <constraint firstAttribute="bottom" secondItem="47Q-uf-FcI" secondAttribute="bottom" constant="16" id="iOe-xA-kgp"/>
                 <constraint firstItem="Iqc-cw-2YP" firstAttribute="top" secondItem="Wio-qW-Yns" secondAttribute="bottom" constant="16" id="rVq-gw-gx7"/>
-                <constraint firstAttribute="bottom" secondItem="BKf-ra-8fF" secondAttribute="bottom" constant="16" id="slM-B1-JbP"/>
-                <constraint firstAttribute="trailing" secondItem="BKf-ra-8fF" secondAttribute="trailing" constant="16" id="w9g-bE-WS3"/>
-                <constraint firstItem="Iqc-cw-2YP" firstAttribute="leading" secondItem="47Q-uf-FcI" secondAttribute="trailing" constant="16" id="wlW-H4-880"/>
-                <constraint firstItem="yF0-WA-O2F" firstAttribute="width" secondItem="BKf-ra-8fF" secondAttribute="width" multiplier="0.89441" id="xid-Ml-kcL"/>
+                <constraint firstItem="Iqc-cw-2YP" firstAttribute="leading" secondItem="47Q-uf-FcI" secondAttribute="trailing" constant="32" id="wlW-H4-880"/>
             </constraints>
             <connections>
-                <outlet property="cartButton" destination="BKf-ra-8fF" id="ubq-c0-AVS"/>
                 <outlet property="productImage" destination="47Q-uf-FcI" id="ZG2-9X-wGM"/>
                 <outlet property="productNameLabel" destination="Wio-qW-Yns" id="XuK-go-ITM"/>
                 <outlet property="productPriceLabel" destination="Iqc-cw-2YP" id="WUT-dm-uiS"/>
@@ -85,11 +70,10 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cart" catalog="system" width="128" height="102"/>
-        <image name="shoes" width="512" height="512"/>
+        <image name="shoes" width="480" height="480"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
-            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
