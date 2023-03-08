@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Reachability
 
 class CartVC: UIViewController {
     
@@ -22,6 +23,8 @@ class CartVC: UIViewController {
     
     var managedContext : NSManagedObjectContext!
     var lineItemsFromCoreData : Array<NSManagedObject>!
+    
+    var reachabilty : Reachability!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +40,20 @@ class CartVC: UIViewController {
         cartVM?.bindDraftOrderToCartVC = {() in
             DispatchQueue.main.async {
                 self.draftOrder = self.cartVM?.draftOrderResults
+                self.cartProducts.reloadData()
                // self.cartProducts.reloadData()
 //                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
 //                        self.coreData?.saveToCoreData(lineItem: lineItem)
 //                    }
+                self.lineItemsFromCoreData = self.coreData?.fetchDraftOrder(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0))
                 self.lineItemsFromCoreData = self.coreData?.fetchFromCoreData()
                 self.cartProducts.reloadData()
                 }
             }
         }
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         self.lineItemsFromCoreData = coreData?.fetchFromCoreData()
         cartProducts.reloadData()
         
@@ -96,8 +103,16 @@ extension CartVC : UITableViewDelegate{
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        //return draftOrder?.draft_order?.line_items?.count ?? 0
-        return lineItemsFromCoreData.count
+        reachabilty = Reachability.forInternetConnection()
+        if reachabilty.isReachable() {
+            reachabilty.isReachableViaWiFi()
+            print("connected")
+        return draftOrder?.draft_order?.line_items?.count ?? 0
+        }else {
+            return lineItemsFromCoreData.count
+        }
+            
+      
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -111,13 +126,36 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
+        reachabilty = Reachability.forInternetConnection()
+        if reachabilty.isReachable() {
+            reachabilty.isReachableViaWiFi()
+            print("connected")
+                    
+            cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
+            
+            cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
+                    
+            cartProductscell.quantity.text = "1"
+            
+            
+            
+        }else {
+            print("Not connected")
+            cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
+            
+            cartProductscell.productPrice.text = (lineItemsFromCoreData[indexPath.section].value(forKey: "price") as? Int)?.formatted()
+            
+            cartProductscell.quantity.text = "1"
+            
+        }
+        
 //        cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
 //
 //        cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
 //
 //        cartProductscell.quantity.text = "1"
         
-        cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
+      //  cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
         
 //        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_order?.line_items?[indexPath.section].quantity ) {
 //            cartProductscell.plusQuantity.isUserInteractionEnabled = false

@@ -116,7 +116,8 @@ class ProductDetailsVC: UIViewController {
                 ],
             ]
             cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
-            coreData?.SaveToCoreData(id: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+    
+            coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
             isDuplicated = 1
 
             cartVM?.bindErrorToCartVC = {
@@ -147,6 +148,7 @@ class ProductDetailsVC: UIViewController {
         switch isDuplicated {
         case 1:
             print("don't save")
+            showAlert()
         case 2:
             self.lineItem = [
                 "variant_id": detailedProduct?.variants?[0].id ?? 0,
@@ -165,12 +167,19 @@ class ProductDetailsVC: UIViewController {
             ]
 
             self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
-            coreData?.SaveToCoreData(id: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+            coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
         default:
             break
         }
         
     
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "ooh-oh!", message: "Already added", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     func getOrders(){

@@ -11,14 +11,14 @@ import CoreData
 
 protocol CoreDataOpe {
     func saveToCoreData(lineItem : LineItem)
-    func SaveToCoreData(id: Int , title: String , price: String , quantity : Int)
+    func SaveToCoreData(draftOrderId : Int, productId: Int , title: String , price: String , quantity : Int)
     func deleteFromCoreData(lineItemId : Int)
     func deleteAllLineItems()
     func fetchFromCoreData() -> [NSManagedObject]
+    func fetchDraftOrder(draftOrderId : Int) -> [NSManagedObject]
     func isInCart(lineItemId : Int) -> Bool
 }
 class CoreDataManager : CoreDataOpe{
- 
     
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -57,11 +57,12 @@ class CoreDataManager : CoreDataOpe{
             print (error)
         }
     }
-    func SaveToCoreData(id: Int, title: String, price: String, quantity: Int) {
+    func SaveToCoreData(draftOrderId : Int,productId: Int, title: String, price: String, quantity: Int) {
     
         let draftOrders = NSManagedObject(entity: entity!, insertInto: managedContext)
         
-        draftOrders.setValue(id, forKey: "id")
+        draftOrders.setValue(draftOrderId, forKey: "draft_orderID")
+        draftOrders.setValue(productId, forKey: "id")
         draftOrders.setValue(title, forKey: "title")
         draftOrders.setValue(price, forKey: "price")
         draftOrders.setValue(quantity, forKey: "qunatity")
@@ -103,6 +104,28 @@ class CoreDataManager : CoreDataOpe{
         
         return lineItemFromCoreData
     }
+    
+    func fetchDraftOrder(draftOrderId: Int) -> [NSManagedObject] {
+        
+        var lineItemFromCoreData : [NSManagedObject]!
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CartOrder")
+        
+        let predicate = NSPredicate(format: "draft_orderID == %i", draftOrderId)
+        
+        fetchRequest.predicate = predicate
+        
+        do{
+            lineItemFromCoreData = try self.managedContext.fetch(fetchRequest)
+           
+        } catch let error {
+            print (error)
+        }
+        
+        return lineItemFromCoreData
+    }
+    
+ 
     func deleteAllLineItems() {
         let fetchLineItems = fetchFromCoreData()
         for item in fetchLineItems {
