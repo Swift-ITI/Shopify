@@ -23,6 +23,9 @@ class DraftOrder : Decodable {
     var currency : String?
     var line_items : [LineItem]?
     var texable : Bool?
+    var total_price: String?
+    var subtotal_price: String?
+    var total_tax: String?
 }
 
 class LineItem : Decodable {
