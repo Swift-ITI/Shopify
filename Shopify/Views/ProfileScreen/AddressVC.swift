@@ -158,28 +158,39 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             print("select address")
             if self.arrOfAddresses?.addresses?[indexPath.row].default == true
             {
-                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
+                /*self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
                                         ["address" : [
                                             "default":false
                                         ]])
                 
                 self.renderAddressView()
-                //self.addressesTable.reloadData()
+                //self.addressesTable.reloadData()*/
+                self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0, defaultState: true)
             }
             
             else if self.arrOfAddresses?.addresses?[indexPath.row].default == false
             {
-                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
+               /*self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
                                         ["address" : [
                                             "default":true
                                         ]])
                 self.renderAddressView()
-                //self.addressesTable.reloadData()
+                //self.addressesTable.reloadData()*/
+                self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0, defaultState: false)
             }
             
             self.renderAddressView()
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func changeDefault (customerID: Int, addressID: Int, defaultState: Bool)
+    {
+        self.editVM?.editAddress(target: .editAddress(customerID: customerID, addressID: addressID), parameters:
+                                    ["address" : [
+                                        "default":!defaultState
+                                    ]])
+        self.renderAddressView()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
