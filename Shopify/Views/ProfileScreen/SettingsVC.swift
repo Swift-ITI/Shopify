@@ -10,6 +10,8 @@ import UIKit
 class SettingsVC: UIViewController
 {
 
+    var coreDataVm : CoreDataViewModel?
+    var coreDataManeger : CoreDataManager?
 // MARK: - IBOutlets Part
     
     @IBOutlet var aboutUsButton: UIButton!
@@ -74,7 +76,9 @@ class SettingsVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
+        coreDataVm = CoreDataViewModel()
+        coreDataManeger = coreDataVm?.getInstance()
     }
     
 // MARK: - IBActions Part
@@ -111,6 +115,7 @@ class SettingsVC: UIViewController
     @IBAction func logOutButtonAction(_ sender: Any)
     {
         nsDefaults.set(false, forKey: "isLogged")
+       // coreDataManeger?.deleteAllLineItems()
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
     

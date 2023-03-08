@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XG6-q6-WO4">
-                        <rect key="frame" x="109" y="4" width="54" height="84.666666666666671"/>
+                        <rect key="frame" x="109" y="4" width="54" height="34.333333333333336"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO3-Ho-4oA">
                                 <rect key="frame" x="0.0" y="0.0" width="54" height="34.333333333333336"/>
@@ -48,20 +48,7 @@
                                     <action selector="clickHeart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qmE-Vs-Gkq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-I9-Jdx">
-                                <rect key="frame" x="0.0" y="50.333333333333329" width="54" height="34.333333333333329"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="cart" catalog="system">
-                                    <color key="baseForegroundColor" name="AccentColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="clickCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="p1q-9x-Gus"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="jvB-I9-Jdx" firstAttribute="width" secondItem="RO3-Ho-4oA" secondAttribute="width" id="bJu-Rg-FMu"/>
-                        </constraints>
                     </stackView>
                 </subviews>
             </view>
@@ -82,7 +69,6 @@
             </constraints>
             <size key="customSize" width="259" height="257"/>
             <connections>
-                <outlet property="cartBtn" destination="jvB-I9-Jdx" id="FP2-H0-wRt"/>
                 <outlet property="heartBtn" destination="RO3-Ho-4oA" id="ImA-jF-oJR"/>
                 <outlet property="imgOfProduct" destination="p5l-Td-H9d" id="kMe-oa-UMp"/>
                 <outlet property="nameOfProduct" destination="hhe-na-JbJ" id="0cl-8T-5ob"/>
@@ -92,7 +78,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
