@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CartVC: UIViewController {
     
@@ -16,22 +17,40 @@ class CartVC: UIViewController {
     var draftOrder : SingleDraftOrder?
     let nsDefault = UserDefaults()
     
+    var coreDataVm : CoreDataViewModel?
+    var coreData : CoreDataManager?
+    
+    var managedContext : NSManagedObjectContext!
+    var lineItemsFromCoreData : Array<NSManagedObject>!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let nib = UINib(nibName: "CartProductCV", bundle: nil)
         cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
         
+        coreDataVm = CoreDataViewModel()
+        coreData = coreDataVm?.getInstance()
+        
         cartVM = DraftOrderViewModel()
         cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
         cartVM?.bindDraftOrderToCartVC = {() in
             DispatchQueue.main.async {
                 self.draftOrder = self.cartVM?.draftOrderResults
-                self.cartProducts.reloadData()
-                
+               // self.cartProducts.reloadData()
+                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
+                    print("for : \(lineItem.id)")
+                    if !((self.coreData?.isInCart(lineItemId: lineItem.id ?? 0))!) {
+                        print("cc\(lineItem.id)")
+                        self.coreData?.saveToCoreData(lineItem: lineItem)
+                    }
+                }
             }
-           
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.lineItemsFromCoreData = coreData?.fetchFromCoreData()
+        cartProducts.reloadData()
         
     }
     
@@ -79,7 +98,8 @@ extension CartVC : UITableViewDelegate{
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return draftOrder?.draft_order?.line_items?.count ?? 0
+        //return draftOrder?.draft_order?.line_items?.count ?? 0
+        return lineItemsFromCoreData.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -93,16 +113,18 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
-        cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
+//        cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
+//
+//        cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
+//
+//        cartProductscell.quantity.text = "1"
         
-        cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
+        cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
         
-        cartProductscell.quantity.text = "1"
-        
-        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_order?.line_items?[indexPath.section].quantity ) {
-            cartProductscell.plusQuantity.isUserInteractionEnabled = false
-           // cartProductscell.
-        }
+//        if (Int(cartProductscell.quantity.text ?? "") == draftOrder?.draft_order?.line_items?[indexPath.section].quantity ) {
+//            cartProductscell.plusQuantity.isUserInteractionEnabled = false
+//           // cartProductscell.
+//        }
         
         
         return cartProductscell

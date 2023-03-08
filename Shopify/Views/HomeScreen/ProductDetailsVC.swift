@@ -54,6 +54,8 @@ class ProductDetailsVC: UIViewController {
     var nsDefault = UserDefaults()
     var lineItems: [[String: Any]] = []
     var lineItem: [String: Any] = [:]
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,8 @@ class ProductDetailsVC: UIViewController {
 
         cartVM = DraftOrderViewModel()
         getOrders()
+        
+        
     }
 
     func startTimer() {
@@ -140,6 +144,8 @@ class ProductDetailsVC: UIViewController {
 
             self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
         }
+        
+        getOrders()
     }
 
     func getOrders(){
