@@ -19,40 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuD-3E-3sp">
-                                <rect key="frame" x="16" y="63" width="194.66666666666666" height="34.333333333333343"/>
+                                <rect key="frame" x="16" y="75" width="194.66666666666666" height="34.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pn-qi-DiJ">
-                                <rect key="frame" x="16" y="105.33333333333331" width="361" height="87"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="87" id="zuv-5R-aZd"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Visa Card">
-                                    <color key="titleColor" name="AccentColor"/>
-                                </state>
-                                <buttonConfiguration key="configuration" style="gray" title="Visa" cornerStyle="capsule">
-                                    <directionalEdgeInsets key="contentInsets" top="0.0" leading="65" bottom="0.0" trailing="0.0"/>
-                                    <color key="baseForegroundColor" name="AccentColor"/>
-                                </buttonConfiguration>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC0-ap-T9d">
-                                <rect key="frame" x="16" y="200.33333333333334" width="361" height="87.000000000000028"/>
+                                <rect key="frame" x="16" y="141.33333333333337" width="361" height="138.66666666666663"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Visa Card">
                                     <color key="titleColor" name="AccentColor"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="gray" title="Apple Pay" cornerStyle="capsule">
+                                <buttonConfiguration key="configuration" style="gray" title="PayPal" cornerStyle="capsule">
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="65" bottom="0.0" trailing="0.0"/>
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-Hu-A0n">
-                                <rect key="frame" x="16" y="295.33333333333331" width="72.333333333333329" height="35"/>
+                                <rect key="frame" x="16" y="312" width="72.333333333333329" height="35"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -60,7 +46,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mra-av-bPo">
-                                <rect key="frame" x="16" y="338.33333333333331" width="361" height="87"/>
+                                <rect key="frame" x="16" y="379" width="361" height="138.66666666666663"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Visa Card">
                                     <color key="titleColor" name="AccentColor"/>
@@ -71,7 +57,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usg-ba-dBa" userLabel="Order">
-                                <rect key="frame" x="16" y="766" width="361" height="50"/>
+                                <rect key="frame" x="16" y="709.66666666666663" width="361" height="92.333333333333371"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Visa Card"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Place Order" cornerStyle="capsule">
@@ -85,62 +71,57 @@
                                     <action selector="proceedOrderBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LX4-80-KUo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xA-nf-jaT">
-                                <rect key="frame" x="16" y="441.33333333333331" width="104" height="35"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cross" translatesAutoresizingMaskIntoConstraints="NO" id="1zT-Mh-ovr">
+                                <rect key="frame" x="16" y="549.66666666666663" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1zT-Mh-ovr" secondAttribute="height" multiplier="128:128" id="381-nY-7lV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message is Here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qix-Nx-r9D">
+                                <rect key="frame" x="160" y="549.66666666666663" width="217" height="128"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="2" height="2"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7ru-ox-Hp6">
-                                <rect key="frame" x="16" y="484.33333333333326" width="361" height="277.66666666666674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Usg-ba-dBa" firstAttribute="top" secondItem="7ru-ox-Hp6" secondAttribute="bottom" constant="4" id="15k-fB-mHg"/>
-                            <constraint firstItem="Usg-ba-dBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="2Xs-e6-J8m"/>
-                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.102113" id="3Rd-T4-MxM"/>
-                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="Mra-av-bPo" secondAttribute="height" id="49K-9B-Nlt"/>
-                            <constraint firstItem="5xA-nf-jaT" firstAttribute="top" secondItem="Mra-av-bPo" secondAttribute="bottom" constant="16" id="4C0-Jy-UY0"/>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="top" secondItem="1zT-Mh-ovr" secondAttribute="bottom" constant="32" id="06o-Xz-ENF"/>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="top" secondItem="Qix-Nx-r9D" secondAttribute="bottom" constant="32" id="0zv-U5-ynZ"/>
+                            <constraint firstItem="1zT-Mh-ovr" firstAttribute="top" secondItem="Mra-av-bPo" secondAttribute="bottom" constant="32" id="1Mp-ZO-0zd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Usg-ba-dBa" secondAttribute="trailing" constant="16" id="2lx-gA-TsA"/>
                             <constraint firstItem="nC0-ap-T9d" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="5XW-3E-LDc"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1pn-qi-DiJ" secondAttribute="trailing" constant="16" id="6Ee-rn-kgT"/>
-                            <constraint firstItem="Mra-av-bPo" firstAttribute="top" secondItem="xAo-Hu-A0n" secondAttribute="bottom" constant="8" id="9xi-IN-IWD"/>
-                            <constraint firstItem="Usg-ba-dBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="DB6-A4-KQN"/>
-                            <constraint firstItem="xAo-Hu-A0n" firstAttribute="top" secondItem="nC0-ap-T9d" secondAttribute="bottom" constant="8" id="FBa-7I-p1Q"/>
+                            <constraint firstItem="Mra-av-bPo" firstAttribute="top" secondItem="xAo-Hu-A0n" secondAttribute="bottom" constant="32" id="9xi-IN-IWD"/>
+                            <constraint firstItem="xAo-Hu-A0n" firstAttribute="top" secondItem="nC0-ap-T9d" secondAttribute="bottom" constant="32" id="FBa-7I-p1Q"/>
+                            <constraint firstItem="Mra-av-bPo" firstAttribute="height" secondItem="Usg-ba-dBa" secondAttribute="height" multiplier="1.5" id="Jn1-fR-gRw"/>
                             <constraint firstItem="Mra-av-bPo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="MO2-gX-V0F"/>
-                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="top" secondItem="QuD-3E-3sp" secondAttribute="bottom" constant="8" id="PiG-i5-6Yq"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Usg-ba-dBa" secondAttribute="bottom" constant="2" id="QE5-tS-Odb"/>
-                            <constraint firstItem="nC0-ap-T9d" firstAttribute="top" secondItem="1pn-qi-DiJ" secondAttribute="bottom" constant="8" id="RK0-rO-JBF"/>
-                            <constraint firstItem="7ru-ox-Hp6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Tf5-B6-ljo"/>
-                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="height" secondItem="nC0-ap-T9d" secondAttribute="height" id="ThD-rp-JNH"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Usg-ba-dBa" secondAttribute="trailing" constant="16" id="YRg-4c-1q8"/>
+                            <constraint firstItem="Qix-Nx-r9D" firstAttribute="leading" secondItem="1zT-Mh-ovr" secondAttribute="trailing" constant="16" id="OAv-hG-FPN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Qix-Nx-r9D" secondAttribute="trailing" constant="16" id="bCs-SP-zJE"/>
+                            <constraint firstItem="Usg-ba-dBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="cNl-DR-juv"/>
+                            <constraint firstItem="nC0-ap-T9d" firstAttribute="height" secondItem="Mra-av-bPo" secondAttribute="height" id="cjc-8e-4PD"/>
                             <constraint firstItem="QuD-3E-3sp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="cz2-02-3cc"/>
-                            <constraint firstItem="5xA-nf-jaT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dun-LJ-0rb"/>
+                            <constraint firstItem="nC0-ap-T9d" firstAttribute="top" secondItem="QuD-3E-3sp" secondAttribute="bottom" constant="32" id="hXN-cu-j02"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mra-av-bPo" secondAttribute="trailing" constant="16" id="iGd-Zy-N59"/>
                             <constraint firstItem="xAo-Hu-A0n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iRa-ST-hJ1"/>
-                            <constraint firstItem="1pn-qi-DiJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="isS-wJ-cVf"/>
-                            <constraint firstItem="7ru-ox-Hp6" firstAttribute="top" secondItem="5xA-nf-jaT" secondAttribute="bottom" constant="8" id="l6I-il-Bvl"/>
-                            <constraint firstItem="QuD-3E-3sp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="4" id="o3V-MD-qkX"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Usg-ba-dBa" secondAttribute="trailing" constant="16" id="oJQ-SJ-2i2"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7ru-ox-Hp6" secondAttribute="trailing" constant="16" id="ooE-dH-gEt"/>
+                            <constraint firstItem="1zT-Mh-ovr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="lzD-hY-gBl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Usg-ba-dBa" secondAttribute="bottom" constant="16" id="nWd-N3-SQq"/>
+                            <constraint firstItem="QuD-3E-3sp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="o3V-MD-qkX"/>
+                            <constraint firstItem="Qix-Nx-r9D" firstAttribute="top" secondItem="Mra-av-bPo" secondAttribute="bottom" constant="32" id="uwC-yz-XeE"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nC0-ap-T9d" secondAttribute="trailing" constant="16" id="zRD-Hb-bfr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Payement" id="cRU-zH-l8q"/>
                     <connections>
-                        <outlet property="addressTable" destination="7ru-ox-Hp6" id="NMp-Es-7TN"/>
-                        <outlet property="applePayBtn" destination="nC0-ap-T9d" id="8Ie-V4-uKF"/>
                         <outlet property="codBtn" destination="Mra-av-bPo" id="DAv-vT-cwi"/>
-                        <outlet property="visaBtn" destination="1pn-qi-DiJ" id="1AI-yy-mf1"/>
+                        <outlet property="payPalBtn" destination="nC0-ap-T9d" id="ugp-bO-O3o"/>
+                        <outlet property="processImage" destination="1zT-Mh-ovr" id="gPG-w9-4yq"/>
+                        <outlet property="processText" destination="Qix-Nx-r9D" id="31J-x8-6wf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1488" y="-50"/>
+            <point key="canvasLocation" x="1487.7862595419847" y="-50"/>
         </scene>
         <!--OrderVC-->
         <scene sceneID="tMV-jx-Lwl">
@@ -692,6 +673,7 @@
     </scenes>
     <color key="tintColor" name="CoffeeColor"/>
     <resources>
+        <image name="cross" width="128" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -6,22 +6,23 @@
 //
 
 import UIKit
-class PaymentVC: UIViewController {
+class PaymentVC: UIViewController
+{
     @IBOutlet var codBtn: UIButton!
-    @IBOutlet var applePayBtn: UIButton!
-    @IBOutlet var visaBtn: UIButton!
-
-    @IBOutlet weak var addressTable: UITableView!{
+    @IBOutlet var payPalBtn: UIButton!
+    @IBOutlet var processImage: UIImageView!
+    @IBOutlet var processText: UILabel!
+    /*@IBOutlet weak var addressTable: UITableView!{
         didSet{
-            addressTable.delegate = self
-            addressTable.dataSource = self
+            //addressTable.delegate = self
+            //addressTable.dataSource = self
             let nib = UINib(nibName: "AddressesCell", bundle: nil)
             addressTable.register(nib, forCellReuseIdentifier: "addressesCell")
             addressTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             addressTable.layer.borderWidth = 1.5
             addressTable.layer.cornerRadius = 20
         }
-    }
+    }*/
     var radioBtn: SSRadioButtonsController? {
         didSet {
             radioBtn?.delegate = self
@@ -31,7 +32,7 @@ class PaymentVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        radioBtn = SSRadioButtonsController(buttons: visaBtn, applePayBtn, codBtn)
+        radioBtn = SSRadioButtonsController(buttons: payPalBtn, codBtn)
         // Do any additional setup after loading the view.
     }
 
@@ -50,19 +51,17 @@ extension PaymentVC: SSRadioButtonControllerDelegate {
     func didSelectButton(selectedButton: UIButton?) {
         
         switch selectedButton {
-        case visaBtn:
-            print("Visa")
         case codBtn:
             print("CoD")
-        case applePayBtn:
-            print("Apple")
+        case payPalBtn:
+            print("PayPal")
         default:
             print("NoBtn")
         }
 
     }
 }
-extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
+/*extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2
     }
@@ -71,6 +70,4 @@ extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
         return cell
     }
-    
-    
-}
+}*/
