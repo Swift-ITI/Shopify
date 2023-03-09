@@ -25,8 +25,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shoes" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-mV-kri">
-                        <rect key="frame" x="119" y="16" width="73" height="30"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                        <rect key="frame" x="118.99999999999999" y="16" width="45.333333333333329" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -53,6 +53,7 @@
                     <constraint firstItem="TtE-0q-nWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="VWS-ho-Ab4"/>
                     <constraint firstItem="NNf-mV-kri" firstAttribute="leading" secondItem="Jps-hI-29g" secondAttribute="trailing" constant="16" id="Xf9-Z2-oM9"/>
                     <constraint firstAttribute="bottom" secondItem="WcM-Pt-O2f" secondAttribute="bottom" constant="16" id="ZWe-am-QUV"/>
+                    <constraint firstItem="TtE-0q-nWa" firstAttribute="leading" secondItem="NNf-mV-kri" secondAttribute="trailing" constant="16" id="iaV-n7-XO8"/>
                     <constraint firstAttribute="trailing" secondItem="TtE-0q-nWa" secondAttribute="trailing" constant="16" id="kOR-ft-3QP"/>
                     <constraint firstItem="Jps-hI-29g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="l1b-gO-dl6"/>
                     <constraint firstAttribute="bottom" secondItem="Jps-hI-29g" secondAttribute="bottom" constant="16" id="sm8-ck-0E6"/>

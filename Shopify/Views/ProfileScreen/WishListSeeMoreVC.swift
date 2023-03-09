@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 class WishListSeeMoreVC: UIViewController
 {
+    var managedContext : NSManagedObjectContext!
+    
+    var favFromCoreData : Array<NSManagedObject>!
+    
+    var coredatavm : FavCoreDataViewModel?
+    var favcoredataobj : FavCoreDataManager?
 
     
     @IBOutlet var productCollection: UITableView!
@@ -28,16 +35,24 @@ class WishListSeeMoreVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        coredatavm = FavCoreDataViewModel()
+        favcoredataobj = coredatavm?.getfavInstance()
+        
+        favFromCoreData = favcoredataobj?.FetchFav()
+        
+        self.productCollection.reloadData()
+        
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cartButton(_ sender: Any)
-    {
-        performSegue(withIdentifier: "goToCart", sender: self)
-        print("cart")
-    }
-    
+//    @IBAction func cartButton(_ sender: Any)
+//    {
+//        performSegue(withIdentifier: "goToCart", sender: self)
+//        print("cart")
+//    }
+//
 }
 
 // MARK: - Table View Extension
@@ -51,7 +66,7 @@ extension WishListSeeMoreVC: UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 6
+        return favFromCoreData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -62,6 +77,9 @@ extension WishListSeeMoreVC: UITableViewDataSource
         cell.layer.cornerRadius = CGFloat(20)
         cell.productNameLabel.adjustsFontSizeToFitWidth = true
         cell.productPriceLabel.adjustsFontSizeToFitWidth = true
+        
+        cell.productNameLabel.text = favFromCoreData[indexPath.row].value(forKey: "title") as? String ?? ""
+        cell.productPriceLabel.text = favFromCoreData[indexPath.row].value(forKey: "price") as? String ?? ""
         return cell
     }
     
