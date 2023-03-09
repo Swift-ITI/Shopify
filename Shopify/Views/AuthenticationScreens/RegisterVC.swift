@@ -46,11 +46,6 @@ class RegisterVC: UIViewController {
 
     @IBAction func registerBtn(_ sender: Any) {
         if emailTxtField.text != "" && firstNameTxtField.text != "" && lastNameTxtField.text != "" && phoneTxtField.text != "" && passwordTxtField.text != "" {
-            isFound = searchForUser(email: emailTxtField.text ?? "")
-            if isFound {
-                print("found")
-                showAlert(title: "Already Registered", msg: "Email is registered! , Login instead")
-            } else {
                 print("Not found")
                 let parameters: [String: Any] = [
                     "customer": [
@@ -66,15 +61,17 @@ class RegisterVC: UIViewController {
                     DispatchQueue.main.async {
                         switch self.postUserVM?.error?.keys.formatted() {
                             case "customer":
-                                let alert = UIAlertController(title: "Success", message: "Registered Successfully", preferredStyle: UIAlertController.Style.alert)
-
-                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+                                let customerDict = self.postUserVM?.error?["customer"] as? [String:Any]
+                                self.showAlert(title: "Successful", msg: "Successfully Registered") { action in
                                     self.nsDefault.set(true, forKey: "isRegistered")
                                     self.nsDefault.set(true, forKey: "isLogged")
+                                    self.nsDefault.set(customerDict?["id"] as? Int, forKey: "customerID")
+                                    self.nsDefault.set(customerDict?["email"] as? String, forKey: "customerEmail")
+                                    self.nsDefault.set("first", forKey: "note")
+                                    print("id : \(customerDict?["id"] as? Int ?? 0)")
+                                    print("email : \(customerDict?["email"] as? String ?? "")")
                                     self.performSegue(withIdentifier: "goToHome", sender: self)
-                                } ))
-
-                                self.present(alert, animated: true, completion: nil)
+                                }
                                 
                             case "errors":
                                 var errorMessages = ""
@@ -89,7 +86,7 @@ class RegisterVC: UIViewController {
                                         }
                                     }
                                 }
-                                self.showAlert(title: "Error", msg: errorMessages )
+                                self.showAlert(title: "Error", msg: errorMessages, handler: {_ in } )
                             default:
                                 print("done")
                         }
@@ -99,21 +96,9 @@ class RegisterVC: UIViewController {
                 
                 
                 //performSegue(withIdentifier: "goToHome", sender: self)
-            }
         } else {
-            showAlert(title: "Missing Data", msg: "Fill all the fields")
+            showAlert(title: "Missing Data", msg: "Fill all the fields", handler: {_ in })
         }
-    }
-
-    func searchForUser(email: String) -> Bool {
-        var flag = false
-
-        for user in users! {
-            if user.email == email {
-                flag = true
-            }
-        }
-        return flag
     }
 
     @IBAction func loginBtn(_ sender: Any) {
@@ -131,10 +116,12 @@ extension RegisterVC {
         }
     }
 
-    func showAlert(title: String, msg: String) {
+    func showAlert(title: String, msg: String,handler:@escaping (UIAlertAction?)->Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
 
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in
+            handler(action)
+        }))
 
         present(alert, animated: true, completion: nil)
     }
