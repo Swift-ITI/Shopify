@@ -158,3 +158,46 @@ class DraftOrderViewModel {
         
     }
 }
+
+
+class OrderDetailsViewModel
+{
+    var bindResultOfCartToOrderDetailsViewController: (() -> Void) = {}
+    
+    
+    var DataOfOrderDetails : SingleDraftOrder!
+    {
+        didSet
+        {
+            bindResultOfCartToOrderDetailsViewController()
+        }
+    }
+    
+    func getDataOfOrderDetails (target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfOrderDetails = result
+        }
+    }
+}
+
+class PriceRuleViewModel
+{
+    var bindresultOfPriceruleToOrderDetails : (() -> Void) = {}
+    
+    var DataOfPricerule : Discounts?
+    {
+        didSet
+        {
+            bindresultOfPriceruleToOrderDetails()
+        }
+    }
+    
+    func getpricerule(target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfPricerule = result
+        }
+    }
+    
+}

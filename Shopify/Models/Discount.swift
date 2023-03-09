@@ -6,6 +6,12 @@
 //
 
 import Foundation
+
+class Discounts : Decodable
+{
+    var discount_codes : [Discount]
+}
+
 class Discount : Decodable
 {
     var code : String
@@ -14,7 +20,9 @@ class Discount : Decodable
     var id : Int
 }
 
-class Discounts : Decodable
+class price_rule : Decodable
 {
-    var discount_codes : [Discount]
+    var value_type : String?
+    var value : String?
+    var usage_limit : Int?
 }
