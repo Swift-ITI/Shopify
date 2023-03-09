@@ -19,11 +19,24 @@ class ProductCVCell: UICollectionViewCell {
     var heartFlag = false
     var cartFlag = false
     
+    var idd : Int?
+    var vieww : UIViewController?
+    
     var favVMobj : FavCoreDataViewModel?
     var favobj : FavCoreDataManager?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        if ((favobj?.isFav(lineItemId: idd ?? 0)) != nil){
+         
+            heartBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            print("exist")
+           
+        } else {
+         
+            heartBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+           print("Not")
+        }
         self.layer.borderWidth = 2
         self.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         self.layer.cornerRadius = CGFloat(20)
@@ -35,14 +48,13 @@ class ProductCVCell: UICollectionViewCell {
     
     @IBAction func clickHeart(_ sender: Any) {
         
-        if heartFlag {
+        if (favobj?.isFav(lineItemId: idd ?? 0))! {
+            favobj?.DeleteFromFav(lineitemID: idd ?? 0)
             heartBtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            heartFlag = false
         }
         else {
             heartBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            heartFlag = true
-            
+            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: idd ?? 0, title: nameOfProduct.text ?? "", price: priceOfProduct.text ?? "", quantity: 1)
         }
     }
     

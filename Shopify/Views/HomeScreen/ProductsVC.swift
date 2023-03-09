@@ -122,6 +122,8 @@ extension ProductsVC : UICollectionViewDataSource
         cell.nameOfProduct.text = titles?[indexPath.row].title
         cell.priceOfProduct.text = titles?[indexPath.row].variants?[0].price
         cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
+        cell.vieww = self
+        cell.idd = BrandproudctResponse?.products[indexPath.row].id
       //  cell.heartBtn.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: .even)
         return cell
     }
