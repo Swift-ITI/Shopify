@@ -40,9 +40,9 @@ class OrderVC: UIViewController {
     
     var paymentMethodText : String?
     var paymentMethodSetFlag : Bool = false
-    
+    var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
-    var cashTotal: Int?
+    var shouldPay : Int = 1
     
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
@@ -73,12 +73,12 @@ class OrderVC: UIViewController {
         super.viewDidLoad()
         
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
-       
-        cashTotal = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
         
         NsBoolDefault.set(false, forKey: "coupon")
                 
         Offerviewmodel = OfferViewModel()
+        
+        postOrderVM = PostOrderViewModel()
         
         NsDefault = UserDefaults()
         
@@ -119,7 +119,6 @@ class OrderVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-        cashTotal = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
         switch paymentMethodSetFlag
         {
@@ -132,6 +131,16 @@ class OrderVC: UIViewController {
             paymentMethodSetFlag = false
             payMethodOutletButton.setTitle(paymentMethodText, for: .normal)
         }
+    }
+    
+    func postToOrders(id: Int)
+    {
+        self.postOrderVM?.postOrder(target: .orderPerCustomer(id: id), parameters:
+                                        ["orders":[
+                                            "current_total_price":"0.30",
+                                            "line_items":[
+                                                "price":"15"
+                                        ]]])
     }
     
     @IBAction func paymentMethod(_ sender: Any) {
@@ -185,34 +194,38 @@ class OrderVC: UIViewController {
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
             payPalDriver.viewControllerPresentingDelegate = self
             payPalDriver.appSwitchDelegate = self
-            var cash : Int = 5 //= Int(cashTotal ?? 0)
-            let request = BTPayPalRequest(amount: "\(cash)")
+            
+            let request = BTPayPalRequest(amount: "\(shouldPay)")
             request.currencyCode = "USD"
 
             payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
-                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount
+                {
                     print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-
-                    
                     let email = tokenizedPayPalAccount.email
                     let firstName = tokenizedPayPalAccount.firstName
                     let lastName = tokenizedPayPalAccount.lastName
                     let phone = tokenizedPayPalAccount.phone
-
-                    
                     let billingAddress = tokenizedPayPalAccount.billingAddress
                     let shippingAddress = tokenizedPayPalAccount.shippingAddress
-                } else if let error = error {
                     
+                    self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
+                } else if let error = error {
+                    print(error.localizedDescription)
                 } else {
                     // Buyer canceled payment approval
-                    print("Cancel\nCancel")
+                    print("Cancel")
+                    let alert = UIAlertController(title: "Payment Failed", message: "You have canceled the payment process", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self.present(alert, animated: true, completion: nil)
+                    
                 }
             }
             print("end paypal")
             
         case "Cash on Delivery":
             print("Cash On Delivery")
+            self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
             
         default:
             print("Error")

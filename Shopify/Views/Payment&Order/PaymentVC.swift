@@ -60,6 +60,7 @@ class PaymentVC: UIViewController
             let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
             orderObj.paymentMethodText = paymentMethod
             orderObj.paymentMethodSetFlag = true
+            //orderObj.shouldPay = shouldPay ?? 0
             //self.navigationController?.popViewController(animated: true)
             self.navigationController?.pushViewController(orderObj, animated: true)
             
