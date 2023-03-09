@@ -137,10 +137,15 @@ class OrderVC: UIViewController {
     {
         self.postOrderVM?.postOrder(target: .orderPerCustomer(id: id), parameters:
                                         ["orders":[
-                                            "current_total_price":"0.30",
-                                            "line_items":[
-                                                "price":"15"
-                                        ]]])
+                                            "confirmed" : true,
+                                            "contact_email" : NsDefault?.value(forKey: "customerEmail"),
+                                            "email" : NsDefault?.value(forKey: "customerEmail"),
+                                            "currency" : "EGP",
+                                            "current_subtotal_price" : "\(subTotal.text ?? "5")",
+                                            "current_total_discounts" : "\(discount.text ?? "0")",
+                                            "current_total_price":"\(total.text ?? "5")",
+                                            "line_items": OrderDetailsResponse?.draft_order?.line_items
+                                        ]])
     }
     
     @IBAction func paymentMethod(_ sender: Any) {
