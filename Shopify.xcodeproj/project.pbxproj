@@ -15,6 +15,8 @@
 		38D0B8A529AC2516007726AC /* OrderDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D0B8A329AC2516007726AC /* OrderDetailsCollectionViewCell.xib */; };
 		3D1EE21C29A815D000F8F43D /* CartProductCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1EE21A29A815D000F8F43D /* CartProductCV.swift */; };
 		3D1EE21D29A815D000F8F43D /* CartProductCV.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1EE21B29A815D000F8F43D /* CartProductCV.xib */; };
+		3D988D2E29B7F3E80015D263 /* CoreDataManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D988D2D29B7F3E80015D263 /* CoreDataManeger.swift */; };
+		3D988D3029B7FC9D0015D263 /* CoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D988D2F29B7FC9D0015D263 /* CoreDataViewModel.swift */; };
 		3DAF95A129AC7620002B34D3 /* PreviousOrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAF95A029AC7620002B34D3 /* PreviousOrdersVC.swift */; };
 		3DD48C5829B57F830006F7D8 /* DraftOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD48C5729B57F830006F7D8 /* DraftOrders.swift */; };
 		3DFEBAD829AF6A8E00F61184 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEBAD729AF6A8E00F61184 /* EndPoints.swift */; };
@@ -107,6 +109,8 @@
 		38D0B8A329AC2516007726AC /* OrderDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D1EE21A29A815D000F8F43D /* CartProductCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProductCV.swift; sourceTree = "<group>"; };
 		3D1EE21B29A815D000F8F43D /* CartProductCV.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartProductCV.xib; sourceTree = "<group>"; };
+		3D988D2D29B7F3E80015D263 /* CoreDataManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManeger.swift; sourceTree = "<group>"; };
+		3D988D2F29B7FC9D0015D263 /* CoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataViewModel.swift; sourceTree = "<group>"; };
 		3DAF95A029AC7620002B34D3 /* PreviousOrdersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousOrdersVC.swift; sourceTree = "<group>"; };
 		3DD48C5729B57F830006F7D8 /* DraftOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrders.swift; sourceTree = "<group>"; };
 		3DFEBAD729AF6A8E00F61184 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
@@ -242,6 +246,14 @@
 				3D1EE21B29A815D000F8F43D /* CartProductCV.xib */,
 			);
 			path = CartProducts;
+			sourceTree = "<group>";
+		};
+		3D988D2A29B7F3940015D263 /* CoreDataServices */ = {
+			isa = PBXGroup;
+			children = (
+				3D988D2D29B7F3E80015D263 /* CoreDataManeger.swift */,
+			);
+			path = CoreDataServices;
 			sourceTree = "<group>";
 		};
 		4C521EBE29AA4B1D004D4BBF /* Addresses */ = {
@@ -383,6 +395,7 @@
 			children = (
 				DEE2723A29B5E21A005FB267 /* PostViewModel.swift */,
 				DE923E7029A4E22000AF628D /* FetchViewModel.swift */,
+				3D988D2F29B7FC9D0015D263 /* CoreDataViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -415,6 +428,7 @@
 		DE923E7A29A4E28B00AF628D /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				3D988D2A29B7F3940015D263 /* CoreDataServices */,
 				DE923E7C29A4E31400AF628D /* NetworkService.swift */,
 			);
 			path = NetworkServices;
@@ -856,6 +870,7 @@
 				DE923E7729A4E24A00AF628D /* Order.swift in Sources */,
 				DE923E8F29A4E43700AF628D /* BrandCVCell.swift in Sources */,
 				4CB4C75429AA4BA3004B9BE2 /* AddressesCell.swift in Sources */,
+				3D988D2E29B7F3E80015D263 /* CoreDataManeger.swift in Sources */,
 				DEE5CEB329B0CB1D007E34A3 /* ProductCVCell.swift in Sources */,
 				DEE5CEB629B0CC9F007E34A3 /* CategoriesVC.swift in Sources */,
 				DED7EA5B29A020AB000CC25C /* AppDelegate.swift in Sources */,
@@ -881,6 +896,7 @@
 				4C951B3329AACF510052E5CC /* WishListCell.swift in Sources */,
 				DE7BBDA929A66D97009622B3 /* CartVC.swift in Sources */,
 				4C521EB929AA4907004D4BBF /* AddressVC.swift in Sources */,
+				3D988D3029B7FC9D0015D263 /* CoreDataViewModel.swift in Sources */,
 				DEE2723B29B5E21A005FB267 /* PostViewModel.swift in Sources */,
 				4C3B902A29AA2E7C008F15F9 /* ContactUsVC.swift in Sources */,
 				4C521EB729AA43B3004D4BBF /* SettingsVC.swift in Sources */,

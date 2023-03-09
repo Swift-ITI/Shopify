@@ -17,10 +17,10 @@ class User: Decodable {
     var first_name: String?
     var last_name: String?
     var orders_count: Int?
-    //var state: String?
-    //var total_spent: String?
+    var state: String?
+    var total_spent: String?
     //var last_order_id: Int?
-    //var note: String?
+    var note: String?
     //var verified_email: Bool?
     //var tax_exempt: Bool?
     var tags: String?
@@ -28,7 +28,7 @@ class User: Decodable {
     var currency: String?
     var phone: String?
     var addresses: [Address]?
-    var deafult_address: Address?
+    var default_address: Address?
 
 }
 class AddressesResult:Decodable{

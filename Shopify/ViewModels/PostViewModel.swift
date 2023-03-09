@@ -41,3 +41,23 @@ class PostAddressViewModel {
         NetworkServices.delete(url: target.path)
     }
 }
+
+class PutCustomerViewModel
+{
+    var bindResultOfCustomerToOrderDetailsViewController: (() -> Void) = {}
+    
+    var CustomerData : [String : Any]?
+    {
+        didSet
+        {
+            bindResultOfCustomerToOrderDetailsViewController()
+        }
+    }
+    
+    func putToCustomer(target : EndPoints, parameters:[String : Any])
+    {
+        NetworkServices.putMethod(url: target.path, parameters: parameters , err:{ result in
+            self.CustomerData = result
+        })
+    }
+}

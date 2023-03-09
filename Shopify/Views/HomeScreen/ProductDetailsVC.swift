@@ -13,6 +13,7 @@ class ProductDetailsVC: UIViewController {
     private var flag: Bool = false
     var currentcellindex = 0
     var timer: Timer?
+    var isDuplicated : Int = 2
     @IBOutlet var productname: UILabel!
     @IBOutlet var productprice: UILabel!
     @IBOutlet var pulldowncolor: UIButton!
@@ -50,10 +51,14 @@ class ProductDetailsVC: UIViewController {
 
     var cartVM: DraftOrderViewModel?
     var draftOrder: SingleDraftOrder?
-   // var draftOrders: [DraftOrder] = []
     var nsDefault = UserDefaults()
     var lineItems: [[String: Any]] = []
     var lineItem: [String: Any] = [:]
+    
+    var coreDataVM : CoreDataViewModel?
+    var coreData : CoreDataManager?
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +70,13 @@ class ProductDetailsVC: UIViewController {
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
 
+        coreDataVM = CoreDataViewModel()
+        coreData = coreDataVM?.getInstance()
+        
         cartVM = DraftOrderViewModel()
         getOrders()
+        
+        
     }
 
     func startTimer() {
@@ -90,11 +100,13 @@ class ProductDetailsVC: UIViewController {
         if nsDefault.value(forKey: "note") as? String == "first" {
             let params: [String: Any] = [
                 "draft_order": [
-                    "note": "created",
+               //     "note": "created",
                     "email": nsDefault.value(forKey: "customerEmail") as? String ?? "",
                     "currency": "EGP",
                     "line_items": [
                         [
+                            "variant_id": detailedProduct?.variants?[0].id ?? 0,
+                            "product_id": detailedProduct?.id ?? 0,
                             "title": detailedProduct?.title ?? "",
                             "vendor": detailedProduct?.vendor ?? "",
                             "quantity": 1,
@@ -104,6 +116,9 @@ class ProductDetailsVC: UIViewController {
                 ],
             ]
             cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
+    
+            coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+            isDuplicated = 1
 
             cartVM?.bindErrorToCartVC = {
                 DispatchQueue.main.async {
@@ -121,10 +136,23 @@ class ProductDetailsVC: UIViewController {
                 }
             }
         } else {
-           
-           
-
+            getOrders()
+            draftOrder?.draft_order?.line_items?.forEach({ item in
+                if  item.product_id == detailedProduct?.id {
+                    print("ddddddddddddddd")
+                    isDuplicated = 1
+                }
+            })
+        }
+        
+        switch isDuplicated {
+        case 1:
+            print("don't save")
+            showAlert()
+        case 2:
             self.lineItem = [
+                "variant_id": detailedProduct?.variants?[0].id ?? 0,
+                "product_id": detailedProduct?.id ?? 0,
                 "title": self.detailedProduct?.title ?? "",
                 "vendor": self.detailedProduct?.vendor ?? "",
                 "quantity": 1,
@@ -139,7 +167,19 @@ class ProductDetailsVC: UIViewController {
             ]
 
             self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+            coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+        default:
+            break
         }
+        
+    
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "ooh-oh!", message: "Already added", preferredStyle: UIAlertController.Style.alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     func getOrders(){
@@ -151,6 +191,8 @@ class ProductDetailsVC: UIViewController {
                 //self.lineItems = self.cartVM?.draftOrderResults?.draft_orders?.first?.line_items as! [[String : Any]]
                 for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
                     let tmp : [String : Any] = [
+                        "variant_id": lineItem.variant_id ?? 0,
+                        "product_id": lineItem.product_id ?? 0,
                         "title": lineItem.title ?? "",
                         "vendor": lineItem.vendor ?? "",
                         "quantity": 1,
