@@ -99,6 +99,17 @@ class AddressVC: UIViewController
         self.renderAddressView()
     }
     
+    func alertButtons(title: String, buttonTitle: String, message: String, handler: @escaping (UIAlertAction?)->Void)
+    {
+        print("Alert")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertAction.Style.default, handler: { action in
+            handler(action)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
 // MARK: - IBActions Part
 
     @IBAction func addNewAddressButtonAction(_ sender: Any)
@@ -132,6 +143,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         cell.cityLabel.text = "\(arrOfAddresses?.addresses?[indexPath.row].city ?? "No City"), \(arrOfAddresses?.addresses?[indexPath.row].address1 ?? "No Address")"
         cell.phoneNumberLabel.text = arrOfAddresses?.addresses?[indexPath.row].phone
         cell.countryLabel.text = arrOfAddresses?.addresses?[indexPath.row].country
+        cell.phoneNumberLabel.adjustsFontSizeToFitWidth = true
         
         if arrOfAddresses?.addresses?[indexPath.row].default == true
         {
@@ -145,26 +157,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-// alert Part
-        
-        let alert : UIAlertController = UIAlertController(title: "Address Interaction", message: "Please Select if you want to Edit Address or Select Address to be your Default", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-//edit part
-        
-        alert.addAction(UIAlertAction(title: "Edit Address", style: .default, handler: {action in
-            print("edit address")
-            let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
-            addAddressView.userID = self.userID ?? 6810321223958
-            addAddressView.flag = 2
-            addAddressView.address = self.arrOfAddresses?.addresses?[indexPath.row]
-            
-            self.navigationController?.pushViewController(addAddressView, animated: true)
-        }))
-        
-// select part
-        
-        alert.addAction(UIAlertAction(title: "Select Address", style: .default, handler: {action in
+        self.alertButtons(title: "Select Address", buttonTitle: "Select", message: "Are you sure that you want to make this your Default address", handler: {action in
             print("select address")
             if self.arrOfAddresses?.addresses?[indexPath.row].default == true
             {
@@ -176,43 +169,54 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
                 self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0, defaultState: false)
             }
             self.renderAddressView()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        })
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
-    
-    /*//this part is to make the swipe to left be Edit insteed of Delete (Upcoming Update)
-    
+        
      func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
+// Edit
         let editButton = UITableViewRowAction(style: .default, title: "Edit", handler: {(rowAction, indexPath) in
             print("Edit")
+            self.alertButtons(title: "Edit Address", buttonTitle: "Edit", message: "Are you sure that you want to Edit this saved address!", handler: {action in
+                print("edit address")
+                let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
+                addAddressView.userID = self.userID ?? 6810321223958
+                addAddressView.flag = 2
+                addAddressView.address = self.arrOfAddresses?.addresses?[indexPath.row]
+                
+                self.navigationController?.pushViewController(addAddressView, animated: true)
+            })
         })
         editButton.backgroundColor = UIColor.systemBlue
-        return [editButton]
-    }*/
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
-    {
-        //tableView.reloadData()
-        if editingStyle == .delete
-        {
-            let alerts : UIAlertController = UIAlertController(title: "Delete Address ?", message: "Are you sure that you want to delete this saved address !", preferredStyle: .alert)
-            alerts.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alerts.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
-                self.deleteVM?.deleteAddress(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 9050959642902))
-                print("delete address")
-                self.arrOfAddresses?.addresses?.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.reloadData()
-            }))
-            self.present(alerts, animated: true, completion: nil)
-            //addressesTable.reloadData()
-        }
-        //addressesTable.reloadData()
+        
+// Delete
+        let deleteButton = UITableViewRowAction(style: .default, title: "Delete", handler: {(rowAction, indexPath) in
+            print("Delete")
+            if self.arrOfAddresses?.addresses?[indexPath.row].default == false
+            {
+                self.alertButtons(title: "Delete Address", buttonTitle: "Delete", message: "Are you sure that you want to Delete this saved address!", handler: {action in
+                    self.deleteVM?.deleteAddress(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 9050959642902))
+                    print("delete address")
+                    self.arrOfAddresses?.addresses?.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.reloadData()
+                })
+            }
+            
+            else if self.arrOfAddresses?.addresses?[indexPath.row].default == true
+            {
+                //self.alertButtons(title: "Can't Delete", buttonTitle: "Cancel", message: "Sorry you can't delete your default address", handler: nil)
+                let alert = UIAlertController(title: "Delete Unavailable", message: "Sorry you can't delete your default address", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
+        deleteButton.backgroundColor = UIColor.systemRed
+        return [editButton, deleteButton]
     }
 }

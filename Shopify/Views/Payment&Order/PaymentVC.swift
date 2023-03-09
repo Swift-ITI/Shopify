@@ -85,7 +85,7 @@ extension PaymentVC: SSRadioButtonControllerDelegate
             case "USD":
                 checkAprrovedProcces(maxNumber: 500)
                 
-            case "Egp":
+            case "EGP":
                 checkAprrovedProcces(maxNumber: 5000)
                 
             default:

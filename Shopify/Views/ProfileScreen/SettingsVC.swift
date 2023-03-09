@@ -95,7 +95,7 @@ class SettingsVC: UIViewController
         case "USD":
             currencySegment.selectedSegmentIndex = 0
             
-        case "Egp":
+        case "EGP":
             currencySegment.selectedSegmentIndex = 1
             
         default:
@@ -149,7 +149,7 @@ class SettingsVC: UIViewController
         }
         else if currencySegment.selectedSegmentIndex == 1
         {
-            currencyDefault.set("Egp", forKey: "CashType")
+            currencyDefault.set("EGP", forKey: "CashType")
         }
     }
 }
