@@ -174,7 +174,14 @@ extension ProfileVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case ordersTable:
-            return orderDetails?.orders.count ?? 0
+            if orderDetails?.orders.count ?? 0 > 2
+            {
+                return 2
+            }
+            else
+            {
+                return orderDetails?.orders.count ?? 0
+            }
 
         case wishListTable:
             return 4
