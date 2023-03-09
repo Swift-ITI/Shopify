@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Braintree
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,9 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        BTAppSwitch.setReturnURLScheme("ITI.Shopify.payments")
         return true
     }
 
+    // MARK: Braintree Pod Function
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("ITI.Shopify.payments") == .orderedSame {
+            return BTAppSwitch.handleOpen(url, options: options)
+        }
+        return false
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
