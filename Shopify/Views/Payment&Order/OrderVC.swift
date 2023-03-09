@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Braintree
 
 class OrderVC: UIViewController {
     
@@ -40,6 +41,9 @@ class OrderVC: UIViewController {
     var paymentMethodText : String?
     var paymentMethodSetFlag : Bool = false
     
+    var braintreeClient: BTAPIClient?
+    var cashTotal: Int?
+    
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
             orderDetails.delegate = self
@@ -68,7 +72,10 @@ class OrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
        
+        cashTotal = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
+        
         NsBoolDefault.set(false, forKey: "coupon")
                 
         Offerviewmodel = OfferViewModel()
@@ -112,6 +119,8 @@ class OrderVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
+        cashTotal = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
         switch paymentMethodSetFlag
         {
         case false:
@@ -166,8 +175,49 @@ class OrderVC: UIViewController {
                 
             }
         }
-        @IBAction func placeOrder(_ sender: Any) {
+    
+    @IBAction func placeOrder(_ sender: Any)
+    {
+        switch paymentMethodText
+        {
+        case "PayPal":
+            print("start paypal")
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
+            payPalDriver.viewControllerPresentingDelegate = self
+            payPalDriver.appSwitchDelegate = self
+            var cash : Int = 5 //= Int(cashTotal ?? 0)
+            let request = BTPayPalRequest(amount: "\(cash)")
+            request.currencyCode = "USD"
+
+            payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount {
+                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+
+                    
+                    let email = tokenizedPayPalAccount.email
+                    let firstName = tokenizedPayPalAccount.firstName
+                    let lastName = tokenizedPayPalAccount.lastName
+                    let phone = tokenizedPayPalAccount.phone
+
+                    
+                    let billingAddress = tokenizedPayPalAccount.billingAddress
+                    let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                } else if let error = error {
+                    
+                } else {
+                    // Buyer canceled payment approval
+                    print("Cancel\nCancel")
+                }
+            }
+            print("end paypal")
+            
+        case "Cash on Delivery":
+            print("Cash On Delivery")
+            
+        default:
+            print("Error")
         }
+    }
 }
     
     //MARK: extension1
@@ -241,7 +291,25 @@ class OrderVC: UIViewController {
         }
     }
 
-extension OrderVC
+    //MARK: Braintree Extensions
+
+extension OrderVC : BTViewControllerPresentingDelegate
 {
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+    }
     
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+    }
+}
+
+extension OrderVC : BTAppSwitchDelegate
+{
+    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
+    }
+    
+    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
+    }
+    
+    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
+    }
 }

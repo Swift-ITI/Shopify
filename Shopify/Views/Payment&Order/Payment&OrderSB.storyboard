@@ -261,7 +261,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Place order"/>
                                         <connections>
-                                            <action selector="placeOrder:" destination="JwA-vM-2uc" eventType="touchUpInside" id="Dex-06-OJ1"/>
+                                            <action selector="placeOrder:" destination="JwA-vM-2uc" eventType="touchUpInside" id="EEB-TR-HJP"/>
                                         </connections>
                                     </button>
                                 </subviews>
