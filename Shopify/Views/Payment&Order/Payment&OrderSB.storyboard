@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="height" constant="128" id="mKa-PK-4Eh"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qix-Nx-r9D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qix-Nx-r9D">
                                 <rect key="frame" x="160" y="549.66666666666663" width="217" height="128"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" name="AccentColor"/>
@@ -172,7 +172,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDW-DG-KW5">
-                                        <rect key="frame" x="16" y="484" width="115" height="35"/>
+                                        <rect key="frame" x="16.000000000000007" y="484" width="114.66666666666669" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Pay Method"/>
                                         <connections>
@@ -324,6 +324,7 @@
                         <outlet property="coupon" destination="kGF-1c-oae" id="ehV-tF-0YC"/>
                         <outlet property="discount" destination="Yrj-fT-mBl" id="Xtu-lj-mmr"/>
                         <outlet property="orderDetails" destination="t69-IW-d81" id="DQy-gO-hDe"/>
+                        <outlet property="payMethodOutletButton" destination="gDW-DG-KW5" id="wMB-Rq-5Eg"/>
                         <outlet property="shippingFees" destination="JuK-ot-UAb" id="yRc-o7-OsM"/>
                         <outlet property="subTotal" destination="QPp-mY-EeM" id="D6T-Xt-fT0"/>
                         <outlet property="total" destination="Kso-cf-EU7" id="S41-TP-Nv1"/>

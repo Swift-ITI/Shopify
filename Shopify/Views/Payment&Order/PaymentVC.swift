@@ -13,7 +13,7 @@ class PaymentVC: UIViewController
     @IBOutlet var processImage: UIImageView!
     @IBOutlet var processText: UILabel!
     
-    var shouldPay : Int = 500
+    var shouldPay : Int = 0
     var approved : Bool = true
     var paymentMethod : String?
     var currencyDefault = UserDefaults()
@@ -58,7 +58,9 @@ class PaymentVC: UIViewController
         {
         case true:
             let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
-            
+            orderObj.paymentMethodText = paymentMethod
+            orderObj.paymentMethodSetFlag = true
+            //self.navigationController?.popViewController(animated: true)
             self.navigationController?.pushViewController(orderObj, animated: true)
             
         case false:
@@ -108,13 +110,13 @@ extension PaymentVC
         switch type
         {
         case "PayPal":
-            processText.text = "You will Pay by your PayPal Account"
+            processText.text = "Total Cost = \(shouldPay) \nYou will Pay by your PayPal Account"
             
         case "Denied":
-            processText.text = "Sorry but your order is too expensive to be Cash On Delivery"
+            processText.text = "Total Cost = \(shouldPay) \nSorry but your order is too expensive to be Cash On Delivery"
             
         case "Cash on Delivery":
-            processText.text = "You will pay in Cash when order is delivered"
+            processText.text = "Total Cost = \(shouldPay) \nYou will pay in Cash when order is delivered"
             
         default:
             print("Error")

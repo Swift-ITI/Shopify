@@ -197,6 +197,7 @@ extension ProfileVC: UITableViewDataSource {
             let cell: OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
             cell.priceLabel.text = orderDetails?.orders[indexPath.row].current_total_price
             cell.dateLabel.text = orderDetails?.orders[indexPath.row].created_at
+            //cell.dateLabel.adjustsFontSizeToFitWidth = true
             cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
             return cell
 

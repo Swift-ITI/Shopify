@@ -23,14 +23,14 @@
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBl-RC-5oc">
-                        <rect key="frame" x="8" y="40" width="99.666666666666671" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created at:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBl-RC-5oc">
+                        <rect key="frame" x="8" y="40" width="100" height="28"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2023/02/10 10:30 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5h-XP-2if">
-                        <rect key="frame" x="111.66666666666667" y="40" width="233.33333333333331" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2023/02/10 10:30 PM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5h-XP-2if">
+                        <rect key="frame" x="112" y="40" width="233" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avz-Y7-8sL">
-                        <rect key="frame" x="63.999999999999993" y="8" width="66.333333333333286" height="24"/>
+                        <rect key="frame" x="63.999999999999993" y="8" width="66.333333333333314" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
@@ -70,6 +70,7 @@
                     <constraint firstAttribute="trailing" secondItem="aLv-Sb-C4t" secondAttribute="trailing" constant="16" id="i9i-6w-UfG"/>
                     <constraint firstItem="41H-qa-Ocy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="iSy-DF-YuJ"/>
                     <constraint firstItem="N5h-XP-2if" firstAttribute="top" secondItem="aLv-Sb-C4t" secondAttribute="bottom" constant="8" id="jTT-Ec-S3d"/>
+                    <constraint firstItem="bBl-RC-5oc" firstAttribute="width" secondItem="N5h-XP-2if" secondAttribute="width" multiplier="0.43" id="oJa-9a-tIM"/>
                     <constraint firstItem="41H-qa-Ocy" firstAttribute="leading" secondItem="avz-Y7-8sL" secondAttribute="trailing" constant="64" id="owr-0C-1OO"/>
                     <constraint firstItem="bBl-RC-5oc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="sLS-83-2GF"/>
                     <constraint firstItem="avz-Y7-8sL" firstAttribute="leading" secondItem="6ne-IZ-4Zg" secondAttribute="trailing" constant="4" id="uBD-YI-Yq8"/>
@@ -86,7 +87,7 @@
     </objects>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

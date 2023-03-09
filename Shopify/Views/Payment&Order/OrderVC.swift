@@ -37,6 +37,9 @@ class OrderVC: UIViewController {
     
     var NsBoolDefault = UserDefaults()
     
+    var paymentMethodText : String?
+    var paymentMethodSetFlag : Bool = false
+    
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
             orderDetails.delegate = self
@@ -45,6 +48,9 @@ class OrderVC: UIViewController {
             orderDetails.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
+    
+    @IBOutlet var payMethodOutletButton: UIButton!
+    
     @IBOutlet weak var adresses: UITableView!{
         didSet{
             adresses.delegate = self
@@ -104,8 +110,24 @@ class OrderVC: UIViewController {
         orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        switch paymentMethodSetFlag
+        {
+        case false:
+            print("Didn't choose payment Method yet")
+            payMethodOutletButton.setTitle("Pay Method", for: .normal)
+            
+        case true:
+            print("Choosed Method")
+            paymentMethodSetFlag = false
+            payMethodOutletButton.setTitle(paymentMethodText, for: .normal)
+        }
+    }
+    
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
+        paymentView.shouldPay = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
         navigationController?.pushViewController(paymentView, animated: true)
     }
     
@@ -169,7 +191,7 @@ class OrderVC: UIViewController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
-            ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].sku ?? "" ),placeholder: UIImage(named: "loading.png"))
+            ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title ?? "" ),placeholder: UIImage(named: "loading.png"))
             ordercell.orderprice.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].price
             ordercell.ordername.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title
             ordercell.orderquantity.text = String(OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].quantity ?? 0)
@@ -218,3 +240,8 @@ class OrderVC: UIViewController {
             return addressesCell
         }
     }
+
+extension OrderVC
+{
+    
+}
