@@ -11,15 +11,34 @@ import CoreData
 
 protocol CoreDataOpe {
     func saveToCoreData(lineItem : LineItem)
+    
     func SaveToCoreData(draftOrderId : Int, productId: Int , title: String , price: String , quantity : Int)
+    
     func deleteFromCoreData(lineItemId : Int)
+    
     func deleteAllLineItems()
+    
     func fetchFromCoreData() -> [NSManagedObject]
+    
     func fetchDraftOrder(draftOrderId : Int) -> [NSManagedObject]
+    
     func isInCart(lineItemId : Int) -> Bool
 }
-class CoreDataManager : CoreDataOpe{
     
+protocol FavCoreData
+{
+    func SaveFavtoCoreData(draftOrderID : Int, productID: Int, title: String, price: String, quantity: Int)
+    
+    func FetchFavFromCoreData(draftOrderID : Int) -> [NSManagedObject]
+    
+    func FetchFav() -> [NSManagedObject]
+
+    func DeleteFromFav(lineitemID : Int)
+    
+    func isFav(lineItemId : Int) -> Bool
+}
+
+class CoreDataManager : CoreDataOpe{
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext : NSManagedObjectContext!
@@ -138,22 +157,6 @@ class CoreDataManager : CoreDataOpe{
         }
     }
     func isInCart(lineItemId : Int) -> Bool {
-        /*var lineItemFromCoreData : [NSManagedObject]!
-         
-         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CartOrder")
-         
-         let predicate = NSPredicate(format: "draft_orderID == %i", draftOrderId)
-         
-         fetchRequest.predicate = predicate
-         
-         do{
-             lineItemFromCoreData = try self.managedContext.fetch(fetchRequest)
-            
-         } catch let error {
-             print (error)
-         }
-         
-         return lineItemFromCoreData*/
         let fetchLineItems = self.fetchFromCoreData()
         for item in fetchLineItems {
             if item.value(forKey: "id") as! Int == lineItemId {
@@ -175,4 +178,105 @@ class CoreDataManager : CoreDataOpe{
 //        return false
 //    }
     
+}
+class FavCoreDataManager : FavCoreData
+{
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let managedContext : NSManagedObjectContext!
+    let entity : NSEntityDescription!
+    
+    private static var FavsharedInstance : FavCoreDataManager?
+    
+    public static func getFavInstance()-> FavCoreDataManager{
+        
+        if FavsharedInstance == nil {
+            FavsharedInstance = FavCoreDataManager()
+        }
+        
+        return FavsharedInstance!
+            
+    }
+    
+    private init(){
+        managedContext = appDelegate.persistentContainer.viewContext
+        entity = NSEntityDescription.entity(forEntityName: "WishList", in: self.managedContext)
+    }
+    
+    func SaveFavtoCoreData(draftOrderID: Int, productID: Int, title: String, price: String, quantity: Int) {
+        let WishList = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        WishList.setValue(draftOrderID, forKey: "draft_orderID")
+        WishList.setValue(productID, forKey: "id")
+        WishList.setValue(title, forKey: "title")
+        WishList.setValue(price, forKey: "price")
+        WishList.setValue(quantity, forKey: "quantity")
+        
+        do{
+            try managedContext.save()
+        }catch let error {
+            print (error)
+        }
+    }
+    
+    func FetchFavFromCoreData(draftOrderID: Int) -> [NSManagedObject] {
+        
+        var FavlineItemFromCoreData : [NSManagedObject]!
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CartOrder")
+        
+        let predicate = NSPredicate(format: "draft_orderID == %i", draftOrderID)
+        
+        fetchRequest.predicate = predicate
+        
+        do{
+            FavlineItemFromCoreData = try self.managedContext.fetch(fetchRequest)
+            
+        } catch let error {
+            print (error)
+        }
+        
+        return FavlineItemFromCoreData
+    }
+    
+    func FetchFav() -> [NSManagedObject] {
+        var FavlineItemFromCoreData : [NSManagedObject]!
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WishList")
+        
+        do{
+            FavlineItemFromCoreData = try self.managedContext.fetch(fetchRequest)
+           
+        } catch let error {
+            print (error)
+        }
+        
+        return FavlineItemFromCoreData
+    }
+    
+    func DeleteFromFav(lineitemID: Int)  {
+        
+        let fetchLineItems = FetchFav()
+        
+        for item in fetchLineItems {
+            if item.value(forKey: "id") as! Int == lineitemID {
+                managedContext.delete(item)
+            }
+        }
+        do {
+            try managedContext.save()
+        } catch let error {
+            print (error)
+        }
+    }
+    
+    func isFav(lineItemId: Int) -> Bool {
+        let fetchfavLineItems = self.FetchFav()
+        for item in fetchfavLineItems {
+            if item.value(forKey: "id") as! Int == lineItemId {
+                return true
+            }
+        }
+        return false
+    }
 }

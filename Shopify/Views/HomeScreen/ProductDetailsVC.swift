@@ -14,6 +14,10 @@ class ProductDetailsVC: UIViewController {
     var currentcellindex = 0
     var timer: Timer?
     var isDuplicated : Int = 2
+    
+    var coredatavm : FavCoreDataViewModel?
+    var favcoredataobj : FavCoreDataManager?
+    
     @IBOutlet var productname: UILabel!
     @IBOutlet var productprice: UILabel!
     @IBOutlet var pulldowncolor: UIButton!
@@ -75,6 +79,9 @@ class ProductDetailsVC: UIViewController {
         
         cartVM = DraftOrderViewModel()
         getOrders()
+        
+        coredatavm = FavCoreDataViewModel()
+        favcoredataobj = coredatavm?.getfavInstance()
         
         
     }
@@ -229,11 +236,13 @@ class ProductDetailsVC: UIViewController {
         }
     }
     @IBAction func addtofavourite(_ sender: Any) {
-        if flag == false {
+        if favcoredataobj!.isFav(lineItemId: detailedProduct?.id ?? 0) {
             favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favcoredataobj?.DeleteFromFav(lineitemID: detailedProduct?.id ?? 0)
             flag = true
         } else {
             favbtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
             flag = false
         }
     }
