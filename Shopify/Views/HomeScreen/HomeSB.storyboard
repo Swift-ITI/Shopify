@@ -589,17 +589,23 @@
                         <outlet property="pulldowncolor" destination="GVW-tg-kLS" id="SA0-Ux-h4b"/>
                         <outlet property="pulldownsize" destination="fZ7-91-JGe" id="NVk-3S-YTd"/>
                         <outlet property="reviewTableView" destination="Jbf-7X-ITp" id="nPa-LE-Ark"/>
+                        <segue destination="PQq-qo-VtG" kind="presentation" identifier="gotocart" id="8ZV-Eh-KO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="le0-Rs-oDi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3677.0992366412211" y="-5.6338028169014089"/>
         </scene>
+        <!--OthersSB-->
+        <scene sceneID="hMZ-5S-KqQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OthersSB" id="PQq-qo-VtG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPO-6o-xAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4578" y="-184"/>
+        </scene>
     </scenes>
     <designables>
-        <designable name="2CE-ty-g2b">
-            <size key="intrinsicContentSize" width="170" height="30"/>
-        </designable>
         <designable name="NOT-9B-AyB">
             <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
