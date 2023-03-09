@@ -138,7 +138,23 @@ class CoreDataManager : CoreDataOpe{
         }
     }
     func isInCart(lineItemId : Int) -> Bool {
-        let fetchLineItems = fetchFromCoreData()
+        /*var lineItemFromCoreData : [NSManagedObject]!
+         
+         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CartOrder")
+         
+         let predicate = NSPredicate(format: "draft_orderID == %i", draftOrderId)
+         
+         fetchRequest.predicate = predicate
+         
+         do{
+             lineItemFromCoreData = try self.managedContext.fetch(fetchRequest)
+            
+         } catch let error {
+             print (error)
+         }
+         
+         return lineItemFromCoreData*/
+        let fetchLineItems = self.fetchFromCoreData()
         for item in fetchLineItems {
             if item.value(forKey: "id") as! Int == lineItemId {
                 return true
