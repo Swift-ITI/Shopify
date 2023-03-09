@@ -6,63 +6,145 @@
 //
 
 import UIKit
-class PaymentVC: UIViewController {
+class PaymentVC: UIViewController
+{
     @IBOutlet var codBtn: UIButton!
-    @IBOutlet var applePayBtn: UIButton!
-    @IBOutlet var visaBtn: UIButton!
+    @IBOutlet var payPalBtn: UIButton!
+    @IBOutlet var processImage: UIImageView!
+    @IBOutlet var processText: UILabel!
+    
+    var shouldPay : Int = 0
+    var approved : Bool = true
+    var paymentMethod : String?
+    var currencyDefault = UserDefaults()
+    var cashType: String?
 
-    @IBOutlet weak var addressTable: UITableView!{
+    /*@IBOutlet weak var addressTable: UITableView!{
         didSet{
-            addressTable.delegate = self
-            addressTable.dataSource = self
+            //addressTable.delegate = self
+            //addressTable.dataSource = self
             let nib = UINib(nibName: "AddressesCell", bundle: nil)
             addressTable.register(nib, forCellReuseIdentifier: "addressesCell")
             addressTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             addressTable.layer.borderWidth = 1.5
             addressTable.layer.cornerRadius = 20
         }
-    }
-    var radioBtn: SSRadioButtonsController? {
-        didSet {
+    }*/
+    var radioBtn: SSRadioButtonsController?
+    {
+        didSet
+        {
             radioBtn?.delegate = self
-             radioBtn?.shouldLetDeSelect = true
+            radioBtn?.shouldLetDeSelect = true
         }
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        radioBtn = SSRadioButtonsController(buttons: visaBtn, applePayBtn, codBtn)
+        radioBtn = SSRadioButtonsController(buttons: payPalBtn, codBtn)
         // Do any additional setup after loading the view.
+        cashType = currencyDefault.value(forKey: "CashType") as? String
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
+        cashType = currencyDefault.value(forKey: "CashType") as? String
     }
     
-    @IBAction func proceedOrderBtn(_ sender: Any) {
-        let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
-        
-        self.navigationController?.pushViewController(orderObj, animated: true)
+    @IBAction func proceedOrderBtn(_ sender: Any)
+    {
+        switch approved
+        {
+        case true:
+            let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+            orderObj.paymentMethodText = paymentMethod
+            orderObj.paymentMethodSetFlag = true
+            //orderObj.shouldPay = shouldPay ?? 0
+            //self.navigationController?.popViewController(animated: true)
+            self.navigationController?.pushViewController(orderObj, animated: true)
+            
+        case false:
+            let alert = UIAlertController(title: "", message: "Sorry you can't choose this payment Type", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true, completion: nil)
+        }
     }
-    
 }
 
-extension PaymentVC: SSRadioButtonControllerDelegate {
-    func didSelectButton(selectedButton: UIButton?) {
-        
-        switch selectedButton {
-        case visaBtn:
-            print("Visa")
+extension PaymentVC: SSRadioButtonControllerDelegate
+{
+    func didSelectButton(selectedButton: UIButton?)
+    {
+        switch selectedButton
+        {
         case codBtn:
             print("CoD")
-        case applePayBtn:
-            print("Apple")
+            switch cashType
+            {
+            case "USD":
+                checkAprrovedProcces(maxNumber: 500)
+                
+            case "Egp":
+                checkAprrovedProcces(maxNumber: 5000)
+                
+            default:
+                print("Error")
+            }
+        case payPalBtn:
+            paymentMethod = payMethods(type: "PayPal", approve: true)
+            
         default:
             print("NoBtn")
         }
 
     }
 }
-extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
+
+extension PaymentVC
+{
+    func payMethods(type: String, approve: Bool) -> String
+    {
+        print("\(type)")
+        processImage.image = UIImage(named: "\(type)")
+        approved = approve
+        switch type
+        {
+        case "PayPal":
+            processText.text = "Total Cost = \(shouldPay) \nYou will Pay by your PayPal Account"
+            
+        case "Denied":
+            processText.text = "Total Cost = \(shouldPay) \nSorry but your order is too expensive to be Cash On Delivery"
+            
+        case "Cash on Delivery":
+            processText.text = "Total Cost = \(shouldPay) \nYou will pay in Cash when order is delivered"
+            
+        default:
+            print("Error")
+        }
+        return type
+    }
+}
+
+extension PaymentVC
+{
+    func checkAprrovedProcces(maxNumber: Int)
+    {
+        if shouldPay < maxNumber
+        {
+            print("Cash on Delivery")
+            paymentMethod = payMethods(type: "Cash on Delivery", approve: true)
+        }
+        else
+        {
+            print("Denied")
+            paymentMethod = payMethods(type: "Denied", approve: false)
+        }
+    }
+}
+
+
+/*extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2
     }
@@ -71,6 +153,4 @@ extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
         return cell
     }
-    
-    
-}
+}*/

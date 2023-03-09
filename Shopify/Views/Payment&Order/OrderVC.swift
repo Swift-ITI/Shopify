@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Braintree
 
 class OrderVC: UIViewController {
     
@@ -37,6 +38,12 @@ class OrderVC: UIViewController {
     
     var NsBoolDefault = UserDefaults()
     
+    var paymentMethodText : String?
+    var paymentMethodSetFlag : Bool = false
+    var postOrderVM : PostOrderViewModel?
+    var braintreeClient: BTAPIClient?
+    var shouldPay : Int = 1
+    
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
             orderDetails.delegate = self
@@ -45,6 +52,9 @@ class OrderVC: UIViewController {
             orderDetails.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
+    
+    @IBOutlet var payMethodOutletButton: UIButton!
+    
     @IBOutlet weak var adresses: UITableView!{
         didSet{
             adresses.delegate = self
@@ -62,10 +72,13 @@ class OrderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
+        
         NsBoolDefault.set(false, forKey: "coupon")
                 
         Offerviewmodel = OfferViewModel()
+        
+        postOrderVM = PostOrderViewModel()
         
         NsDefault = UserDefaults()
         
@@ -104,8 +117,40 @@ class OrderVC: UIViewController {
         orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
+        switch paymentMethodSetFlag
+        {
+        case false:
+            print("Didn't choose payment Method yet")
+            payMethodOutletButton.setTitle("Pay Method", for: .normal)
+            
+        case true:
+            print("Choosed Method")
+            paymentMethodSetFlag = false
+            payMethodOutletButton.setTitle(paymentMethodText, for: .normal)
+        }
+    }
+    
+    func postToOrders(id: Int)
+    {
+        self.postOrderVM?.postOrder(target: .orderPerCustomer(id: id), parameters:
+                                        ["orders":[
+                                            "confirmed" : true,
+                                            "contact_email" : NsDefault?.value(forKey: "customerEmail"),
+                                            "email" : NsDefault?.value(forKey: "customerEmail"),
+                                            "currency" : "EGP",
+                                            "current_subtotal_price" : "\(subTotal.text ?? "5")",
+                                            "current_total_discounts" : "\(discount.text ?? "0")",
+                                            "current_total_price":"\(total.text ?? "5")",
+                                            "line_items": OrderDetailsResponse?.draft_order?.line_items
+                                        ]])
+    }
+    
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
+        paymentView.shouldPay = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
         navigationController?.pushViewController(paymentView, animated: true)
     }
     
@@ -144,8 +189,53 @@ class OrderVC: UIViewController {
                 
             }
         }
-        @IBAction func placeOrder(_ sender: Any) {
+    
+    @IBAction func placeOrder(_ sender: Any)
+    {
+        switch paymentMethodText
+        {
+        case "PayPal":
+            print("start paypal")
+            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
+            payPalDriver.viewControllerPresentingDelegate = self
+            payPalDriver.appSwitchDelegate = self
+            
+            let request = BTPayPalRequest(amount: "\(shouldPay)")
+            request.currencyCode = "USD"
+
+            payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+                if let tokenizedPayPalAccount = tokenizedPayPalAccount
+                {
+                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                    let email = tokenizedPayPalAccount.email
+                    let firstName = tokenizedPayPalAccount.firstName
+                    let lastName = tokenizedPayPalAccount.lastName
+                    let phone = tokenizedPayPalAccount.phone
+                    let billingAddress = tokenizedPayPalAccount.billingAddress
+                    let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                    
+                    self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
+                } else if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // Buyer canceled payment approval
+                    print("Cancel")
+                    let alert = UIAlertController(title: "Payment Failed", message: "You have canceled the payment process", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+            }
+            print("end paypal")
+            
+        case "Cash on Delivery":
+            print("Cash On Delivery")
+            self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
+            
+        default:
+            print("Error")
         }
+    }
 }
     
     //MARK: extension1
@@ -218,3 +308,26 @@ class OrderVC: UIViewController {
             return addressesCell
         }
     }
+
+    //MARK: Braintree Extensions
+
+extension OrderVC : BTViewControllerPresentingDelegate
+{
+    func paymentDriver(_ driver: Any, requestsPresentationOf viewController: UIViewController) {
+    }
+    
+    func paymentDriver(_ driver: Any, requestsDismissalOf viewController: UIViewController) {
+    }
+}
+
+extension OrderVC : BTAppSwitchDelegate
+{
+    func appSwitcherWillPerformAppSwitch(_ appSwitcher: Any) {
+    }
+    
+    func appSwitcher(_ appSwitcher: Any, didPerformSwitchTo target: BTAppSwitchTarget) {
+    }
+    
+    func appSwitcherWillProcessPaymentInfo(_ appSwitcher: Any) {
+    }
+}
