@@ -38,7 +38,7 @@ class CartProductCV: UITableViewCell {
         
         quantity.text = String((Int(quantity.text ?? "") ?? 0) - 1)
         
-        if (Int(quantity.text ?? "") == 1) {
+        if (Int(quantity.text ?? "") == 0) {
             self.isUserInteractionEnabled = false
            
         }

@@ -93,6 +93,11 @@ class HomeVC: UIViewController {
         startTimer()
        
         }
+    
+    func showimg()
+    {
+        
+    }
         
         func startTimer()
         {

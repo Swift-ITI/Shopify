@@ -17,43 +17,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="512" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egypt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Egypt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
                         <rect key="frame" x="16" y="16" width="66" height="30"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20 1234567890" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-xc-lvN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="+20 1234567890" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-xc-lvN">
                         <rect key="frame" x="340.33333333333331" y="16" width="155.66666666666669" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dah-LZ-XsE">
-                        <rect key="frame" x="460.33333333333331" y="76.333333333333329" width="19.666666666666686" height="19.333333333333343"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dah-LZ-XsE">
+                        <rect key="frame" x="476.33333333333331" y="74" width="19.666666666666686" height="33"/>
                         <color key="tintColor" name="AccentColor"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="dah-LZ-XsE" secondAttribute="height" multiplier="19:20" id="lWg-tw-lUJ"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
-                        <rect key="frame" x="16" y="84" width="159" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Miami, Alexandria" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
+                        <rect key="frame" x="16" y="54" width="159" height="55"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="leading" secondItem="AqF-gb-9Pe" secondAttribute="trailing" constant="258.33333333333331" id="6jV-Il-zs1"/>
                     <constraint firstItem="jAW-xc-lvN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="6tH-Hn-ivc"/>
                     <constraint firstItem="ldk-G7-QZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="8xs-MH-OmY"/>
-                    <constraint firstAttribute="bottom" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="20" id="96q-5f-qls"/>
-                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="32" id="Dwo-a3-NYW"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="38" id="HPh-b0-0uq"/>
+                    <constraint firstAttribute="bottom" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="96q-5f-qls"/>
+                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="16" id="Dwo-a3-NYW"/>
+                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="16" id="IOZ-lZ-Zc2"/>
                     <constraint firstAttribute="trailing" secondItem="jAW-xc-lvN" secondAttribute="trailing" constant="16" id="SJY-9n-zHP"/>
                     <constraint firstItem="AqF-gb-9Pe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="pEi-1Y-0W6"/>
-                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="32" id="u8H-Mt-tT0"/>
+                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="16" id="u8H-Mt-tT0"/>
                     <constraint firstItem="AqF-gb-9Pe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="x2l-ox-57r"/>
+                    <constraint firstItem="dah-LZ-XsE" firstAttribute="top" secondItem="jAW-xc-lvN" secondAttribute="bottom" constant="16" id="xjK-dW-Y4X"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -69,7 +66,7 @@
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -25,8 +25,8 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shoes" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-mV-kri">
-                        <rect key="frame" x="118.99999999999999" y="16" width="45.333333333333329" height="18"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <rect key="frame" x="119" y="16" width="73" height="30"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,22 +46,34 @@
                             <color key="baseForegroundColor" name="AccentColor"/>
                         </buttonConfiguration>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhf-Fs-nJh">
+                        <rect key="frame" x="330.33333333333331" y="65.333333333333329" width="53.666666666666686" height="53.666666666666671"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Dhf-Fs-nJh" secondAttribute="height" multiplier="1:1" id="0GP-mu-KQZ"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="cart" catalog="system">
+                            <color key="baseForegroundColor" name="AccentColor"/>
+                        </buttonConfiguration>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jps-hI-29g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Eg4-Cm-HnK"/>
+                    <constraint firstAttribute="trailing" secondItem="Dhf-Fs-nJh" secondAttribute="trailing" constant="16" id="LNz-BR-kiO"/>
                     <constraint firstItem="WcM-Pt-O2f" firstAttribute="leading" secondItem="Jps-hI-29g" secondAttribute="trailing" constant="16" id="N8T-5R-fXZ"/>
                     <constraint firstItem="TtE-0q-nWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="VWS-ho-Ab4"/>
                     <constraint firstItem="NNf-mV-kri" firstAttribute="leading" secondItem="Jps-hI-29g" secondAttribute="trailing" constant="16" id="Xf9-Z2-oM9"/>
                     <constraint firstAttribute="bottom" secondItem="WcM-Pt-O2f" secondAttribute="bottom" constant="16" id="ZWe-am-QUV"/>
-                    <constraint firstItem="TtE-0q-nWa" firstAttribute="leading" secondItem="NNf-mV-kri" secondAttribute="trailing" constant="16" id="iaV-n7-XO8"/>
                     <constraint firstAttribute="trailing" secondItem="TtE-0q-nWa" secondAttribute="trailing" constant="16" id="kOR-ft-3QP"/>
                     <constraint firstItem="Jps-hI-29g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="l1b-gO-dl6"/>
+                    <constraint firstAttribute="bottom" secondItem="Dhf-Fs-nJh" secondAttribute="bottom" constant="8" id="pp0-Pb-Ev9"/>
                     <constraint firstAttribute="bottom" secondItem="Jps-hI-29g" secondAttribute="bottom" constant="16" id="sm8-ck-0E6"/>
                     <constraint firstItem="NNf-mV-kri" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="yT3-zT-Ma7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cartButton" destination="Dhf-Fs-nJh" id="qJc-T6-RUo"/>
                 <outlet property="productImage" destination="Jps-hI-29g" id="R3q-Vj-69F"/>
                 <outlet property="productNameLabel" destination="NNf-mV-kri" id="nSY-jB-tBL"/>
                 <outlet property="productPriceLabel" destination="WcM-Pt-O2f" id="cCS-Oe-gdg"/>
@@ -71,10 +83,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="shoes" width="480" height="480"/>
+        <image name="cart" catalog="system" width="128" height="102"/>
+        <image name="shoes" width="512" height="512"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
-            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

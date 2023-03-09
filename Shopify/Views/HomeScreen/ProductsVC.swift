@@ -47,10 +47,7 @@ class ProductsVC: UIViewController {
         
     }
     
-    @IBAction func storeinfav(_ sender:UIButton)
-    {
-        
-    }
+    
  
     @IBAction func slider(_ sender: UISlider)
     {
@@ -122,7 +119,6 @@ extension ProductsVC : UICollectionViewDataSource
         cell.nameOfProduct.text = titles?[indexPath.row].title
         cell.priceOfProduct.text = titles?[indexPath.row].variants?[0].price
         cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
-      //  cell.heartBtn.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: .even)
         return cell
     }
 }

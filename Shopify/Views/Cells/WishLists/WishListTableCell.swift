@@ -10,6 +10,7 @@ import UIKit
 class WishListTableCell: UITableViewCell
 {
 
+    @IBOutlet var cartButton: UIButton!
     @IBOutlet var trashButton: UIButton!
     @IBOutlet var productPriceLabel: UILabel!
     @IBOutlet var productNameLabel: UILabel!
