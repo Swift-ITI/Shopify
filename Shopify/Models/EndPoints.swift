@@ -33,6 +33,8 @@ enum EndPoints {
     case editAddress(customerID: Int, addressID: Int)
     case addAddress(id : Int)
     case searchCustomerAddresses(id : Int)
+    case price_rulee (id : Int)
+    
 
     var path : String {
         switch self{
@@ -96,6 +98,8 @@ enum EndPoints {
             
         case .searchCustomerAddresses(id: let id) :
             return "\(BaseUrl)/customers/\(id)/addresses.json"
+        case .price_rulee(id: let id):
+            return "\(BaseUrl)/price_rules/\(id).json"
 
         }
     }
