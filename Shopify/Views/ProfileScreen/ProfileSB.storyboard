@@ -241,6 +241,9 @@
                                     <segment title="Egp"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="AccentColor"/>
+                                <connections>
+                                    <action selector="currencySegmentAction:" destination="jWH-IC-hIk" eventType="valueChanged" id="aZu-m7-aKP"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89m-rm-GfL">
                                 <rect key="frame" x="123.66666666666669" y="443" width="146" height="56"/>
