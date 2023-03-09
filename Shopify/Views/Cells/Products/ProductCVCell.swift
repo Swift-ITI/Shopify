@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProductCVCell: UICollectionViewCell {
 
@@ -18,12 +19,17 @@ class ProductCVCell: UICollectionViewCell {
     var heartFlag = false
     var cartFlag = false
     
+    var favVMobj : FavCoreDataViewModel?
+    var favobj : FavCoreDataManager?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.borderWidth = 2
         self.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         self.layer.cornerRadius = CGFloat(20)
         // Initialization code
+        favVMobj = FavCoreDataViewModel()
+        favobj = favVMobj?.getfavInstance()
     }
     
     

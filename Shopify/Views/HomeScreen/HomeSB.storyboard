@@ -139,7 +139,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eE3-UN-cJZ">
-                                <rect key="frame" x="8" y="59" width="326" height="56"/>
+                                <rect key="frame" x="8" y="59" width="370" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="qOZ-Oq-tMM" id="EWn-u6-DlO"/>
@@ -156,13 +156,6 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdH-ND-Cal">
-                                <rect key="frame" x="334" y="59" width="51" height="50"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="large"/>
-                                </buttonConfiguration>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwf-QR-oAl">
                                 <rect key="frame" x="15.999999999999996" y="135" width="62.666666666666657" height="31.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -187,29 +180,25 @@
                         <viewLayoutGuide key="safeArea" id="B6S-W3-20C"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="vdH-ND-Cal" secondAttribute="trailing" constant="8" id="3J5-x9-e47"/>
                             <constraint firstItem="eE3-UN-cJZ" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" id="AZD-1b-x3n"/>
                             <constraint firstItem="Pwf-QR-oAl" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="16" id="BGD-ZT-uag"/>
                             <constraint firstItem="e3U-mP-nsU" firstAttribute="top" secondItem="zeF-Bu-tJj" secondAttribute="bottom" constant="18" id="LfP-eh-AAw"/>
-                            <constraint firstItem="vdH-ND-Cal" firstAttribute="leading" secondItem="eE3-UN-cJZ" secondAttribute="trailing" id="T9t-UI-0XF"/>
                             <constraint firstItem="e3U-mP-nsU" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="Tzh-3d-cLC"/>
                             <constraint firstItem="B6S-W3-20C" firstAttribute="bottom" secondItem="e3U-mP-nsU" secondAttribute="bottom" constant="2" id="ULf-Bl-Nz1"/>
-                            <constraint firstItem="vdH-ND-Cal" firstAttribute="top" secondItem="B6S-W3-20C" secondAttribute="top" id="W5e-gV-Uhu"/>
                             <constraint firstItem="Pwf-QR-oAl" firstAttribute="top" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="20" id="a4c-zx-J0n"/>
                             <constraint firstItem="eE3-UN-cJZ" firstAttribute="leading" secondItem="B6S-W3-20C" secondAttribute="leading" constant="8" id="b6Q-Uu-4OH"/>
-                            <constraint firstItem="vdH-ND-Cal" firstAttribute="bottom" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="-6" id="c2e-f3-dI6"/>
+                            <constraint firstItem="i1W-2n-nmz" firstAttribute="bottom" secondItem="zeF-Bu-tJj" secondAttribute="bottom" id="d7y-w9-Z4e"/>
                             <constraint firstItem="zeF-Bu-tJj" firstAttribute="leading" secondItem="Pwf-QR-oAl" secondAttribute="trailing" constant="8" id="f2G-fQ-cqj"/>
                             <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="e3U-mP-nsU" secondAttribute="trailing" constant="8" id="gPo-Bj-fjy"/>
                             <constraint firstItem="i1W-2n-nmz" firstAttribute="leading" secondItem="zeF-Bu-tJj" secondAttribute="trailing" constant="12.666666666666686" id="jTP-zW-oQM"/>
                             <constraint firstItem="zeF-Bu-tJj" firstAttribute="top" secondItem="eE3-UN-cJZ" secondAttribute="bottom" constant="15" id="kNP-T9-8Dr"/>
-                            <constraint firstItem="i1W-2n-nmz" firstAttribute="top" secondItem="vdH-ND-Cal" secondAttribute="bottom" constant="19" id="onL-kS-F4v"/>
                             <constraint firstItem="B6S-W3-20C" firstAttribute="trailing" secondItem="i1W-2n-nmz" secondAttribute="trailing" constant="15" id="ubo-dw-g9v"/>
+                            <constraint firstItem="i1W-2n-nmz" firstAttribute="leading" secondItem="eE3-UN-cJZ" secondAttribute="trailing" constant="-16.333333333333314" id="z8y-W6-DTN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ProductCV" destination="e3U-mP-nsU" id="c26-co-bjn"/>
                         <outlet property="price" destination="i1W-2n-nmz" id="Mih-P2-Xcb"/>
-                        <outlet property="pulldown" destination="vdH-ND-Cal" id="t73-3d-qiH"/>
                         <outlet property="searchbar" destination="eE3-UN-cJZ" id="BKs-5f-ieH"/>
                     </connections>
                 </viewController>
@@ -402,7 +391,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZW-s9-HF1">
                                         <rect key="frame" x="8" y="204" width="377" height="150"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUMA | SUEDE CLASSIC REGAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-QF-Umv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUMA | SUEDE CLASSIC REGAL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwT-QF-Umv">
                                                 <rect key="frame" x="8" y="8" width="283.33333333333331" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" name="AccentColor"/>
@@ -463,6 +452,7 @@
                                             <constraint firstItem="acG-SD-eFc" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="Xb9-wZ-HWk"/>
                                             <constraint firstAttribute="trailing" secondItem="NOT-9B-AyB" secondAttribute="trailing" constant="8" id="YNq-Yc-cA5"/>
                                             <constraint firstAttribute="height" constant="150" id="Zxd-rF-8xG"/>
+                                            <constraint firstAttribute="trailing" secondItem="bwT-QF-Umv" secondAttribute="trailing" constant="85.666666666666686" id="br9-fT-0Ks"/>
                                             <constraint firstItem="Cjt-rg-YSl" firstAttribute="top" secondItem="acG-SD-eFc" secondAttribute="bottom" constant="8" id="i3M-wY-9Eo"/>
                                             <constraint firstItem="bwT-QF-Umv" firstAttribute="leading" secondItem="BZW-s9-HF1" secondAttribute="leading" constant="8" id="jaY-Nr-Lqo"/>
                                             <constraint firstItem="bEw-R8-7Fq" firstAttribute="top" secondItem="bwT-QF-Umv" secondAttribute="bottom" constant="8" id="kPz-f5-OEo"/>
@@ -588,11 +578,20 @@
                         <outlet property="pulldowncolor" destination="GVW-tg-kLS" id="SA0-Ux-h4b"/>
                         <outlet property="pulldownsize" destination="fZ7-91-JGe" id="NVk-3S-YTd"/>
                         <outlet property="reviewTableView" destination="Jbf-7X-ITp" id="nPa-LE-Ark"/>
+                        <segue destination="PQq-qo-VtG" kind="presentation" identifier="gotocart" id="8ZV-Eh-KO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="le0-Rs-oDi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3677.0992366412211" y="-5.6338028169014089"/>
+        </scene>
+        <!--OthersSB-->
+        <scene sceneID="hMZ-5S-KqQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OthersSB" id="PQq-qo-VtG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPO-6o-xAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4578" y="-184"/>
         </scene>
     </scenes>
     <designables>
@@ -608,7 +607,6 @@
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
-        <image name="line.3.horizontal.decrease" catalog="system" width="32" height="32"/>
         <image name="suit.heart" catalog="system" width="128" height="107"/>
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

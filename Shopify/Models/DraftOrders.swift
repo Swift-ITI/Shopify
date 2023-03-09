@@ -10,6 +10,10 @@ class DraftOrderResult : Decodable {
     var draft_orders : [DraftOrder]?
 }
 
+class SingleDraftOrder : Decodable {
+    var draft_order : DraftOrder?
+}
+
 class DraftOrder : Decodable {
     var id : Int?
     var name : String?
@@ -19,6 +23,9 @@ class DraftOrder : Decodable {
     var currency : String?
     var line_items : [LineItem]?
     var texable : Bool?
+    var total_price: String?
+    var subtotal_price: String?
+    var total_tax: String?
 }
 
 class LineItem : Decodable {
@@ -29,12 +36,11 @@ class LineItem : Decodable {
     var product_id : Int?
     var quantity : Int?//
     var requires_shipping : Bool?
-    var sku : String?
+  //  var sku : String?
     var title : String?//
     var variant_id : Int?
-    var variant_title : String?
     var vendor : String?
-    var name : String?
+  //  var name : String?
 
    
    

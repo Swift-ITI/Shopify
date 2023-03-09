@@ -24,6 +24,7 @@ protocol PUT_DATA {
     static func putMethod(url: String, parameters: [String: Any],err: @escaping ([String: Any]?) -> Void)
 }
 
+
 class NetworkServices: FETCH_DATA {
     static func fetch<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T: Decodable {
         let request = AF.request(url ?? "")
@@ -67,7 +68,7 @@ extension NetworkServices: POST_DATA {
             do {
                 let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
-                print("test :\(response)")
+                print("POST METHOD :\(response)")
                 err(response as? [String: Any])
             } catch {
                 print("hii\(error)")
@@ -122,7 +123,7 @@ extension NetworkServices: PUT_DATA {
             do {
                 let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
-                print("SUCEES:\(response)")
+                print("PUT METHOD :\(response)")
                 err(response as? [String: Any])
             } catch {
                 print(error)

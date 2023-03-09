@@ -174,7 +174,14 @@ extension ProfileVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case ordersTable:
-            return orderDetails?.orders.count ?? 0
+            if orderDetails?.orders.count ?? 0 > 2
+            {
+                return 2
+            }
+            else
+            {
+                return orderDetails?.orders.count ?? 0
+            }
 
         case wishListTable:
             return 4
@@ -190,6 +197,7 @@ extension ProfileVC: UITableViewDataSource {
             let cell: OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
             cell.priceLabel.text = orderDetails?.orders[indexPath.row].current_total_price
             cell.dateLabel.text = orderDetails?.orders[indexPath.row].created_at
+            //cell.dateLabel.adjustsFontSizeToFitWidth = true
             cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
             return cell
 
