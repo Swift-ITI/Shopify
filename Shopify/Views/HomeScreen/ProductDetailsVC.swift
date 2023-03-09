@@ -83,7 +83,24 @@ class ProductDetailsVC: UIViewController {
         coredatavm = FavCoreDataViewModel()
         favcoredataobj = coredatavm?.getfavInstance()
         
+      
         
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if (favcoredataobj?.isFav(lineItemId: detailedProduct?.id ?? 0))! {
+         
+            favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            flag = true
+            print("exist")
+           
+        } else {
+         
+            favbtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            flag = false
+           print("Not")
+        }
     }
 
     func startTimer() {
@@ -236,14 +253,14 @@ class ProductDetailsVC: UIViewController {
         }
     }
     @IBAction func addtofavourite(_ sender: Any) {
-        if favcoredataobj!.isFav(lineItemId: detailedProduct?.id ?? 0) {
-            favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            favcoredataobj?.DeleteFromFav(lineitemID: detailedProduct?.id ?? 0)
-            flag = true
-        } else {
+        if flag {
             favbtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+            favcoredataobj?.DeleteFromFav(lineitemID: detailedProduct?.id ?? 0)
             flag = false
+        } else {
+            favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+            flag = true
         }
     }
 
