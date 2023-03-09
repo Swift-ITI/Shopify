@@ -45,7 +45,7 @@
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="clickHeart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qmE-Vs-Gkq"/>
+                                    <action selector="clickHeart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="9Qt-70-bLq"/>
                                 </connections>
                             </button>
                         </subviews>

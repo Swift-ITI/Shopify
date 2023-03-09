@@ -17,3 +17,11 @@ class  CoreDataViewModel {
     }
     
 }
+
+class FavCoreDataViewModel
+{
+    func getfavInstance () -> FavCoreDataManager
+    {
+        return FavCoreDataManager.getFavInstance()
+    }
+}
