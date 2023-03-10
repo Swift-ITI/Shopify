@@ -17,7 +17,7 @@ class PaymentVC: UIViewController
     var approved : Int = 0
     var paymentMethod : String?
     var currencyDefault = UserDefaults()
-    var paymentMethodUserDefault = UserDefaults()
+    var paymentDefault = UserDefaults()
     var cashType: String?
 
     /*@IBOutlet weak var addressTable: UITableView!{
@@ -96,13 +96,13 @@ class PaymentVC: UIViewController
         switch approved
         {
         case 1:
-            //let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
-            //orderObj.paymentMethodText = paymentMethod
-            paymentMethodUserDefault.set("\(paymentMethod)", forKey: "PaymentType")
-            paymentMethodUserDefault.set(true, forKey: "PaymentFlag")
-            //orderObj.paymentMethodSetFlag = true
-            //orderObj.shouldPay = shouldPay ?? 0
-            self.navigationController?.popViewController(animated: true)
+            let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+//            orderObj.paymentMethodText = paymentMethod
+//            orderObj.paymentMethodSetFlag = true
+//            orderObj.shouldPay = shouldPay
+            paymentDefault.set("\(paymentMethod ?? "")", forKey: "PaymentMethod")
+            dismiss(animated: true, completion: nil)
+            //self.navigationController?.popViewController(animated: true)
             //self.navigationController?.pushViewController(orderObj, animated: true)
             
         case 2:

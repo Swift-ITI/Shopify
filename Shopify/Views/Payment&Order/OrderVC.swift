@@ -37,13 +37,12 @@ class OrderVC: UIViewController {
     var checkcode = true
     
     var NsBoolDefault = UserDefaults()
-    
-    //var paymentMethodText : String?
-    //var paymentMethodSetFlag : Bool = false
+    var paymentDefault = UserDefaults()
+//    var paymentMethodText : String?
+//    var paymentMethodSetFlag : Bool = false
     var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
     var shouldPay : Int = 1
-    var paymentMethodUserDefault = UserDefaults()
     
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
@@ -72,7 +71,7 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        paymentDefault.set("Pay Method", forKey: "PaymentMethod")
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
         
         NsBoolDefault.set(false, forKey: "coupon")
@@ -116,26 +115,22 @@ class OrderVC: UIViewController {
         
         let collectionViwCellnib = UINib(nibName: "OrderDetailsCollectionViewCell", bundle: nil)
         orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
-        paymentMethodUserDefault.set(false, forKey: "PaymentFlag")
-        paymentMethodUserDefault.set("Pay Method", forKey: "PaymentType")
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
-        payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
-        /*switch paymentMethodUserDefault.value(forKey: "PaymentFlag")
+
+        payMethodOutletButton.setTitle("\(paymentDefault.value(forKey: "PaymentMethod") ?? "")", for: .normal)
+        /*switch paymentMethodSetFlag
         {
-        case "true" as String:
+        case true:
             print("Choosed Method")
-            payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
+            payMethodOutletButton.setTitle("\(paymentMethodText)", for: .normal)
             
-        case "false" as String:
+        case false:
             print("Didn't choose payment Method yet")
-            payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
-            
-        default:
-            print("View Will Appear")
+            payMethodOutletButton.setTitle("Pay Method", for: .normal)
         }*/
     }
     
@@ -157,7 +152,9 @@ class OrderVC: UIViewController {
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
         paymentView.shouldPay = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
-        navigationController?.pushViewController(paymentView, animated: true)
+        paymentView.modalPresentationStyle = .fullScreen
+        self.present(paymentView, animated: true, completion: nil)
+        //navigationController?.pushViewController(paymentView, animated: true)
     }
     
     @IBAction func validateCoupon(_ sender: Any) {
@@ -198,7 +195,7 @@ class OrderVC: UIViewController {
     
     @IBAction func placeOrder(_ sender: Any)
     {
-        switch paymentMethodUserDefault.value(forKey: "PaymentType")
+        switch paymentDefault.value(forKey: "PaymentMethod")
         {
         case "PayPal" as String:
             print("start paypal")
@@ -208,7 +205,7 @@ class OrderVC: UIViewController {
             
             let request = BTPayPalRequest(amount: "\(shouldPay)")
             request.currencyCode = "USD"
-
+            
             payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
                 if let tokenizedPayPalAccount = tokenizedPayPalAccount
                 {
@@ -240,6 +237,9 @@ class OrderVC: UIViewController {
             
         default:
             print("Error")
+            let alert = UIAlertController(title: "Payment Error", message: "Please choose a payment method to proceed with it", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true, completion: nil)
         }
     }
 }

@@ -11,55 +11,50 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addressesCell" id="KGk-i7-Jjw" customClass="AddressesCell" customModule="Shopify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="500" height="151"/>
+            <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="500" height="151"/>
+                <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Egypt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
-                        <rect key="frame" x="32" y="15.999999999999998" width="436" height="26.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Egypt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
+                        <rect key="frame" x="15.999999999999996" y="16" width="53.666666666666657" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20 1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-xc-lvN">
-                        <rect key="frame" x="32" y="111" width="284" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20 1234567890" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-xc-lvN">
+                        <rect key="frame" x="197.66666666666666" y="16" width="286.33333333333337" height="31.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
-                        <rect key="frame" x="32" y="58.333333333333343" width="436" height="36.666666666666657"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                        <rect key="frame" x="16" y="56" width="145.66666666666666" height="28"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dah-LZ-XsE">
-                        <rect key="frame" x="444" y="112" width="24" height="22.666666666666671"/>
+                        <rect key="frame" x="463.66666666666669" y="64.666666666666657" width="20.333333333333314" height="19"/>
                         <color key="tintColor" name="AccentColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="dah-LZ-XsE" secondAttribute="height" multiplier="1:1" id="lWg-tw-lUJ"/>
+                            <constraint firstAttribute="width" secondItem="dah-LZ-XsE" secondAttribute="height" multiplier="1:1" id="R5z-hi-Zkb"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="dah-LZ-XsE" firstAttribute="top" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="1wr-0I-5L9"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="16" id="BIV-UF-8ZR"/>
-                    <constraint firstAttribute="trailing" secondItem="AqF-gb-9Pe" secondAttribute="trailing" constant="32" id="HLj-oe-Wgw"/>
-                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="16" id="Sgp-fA-9Nz"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="width" secondItem="AqF-gb-9Pe" secondAttribute="width" id="Vd3-Bo-UMc"/>
-                    <constraint firstAttribute="trailing" secondItem="ldk-G7-QZf" secondAttribute="trailing" constant="32" id="WkT-1z-kqf"/>
-                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="Wzf-yi-cb7"/>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="XQU-0X-t3H"/>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="height" secondItem="AqF-gb-9Pe" secondAttribute="height" multiplier="0.911392" id="XkJ-Rq-agl"/>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="top" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="c6T-Vs-aCs"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="cRX-59-O2N"/>
-                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cYs-A4-6qe"/>
-                    <constraint firstItem="dah-LZ-XsE" firstAttribute="leading" secondItem="jAW-xc-lvN" secondAttribute="trailing" constant="128" id="gRb-Nu-cLR"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="height" secondItem="AqF-gb-9Pe" secondAttribute="height" multiplier="1.39241" id="upY-Ar-0IO"/>
-                    <constraint firstAttribute="bottom" secondItem="jAW-xc-lvN" secondAttribute="bottom" constant="16" id="x9o-Ld-hjl"/>
-                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="32" id="zyy-NC-I8T"/>
+                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="16" id="05g-Oc-0LZ"/>
+                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="3Qd-fN-MXf"/>
+                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="16" id="6B2-6w-3p7"/>
+                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="8nm-zs-b40"/>
+                    <constraint firstAttribute="bottom" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="Tar-RK-9eA"/>
+                    <constraint firstItem="dah-LZ-XsE" firstAttribute="top" secondItem="jAW-xc-lvN" secondAttribute="bottom" constant="16" id="ZX4-W0-zNN"/>
+                    <constraint firstItem="jAW-xc-lvN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cAp-jn-kk4"/>
+                    <constraint firstItem="ldk-G7-QZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cwP-Rw-ZuB"/>
+                    <constraint firstItem="jAW-xc-lvN" firstAttribute="leading" secondItem="AqF-gb-9Pe" secondAttribute="trailing" constant="128" id="g82-Ot-xbk"/>
+                    <constraint firstAttribute="trailing" secondItem="jAW-xc-lvN" secondAttribute="trailing" constant="16" id="tm5-cW-QvA"/>
+                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="16" id="uXk-Vb-DxV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -69,7 +64,7 @@
                 <outlet property="countryLabel" destination="AqF-gb-9Pe" id="oWB-pP-q5g"/>
                 <outlet property="phoneNumberLabel" destination="jAW-xc-lvN" id="5MF-x8-rs2"/>
             </connections>
-            <point key="canvasLocation" x="132.82442748091603" y="20.422535211267608"/>
+            <point key="canvasLocation" x="132.82442748091603" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
     <resources>
