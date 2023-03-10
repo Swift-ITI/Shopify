@@ -9,6 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--AuthenticationSB-->
+        <scene sceneID="JYL-ih-Tjh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AuthenticationSB" id="fa0-97-qcM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68L-Hs-vH0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4921" y="-158"/>
+        </scene>
         <!--Categories-->
         <scene sceneID="mWU-4x-A0O">
             <objects>
@@ -87,6 +95,7 @@
                         <outlet property="catiroriesSegmentes" destination="mHK-Wo-6RZ" id="A1p-Jq-goP"/>
                         <outlet property="productsCollectionView" destination="A4n-u3-YEw" id="5Xi-0i-ZTM"/>
                         <outlet property="subCategory" destination="7gg-0q-OTK" id="GIy-Oh-yEj"/>
+                        <segue destination="fa0-97-qcM" kind="presentation" identifier="goToLogIn" modalPresentationStyle="fullScreen" id="M7E-ca-ySW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ocu-kg-Ngx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

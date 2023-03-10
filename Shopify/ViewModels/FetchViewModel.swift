@@ -125,7 +125,7 @@ class DraftOrderViewModel {
     func getDraftOrders (target : EndPoints){
         NetworkServices.fetch(url: target.path) { result in
             self.draftOrderResults = result
-            print(self.draftOrderResults?.draft_order?.line_items?.count)
+           // print(self.draftOrderResults?.draft_order?.line_items?.count)
         }
     }
     
@@ -156,6 +156,19 @@ class DraftOrderViewModel {
             self.err = err
         }
         
+    }
+    
+    //MARK: for retrive product details
+    var bindProductToCart:(()->())={}
+    var product: SingleProduct? {
+        didSet{
+            bindProductToCart()
+        }
+    }
+    func getProduct (target: EndPoints) {
+        NetworkServices.fetch(url: target.path) { result in
+            self.product = result
+        }
     }
 }
 

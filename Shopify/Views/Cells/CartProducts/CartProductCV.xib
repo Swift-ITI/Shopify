@@ -112,9 +112,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="minus.circle" catalog="system" width="128" height="123"/>
+        <image name="minus.circle" catalog="system" width="32" height="32"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
-        <image name="trash" catalog="system" width="117" height="128"/>
+        <image name="trash" catalog="system" width="32" height="32"/>
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

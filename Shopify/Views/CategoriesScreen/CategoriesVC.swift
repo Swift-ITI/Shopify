@@ -20,6 +20,8 @@ class CategoriesVC: UIViewController {
     var flag : Int = 0
     var subflag : Int = 0
     
+    var nsDefault = UserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -254,10 +256,16 @@ class CategoriesVC: UIViewController {
     }
     @objc func navcart()
     {
-        let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
-        let cartobj =
-        CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
-        self.navigationController?.pushViewController(cartobj, animated: true)
+        if (nsDefault.value(forKey: "isLogged") as? Bool) ?? false{
+          
+            let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
+            let cartobj =
+            CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
+            self.navigationController?.pushViewController(cartobj, animated: true)
+            
+        }else{
+            self.performSegue(withIdentifier: "goToLogIn", sender: self)
+        }
     }
     @objc func navsearch()
     {

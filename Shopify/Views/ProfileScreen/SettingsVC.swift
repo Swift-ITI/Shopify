@@ -90,17 +90,17 @@ class SettingsVC: UIViewController
     
     func segmentChanger()
     {
-        switch currencyDefault.value(forKey: "CashType") as! String
-        {
-        case "USD":
-            currencySegment.selectedSegmentIndex = 0
-            
-        case "Egp":
-            currencySegment.selectedSegmentIndex = 1
-            
-        default:
-            print("Error")
-        }
+//        switch currencyDefault.value(forKey: "CashType") as! String
+//        {
+//        case "USD":
+//            currencySegment.selectedSegmentIndex = 0
+//            
+//        case "Egp":
+//            currencySegment.selectedSegmentIndex = 1
+//            
+//        default:
+//            print("Error")
+//        }
     }
     
 // MARK: - IBActions Part
