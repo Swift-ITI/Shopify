@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Floaty
 
 class ProductsVC: UIViewController {
     
@@ -25,11 +26,10 @@ class ProductsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // productfilter()
+       productfilter()
         searchbar.delegate = self
         ProductCV.delegate = self
         ProductCV.dataSource = self
-        
         
         
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
@@ -67,17 +67,38 @@ class ProductsVC: UIViewController {
         price.text = String(Int(sender.value))
     }
     
-   /* @objc func productfilter()
+    @objc func productfilter()
     {
         let c = {(action : UIAction) in
-                }
+        }
         self.pulldown.menu = UIMenu( title : "" ,children: [
-            UIAction(title: "Sort by price", handler: c),
-            UIAction(title: "Sort by name", handler: c)])
+            UIAction(title: "Ascending Sort",subtitle: "(A-Z)", handler: { (_) in
+               print ("sdf")
+                self.alphabetfilter(type: "Ascending Sort")
+            }),
+            UIAction(title: "Descending Sort",subtitle: "(Z-A)", handler: { (_) in
+                self.alphabetfilter(type: "Descending Sort")})])
         pulldown.showsMenuAsPrimaryAction = true
-    // pulldown.changesSelectionAsPrimaryAction = true
-    }*/
-
+    //pulldown.changesSelectionAsPrimaryAction = true
+    }
+    func alphabetfilter (type : String)
+    {
+        var sortedlist : [Product]
+        
+        if type == "Ascending Sort"
+        {
+             sortedlist = titles?.sorted(by: {
+                 String($0.title) < String($1.title)}) ?? []
+            
+        }
+        else
+        {
+             sortedlist = titles?.sorted(by: {
+                 String($0.title) > ($1.title)}) ?? []
+        }
+        titles = sortedlist
+        ProductCV.reloadData()
+    }
     
 }
 extension ProductsVC : UISearchBarDelegate
