@@ -29,6 +29,8 @@ class CartVC: UIViewController {
     
     var reachabilty : Reachability!
     var flag : Bool = false
+    
+    var arrayofdict : [[String:Any]] = []
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +46,18 @@ class CartVC: UIViewController {
                 flag = true
                 
                 cartVM = DraftOrderViewModel()
+            
                 
                 cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
                 cartVM?.bindDraftOrderToCartVC = {() in
                     DispatchQueue.main.async {
                         self.draftOrder = self.cartVM?.draftOrderResults
                         self.cartProducts.reloadData()
-                     
-                        
                     }
                 }
                 for item in (self.draftOrder?.draft_order?.line_items ?? []){
                     self.cartVM?.getProduct(target: .deleteProductByID(id: item.product_id ?? 0))
+
                     
                     self.cartVM?.bindProductToCart = { () in
                         DispatchQueue.main.async {
@@ -120,12 +122,21 @@ extension CartVC : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
+        
         if editingStyle == .delete
         {
             let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Cart", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
                 print("Deleted")
-                tableView.deleteSections([indexPath.section], with: .left)
+                self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
+                self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+                let params = [
+                    "draft_order": [
+                        "line_items": self.arrayofdict,
+                    ],
+                ]
+                self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+                
                 tableView.reloadData()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -133,8 +144,25 @@ extension CartVC : UITableViewDelegate{
         }
         tableView.reloadData()
     }
-}
+    func converttodic(arrofline :[LineItem]) -> [[String:Any]]
+    {
+        var arrofdict : [[String:Any]] = []
+        for item in arrofline
+        {
+            var dict : [String: Any] = [
+            "variant_id" : item.variant_id ?? 0,
+            "product_id": item.product_id ?? 0,
+            "title": item.title ?? "",
+            "vendor": item.vendor ?? "",
+            "quantity": 1,
+            "price": item.price ?? "",
+            ]
+            arrofdict.append(dict)
+        }
+        return arrofdict
+    }
 
+}
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -165,7 +193,7 @@ extension CartVC : UITableViewDataSource{
             
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
             
-           // cartProductscell.productImg.kf.setImage(with: URL(string: arrProducts[indexPath.section].image?.src ?? ""))
+          //  cartProductscell.productImg.kf.setImage(with: URL(string: arrProducts[indexPath.section].image?.src ?? ""))
                     
             cartProductscell.quantity.text = "1"
             

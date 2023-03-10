@@ -63,6 +63,10 @@ class ProductDetailsVC: UIViewController {
     
     var coreDataVM : CoreDataViewModel?
     var coreData : CoreDataManager?
+    
+    var reviewName = ["Robert J.", "Evelyn Taal", "Gong Yoo", "Park Seo joa", "Sila M."]
+    var reviewRate = ["3", "2", "5", "3", "4"]
+    var reviewComment = ["Bad quality", "Uncomfortable product" , "Comfortable, Highly recommended!", "Pretty, and not a bad quality for this price! " , "Really nice fit and very comfortable."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +75,7 @@ class ProductDetailsVC: UIViewController {
         productname.text = detailedProduct?.title
         productprice.text = detailedProduct?.variants?[0].price
         productdescription.text = detailedProduct?.body_html
-        availableQuantity.text = (detailedProduct?.variants?[0].inventory_quantity)?.formatted()
+        availableQuantity.text = "Available Quantity: \((detailedProduct?.variants?[0].inventory_quantity)?.formatted() ?? "")"
         pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0
         
         productfilter(sender: pulldownsize)
@@ -328,6 +332,9 @@ extension ProductDetailsVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewTVCell", for: indexPath) as! ReviewTVCell
+        cell.nameTxt.text = reviewName[indexPath.row]
+        cell.ratingText.text = "\(reviewRate[indexPath.row]) ⭐️"
+        cell.reviewText.text = reviewComment[indexPath.row]
 
         return cell
     }
