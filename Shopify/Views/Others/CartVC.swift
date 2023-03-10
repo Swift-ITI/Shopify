@@ -49,7 +49,7 @@ class CartVC: UIViewController {
                 cartVM?.bindDraftOrderToCartVC = {() in
                     DispatchQueue.main.async {
                         self.draftOrder = self.cartVM?.draftOrderResults
-                       // self.cartProducts.reloadData()
+                        self.cartProducts.reloadData()
                      
                         
                     }
@@ -165,7 +165,7 @@ extension CartVC : UITableViewDataSource{
             
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
             
-            cartProductscell.productImg.kf.setImage(with: URL(string: arrProducts[indexPath.section].image?.src ?? ""))
+           // cartProductscell.productImg.kf.setImage(with: URL(string: arrProducts[indexPath.section].image?.src ?? ""))
                     
             cartProductscell.quantity.text = "1"
             
