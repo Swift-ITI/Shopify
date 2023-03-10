@@ -13,7 +13,7 @@ class PaymentVC: UIViewController
     @IBOutlet var processImage: UIImageView!
     @IBOutlet var processText: UILabel!
     
-    var shouldPay : Int = 0
+    var shouldPay : Float?
     var approved : Int = 0
     var paymentMethod : String?
     var currencyDefault = UserDefaults()
@@ -62,13 +62,13 @@ class PaymentVC: UIViewController
         switch type
         {
         case "PayPal":
-            processText.text = "Total Cost = \(shouldPay) \nYou will Pay by your PayPal Account"
+            processText.text = "Total Cost = \(shouldPay ?? 0.0) \nYou will Pay by your PayPal Account"
             
         case "Denied":
-            processText.text = "Total Cost = \(shouldPay) \nSorry but your order is too expensive to be Cash On Delivery"
+processText.text = "Total Cost = \(shouldPay ?? 0.0) \nSorry but your order is too expensive to be Cash On Delivery"
             
         case "Cash on Delivery":
-            processText.text = "Total Cost = \(shouldPay) \nYou will pay in Cash when order is delivered"
+            processText.text = "Total Cost = \(shouldPay ?? 0.0) \nYou will pay in Cash when order is delivered"
             
         default:
             print("Error")
@@ -77,9 +77,9 @@ class PaymentVC: UIViewController
     }
     
 // check if approved or not (exceed the max number)
-    func checkAprrovedProcces(maxNumber: Int)
+    func checkAprrovedProcces(maxNumber: Float)
     {
-        if shouldPay < maxNumber
+        if shouldPay ?? 0 < maxNumber
         {
             print("Approved")
             paymentMethod = payMethods(type: "Cash on Delivery", approve: 1)
@@ -101,8 +101,8 @@ class PaymentVC: UIViewController
 //            orderObj.paymentMethodSetFlag = true
 //            orderObj.shouldPay = shouldPay
             paymentDefault.set("\(paymentMethod ?? "")", forKey: "PaymentMethod")
-            dismiss(animated: true, completion: nil)
-            //self.navigationController?.popViewController(animated: true)
+            //dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
             //self.navigationController?.pushViewController(orderObj, animated: true)
             
         case 2:
@@ -129,10 +129,10 @@ extension PaymentVC: SSRadioButtonControllerDelegate
             switch cashType
             {
             case "USD":
-                checkAprrovedProcces(maxNumber: 500)
+                checkAprrovedProcces(maxNumber: 500.0)
                 
             case "EGP":
-                checkAprrovedProcces(maxNumber: 5000)
+                checkAprrovedProcces(maxNumber: 5000.0)
                 
             default:
                 print("Error")

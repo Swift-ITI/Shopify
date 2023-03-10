@@ -17,25 +17,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Egypt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
-                        <rect key="frame" x="15.999999999999996" y="16" width="53.666666666666657" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="United States" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AqF-gb-9Pe">
+                        <rect key="frame" x="16" y="16" width="145.66666666666666" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20 1234567890" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-xc-lvN">
-                        <rect key="frame" x="197.66666666666666" y="16" width="286.33333333333337" height="31.666666666666671"/>
+                        <rect key="frame" x="289.66666666666669" y="16" width="194.33333333333331" height="31.666666666666671"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
-                        <rect key="frame" x="16" y="56" width="145.66666666666666" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
+                        <rect key="frame" x="16" y="56" width="319.66666666666669" height="28"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dah-LZ-XsE">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dah-LZ-XsE">
                         <rect key="frame" x="463.66666666666669" y="64.666666666666657" width="20.333333333333314" height="19"/>
                         <color key="tintColor" name="AccentColor"/>
                         <constraints>
@@ -44,17 +44,19 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="16" id="05g-Oc-0LZ"/>
-                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="3Qd-fN-MXf"/>
-                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="16" id="6B2-6w-3p7"/>
-                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="8nm-zs-b40"/>
-                    <constraint firstAttribute="bottom" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="Tar-RK-9eA"/>
-                    <constraint firstItem="dah-LZ-XsE" firstAttribute="top" secondItem="jAW-xc-lvN" secondAttribute="bottom" constant="16" id="ZX4-W0-zNN"/>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cAp-jn-kk4"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cwP-Rw-ZuB"/>
-                    <constraint firstItem="jAW-xc-lvN" firstAttribute="leading" secondItem="AqF-gb-9Pe" secondAttribute="trailing" constant="128" id="g82-Ot-xbk"/>
-                    <constraint firstAttribute="trailing" secondItem="jAW-xc-lvN" secondAttribute="trailing" constant="16" id="tm5-cW-QvA"/>
-                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="16" id="uXk-Vb-DxV"/>
+                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="AvW-be-cjf"/>
+                    <constraint firstItem="jAW-xc-lvN" firstAttribute="leading" secondItem="AqF-gb-9Pe" secondAttribute="trailing" constant="128" id="CM1-LT-vO3"/>
+                    <constraint firstAttribute="bottom" secondItem="dah-LZ-XsE" secondAttribute="bottom" constant="16" id="KAO-fu-tya"/>
+                    <constraint firstItem="ldk-G7-QZf" firstAttribute="top" secondItem="AqF-gb-9Pe" secondAttribute="bottom" constant="16" id="O9N-44-bSS"/>
+                    <constraint firstItem="ldk-G7-QZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SLT-JV-2mk"/>
+                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="width" secondItem="jAW-xc-lvN" secondAttribute="width" multiplier="3:4" id="aBD-1j-u69"/>
+                    <constraint firstItem="dah-LZ-XsE" firstAttribute="top" secondItem="jAW-xc-lvN" secondAttribute="bottom" constant="16" id="bRW-le-uC0"/>
+                    <constraint firstItem="dah-LZ-XsE" firstAttribute="leading" secondItem="ldk-G7-QZf" secondAttribute="trailing" constant="128" id="diz-te-68G"/>
+                    <constraint firstItem="jAW-xc-lvN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="eaG-D9-XYM"/>
+                    <constraint firstAttribute="bottom" secondItem="ldk-G7-QZf" secondAttribute="bottom" constant="16" id="fYM-NI-Gh3"/>
+                    <constraint firstAttribute="trailing" secondItem="jAW-xc-lvN" secondAttribute="trailing" constant="16" id="gWd-tE-Bvb"/>
+                    <constraint firstAttribute="trailing" secondItem="dah-LZ-XsE" secondAttribute="trailing" constant="16" id="jXv-A3-f2N"/>
+                    <constraint firstItem="AqF-gb-9Pe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="xfH-Pn-zXR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

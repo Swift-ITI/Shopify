@@ -185,9 +185,11 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             print("select address")
             self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses[indexPath.row].id ?? 0, defaultState: self.arrOfAddresses[indexPath.row].default ?? true)
             self.userVM?.fetchAddresses(target: .searchCustomerAddresses(id: self.userID ?? 6810321223958))
-            self.userVM?.bindAddressToVC = { () in self.renderAddressView()
-                self.addressesTable.reloadData()}
-            self.renderAddressView()
+            self.userVM?.bindAddressToVC = { () in
+                DispatchQueue.main.async
+                {
+                    self.renderAddressView()
+                }}
             self.refresh.tintColor = UIColor.black
             self.refresh.addTarget(self, action: #selector(self.handleRefresh(refreshed: )), for: UIControl.Event.valueChanged)
             self.addressesTable.addSubview(self.refresh)

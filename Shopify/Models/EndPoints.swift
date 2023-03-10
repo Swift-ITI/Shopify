@@ -25,7 +25,7 @@ enum EndPoints {
     case deleteProductByID(id: Int)
     case brand
     case discounts
-
+    case orders
     case draftOrder (id: Int)
     case alldraftOrders
     case checkUser(email: String, pw: String)
@@ -101,6 +101,8 @@ enum EndPoints {
         case .price_rulee(id: let id):
             return "\(BaseUrl)/price_rules/\(id).json"
 
+        case .orders :
+            return "\(BaseUrl)/orders.json"
         }
     }
 }
