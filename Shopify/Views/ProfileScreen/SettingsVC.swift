@@ -54,7 +54,7 @@ class SettingsVC: UIViewController
     {
         didSet
         {
-
+            
         }
     }
     
@@ -72,6 +72,7 @@ class SettingsVC: UIViewController
 
     var userID : Int?
     var nsDefaults = UserDefaults()
+    var currencyDefault = UserDefaults()
     
     override func viewDidLoad()
     {
@@ -79,6 +80,27 @@ class SettingsVC: UIViewController
         
         coreDataVm = CoreDataViewModel()
         coreDataManeger = coreDataVm?.getInstance()
+        segmentChanger()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        segmentChanger()
+    }
+    
+    func segmentChanger()
+    {
+//        switch currencyDefault.value(forKey: "CashType") as! String
+//        {
+//        case "USD":
+//            currencySegment.selectedSegmentIndex = 0
+//            
+//        case "Egp":
+//            currencySegment.selectedSegmentIndex = 1
+//            
+//        default:
+//            print("Error")
+//        }
     }
     
 // MARK: - IBActions Part
@@ -118,5 +140,16 @@ class SettingsVC: UIViewController
        // coreDataManeger?.deleteAllLineItems()
         performSegue(withIdentifier: "goToLogin", sender: self)
     }
-    
+ 
+    @IBAction func currencySegmentAction(_ sender: Any)
+    {
+        if currencySegment.selectedSegmentIndex == 0
+        {
+            currencyDefault.set("USD", forKey: "CashType")
+        }
+        else if currencySegment.selectedSegmentIndex == 1
+        {
+            currencyDefault.set("Egp", forKey: "CashType")
+        }
+    }
 }

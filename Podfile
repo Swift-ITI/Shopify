@@ -12,6 +12,7 @@ target 'Shopify' do
   pod 'Cosmos', '~> 23.0'
   pod 'SwiftyGif'
   pod 'Floaty', '~> 4.1.0'
+  pod 'Braintree', '~> 4.38'
 
   target 'ShopifyTests' do
     inherit! :search_paths

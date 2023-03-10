@@ -62,13 +62,13 @@ class AddressVC: UIViewController
 
     override func viewWillAppear(_ animated: Bool)
     {
+        self.addressesTable.reloadData()
         userVM?.fetchAddresses(target: .searchCustomerAddresses(id: userID ?? 6810321223958))
         userVM?.bindAddressToVC = { () in self.renderAddressView()
             self.addressesTable.reloadData()
-            
         }
         //addressesTable.reloadData()
-//        self.renderAddressView()
+        //self.renderAddressView()
     }
     
     func renderDataView()
@@ -88,6 +88,15 @@ class AddressVC: UIViewController
             self.addressesTable.reloadData()
         }
         //addressesTable.reloadData()
+    }
+    
+    func changeDefault (customerID: Int, addressID: Int, defaultState: Bool)
+    {
+        self.editVM?.editAddress(target: .editAddress(customerID: customerID, addressID: addressID), parameters:
+                                    ["address" : [
+                                        "default":!defaultState
+                                    ]])
+        self.renderAddressView()
     }
     
 // MARK: - IBActions Part
@@ -159,25 +168,13 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             print("select address")
             if self.arrOfAddresses?.addresses?[indexPath.row].default == true
             {
-                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
-                                        ["address" : [
-                                            "default":false
-                                        ]])
-                
-                self.renderAddressView()
-                //self.addressesTable.reloadData()
+                self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0, defaultState: true)
             }
             
             else if self.arrOfAddresses?.addresses?[indexPath.row].default == false
             {
-                self.editVM?.editAddress(target: .editAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0), parameters:
-                                        ["address" : [
-                                            "default":true
-                                        ]])
-                self.renderAddressView()
-                //self.addressesTable.reloadData()
+                self.changeDefault(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses?.addresses?[indexPath.row].id ?? 0, defaultState: false)
             }
-            
             self.renderAddressView()
         }))
         self.present(alert, animated: true, completion: nil)
@@ -187,6 +184,17 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
     {
         return true
     }
+    
+    /*//this part is to make the swipe to left be Edit insteed of Delete (Upcoming Update)
+    
+     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        let editButton = UITableViewRowAction(style: .default, title: "Edit", handler: {(rowAction, indexPath) in
+            print("Edit")
+        })
+        editButton.backgroundColor = UIColor.systemBlue
+        return [editButton]
+    }*/
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
