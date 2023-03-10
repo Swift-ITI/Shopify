@@ -38,11 +38,12 @@ class OrderVC: UIViewController {
     
     var NsBoolDefault = UserDefaults()
     
-    var paymentMethodText : String?
-    var paymentMethodSetFlag : Bool = false
+    //var paymentMethodText : String?
+    //var paymentMethodSetFlag : Bool = false
     var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
     var shouldPay : Int = 1
+    var paymentMethodUserDefault = UserDefaults()
     
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
@@ -115,22 +116,27 @@ class OrderVC: UIViewController {
         
         let collectionViwCellnib = UINib(nibName: "OrderDetailsCollectionViewCell", bundle: nil)
         orderDetails.register(collectionViwCellnib, forCellWithReuseIdentifier: "orderdetails")
+        paymentMethodUserDefault.set(false, forKey: "PaymentFlag")
+        paymentMethodUserDefault.set("Pay Method", forKey: "PaymentType")
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
-        switch paymentMethodSetFlag
+        payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
+        /*switch paymentMethodUserDefault.value(forKey: "PaymentFlag")
         {
-        case false:
-            print("Didn't choose payment Method yet")
-            payMethodOutletButton.setTitle("Pay Method", for: .normal)
-            
-        case true:
+        case "true" as String:
             print("Choosed Method")
-            paymentMethodSetFlag = false
-            payMethodOutletButton.setTitle(paymentMethodText, for: .normal)
-        }
+            payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
+            
+        case "false" as String:
+            print("Didn't choose payment Method yet")
+            payMethodOutletButton.setTitle("\(paymentMethodUserDefault.value(forKey: "PaymentType"))", for: .normal)
+            
+        default:
+            print("View Will Appear")
+        }*/
     }
     
     func postToOrders(id: Int)
@@ -192,9 +198,9 @@ class OrderVC: UIViewController {
     
     @IBAction func placeOrder(_ sender: Any)
     {
-        switch paymentMethodText
+        switch paymentMethodUserDefault.value(forKey: "PaymentType")
         {
-        case "PayPal":
+        case "PayPal" as String:
             print("start paypal")
             let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
             payPalDriver.viewControllerPresentingDelegate = self
@@ -228,7 +234,7 @@ class OrderVC: UIViewController {
             }
             print("end paypal")
             
-        case "Cash on Delivery":
+        case "Cash on Delivery" as String:
             print("Cash On Delivery")
             self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
             

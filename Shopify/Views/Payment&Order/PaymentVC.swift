@@ -14,9 +14,10 @@ class PaymentVC: UIViewController
     @IBOutlet var processText: UILabel!
     
     var shouldPay : Int = 0
-    var approved : Bool = true
+    var approved : Int = 0
     var paymentMethod : String?
     var currencyDefault = UserDefaults()
+    var paymentMethodUserDefault = UserDefaults()
     var cashType: String?
 
     /*@IBOutlet weak var addressTable: UITableView!{
@@ -43,29 +44,74 @@ class PaymentVC: UIViewController
     {
         super.viewDidLoad()
         radioBtn = SSRadioButtonsController(buttons: payPalBtn, codBtn)
-        // Do any additional setup after loading the view.
         cashType = currencyDefault.value(forKey: "CashType") as? String
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
         cashType = currencyDefault.value(forKey: "CashType") as? String
+        approved = 0
+    }
+    
+// image and label changer
+    func payMethods(type: String, approve: Int) -> String
+    {
+        print("\(type)")
+        processImage.image = UIImage(named: "\(type)")
+        approved = approve
+        switch type
+        {
+        case "PayPal":
+            processText.text = "Total Cost = \(shouldPay) \nYou will Pay by your PayPal Account"
+            
+        case "Denied":
+            processText.text = "Total Cost = \(shouldPay) \nSorry but your order is too expensive to be Cash On Delivery"
+            
+        case "Cash on Delivery":
+            processText.text = "Total Cost = \(shouldPay) \nYou will pay in Cash when order is delivered"
+            
+        default:
+            print("Error")
+        }
+        return type
+    }
+    
+// check if approved or not (exceed the max number)
+    func checkAprrovedProcces(maxNumber: Int)
+    {
+        if shouldPay < maxNumber
+        {
+            print("Approved")
+            paymentMethod = payMethods(type: "Cash on Delivery", approve: 1)
+        }
+        else
+        {
+            print("Denied")
+            paymentMethod = payMethods(type: "Denied", approve: 2)
+        }
     }
     
     @IBAction func proceedOrderBtn(_ sender: Any)
     {
         switch approved
         {
-        case true:
-            let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
-            orderObj.paymentMethodText = paymentMethod
-            orderObj.paymentMethodSetFlag = true
+        case 1:
+            //let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+            //orderObj.paymentMethodText = paymentMethod
+            paymentMethodUserDefault.set("\(paymentMethod)", forKey: "PaymentType")
+            paymentMethodUserDefault.set(true, forKey: "PaymentFlag")
+            //orderObj.paymentMethodSetFlag = true
             //orderObj.shouldPay = shouldPay ?? 0
-            //self.navigationController?.popViewController(animated: true)
-            self.navigationController?.pushViewController(orderObj, animated: true)
+            self.navigationController?.popViewController(animated: true)
+            //self.navigationController?.pushViewController(orderObj, animated: true)
             
-        case false:
+        case 2:
             let alert = UIAlertController(title: "", message: "Sorry you can't choose this payment Type", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true, completion: nil)
+        
+        default:
+            let alert = UIAlertController(title: "", message: "Sorry you have to choose payment method first", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
             present(alert, animated: true, completion: nil)
         }
@@ -92,58 +138,13 @@ extension PaymentVC: SSRadioButtonControllerDelegate
                 print("Error")
             }
         case payPalBtn:
-            paymentMethod = payMethods(type: "PayPal", approve: true)
+            paymentMethod = payMethods(type: "PayPal", approve: 1)
             
         default:
             print("NoBtn")
         }
-
     }
 }
-
-extension PaymentVC
-{
-    func payMethods(type: String, approve: Bool) -> String
-    {
-        print("\(type)")
-        processImage.image = UIImage(named: "\(type)")
-        approved = approve
-        switch type
-        {
-        case "PayPal":
-            processText.text = "Total Cost = \(shouldPay) \nYou will Pay by your PayPal Account"
-            
-        case "Denied":
-            processText.text = "Total Cost = \(shouldPay) \nSorry but your order is too expensive to be Cash On Delivery"
-            
-        case "Cash on Delivery":
-            processText.text = "Total Cost = \(shouldPay) \nYou will pay in Cash when order is delivered"
-            
-        default:
-            print("Error")
-        }
-        return type
-    }
-}
-
-extension PaymentVC
-{
-    func checkAprrovedProcces(maxNumber: Int)
-    {
-        if shouldPay < maxNumber
-        {
-            print("Cash on Delivery")
-            paymentMethod = payMethods(type: "Cash on Delivery", approve: true)
-        }
-        else
-        {
-            print("Denied")
-            paymentMethod = payMethods(type: "Denied", approve: false)
-        }
-    }
-}
-
-
 /*extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2

@@ -216,7 +216,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             })
         })
         editAction.image = UIImage(systemName: "pencil")
-        editAction.backgroundColor = UIColor .blue
+        editAction.backgroundColor = UIColor .systemBlue
         let configuration = UISwipeActionsConfiguration(actions: [editAction])
         return configuration
     }
@@ -246,7 +246,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
             }
         })
         deleteAction.image = UIImage(systemName: "trash")
-        deleteAction.backgroundColor = UIColor .red
+        deleteAction.backgroundColor = UIColor .systemRed
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
     }
