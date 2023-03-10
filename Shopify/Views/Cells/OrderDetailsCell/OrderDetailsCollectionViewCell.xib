@@ -28,40 +28,16 @@
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gof-Xp-V3a">
-                        <rect key="frame" x="264.66666666666669" y="94.666666666666671" width="132.33333333333331" height="34.333333333333329"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlm-r3-Sys">
-                                <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="34.333333333333336"/>
-                                <color key="tintColor" name="AccentColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="plusbtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Z66-OS-w15"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ce-gl-sgi">
-                                <rect key="frame" x="61.666666666666629" y="0.0" width="9" height="34.333333333333336"/>
-                                <color key="tintColor" name="AccentColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xir-hE-72Y">
-                                <rect key="frame" x="82.666666666666629" y="0.0" width="49.666666666666657" height="34.333333333333336"/>
-                                <color key="tintColor" name="AccentColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="minus.circle.fill" catalog="system"/>
-                                <connections>
-                                    <action selector="minusbtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="WDV-qN-e3M"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJM-lz-KMV">
-                        <rect key="frame" x="172" y="116.66666666666667" width="54.333333333333343" height="20.333333333333329"/>
+                        <rect key="frame" x="172" y="116.66666666666667" width="65" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="AccentColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySA-t1-vPC">
+                        <rect key="frame" x="323.66666666666669" y="116" width="41.333333333333314" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -69,14 +45,15 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="a0s-2S-3L8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="03Y-8F-b6p"/>
+                <constraint firstItem="ySA-t1-vPC" firstAttribute="bottom" secondItem="ZTg-uK-7eu" secondAttribute="bottom" constant="2" id="0bY-3D-7Pp"/>
+                <constraint firstItem="ySA-t1-vPC" firstAttribute="leading" secondItem="qJM-lz-KMV" secondAttribute="trailing" constant="86.666666666666657" id="2WE-7M-QLd"/>
                 <constraint firstItem="a0s-2S-3L8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="3TU-XH-Fjg"/>
                 <constraint firstAttribute="bottom" secondItem="qJM-lz-KMV" secondAttribute="bottom" constant="32" id="442-hT-6kX"/>
                 <constraint firstItem="Llf-7a-Pwy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="Jba-T2-d5L"/>
                 <constraint firstItem="qJM-lz-KMV" firstAttribute="leading" secondItem="a0s-2S-3L8" secondAttribute="trailing" constant="16" id="bVh-8z-woL"/>
                 <constraint firstAttribute="trailing" secondItem="Llf-7a-Pwy" secondAttribute="trailing" constant="16" id="isQ-VH-iVd"/>
                 <constraint firstItem="Llf-7a-Pwy" firstAttribute="leading" secondItem="a0s-2S-3L8" secondAttribute="trailing" constant="16" id="nEV-I5-YRZ"/>
-                <constraint firstAttribute="trailing" secondItem="gof-Xp-V3a" secondAttribute="trailing" constant="16" id="qzU-Rc-luU"/>
-                <constraint firstAttribute="bottom" secondItem="gof-Xp-V3a" secondAttribute="bottom" constant="40" id="uHu-U2-AWW"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="ySA-t1-vPC" secondAttribute="trailing" constant="48" id="teS-Cy-NEw"/>
                 <constraint firstAttribute="bottom" secondItem="a0s-2S-3L8" secondAttribute="bottom" constant="16" id="uWF-Vc-Avz"/>
             </constraints>
             <size key="customSize" width="413" height="169"/>
@@ -84,16 +61,14 @@
                 <outlet property="orderimage" destination="a0s-2S-3L8" id="1rN-Mm-SK1"/>
                 <outlet property="ordername" destination="Llf-7a-Pwy" id="5lF-UM-dYn"/>
                 <outlet property="orderprice" destination="qJM-lz-KMV" id="F6O-Ge-5Gr"/>
-                <outlet property="orderquantity" destination="4Ce-gl-sgi" id="MB6-Ll-x0q"/>
+                <outlet property="orderquantity" destination="ySA-t1-vPC" id="MiR-oa-pdl"/>
             </connections>
             <point key="canvasLocation" x="396.18320610687022" y="-56.690140845070424"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="0.23529411764705882" green="0.36078431372549019" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

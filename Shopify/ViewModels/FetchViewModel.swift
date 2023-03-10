@@ -113,19 +113,19 @@ class OrderViewModel {
 }
 
 class DraftOrderViewModel {
+    
     //MARK: for get draftOrder
     var bindDraftOrderToCartVC : (() -> ()) = {}
     
-    var draftOrderResults : DraftOrderResult? {
+    var draftOrderResults : SingleDraftOrder? {
         didSet {
             bindDraftOrderToCartVC()
         }
     }
-    
-    
     func getDraftOrders (target : EndPoints){
         NetworkServices.fetch(url: target.path) { result in
             self.draftOrderResults = result
+            print(self.draftOrderResults?.draft_order?.line_items?.count)
         }
     }
     
@@ -142,4 +142,62 @@ class DraftOrderViewModel {
             self.error = error
         }
     }
+    
+    //MARK: for edit line item in draftOrder
+    
+    var bindErrorToEditCartVC:(()->()) = {}
+    var err:[String:Any]? {
+        didSet{
+            bindErrorToEditCartVC()
+        }
+    }
+    func editDraftOrder(target : EndPoints , params : [String : Any]) {
+        NetworkServices.putMethod(url: target.path, parameters: params) { err in
+            self.err = err
+        }
+        
+    }
+}
+
+
+class OrderDetailsViewModel
+{
+    var bindResultOfCartToOrderDetailsViewController: (() -> Void) = {}
+    
+    
+    var DataOfOrderDetails : SingleDraftOrder!
+    {
+        didSet
+        {
+            bindResultOfCartToOrderDetailsViewController()
+        }
+    }
+    
+    func getDataOfOrderDetails (target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfOrderDetails = result
+        }
+    }
+}
+
+class PriceRuleViewModel
+{
+    var bindresultOfPriceruleToOrderDetails : (() -> Void) = {}
+    
+    var DataOfPricerule : Discounts?
+    {
+        didSet
+        {
+            bindresultOfPriceruleToOrderDetails()
+        }
+    }
+    
+    func getpricerule(target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.DataOfPricerule = result
+        }
+    }
+    
 }
