@@ -55,9 +55,6 @@
                                 <buttonConfiguration key="configuration" style="plain" image="minus.circle" catalog="system">
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="minusQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lMs-Io-wYd"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iY2-xv-fyU">
                                 <rect key="frame" x="39.666666666666686" y="0.0" width="18" height="34.333333333333336"/>
@@ -71,9 +68,6 @@
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system">
                                     <color key="baseForegroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="addQuantity:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wuY-1B-CLR"/>
-                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -112,9 +106,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="minus.circle" catalog="system" width="32" height="32"/>
+        <image name="minus.circle" catalog="system" width="128" height="123"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
-        <image name="trash" catalog="system" width="32" height="32"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
