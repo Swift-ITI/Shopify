@@ -265,38 +265,49 @@ extension CartVC : UITableViewDataSource{
     
     @objc func plus(sender : UIButton)
     {
-        var arrofdict : [[String:Any]] = []
-        for item in draftOrder?.draft_order?.line_items ?? []
+        while draftOrder?.draft_order?.line_items?[sender.tag].quantity ?? 0 < 2
         {
-            var dict : [String: Any] = [
-                "variant_id" : item.variant_id ?? 0,
-                "product_id": item.product_id ?? 0,
-                "title": item.title ?? "",
-                "vendor": item.vendor ?? "",
-                "quantity": item.quantity ?? 0,
-                "price": item.price ?? "",
-            ]
-            arrofdict.append(dict)
+            draftOrder?.draft_order?.line_items?[sender.tag].quantity! += 1
         }
+        let params = [
+            "draft_order": [
+                "line_items": self.converttodic(arrofline: draftOrder?.draft_order?.line_items ?? []),
+            ],
+        ]
+        
+        cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+//        var arrofdict : [[String:Any]] = []
+//        for item in draftOrder?.draft_order?.line_items ?? []
+//        {
+//            var dict : [String: Any] = [
+//                "variant_id" : item.variant_id ?? 0,
+//                "product_id": item.product_id ?? 0,
+//                "title": item.title ?? "",
+//                "vendor": item.vendor ?? "",
+//                "quantity": item.quantity ?? 0,
+//                "price": item.price ?? "",
+//            ]
+//            arrofdict.append(dict)
+//        }
     }
     
 
         @objc func minus(sender : UIButton)
     {
         
-        var arrofdict : [[String:Any]] = []
-        for item in draftOrder?.draft_order?.line_items ?? []
-        {
-            var dict : [String: Any] = [
-                "variant_id" : item.variant_id ?? 0,
-                "product_id": item.product_id ?? 0,
-                "title": item.title ?? "",
-                "vendor": item.vendor ?? "",
-                "quantity": item.quantity ?? 0,
-                "price": item.price ?? "",
-            ]
-            arrofdict.append(dict)
-        }
+//        var arrofdict : [[String:Any]] = []
+//        for item in draftOrder?.draft_order?.line_items ?? []
+//        {
+//            var dict : [String: Any] = [
+//                "variant_id" : draftOrder?.draft_order?.line_items?[sender.tag].variant_id ?? 0,
+//                "product_id": draftOrder?.draft_order?.line_items?[sender.tag].product_id ?? 0,
+//                "title":draftOrder?.draft_order?.line_items?[sender.tag].title ?? "",
+//                "vendor": draftOrder?.draft_order?.line_items?[sender.tag].vendor ?? "",
+//                "quantity": draftOrder?.draft_order?.line_items?[sender.tag].quantity ?? 0,
+//                "price": draftOrder?.draft_order?.line_items?[sender.tag].price ?? "",
+//            ]
+//            arrofdict.append(dict)
+//        }
     }
     
     
