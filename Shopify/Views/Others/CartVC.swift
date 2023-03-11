@@ -19,6 +19,9 @@ class CartVC: UIViewController {
    // var product : SingleProduct?
     var arrProducts : [Product] = []
     
+    var productt : CatigoriesViewModel?
+    var Oneproduct : Products?
+    
     let nsDefault = UserDefaults()
     
     var coreDataVm : CoreDataViewModel?
@@ -44,9 +47,19 @@ class CartVC: UIViewController {
                 reachabilty.isReachableViaWiFi()
                 print("connected via WIFI")
                 flag = true
-                
+                productt = CatigoriesViewModel()
                 cartVM = DraftOrderViewModel()
-            
+                self.cartVM?.getProduct(target:.allProducts)
+                
+            productt?.getProducts(target: .allProducts)
+            self.productt?.bindResultOfCatigoriesToCatigorieViewController = { //() in
+                    DispatchQueue.main.async { [self] in
+                      //  self.Oneproduct = self.productt?.DataOfProducts
+                        self.arrProducts = self.productt?.DataOfProducts.products ?? []
+                        print("salma\(self.arrProducts.count)")
+                          self.cartProducts.reloadData()
+                    }
+                }
                 
                 cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
                 cartVM?.bindDraftOrderToCartVC = {() in
@@ -55,18 +68,11 @@ class CartVC: UIViewController {
                         self.cartProducts.reloadData()
                     }
                 }
-                for item in (self.draftOrder?.draft_order?.line_items ?? []){
-                    self.cartVM?.getProduct(target: .deleteProductByID(id: item.product_id ?? 0))
-
+                //for item in (self.draftOrder?.draft_order?.line_items ?? []){
+         
+              
                     
-                    self.cartVM?.bindProductToCart = { () in
-                        DispatchQueue.main.async {
-                            self.arrProducts.append((self.cartVM?.product?.product)!)
-                            self.cartProducts.reloadData()
-                        }
-                    }
-                    
-                }
+                
                 
             }else {
                 print("Not conneted")
@@ -125,7 +131,7 @@ extension CartVC : UITableViewDelegate{
         
         if editingStyle == .delete
         {
-            let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Cart", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
                 print("Deleted")
                 self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
@@ -188,12 +194,17 @@ extension CartVC : UITableViewDataSource{
         
       
         if flag {
-                    
+            for iteem in arrProducts
+            {
+                if draftOrder?.draft_order?.line_items?[indexPath.section].product_id == iteem.id
+                {
+                    cartProductscell.productImg.kf.setImage(with: URL(string: iteem.image?.src ?? ""))
+                }
+            }
             cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
             
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
-            
-          //  cartProductscell.productImg.kf.setImage(with: URL(string: arrProducts[indexPath.section].image?.src ?? ""))
+    
                     
             cartProductscell.quantity.text = "1"
             
@@ -249,5 +260,23 @@ extension CartVC : UITableViewDataSource{
     func minus(){}
     
     @objc
-    func deleteLineItem(){}
+   func deleteLineItem()
+    {
+//        let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+//            print("Deleted")
+//           // self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
+//            self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+//            let params = [
+//                "draft_order": [
+//                    "line_items": self.arrayofdict,
+//                ],
+//            ]
+//            self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+//            
+//            tableView.reloadData()
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//        self.present(alert, animated: true, completion: nil)
+    }
 }

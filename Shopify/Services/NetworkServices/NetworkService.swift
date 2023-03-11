@@ -27,7 +27,6 @@ protocol PUT_DATA {
 
 class NetworkServices: FETCH_DATA {
     static func fetch<T>(url: String?, compiletionHandler: @escaping (T?) -> Void) where T: Decodable {
-        let semaphore = DispatchSemaphore(value: 5)
         let request = AF.request(url ?? "")
 
         request.responseDecodable(of: T.self) { response in
@@ -35,16 +34,9 @@ class NetworkServices: FETCH_DATA {
                 compiletionHandler(nil)
                 return
             }
-            
-            print("before signal")
-            semaphore.signal()
-            print("after signal")
             compiletionHandler(resultOfAPI)
 
         }
-        print("before wait")
-        semaphore.wait()
-        print("after wait")
     }
 }
 
