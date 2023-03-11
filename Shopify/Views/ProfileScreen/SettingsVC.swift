@@ -90,17 +90,19 @@ class SettingsVC: UIViewController
     
     func segmentChanger()
     {
-//        switch currencyDefault.value(forKey: "CashType") as! String
-//        {
-//        case "USD":
-//            currencySegment.selectedSegmentIndex = 0
-//            
-//        case "Egp":
-//            currencySegment.selectedSegmentIndex = 1
-//            
-//        default:
-//            print("Error")
-//        }
+
+        switch currencyDefault.value(forKey: "CashType") as! String
+        {
+        case "USD":
+            currencySegment.selectedSegmentIndex = 0
+            
+        case "EGP":
+            currencySegment.selectedSegmentIndex = 1
+            
+        default:
+            print("Error")
+        }
+
     }
     
 // MARK: - IBActions Part
@@ -149,7 +151,7 @@ class SettingsVC: UIViewController
         }
         else if currencySegment.selectedSegmentIndex == 1
         {
-            currencyDefault.set("Egp", forKey: "CashType")
+            currencyDefault.set("EGP", forKey: "CashType")
         }
     }
 }
