@@ -10,6 +10,7 @@ import UIKit
 class WishListsCell: UITableViewCell
 {
 
+    @IBOutlet var clothImage: UIImageView!
     @IBOutlet var price: UILabel!
     @IBOutlet var clothType: UILabel!
     

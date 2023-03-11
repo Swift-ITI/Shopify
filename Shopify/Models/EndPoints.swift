@@ -98,6 +98,7 @@ enum EndPoints {
             
         case .searchCustomerAddresses(id: let id) :
             return "\(BaseUrl)/customers/\(id)/addresses.json"
+            
         case .price_rulee(id: let id):
             return "\(BaseUrl)/price_rules/\(id).json"
 

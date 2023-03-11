@@ -11,6 +11,7 @@ class Order : Decodable
     var id : Int?
     var created_at : String?
     var current_total_price : String?
+    var current_subtotal_price : String?
     var line_items : [LineItems]?
 }
 
