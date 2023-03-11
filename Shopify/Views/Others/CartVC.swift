@@ -58,6 +58,7 @@ class CartVC: UIViewController {
                         self.arrProducts = self.productt?.DataOfProducts.products ?? []
                         print("salma\(self.arrProducts.count)")
                           self.cartProducts.reloadData()
+                         print(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)
                     }
                 }
                 
@@ -135,14 +136,21 @@ extension CartVC : UITableViewDelegate{
             alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
                 print("Deleted")
                 self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
-                self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
-                let params = [
-                    "draft_order": [
-                        "line_items": self.arrayofdict,
-                    ],
-                ]
-                self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
-                
+                if self.draftOrder?.draft_order?.line_items?.count == 0
+                {
+                    self.cartVM?.deleteDraftOrder(target: .draftOrder(id: self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0))
+                    self.nsDefault.set("first", forKey: "note")
+                }
+                else
+                {
+                    self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+                    let params = [
+                        "draft_order": [
+                            "line_items": self.arrayofdict,
+                        ],
+                    ]
+                    self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+                }
                 tableView.reloadData()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -160,14 +168,13 @@ extension CartVC : UITableViewDelegate{
             "product_id": item.product_id ?? 0,
             "title": item.title ?? "",
             "vendor": item.vendor ?? "",
-            "quantity": 1,
+            "quantity": item.quantity ?? 0,
             "price": item.price ?? "",
             ]
             arrofdict.append(dict)
         }
         return arrofdict
     }
-
 }
 extension CartVC : UITableViewDataSource{
     
@@ -192,6 +199,7 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
+        
       
         if flag {
             for iteem in arrProducts
@@ -206,10 +214,12 @@ extension CartVC : UITableViewDataSource{
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
     
                     
-            cartProductscell.quantity.text = "1"
-            
+            cartProductscell.quantity.text = draftOrder?.draft_order?.line_items?[indexPath.section].quantity?.formatted()
+            cartProductscell.minusQuantity.tag = indexPath.section
             cartProductscell.plusQuantity.addTarget(self, action: #selector(plus), for: .touchUpInside)
+            cartProductscell.deleteProduct.tag = indexPath.section
             cartProductscell.deleteProduct.addTarget(self, action: #selector(deleteLineItem), for: .touchUpInside)
+            cartProductscell.minusQuantity.tag = indexPath.section
             cartProductscell.minusQuantity.addTarget(self, action: #selector(minus), for:.touchUpInside)
             
             
@@ -253,30 +263,82 @@ extension CartVC : UITableViewDataSource{
         present(alert, animated: true, completion: nil)
     }
     
-    @objc
-    func plus(){}
     
-    @objc
-    func minus(){}
-    
-    @objc
-   func deleteLineItem()
+    @objc func plus(sender : UIButton)
     {
-//        let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
-//            print("Deleted")
-//           // self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
-//            self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
-//            let params = [
-//                "draft_order": [
-//                    "line_items": self.arrayofdict,
-//                ],
+        while draftOrder?.draft_order?.line_items?[sender.tag].quantity ?? 0 < 2
+        {
+            draftOrder?.draft_order?.line_items?[sender.tag].quantity! += 1
+        }
+        print("zzz\(draftOrder?.draft_order?.line_items?[sender.tag].quantity)")
+        let params = [
+            "draft_order": [
+                "line_items": self.converttodic(arrofline: draftOrder?.draft_order?.line_items ?? []),
+            ],
+        ]
+        cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+        self.cartProducts.reloadData()
+//        var arrofdict : [[String:Any]] = []
+//        for item in draftOrder?.draft_order?.line_items ?? []
+//        {
+//            var dict : [String: Any] = [
+//                "variant_id" : item.variant_id ?? 0,
+//                "product_id": item.product_id ?? 0,
+//                "title": item.title ?? "",
+//                "vendor": item.vendor ?? "",
+//                "quantity": item.quantity ?? 0,
+//                "price": item.price ?? "",
 //            ]
-//            self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
-//            
-//            tableView.reloadData()
-//        }))
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//        self.present(alert, animated: true, completion: nil)
+//            arrofdict.append(dict)
+//        }
+    }
+    
+
+        @objc func minus(sender : UIButton)
+    {
+        
+//        var arrofdict : [[String:Any]] = []
+//        for item in draftOrder?.draft_order?.line_items ?? []
+//        {
+//            var dict : [String: Any] = [
+//                "variant_id" : draftOrder?.draft_order?.line_items?[sender.tag].variant_id ?? 0,
+//                "product_id": draftOrder?.draft_order?.line_items?[sender.tag].product_id ?? 0,
+//                "title":draftOrder?.draft_order?.line_items?[sender.tag].title ?? "",
+//                "vendor": draftOrder?.draft_order?.line_items?[sender.tag].vendor ?? "",
+//                "quantity": draftOrder?.draft_order?.line_items?[sender.tag].quantity ?? 0,
+//                "price": draftOrder?.draft_order?.line_items?[sender.tag].price ?? "",
+//            ]
+//            arrofdict.append(dict)
+//        }
+    }
+    
+    
+    @objc func deleteLineItem(sender: UIButton)
+    {
+        let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+            print("Deleted")
+            self.draftOrder?.draft_order?.line_items?.remove(at: sender.tag)
+            if self.draftOrder?.draft_order?.line_items?.count == 0
+            {
+                self.cartVM?.deleteDraftOrder(target: .draftOrder(id: self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0))
+                self.nsDefault.set("first", forKey: "note")
+            }
+            else
+            {
+                self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+                let params = [
+                    "draft_order": [
+                        "line_items": self.arrayofdict,
+                    ],
+                ]
+                self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+            }
+     
+           self.cartProducts.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+
     }
 }

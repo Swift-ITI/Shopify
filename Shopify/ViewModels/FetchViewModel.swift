@@ -170,6 +170,10 @@ class DraftOrderViewModel {
             self.product = result
         }
     }
+    func deleteDraftOrder (target: EndPoints)
+    {
+        NetworkServices.delete(url: target.path)
+    }
 }
 
 
