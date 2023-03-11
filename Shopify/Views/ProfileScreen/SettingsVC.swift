@@ -90,6 +90,7 @@ class SettingsVC: UIViewController
     
     func segmentChanger()
     {
+
         switch currencyDefault.value(forKey: "CashType") as! String
         {
         case "USD":
@@ -101,6 +102,7 @@ class SettingsVC: UIViewController
         default:
             print("Error")
         }
+
     }
     
 // MARK: - IBActions Part

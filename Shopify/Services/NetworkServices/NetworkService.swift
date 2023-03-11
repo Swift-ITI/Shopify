@@ -34,8 +34,8 @@ class NetworkServices: FETCH_DATA {
                 compiletionHandler(nil)
                 return
             }
-
             compiletionHandler(resultOfAPI)
+
         }
     }
 }

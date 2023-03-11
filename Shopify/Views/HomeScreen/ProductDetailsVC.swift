@@ -10,14 +10,8 @@ import Kingfisher
 import UIKit
 
 class ProductDetailsVC: UIViewController {
-    private var flag: Bool = false
-    var currentcellindex = 0
-    var timer: Timer?
-    var isDuplicated : Int = 2
     
-    var coredatavm : FavCoreDataViewModel?
-    var favcoredataobj : FavCoreDataManager?
-    
+    @IBOutlet weak var availableQuantity: UILabel!
     @IBOutlet var productname: UILabel!
     @IBOutlet var productprice: UILabel!
     @IBOutlet var pulldowncolor: UIButton!
@@ -35,7 +29,6 @@ class ProductDetailsVC: UIViewController {
             ItemCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
         }
     }
-
     @IBOutlet var reviewTableView: UITableView! {
         didSet {
             reviewTableView.delegate = self
@@ -47,30 +40,44 @@ class ProductDetailsVC: UIViewController {
             reviewTableView.register(nibT, forCellReuseIdentifier: "reviewTVCell")
         }
     }
-
     @IBOutlet var productdescription: UITextView!
     @IBOutlet var favbtn: UIButton!
-
+    
+    private var flag: Bool = false
+    var currentcellindex = 0
+    var timer: Timer?
+    var isDuplicated : Int = 2
+    
+    var coredatavm : FavCoreDataViewModel?
+    var favcoredataobj : FavCoreDataManager?
+    
     var detailedProduct: Product?
 
     var cartVM: DraftOrderViewModel?
     var draftOrder: SingleDraftOrder?
+    
     var nsDefault = UserDefaults()
+    
     var lineItems: [[String: Any]] = []
     var lineItem: [String: Any] = [:]
     
     var coreDataVM : CoreDataViewModel?
     var coreData : CoreDataManager?
     
-   
+    var reviewName = ["Robert J.", "Evelyn Taal", "Gong Yoo", "Park Seo joa", "Sila M."]
+    var reviewRate = ["3", "2", "5", "3", "4"]
+    var reviewComment = ["Bad quality", "Uncomfortable product" , "Comfortable, Highly recommended!", "Pretty, and not a bad quality for this price! " , "Really nice fit and very comfortable."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         startTimer()
+        
         productname.text = detailedProduct?.title
         productprice.text = detailedProduct?.variants?[0].price
         productdescription.text = detailedProduct?.body_html
+        availableQuantity.text = "Available Quantity: \((detailedProduct?.variants?[0].inventory_quantity)?.formatted() ?? "")"
         pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0
+        
         productfilter(sender: pulldownsize)
         productfilter(sender: pulldowncolor)
 
@@ -82,11 +89,8 @@ class ProductDetailsVC: UIViewController {
         
         coredatavm = FavCoreDataViewModel()
         favcoredataobj = coredatavm?.getfavInstance()
-        
-      
-        
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         if (favcoredataobj?.isFav(lineItemId: detailedProduct?.id ?? 0))! {
@@ -131,7 +135,6 @@ class ProductDetailsVC: UIViewController {
         if coreData!.isInCart(lineItemId: detailedProduct?.id ?? 0){
             print("ddddddddddddddd")
             isDuplicated = 1
-            
         }
         
         if nsDefault.value(forKey: "note") as? String == "first" {
@@ -154,7 +157,7 @@ class ProductDetailsVC: UIViewController {
             ]
             cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
             
-            getOrders()
+          //  getOrders()
             
             coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
 
@@ -162,13 +165,13 @@ class ProductDetailsVC: UIViewController {
                 DispatchQueue.main.async {
                     switch self.cartVM?.error?.keys.formatted() {
                     case "draft_order":
+                        
                         let draftOrderDict = self.cartVM?.error?["draft_order"] as? [String: Any]
                         self.nsDefault.set("created", forKey: "note")
                         self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
                         print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                         self.getOrders()
-//                        self.showAlert(title: "SUCESS", msg: "successfully added to cart") { action in
-//                            self.performSegue(withIdentifier: "gotocart", sender: self)}
+                        self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
                     
                     case "error":
                         print("Error Found")
@@ -179,13 +182,11 @@ class ProductDetailsVC: UIViewController {
             }
         } else {
             getOrders()
-            
-         
-            
+    
             switch isDuplicated {
             case 1:
                 print("don't save")
-                showAlert()
+                self.showAlert(title: "OH --ooh!", msg: "Already added to cart") {_ in }
             case 2:
                 self.lineItem = [
                     "variant_id": detailedProduct?.variants?[0].id ?? 0,
@@ -205,8 +206,11 @@ class ProductDetailsVC: UIViewController {
 
                 self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
                 coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+                self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
+                    self.getOrders()
+                }
               
-                getOrders()
+                //getOrders()
 
             default:
                 break
@@ -222,16 +226,10 @@ class ProductDetailsVC: UIViewController {
         
     }
     
-    func showAlert() {
-        let alert = UIAlertController(title: "ooh-oh!", message: "Already added", preferredStyle: UIAlertController.Style.alert)
-
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        present(alert, animated: true, completion: nil)
-    }
 
     func getOrders(){
         print("NS: \(String(describing: nsDefault.value(forKey: "draftOrderID")))")
+        
         cartVM?.getDraftOrders(target: .draftOrder(id: (nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
         cartVM?.bindDraftOrderToCartVC = {
             DispatchQueue.main.async {
@@ -334,6 +332,9 @@ extension ProductDetailsVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewTVCell", for: indexPath) as! ReviewTVCell
+        cell.nameTxt.text = reviewName[indexPath.row]
+        cell.ratingText.text = "\(reviewRate[indexPath.row]) ⭐️"
+        cell.reviewText.text = reviewComment[indexPath.row]
 
         return cell
     }

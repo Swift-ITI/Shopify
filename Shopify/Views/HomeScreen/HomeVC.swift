@@ -24,6 +24,8 @@ class HomeVC: UIViewController {
     var numberofdots : Int?
     //var arrimg : []?
     
+    var nsDefault = UserDefaults()
+    
     
     @IBOutlet weak var pagecontroller: UIPageControl!
     
@@ -136,10 +138,16 @@ class HomeVC: UIViewController {
         }
         @objc func navcart()
         {
-            let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
-            let cartobj =
-            CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
-            self.navigationController?.pushViewController(cartobj, animated: true)
+            if (nsDefault.value(forKey: "isLogged") as? Bool) ?? false{
+              
+                let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
+                let cartobj =
+                CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
+                self.navigationController?.pushViewController(cartobj, animated: true)
+                
+            }else{
+                self.performSegue(withIdentifier: "goToLogIn", sender: self)
+            }
         }
         @objc func navsearch()
         {

@@ -11,6 +11,10 @@ class Products: Decodable {
     var products: [Product]
 }
 
+class SingleProduct : Decodable {
+    var product : Product
+}
+
 class Product: Decodable {
     var id: Int
     var title: String

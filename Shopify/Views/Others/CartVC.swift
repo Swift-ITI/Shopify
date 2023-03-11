@@ -16,6 +16,12 @@ class CartVC: UIViewController {
     
     var cartVM : DraftOrderViewModel?
     var draftOrder : SingleDraftOrder?
+   // var product : SingleProduct?
+    var arrProducts : [Product] = []
+    
+    var productt : CatigoriesViewModel?
+    var Oneproduct : Products?
+    
     let nsDefault = UserDefaults()
     
     var coreDataVm : CoreDataViewModel?
@@ -25,37 +31,74 @@ class CartVC: UIViewController {
     var lineItemsFromCoreData : Array<NSManagedObject>!
     
     var reachabilty : Reachability!
+    var flag : Bool = false
+    
+    var arrayofdict : [[String:Any]] = []
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "CartProductCV", bundle: nil)
-        cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
-        
-        coreDataVm = CoreDataViewModel()
-        coreData = coreDataVm?.getInstance()
-        
-        cartVM = DraftOrderViewModel()
-        cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
-        cartVM?.bindDraftOrderToCartVC = {() in
-            DispatchQueue.main.async {
-                self.draftOrder = self.cartVM?.draftOrderResults
-                self.cartProducts.reloadData()
-               // self.cartProducts.reloadData()
-//                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
-//                        self.coreData?.saveToCoreData(lineItem: lineItem)
-//                    }
+            let nib = UINib(nibName: "CartProductCV", bundle: nil)
+            cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
+            
+            reachabilty = Reachability.forInternetConnection()
+            
+            if reachabilty.isReachable() {
+                reachabilty.isReachableViaWiFi()
+                print("connected via WIFI")
+                flag = true
+                productt = CatigoriesViewModel()
+                cartVM = DraftOrderViewModel()
+                self.cartVM?.getProduct(target:.allProducts)
+                
+            productt?.getProducts(target: .allProducts)
+            self.productt?.bindResultOfCatigoriesToCatigorieViewController = { //() in
+                    DispatchQueue.main.async { [self] in
+                      //  self.Oneproduct = self.productt?.DataOfProducts
+                        self.arrProducts = self.productt?.DataOfProducts.products ?? []
+                        print("salma\(self.arrProducts.count)")
+                          self.cartProducts.reloadData()
+                    }
+                }
+                
+                cartVM?.getDraftOrders(target: .draftOrder(id:( nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
+                cartVM?.bindDraftOrderToCartVC = {() in
+                    DispatchQueue.main.async {
+                        self.draftOrder = self.cartVM?.draftOrderResults
+                        self.cartProducts.reloadData()
+                    }
+                }
+                //for item in (self.draftOrder?.draft_order?.line_items ?? []){
+         
+              
+                    
+                
+                
+            }else {
+                print("Not conneted")
+                flag = false
+                
+                coreDataVm = CoreDataViewModel()
+                coreData = coreDataVm?.getInstance()
                 self.lineItemsFromCoreData = self.coreData?.fetchDraftOrder(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0))
                 self.lineItemsFromCoreData = self.coreData?.fetchFromCoreData()
                 self.cartProducts.reloadData()
-                }
             }
-        }
-    override func viewWillAppear(_ animated: Bool) {
+    }
+      
+//    override func viewWillAppear(_ animated: Bool) {
+//
+//
+//        self.lineItemsFromCoreData = coreData?.fetchFromCoreData()
+//        cartProducts.reloadData()
+//
+//    }
+    
+    func showAlert(title: String, msg: String,handler:@escaping (UIAlertAction?)->Void) {
         
-        
-        self.lineItemsFromCoreData = coreData?.fetchFromCoreData()
-        cartProducts.reloadData()
+        let alert = UIAlertController(title: title, message: msg, preferredStyle:UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action)}))
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -85,12 +128,21 @@ extension CartVC : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
+        
         if editingStyle == .delete
         {
-            let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Cart", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
                 print("Deleted")
-                tableView.deleteSections([indexPath.section], with: .left)
+                self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
+                self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+                let params = [
+                    "draft_order": [
+                        "line_items": self.arrayofdict,
+                    ],
+                ]
+                self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+                
                 tableView.reloadData()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -98,15 +150,29 @@ extension CartVC : UITableViewDelegate{
         }
         tableView.reloadData()
     }
-}
+    func converttodic(arrofline :[LineItem]) -> [[String:Any]]
+    {
+        var arrofdict : [[String:Any]] = []
+        for item in arrofline
+        {
+            var dict : [String: Any] = [
+            "variant_id" : item.variant_id ?? 0,
+            "product_id": item.product_id ?? 0,
+            "title": item.title ?? "",
+            "vendor": item.vendor ?? "",
+            "quantity": 1,
+            "price": item.price ?? "",
+            ]
+            arrofdict.append(dict)
+        }
+        return arrofdict
+    }
 
+}
 extension CartVC : UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        reachabilty = Reachability.forInternetConnection()
-        if reachabilty.isReachable() {
-            reachabilty.isReachableViaWiFi()
-            print("connected")
+        if flag {
         return draftOrder?.draft_order?.line_items?.count ?? 0
         }else {
             return lineItemsFromCoreData.count
@@ -126,26 +192,40 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
-        reachabilty = Reachability.forInternetConnection()
-        if reachabilty.isReachable() {
-            reachabilty.isReachableViaWiFi()
-            print("connected")
-                    
+      
+        if flag {
+            for iteem in arrProducts
+            {
+                if draftOrder?.draft_order?.line_items?[indexPath.section].product_id == iteem.id
+                {
+                    cartProductscell.productImg.kf.setImage(with: URL(string: iteem.image?.src ?? ""))
+                }
+            }
             cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
             
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
+    
                     
             cartProductscell.quantity.text = "1"
+            
+            cartProductscell.plusQuantity.addTarget(self, action: #selector(plus), for: .touchUpInside)
+            cartProductscell.deleteProduct.addTarget(self, action: #selector(deleteLineItem), for: .touchUpInside)
+            cartProductscell.minusQuantity.addTarget(self, action: #selector(minus), for:.touchUpInside)
+            
+            
             
             
             
         }else {
-            print("Not connected")
             cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
             
             cartProductscell.productPrice.text = (lineItemsFromCoreData[indexPath.section].value(forKey: "price") as? Int)?.formatted()
             
             cartProductscell.quantity.text = "1"
+            
+            cartProductscell.plusQuantity.addTarget(self, action: #selector(actionAlert), for: .touchUpInside)
+            cartProductscell.deleteProduct.addTarget(self, action: #selector(actionAlert), for: .touchUpInside)
+            cartProductscell.minusQuantity.addTarget(self, action: #selector(actionAlert), for:.touchUpInside)
             
         }
         
@@ -166,4 +246,37 @@ extension CartVC : UITableViewDataSource{
         return cartProductscell
     }
     
+    @objc
+    func actionAlert(){
+        let alert = UIAlertController(title: "No internet", message: "Please Cheack your internet connection", preferredStyle:UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in}))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc
+    func plus(){}
+    
+    @objc
+    func minus(){}
+    
+    @objc
+   func deleteLineItem()
+    {
+//        let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure you want to delete this item from your Cart", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+//            print("Deleted")
+//           // self.draftOrder?.draft_order?.line_items?.remove(at: indexPath.section)
+//            self.arrayofdict = self.converttodic(arrofline: self.draftOrder?.draft_order?.line_items ?? [])
+//            let params = [
+//                "draft_order": [
+//                    "line_items": self.arrayofdict,
+//                ],
+//            ]
+//            self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+//            
+//            tableView.reloadData()
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//        self.present(alert, animated: true, completion: nil)
+    }
 }
