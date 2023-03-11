@@ -132,85 +132,37 @@ class OrderVC: UIViewController {
         }
     }
     
+    func convertToDict(arryOfLineItem: [LineItem]) -> [[String : Any]]
+    {
+        var arryOfDict : [[String : Any]] = []
+        for item in arryOfLineItem
+        {
+            let temp : [String : Any] = [
+                "price" : item.price ?? "",
+                "quantity" : item.quantity ?? 0,
+                "title" : item.title ?? ""
+            ]
+            arryOfDict.append(temp)
+        }
+        return arryOfDict
+    }
+    
     func postToOrders(id: Int)
     {
-        /*let newOrderData : [String: Any] =
-        ["orders":[
-            "confirmed":true,
-            "email":"test@test.com",
-            "financial_status":"paid",
-            "currency":"EGP",
-            "current_subtotal_price":200,
-            "current_total_discounts":50,
-            "current_total_price":150,
-            "discount_codes":[
-                [
-                    "code":"FAKE30",
-                    "amount":"9.00",
-                    "type":"percentage"
-                ]],
-            "billing_address":[
-                "first_name":defaultAddress?.first_name,
-                "last_name":defaultAddress?.last_name,
-                "address1":defaultAddress?.address1,
-                "phone":defaultAddress?.phone,
-                "city":defaultAddress?.city,
-                "country":defaultAddress?.country
-            ],
-            "shipping_address":[
-                "first_name":defaultAddress?.first_name,
-                "last_name":defaultAddress?.last_name,
-                "address1":defaultAddress?.address1,
-                "phone":defaultAddress?.phone,
-                "city":defaultAddress?.city,
-                "country":defaultAddress?.country
-            ],
-            "line_items":[
-                [
-                    "variant_id":447654529,
-                    "quantity":1
-                ]]
-        ]]*/
     let shopifyLink : String = "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/orders.json"
             
         print(shopifyLink)
         let orderData: [String: Any] = [
            "order": [
             "confirmed" : true,
-            "contact_email" : "test@test",
-            "email" : "test@test.com",
+            "contact_email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
+            "email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
             "currency" : "EGP",
-            "created_at" : "20-02-2015",
             "number" : 2,
             "order_status_url" : "",
-            "current_subtotal_price" : "15.5",
-            "current_total_price" : "0.2",
-            /*"billing_address":[
-                "first_name":defaultAddress?.first_name ?? "First Name",
-                "last_name":defaultAddress?.last_name ?? "Last Name",
-                "address1":defaultAddress?.address1 ?? "Address",
-                "phone":defaultAddress?.phone ?? "Phone",
-                "city":defaultAddress?.city ?? "City",
-                "country":defaultAddress?.country ?? "Country"
-            ],
-            "shipping_address":[
-                "first_name":defaultAddress?.first_name ?? "First Name",
-                "last_name":defaultAddress?.last_name ?? "Last Name",
-                "address1":defaultAddress?.address1 ?? "Address",
-                "phone":defaultAddress?.phone ?? "Phone",
-                "city":defaultAddress?.city ?? "City",
-                "country":defaultAddress?.country ?? "Country"
-                ],*/
-            "line_items": [
-                   [
-                       "fullfillabel_quantity" : 9,
-                       "name" : "egypt",
-                       "price" : "0.3",
-                       "quantity" : 3,
-                       "sku" : "testValue",
-                       "title" : "shooes"      
-                   ]
-               ]
+            "current_subtotal_price" : "\(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")",
+            "current_total_price" : "\(self.OrderDetailsResponse?.draft_order?.total_price ?? "")",
+            "line_items": convertToDict(arryOfLineItem: self.OrderDetailsResponse?.draft_order?.line_items ?? [])
            ]
         ]
         guard let addressEndpointUrl = URL(string: shopifyLink) else {
@@ -428,7 +380,7 @@ class OrderVC: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let addressesCell : AddressesCell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
             addressesCell.countryLabel.text = defaultAddress?.country
-            addressesCell.cityLabel.text = defaultAddress?.city
+            addressesCell.cityLabel.text = "\(defaultAddress?.city ?? ""), \(defaultAddress?.address1 ?? "")"
             addressesCell.phoneNumberLabel.text = defaultAddress?.phone
             addressesCell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
             return addressesCell
