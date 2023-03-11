@@ -37,13 +37,11 @@ class OrderVC: UIViewController {
     var checkcode = true
     
     var NsBoolDefault = UserDefaults()
-    
-    var paymentMethodText : String?
-    var paymentMethodSetFlag : Bool = false
+    var paymentDefault = UserDefaults()
     var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
     var shouldPay : Int = 1
-    
+    var addressExist : Bool = false
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
             orderDetails.delegate = self
@@ -71,7 +69,8 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        adresses.reloadData()
+        paymentDefault.set("Pay Method", forKey: "PaymentMethod")
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
         
         NsBoolDefault.set(false, forKey: "coupon")
@@ -83,7 +82,6 @@ class OrderVC: UIViewController {
         NsDefault = UserDefaults()
         
         customerviewmodel = UserViewModel()
-        
         customerviewmodel?.fetchUsers(target: .searchCustomerByID(id: NsDefault?.integer(forKey: "customerID") ?? 0))
         customerviewmodel?.bindDataToVC = { () in
             DispatchQueue.main.async {
@@ -119,38 +117,91 @@ class OrderVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
+        adresses.reloadData()
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
-        switch paymentMethodSetFlag
-        {
-        case false:
-            print("Didn't choose payment Method yet")
-            payMethodOutletButton.setTitle("Pay Method", for: .normal)
-            
-        case true:
-            print("Choosed Method")
-            paymentMethodSetFlag = false
-            payMethodOutletButton.setTitle(paymentMethodText, for: .normal)
+
+        payMethodOutletButton.setTitle("\(paymentDefault.value(forKey: "PaymentMethod") ?? "")", for: .normal)
+        customerviewmodel = UserViewModel()
+        customerviewmodel?.fetchUsers(target: .searchCustomerByID(id: NsDefault?.integer(forKey: "customerID") ?? 0))
+        customerviewmodel?.bindDataToVC = { () in
+            DispatchQueue.main.async {
+                self.customerResponse = self.customerviewmodel?.users
+                self.defaultAddress = self.customerviewmodel?.users?.customers.first?.default_address
+                self.adresses.reloadData()
+            }
         }
+    }
+    
+    func convertToDict(arryOfLineItem: [LineItem]) -> [[String : Any]]
+    {
+        var arryOfDict : [[String : Any]] = []
+        for item in arryOfLineItem
+        {
+            let temp : [String : Any] = [
+                "price" : item.price ?? "",
+                "quantity" : item.quantity ?? 0,
+                "title" : item.title ?? ""
+            ]
+            arryOfDict.append(temp)
+        }
+        return arryOfDict
     }
     
     func postToOrders(id: Int)
     {
-        self.postOrderVM?.postOrder(target: .orderPerCustomer(id: id), parameters:
-                                        ["orders":[
-                                            "confirmed" : true,
-                                            "contact_email" : NsDefault?.value(forKey: "customerEmail"),
-                                            "email" : NsDefault?.value(forKey: "customerEmail"),
-                                            "currency" : "EGP",
-                                            "current_subtotal_price" : "\(subTotal.text ?? "5")",
-                                            "current_total_discounts" : "\(discount.text ?? "0")",
-                                            "current_total_price":"\(total.text ?? "5")",
-                                            "line_items": OrderDetailsResponse?.draft_order?.line_items
-                                        ]])
+    let shopifyLink : String = "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/orders.json"
+            
+        print(shopifyLink)
+        let orderData: [String: Any] = [
+           "order": [
+            "confirmed" : true,
+            "contact_email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
+            "email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
+            "currency" : "EGP",
+            "number" : 2,
+            "order_status_url" : "",
+            "current_subtotal_price" : "\(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")",
+            "current_total_price" : "\(self.OrderDetailsResponse?.draft_order?.total_price ?? "")",
+            "line_items": convertToDict(arryOfLineItem: self.OrderDetailsResponse?.draft_order?.line_items ?? [])
+           ]
+        ]
+        guard let addressEndpointUrl = URL(string: shopifyLink) else {
+            return
+        }
+        let jsonEncoder = JSONEncoder()
+        var addressRequest = URLRequest(url: addressEndpointUrl)
+        addressRequest.httpShouldHandleCookies = false
+        addressRequest.httpMethod = "POST"
+        addressRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        addressRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        do {
+            
+            addressRequest.httpBody = try JSONSerialization.data(withJSONObject: orderData , options: .prettyPrinted)
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: addressRequest) { (data, response, error) in
+            // Handle the response from the Shopify API
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            if let response = response as? HTTPURLResponse {
+                print("Response status code: \(response.statusCode)")
+            }
+            if let data = data {
+            }
+        }
+        task.resume()
     }
     
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
-        paymentView.shouldPay = OrderDetailsResponse?.draft_order?.total_price as? Int ?? 0
+        print(Float(self.OrderDetailsResponse?.draft_order?.total_price ?? "") ?? 0.0)
+        paymentView.shouldPay = Float(self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+        paymentView.modalPresentationStyle = .fullScreen
+        //self.present(paymentView, animated: true, completion: nil)
         navigationController?.pushViewController(paymentView, animated: true)
     }
     
@@ -192,48 +243,76 @@ class OrderVC: UIViewController {
     
     @IBAction func placeOrder(_ sender: Any)
     {
-        switch paymentMethodText
+        if defaultAddress.self != nil
         {
-        case "PayPal":
-            print("start paypal")
-            let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
-            payPalDriver.viewControllerPresentingDelegate = self
-            payPalDriver.appSwitchDelegate = self
-            
-            let request = BTPayPalRequest(amount: "\(shouldPay)")
-            request.currencyCode = "USD"
-
-            payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
-                if let tokenizedPayPalAccount = tokenizedPayPalAccount
-                {
-                    print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
-                    let email = tokenizedPayPalAccount.email
-                    let firstName = tokenizedPayPalAccount.firstName
-                    let lastName = tokenizedPayPalAccount.lastName
-                    let phone = tokenizedPayPalAccount.phone
-                    let billingAddress = tokenizedPayPalAccount.billingAddress
-                    let shippingAddress = tokenizedPayPalAccount.shippingAddress
-                    
-                    self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
-                } else if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    // Buyer canceled payment approval
-                    print("Cancel")
-                    let alert = UIAlertController(title: "Payment Failed", message: "You have canceled the payment process", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                    self.present(alert, animated: true, completion: nil)
-                    
+            addressExist = true
+        }
+        else
+        {
+            addressExist = false
+        }
+        switch addressExist
+        {
+        case true:
+            switch paymentDefault.value(forKey: "PaymentMethod")
+            {
+            case "PayPal" as String:
+                print("start paypal")
+                let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
+                payPalDriver.viewControllerPresentingDelegate = self
+                payPalDriver.appSwitchDelegate = self
+                
+                let request = BTPayPalRequest(amount: "\(shouldPay)")
+                request.currencyCode = "USD"
+                
+                payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
+                    if let tokenizedPayPalAccount = tokenizedPayPalAccount
+                    {
+                        print("Got a nonce: \(tokenizedPayPalAccount.nonce)")
+                        let email = tokenizedPayPalAccount.email
+                        let firstName = tokenizedPayPalAccount.firstName
+                        let lastName = tokenizedPayPalAccount.lastName
+                        let phone = tokenizedPayPalAccount.phone
+                        let billingAddress = tokenizedPayPalAccount.billingAddress
+                        let shippingAddress = tokenizedPayPalAccount.shippingAddress
+                        
+                        self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
+                        let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                            self.navigationController?.popViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        // Buyer canceled payment approval
+                        print("Cancel")
+                        let alert = UIAlertController(title: "Payment Failed", message: "You have canceled the payment process", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
+                print("end paypal")
+                
+            case "Cash on Delivery" as String:
+                print("Cash On Delivery")
+                self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
+                let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+                
+            default:
+                print("Error")
+                let alert = UIAlertController(title: "Payment Error", message: "Please choose a payment method to proceed with it", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                present(alert, animated: true, completion: nil)
             }
-            print("end paypal")
-            
-        case "Cash on Delivery":
-            print("Cash On Delivery")
-            self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
-            
-        default:
-            print("Error")
+        case false:
+            let alert = UIAlertController(title: "Address Error", message: "Please choose an address to proceed", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true, completion: nil)
         }
     }
 }
@@ -301,10 +380,9 @@ class OrderVC: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let addressesCell : AddressesCell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
             addressesCell.countryLabel.text = defaultAddress?.country
-            addressesCell.cityLabel.text = defaultAddress?.city
+            addressesCell.cityLabel.text = "\(defaultAddress?.city ?? ""), \(defaultAddress?.address1 ?? "")"
             addressesCell.phoneNumberLabel.text = defaultAddress?.phone
             addressesCell.checkMarkImage.image = UIImage(systemName: "checkmark.circle.fill")
-            
             return addressesCell
         }
     }

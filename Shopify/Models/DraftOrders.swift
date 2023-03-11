@@ -40,7 +40,7 @@ class LineItem : Decodable {
     var title : String?//
     var variant_id : Int?
     var vendor : String?
-  //  var name : String?
+//    var name : String?
 
    
    

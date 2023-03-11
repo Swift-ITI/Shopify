@@ -87,6 +87,16 @@ class ProfileVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchData()
+    }
+
+    override func viewWillAppear(_ animated: Bool)
+    {
+        fetchData()
+    }
+    
+    func fetchData()
+    {
         id = nsDefaults.value(forKey: "customerID") as? Int
         let reachability: Reachability = Reachability.forInternetConnection()
         if reachability.isReachable()
@@ -114,7 +124,7 @@ class ProfileVC: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
-
+    
     func renderProfileView() {
         DispatchQueue.main.async {
             self.userDetails = self.userVM?.users
