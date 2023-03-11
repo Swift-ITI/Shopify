@@ -7,6 +7,8 @@
 
 import Reachability
 import UIKit
+import CoreData
+import Kingfisher
 
 class ProfileVC: UIViewController {
     // MARK: - IBOutlets Part
@@ -76,7 +78,6 @@ class ProfileVC: UIViewController {
 
     var userDetails: Customers?
     var userVM: UserViewModel?
-
     var orderDetails: OrdersResult?
     var orderVM: OrderViewModel?
 
@@ -84,15 +85,18 @@ class ProfileVC: UIViewController {
     var email: String?
     var logged: Bool = true
     var nsDefaults = UserDefaults()
-
+    var wishListItems : [NSManagedObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        fetchCoreData()
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
         fetchData()
+        fetchCoreData()
     }
     
     func fetchData()
@@ -194,7 +198,14 @@ extension ProfileVC: UITableViewDataSource {
             }
 
         case wishListTable:
-            return 4
+            if wishListItems.count > 4
+            {
+                return 4
+            }
+            else
+            {
+                return wishListItems.count
+            }
 
         default:
             return 1
@@ -203,6 +214,7 @@ extension ProfileVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
+// Orders Table
         case ordersTable:
             let cell: OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
             cell.priceLabel.text = orderDetails?.orders[indexPath.row].current_total_price
@@ -211,10 +223,14 @@ extension ProfileVC: UITableViewDataSource {
             cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
             return cell
 
+// Wish List Table
         case wishListTable:
             let cell: WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListsCell", for: indexPath) as! WishListsCell
-            cell.price.text = "1234 $"
-            cell.clothType.text = "Sweet Shit"
+            cell.price.text = wishListItems[indexPath.row].value(forKey: "price") as? String
+            cell.clothType.text = wishListItems[indexPath.row].value(forKey: "title") as? String
+            cell.clothType.adjustsFontSizeToFitWidth = true
+            let imageURL = URL(string: wishListItems[indexPath.row].value(forKey: "img") as? String ?? "https://img.freepik.com/premium-vector/system-software-update-upgrade-concept-loading-process-screen-vector-illustration_175838-2182.jpg?w=826")
+            cell.clothImage.kf.setImage(with: imageURL)
             return cell
 
         default:
@@ -225,5 +241,26 @@ extension ProfileVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
+    }
+}
+
+// MARK: - Core Data Extension Part
+
+extension ProfileVC
+{
+    func fetchCoreData ()
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        var managedContext : NSManagedObjectContext
+        managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WishList")
+        do
+        {
+            wishListItems = try managedContext.fetch(fetchRequest)
+            wishListTable.reloadData()
+        } catch let error
+        {
+            print(error.localizedDescription)
+        }
     }
 }

@@ -147,6 +147,27 @@ class OrderVC: UIViewController {
         return arryOfDict
     }
     
+    func calcTotal() -> Float
+    {
+        let subtotal : Float = Float(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "") ?? 0.0
+        let shipping : Float = (Float(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "") ?? 0.0) * 0.14
+        let dicounts : Float = (subtotal + shipping) * 0.3
+        var totalMoney : Float = 1.1
+        
+        switch self.NsBoolDefault.value(forKey: "coupon") as? Bool
+        {
+        case true:
+            totalMoney = subtotal + shipping - dicounts
+            
+        case false:
+            totalMoney = subtotal + shipping
+            
+        default:
+            break
+        }
+        return totalMoney
+    }
+    
     func postToOrders(id: Int)
     {
     let shopifyLink : String = "https://29f36923749f191f42aa83c96e5786c5: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@ios-q2-new-capital-admin-2022-2023.myshopify.com/admin/api/2023-01/orders.json"
@@ -158,10 +179,10 @@ class OrderVC: UIViewController {
             "contact_email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
             "email" : "\(NsDefault?.value(forKey: "customerEmail") ?? "")",
             "currency" : "EGP",
-            "number" : 2,
+            "number" : self.OrderDetailsResponse?.draft_order?.line_items?.count ?? 0,
             "order_status_url" : "",
             "current_subtotal_price" : "\(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")",
-            "current_total_price" : "\(self.OrderDetailsResponse?.draft_order?.total_price ?? "")",
+            "current_total_price" : "\(calcTotal())",
             "line_items": convertToDict(arryOfLineItem: self.OrderDetailsResponse?.draft_order?.line_items ?? [])
            ]
         ]
@@ -199,7 +220,7 @@ class OrderVC: UIViewController {
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
         print(Float(self.OrderDetailsResponse?.draft_order?.total_price ?? "") ?? 0.0)
-        paymentView.shouldPay = Float(self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+        paymentView.shouldPay = calcTotal()
         paymentView.modalPresentationStyle = .fullScreen
         //self.present(paymentView, animated: true, completion: nil)
         navigationController?.pushViewController(paymentView, animated: true)
@@ -258,12 +279,13 @@ class OrderVC: UIViewController {
             {
             case "PayPal" as String:
                 print("start paypal")
+                shouldPay = Int(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "") ?? 1
                 let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
                 payPalDriver.viewControllerPresentingDelegate = self
                 payPalDriver.appSwitchDelegate = self
                 
                 let request = BTPayPalRequest(amount: "\(shouldPay)")
-                request.currencyCode = "USD"
+                request.currencyCode = "EGP"
                 
                 payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
                     if let tokenizedPayPalAccount = tokenizedPayPalAccount
