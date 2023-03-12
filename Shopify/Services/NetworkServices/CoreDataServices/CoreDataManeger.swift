@@ -27,7 +27,7 @@ protocol CoreDataOpe {
     
 protocol FavCoreData
 {
-    func SaveFavtoCoreData(draftOrderID : Int, productID: Int, title: String, price: String, quantity: Int)
+    func SaveFavtoCoreData(draftOrderID : Int, productID: Int, title: String, price: String, quantity: Int , img: String)
     
     func FetchFavFromCoreData(draftOrderID : Int) -> [NSManagedObject]
     
@@ -203,7 +203,7 @@ class FavCoreDataManager : FavCoreData
         entity = NSEntityDescription.entity(forEntityName: "WishList", in: self.managedContext)
     }
     
-    func SaveFavtoCoreData(draftOrderID: Int, productID: Int, title: String, price: String, quantity: Int) {
+    func SaveFavtoCoreData(draftOrderID: Int, productID: Int, title: String, price: String, quantity: Int , img : String) {
         let WishList = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         WishList.setValue(draftOrderID, forKey: "draft_orderID")
@@ -211,6 +211,7 @@ class FavCoreDataManager : FavCoreData
         WishList.setValue(title, forKey: "title")
         WishList.setValue(price, forKey: "price")
         WishList.setValue(quantity, forKey: "quantity")
+        WishList.setValue(img, forKey: "img")
         
         do{
             try managedContext.save()

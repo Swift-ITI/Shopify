@@ -234,7 +234,7 @@ class ProductDetailsVC: UIViewController {
                 flag = false
             } else {
                 favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+                favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1, img: detailedProduct?.image?.src ?? "")
                 flag = true
             }
         }

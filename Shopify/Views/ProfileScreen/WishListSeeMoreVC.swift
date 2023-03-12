@@ -77,6 +77,7 @@ extension WishListSeeMoreVC: UITableViewDataSource
         cell.layer.cornerRadius = CGFloat(20)
         cell.productNameLabel.adjustsFontSizeToFitWidth = true
         cell.productPriceLabel.adjustsFontSizeToFitWidth = true
+        cell.productImage.kf.setImage(with: URL(string: favFromCoreData[indexPath.row].value(forKey: "img") as? String ?? "loading"))
         
         cell.productNameLabel.text = favFromCoreData[indexPath.row].value(forKey: "title") as? String ?? ""
         cell.productPriceLabel.text = favFromCoreData[indexPath.row].value(forKey: "price") as? String ?? ""
