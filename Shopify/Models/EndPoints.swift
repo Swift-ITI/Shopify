@@ -85,7 +85,7 @@ enum EndPoints {
             return "\(BaseUrl)/draft_orders.json"
             
         case let .checkUser(email: email, pw: pw):
-            return "\(BaseUrl)/customers/search.json?query=email:\(email)&query=tag:\(pw)"
+            return "\(BaseUrl)/customers/search.json?query=email:\(email)&tag:\(pw)"
             
         case .deleteAddress(customerID: let cusID, addressID: let addID) :
             return "\(BaseUrl)/customers/\(cusID)/addresses/\(addID).json"
