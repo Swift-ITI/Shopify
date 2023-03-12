@@ -168,7 +168,7 @@ extension CartVC : UITableViewDelegate{
             "product_id": item.product_id ?? 0,
             "title": item.title ?? "",
             "vendor": item.vendor ?? "",
-            "quantity": 1,
+            "quantity": item.quantity ?? 0,
             "price": item.price ?? "",
             ]
             arrofdict.append(dict)
@@ -199,6 +199,7 @@ extension CartVC : UITableViewDataSource{
         cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
         
+        
       
         if flag {
             for iteem in arrProducts
@@ -213,7 +214,7 @@ extension CartVC : UITableViewDataSource{
             cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
     
                     
-            cartProductscell.quantity.text = "1"
+            cartProductscell.quantity.text = draftOrder?.draft_order?.line_items?[indexPath.section].quantity?.formatted()
             cartProductscell.minusQuantity.tag = indexPath.section
             cartProductscell.plusQuantity.addTarget(self, action: #selector(plus), for: .touchUpInside)
             cartProductscell.deleteProduct.tag = indexPath.section
@@ -269,13 +270,14 @@ extension CartVC : UITableViewDataSource{
         {
             draftOrder?.draft_order?.line_items?[sender.tag].quantity! += 1
         }
+        print("zzz\(draftOrder?.draft_order?.line_items?[sender.tag].quantity)")
         let params = [
             "draft_order": [
                 "line_items": self.converttodic(arrofline: draftOrder?.draft_order?.line_items ?? []),
             ],
         ]
-        
         cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+        self.cartProducts.reloadData()
 //        var arrofdict : [[String:Any]] = []
 //        for item in draftOrder?.draft_order?.line_items ?? []
 //        {
