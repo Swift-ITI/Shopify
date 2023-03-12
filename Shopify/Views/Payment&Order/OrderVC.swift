@@ -235,32 +235,52 @@ class OrderVC: UIViewController {
             self.dispatchgroup.leave()
         }
         dispatchgroup.notify(queue: .main)
-        {
-            
-            if !(self.NsBoolDefault.value(forKey: "coupon") as! Bool)
+        { [self] in
+            if self.coupon.text == ""
             {
-                self.NsBoolDefault.set(true, forKey: "coupon")
-                
-                if var cost = Double(self.total.text!)
-                {
-                    let temp = cost/100*30
-                    cost = cost - temp
-                    self.total.text = String(cost)
-                    self.coupon.text = ""
-                    self.discount.text = String(temp)
-                }
-            }
-                
-            else
-            {
-                let alert = UIAlertController(title: "Expired Coupon", message: "You've used this coupon before", preferredStyle: .alert)
+                let alert = UIAlertController(title: "No Coupon", message: "Missing Coupon", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default)
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
             }
-                
+            else
+            {
+                if !(searchh(coupon: coupon.text ?? "") && (NsBoolDefault.bool(forKey: "coupon")))
+                {
+                    self.NsBoolDefault.set(true, forKey: "coupon")
+                    
+                    if var cost = Double(self.total.text!)
+                    {
+                        let temp = cost/100*30
+                        cost = cost - temp
+                        self.total.text = String(cost)
+                        self.coupon.text = ""
+                        self.discount.text = String(temp)
+                    }
+                }
+                else
+                {
+                    let alert = UIAlertController(title: "Expired Coupon", message: "You've used this coupon before", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                   //
+
+            }
             }
         }
+    func searchh (coupon : String)-> Bool
+    {
+        for couponn in self.OfferCollectionviewresponse?.discount_codes ?? []
+        {
+            if coupon == couponn.code
+            {
+                return true
+            }
+        }
+        return false
+    }
     
     @IBAction func placeOrder(_ sender: Any)
     {
