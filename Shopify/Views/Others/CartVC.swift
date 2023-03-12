@@ -66,13 +66,13 @@ class CartVC: UIViewController {
                 cartVM?.bindDraftOrderToCartVC = {() in
                     DispatchQueue.main.async {
                         self.draftOrder = self.cartVM?.draftOrderResults
+                        self.subTotal.text = ("Sub Total: \(self.draftOrder?.draft_order?.subtotal_price ?? "0")")
                         self.cartProducts.reloadData()
                     }
                 }
                 //for item in (self.draftOrder?.draft_order?.line_items ?? []){
          
-              
-                    
+            
                 
                 
             }else {
