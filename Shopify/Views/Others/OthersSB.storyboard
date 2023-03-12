@@ -18,42 +18,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H9a-zl-Sii">
-                                <rect key="frame" x="16" y="103" width="361" height="638"/>
+                                <rect key="frame" x="16" y="111" width="361" height="544"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="qeX-7X-bJu"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="s3p-gM-N9d"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Total : 200.0 USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="357-p7-GI9">
+                                <rect key="frame" x="16" y="687" width="204.33333333333334" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1G-Pz-H5C">
-                                <rect key="frame" x="105.66666666666669" y="783" width="182" height="35"/>
+                                <rect key="frame" x="105.66666666666669" y="741" width="182" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout">
-                                    <color key="baseBackgroundColor" name="CoffeColor"/>
+                                    <color key="baseBackgroundColor" name="CoffeeColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="proceedToCheckout:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="78c-Sb-beb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Total : 200.0 USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="357-p7-GI9">
-                                <rect key="frame" x="16" y="745" width="206" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="H9a-zl-Sii" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1Ba-wl-Sti"/>
-                            <constraint firstItem="357-p7-GI9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="6zi-2W-n7R"/>
-                            <constraint firstItem="H9a-zl-Sii" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="ALI-NJ-huf"/>
-                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="top" secondItem="357-p7-GI9" secondAttribute="bottom" constant="14" id="DGf-1u-Cb8"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="357-p7-GI9" secondAttribute="trailing" constant="171" id="R42-Fa-NIa"/>
-                            <constraint firstItem="357-p7-GI9" firstAttribute="top" secondItem="H9a-zl-Sii" secondAttribute="bottom" constant="4" id="VFe-Zg-cYg"/>
-                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="a1O-wP-J39"/>
-                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="fVY-SH-NTN"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H9a-zl-Sii" secondAttribute="trailing" constant="16" id="j6F-9i-IIT"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="K1G-Pz-H5C" secondAttribute="bottom" constant="42" id="4ya-K4-oc6"/>
+                            <constraint firstItem="357-p7-GI9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="EcP-YE-PZj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H9a-zl-Sii" secondAttribute="trailing" constant="16" id="H6C-b2-lT5"/>
+                            <constraint firstItem="H9a-zl-Sii" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="HbT-eK-Q3j"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="top" secondItem="357-p7-GI9" secondAttribute="bottom" constant="30" id="TnD-Bg-93R"/>
+                            <constraint firstItem="357-p7-GI9" firstAttribute="top" secondItem="H9a-zl-Sii" secondAttribute="bottom" constant="32" id="bYL-xZ-hoD"/>
+                            <constraint firstItem="K1G-Pz-H5C" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gmc-9e-bV7"/>
+                            <constraint firstItem="H9a-zl-Sii" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="nM4-ht-ScU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping Cart" id="qAR-Pz-Wsf"/>

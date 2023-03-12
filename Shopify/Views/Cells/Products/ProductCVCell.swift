@@ -25,6 +25,8 @@ class ProductCVCell: UICollectionViewCell {
     var favVMobj : FavCoreDataViewModel?
     var favobj : FavCoreDataManager?
     
+    var img : String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if ((favobj?.isFav(lineItemId: idd ?? 0)) != nil){
@@ -54,7 +56,7 @@ class ProductCVCell: UICollectionViewCell {
         }
         else {
             heartBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: idd ?? 0, title: nameOfProduct.text ?? "", price: priceOfProduct.text ?? "", quantity: 1)
+            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: idd ?? 0, title: nameOfProduct.text ?? "", price: priceOfProduct.text ?? "", quantity: 1, img: "img")
         }
     }
     
