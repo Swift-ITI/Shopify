@@ -120,148 +120,128 @@ class ProductDetailsVC: UIViewController {
         ItemCV.scrollToItem(at: IndexPath(item: currentcellindex, section: 0), at: .centeredHorizontally, animated: true)
         pagecontrol.currentPage = currentcellindex
     }
-
+    //MARK: Add to cart
     @IBAction func addtocart(_ sender: Any) {
         // 6839029793046
         // fatma@gmail.com
-        getOrders()
-        
-//        draftOrder?.draft_order?.line_items?.forEach({ item in
-//            if  item.product_id == detailedProduct?.id {
-//                print("ddddddddddddddd")
-//                isDuplicated = 1
-//            }
-//        })
-        if coreData!.isInCart(lineItemId: detailedProduct?.id ?? 0){
-            print("ddddddddddddddd")
-            isDuplicated = 1
-        }
-        
-        if nsDefault.value(forKey: "note") as? String == "first" {
+        if !nsDefault.bool(forKey: "isLogged"){
+            showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { action in
+                self.performSegue(withIdentifier: "goToLogin", sender: self)
+            }
+        }else{
+            getOrders()
             
-            let params: [String: Any] = [
-                "draft_order": [
-                    "email": nsDefault.value(forKey: "customerEmail") as? String ?? "",
-                    "currency": "EGP",
-                    "line_items": [
-                        [
-                            "variant_id": detailedProduct?.variants?[0].id ?? 0,
-                            "product_id": detailedProduct?.id ?? 0,
-                            "title": detailedProduct?.title ?? "",
-                            "vendor": detailedProduct?.vendor ?? "",
-                            "quantity": 1,
-                            "price": detailedProduct?.variants?[0].price ?? "",
+            if coreData!.isInCart(lineItemId: detailedProduct?.id ?? 0){
+                print("ddddddddddddddd")
+                isDuplicated = 1
+            }
+            
+            if nsDefault.value(forKey: "note") as? String == "first" {
+                
+                let params: [String: Any] = [
+                    "draft_order": [
+                        "email": nsDefault.value(forKey: "customerEmail") as? String ?? "",
+                        "currency": "EGP",
+                        "line_items": [
+                            [
+                                "variant_id": detailedProduct?.variants?[0].id ?? 0,
+                                "product_id": detailedProduct?.id ?? 0,
+                                "title": detailedProduct?.title ?? "",
+                                "vendor": detailedProduct?.vendor ?? "",
+                                "quantity": 1,
+                                "price": detailedProduct?.variants?[0].price ?? "",
+                            ],
                         ],
                     ],
-                ],
-            ]
-            cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
-            
-          //  getOrders()
-            
-            coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+                ]
+                cartVM?.postNewDraftOrder(target: .alldraftOrders, params: params)
+                
+              //  getOrders()
+                
+                coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
 
-            cartVM?.bindErrorToCartVC = {
-                DispatchQueue.main.async {
-                    switch self.cartVM?.error?.keys.formatted() {
-                    case "draft_order":
+                cartVM?.bindErrorToCartVC = {
+                    DispatchQueue.main.async {
+                        switch self.cartVM?.error?.keys.formatted() {
+                        case "draft_order":
+                            
+                            let draftOrderDict = self.cartVM?.error?["draft_order"] as? [String: Any]
+                            self.nsDefault.set("created", forKey: "note")
+                            self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
+                            print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
+                            self.getOrders()
+                            self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
                         
-                        let draftOrderDict = self.cartVM?.error?["draft_order"] as? [String: Any]
-                        self.nsDefault.set("created", forKey: "note")
-                        self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
-                        print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
-                        self.getOrders()
-                        self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
-                    
-                    case "error":
-                        print("Error Found")
-                    default:
-                        print("Default")
+                        case "error":
+                            print("Error Found")
+                        default:
+                            print("Default")
+                        }
                     }
                 }
-            }
-        } else {
-            getOrders()
-    
-            switch isDuplicated {
-            case 1:
-                print("don't save")
-                self.showAlert(title: "OH --ooh!", msg: "Already added to cart") {_ in }
-            case 2:
-                self.lineItem = [
-                    "variant_id": detailedProduct?.variants?[0].id ?? 0,
-                    "product_id": detailedProduct?.id ?? 0,
-                    "title": self.detailedProduct?.title ?? "",
-                    "vendor": self.detailedProduct?.vendor ?? "",
-                    "quantity": 1,
-                    "price": self.detailedProduct?.variants?[0].price ?? "",
-                ]
-                self.lineItems.append(self.lineItem)
-
-                let params = [
-                    "draft_order": [
-                        "line_items": self.lineItems,
-                    ],
-                ]
-
-                self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
-                coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
-                self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
-                    self.getOrders()
-                }
-              
-                //getOrders()
-
-            default:
-                break
-            }
-        }
-    }
-    
-    func showAlert(title: String, msg: String,handler:@escaping (UIAlertAction?)->Void) {
+            } else {
+                getOrders()
         
-        let alert = UIAlertController(title: title, message: msg, preferredStyle:UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action)}))
-        present(alert, animated: true, completion: nil)
-        
-    }
-    
-
-    func getOrders(){
-        print("NS: \(String(describing: nsDefault.value(forKey: "draftOrderID")))")
-        
-        cartVM?.getDraftOrders(target: .draftOrder(id: (nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
-        cartVM?.bindDraftOrderToCartVC = {
-            DispatchQueue.main.async {
-                self.draftOrder = self.cartVM?.draftOrderResults
-                //self.lineItems = self.cartVM?.draftOrderResults?.draft_orders?.first?.line_items as! [[String : Any]]
-                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
-                    let tmp : [String : Any] = [
-                        "variant_id": lineItem.variant_id ?? 0,
-                        "product_id": lineItem.product_id ?? 0,
-                        "title": lineItem.title ?? "",
-                        "vendor": lineItem.vendor ?? "",
+                switch isDuplicated {
+                case 1:
+                    print("don't save")
+                    self.showAlert(title: "OH --ooh!", msg: "Already added to cart") {_ in }
+                case 2:
+                    self.lineItem = [
+                        "variant_id": detailedProduct?.variants?[0].id ?? 0,
+                        "product_id": detailedProduct?.id ?? 0,
+                        "title": self.detailedProduct?.title ?? "",
+                        "vendor": self.detailedProduct?.vendor ?? "",
                         "quantity": 1,
-                        "price": lineItem.price ?? "",
+                        "price": self.detailedProduct?.variants?[0].price ?? "",
                     ]
-                    self.lineItems.append(tmp)
+                    self.lineItems.append(self.lineItem)
+
+                    let params = [
+                        "draft_order": [
+                            "line_items": self.lineItems,
+                        ],
+                    ]
+
+                    self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
+                    coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+                    self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
+                        self.getOrders()
+                    }
+                  
+                    //getOrders()
+
+                default:
+                    break
                 }
-                print("ccccccccccccc\(self.lineItems)")
             }
         }
+        
     }
+    
+    
+
+    //MARK: Add to favourites
     @IBAction func addtofavourite(_ sender: Any) {
-        if flag {
-            favbtn.setImage(UIImage(systemName: "heart"), for: .normal)
-            favcoredataobj?.DeleteFromFav(lineitemID: detailedProduct?.id ?? 0)
-            flag = false
-        } else {
-            favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
-            flag = true
+        if !nsDefault.bool(forKey: "isLogged"){
+            showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { action in
+                self.performSegue(withIdentifier: "goToLogin", sender: self)
+            }
+        }else{
+            if flag {
+                favbtn.setImage(UIImage(systemName: "heart"), for: .normal)
+                favcoredataobj?.DeleteFromFav(lineitemID: detailedProduct?.id ?? 0)
+                flag = false
+            } else {
+                favbtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                favcoredataobj?.SaveFavtoCoreData(draftOrderID: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0 ), productID: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "" , price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
+                flag = true
+            }
         }
+        
     }
 
+    //MARK: Various Functions
     func productfilter(sender: UIButton) {
         switch sender {
         case pulldowncolor:
@@ -287,6 +267,30 @@ class ProductDetailsVC: UIViewController {
 
         default:
             print("no")
+        }
+    }
+    
+    func getOrders(){
+        print("NS: \(String(describing: nsDefault.value(forKey: "draftOrderID")))")
+        
+        cartVM?.getDraftOrders(target: .draftOrder(id: (nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)))
+        cartVM?.bindDraftOrderToCartVC = {
+            DispatchQueue.main.async {
+                self.draftOrder = self.cartVM?.draftOrderResults
+                //self.lineItems = self.cartVM?.draftOrderResults?.draft_orders?.first?.line_items as! [[String : Any]]
+                for lineItem in self.draftOrder?.draft_order?.line_items ?? [] {
+                    let tmp : [String : Any] = [
+                        "variant_id": lineItem.variant_id ?? 0,
+                        "product_id": lineItem.product_id ?? 0,
+                        "title": lineItem.title ?? "",
+                        "vendor": lineItem.vendor ?? "",
+                        "quantity": 1,
+                        "price": lineItem.price ?? "",
+                    ]
+                    self.lineItems.append(tmp)
+                }
+                print("ccccccccccccc\(self.lineItems)")
+            }
         }
     }
 }
@@ -337,5 +341,16 @@ extension ProductDetailsVC: UITableViewDataSource {
         cell.reviewText.text = reviewComment[indexPath.row]
 
         return cell
+    }
+}
+
+//MARK: Rendering
+extension ProductDetailsVC {
+    func showAlert(title: String, msg: String,handler:@escaping (UIAlertAction?)->Void) {
+        
+        let alert = UIAlertController(title: title, message: msg, preferredStyle:UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action)}))
+        present(alert, animated: true, completion: nil)
+        
     }
 }
