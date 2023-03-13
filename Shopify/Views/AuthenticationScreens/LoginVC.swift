@@ -32,6 +32,8 @@ class LoginVC: UIViewController {
     }
     var userVM: UserViewModel?
     var nsDefault = UserDefaults()
+    
+    var draftOrders: [DraftOrder] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         userVM = UserViewModel()
@@ -53,6 +55,13 @@ class LoginVC: UIViewController {
                             
                             self.nsDefault.set(true, forKey: "isLogged")
                             self.nsDefault.set(self.userVM?.users?.customers.first?.id, forKey: "customerID")
+                            let search : Int = self.searchForDraftOrder(emaill: self.userVM?.users?.customers.first?.email ?? "")
+                            if(search) != 0 {
+                                self.nsDefault.set(search, forKey: "draftOrderID")
+                                self.nsDefault.set("created", forKey: "note")
+                            } else {
+                                self.nsDefault.set("first", forKey: "note")
+                            }
                             self.performSegue(withIdentifier: "goToHome", sender: self)
                         }
                     }else{
@@ -73,5 +82,24 @@ class LoginVC: UIViewController {
         }))
 
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension LoginVC {
+    func searchForDraftOrder (emaill : String) -> Int {
+        var id : Int = 0
+        userVM?.fetchAllDraftOrders(target: .alldraftOrders)
+        userVM?.bindDraftOrderToVC = { () in
+            DispatchQueue.main.async {
+                self.draftOrders = self.userVM?.draftOrder?.draft_orders ?? []
+                
+                for draft in self.draftOrders{
+                    if draft.email == emaill{
+                        id = draft.id ?? 0
+                    }
+                }
+            }
+        }
+        return id
     }
 }

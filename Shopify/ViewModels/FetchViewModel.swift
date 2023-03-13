@@ -73,6 +73,7 @@ class BrandproductsViewModel {
 class UserViewModel {
     var bindDataToVC: (() -> Void) = {}
     var bindAddressToVC: (() -> Void) = {}
+    var bindDraftOrderToVC: (() -> Void) = {}
     var users: Customers? {
         didSet {
             bindDataToVC()
@@ -81,6 +82,12 @@ class UserViewModel {
     var addresses: AddressesResult? {
         didSet {
             bindAddressToVC()
+        }
+    }
+    
+    var draftOrder : DraftOrderResult? {
+        didSet {
+            bindDraftOrderToVC()
         }
     }
     
@@ -93,6 +100,12 @@ class UserViewModel {
     func fetchAddresses(target:EndPoints){
         NetworkServices.fetch(url: target.path) { result in
             self.addresses = result
+        }
+    }
+    
+    func fetchAllDraftOrders(target: EndPoints){
+        NetworkServices.fetch(url: target.path) { result in
+            self.draftOrder = result
         }
     }
 }
