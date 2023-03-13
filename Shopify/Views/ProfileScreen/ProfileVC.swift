@@ -85,18 +85,22 @@ class ProfileVC: UIViewController {
     var email: String?
     var logged: Bool = true
     var nsDefaults = UserDefaults()
+    
+    var managedContext : NSManagedObjectContext!
     var wishListItems : [NSManagedObject] = []
+    var coredatavm : FavCoreDataViewModel?
+    var favcoredataobj : FavCoreDataManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
-        fetchCoreData()
+        //fetchCoreData()
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
         fetchData()
-        fetchCoreData()
+        //fetchCoreData()
     }
     
     func fetchData()
@@ -120,6 +124,10 @@ class ProfileVC: UIViewController {
                     self.ordersTable.reloadData()
                 }
                 ordersTable.reloadData()
+                coredatavm = FavCoreDataViewModel()
+                favcoredataobj = coredatavm?.getfavInstance()
+                wishListItems = favcoredataobj?.FetchFav() ?? []
+                self.wishListTable.reloadData()
             }
         } else {
             let alert: UIAlertController = UIAlertController(title: "Connection Error", message: "You are not connected to the Network so please check your Wi-Fi or Mobile Data Again", preferredStyle: .alert)
@@ -198,7 +206,7 @@ extension ProfileVC: UITableViewDataSource {
             }
 
         case wishListTable:
-            if wishListItems.count > 4
+            if wishListItems.count > 4 ?? 0
             {
                 return 4
             }
@@ -244,14 +252,13 @@ extension ProfileVC: UITableViewDataSource {
     }
 }
 
-// MARK: - Core Data Extension Part
+/*// MARK: - Core Data Extension Part
 
 extension ProfileVC
 {
     func fetchCoreData ()
     {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        var managedContext : NSManagedObjectContext
         managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WishList")
         do
@@ -263,4 +270,4 @@ extension ProfileVC
             print(error.localizedDescription)
         }
     }
-}
+}*/
