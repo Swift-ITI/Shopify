@@ -122,8 +122,6 @@ class ProductDetailsVC: UIViewController {
     }
     //MARK: Add to cart
     @IBAction func addtocart(_ sender: Any) {
-        // 6839029793046
-        // fatma@gmail.com
         if !nsDefault.bool(forKey: "isLogged"){
             showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { action in
                 self.performSegue(withIdentifier: "goToLogin", sender: self)
@@ -149,7 +147,7 @@ class ProductDetailsVC: UIViewController {
                                 "title": detailedProduct?.title ?? "",
                                 "vendor": detailedProduct?.vendor ?? "",
                                 "quantity": 1,
-                                "price": detailedProduct?.variants?[0].price ?? "",
+                                "price": detailedProduct?.variants?[0].price ?? ""
                             ],
                         ],
                     ],
@@ -195,6 +193,7 @@ class ProductDetailsVC: UIViewController {
                         "vendor": self.detailedProduct?.vendor ?? "",
                         "quantity": 1,
                         "price": self.detailedProduct?.variants?[0].price ?? "",
+                        "sku" : self.detailedProduct?.image?.src ?? ""
                     ]
                     self.lineItems.append(self.lineItem)
 

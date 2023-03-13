@@ -36,7 +36,7 @@ class LineItem : Decodable {
     var product_id : Int?
     var quantity : Int?
     var requires_shipping : Bool?
-  //  var sku : String?
+//    var sku : String?
     var title : String?//
     var variant_id : Int?
     var vendor : String?

@@ -94,9 +94,12 @@ extension WishListSeeMoreVC: UITableViewDataSource
         if editingStyle == .delete
         {
             let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Wishlist", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {action in
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
                 print("Deleted")
-                tableView.deleteRows(at: [indexPath], with: .left)
+                self.favcoredataobj?.managedContext.delete(self.self.favFromCoreData[indexPath.row])
+                self.favFromCoreData.remove(at: indexPath.row)
+                try! self.favcoredataobj?.managedContext.save()
+                tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.reloadData()
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))

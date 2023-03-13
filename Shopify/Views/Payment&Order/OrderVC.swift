@@ -380,7 +380,7 @@ class OrderVC: UIViewController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
-            ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title ?? "" ),placeholder: UIImage(named: "loading.png"))
+            ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title ?? ""))
             ordercell.orderprice.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].price
             ordercell.ordername.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title
             ordercell.orderquantity.text = String(OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].quantity ?? 0)
