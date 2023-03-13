@@ -193,7 +193,7 @@ extension HomeVC: UICollectionViewDelegate {
         case OfferCV:
             let pasteboard = UIPasteboard.general
             pasteboard.string = OfferCollectionviewresponse?.discount_codes[indexPath.row].code
-            showToastMessage(message: "Code Copied", color: .green)
+            showToastMessage(message: "Code Copied", color: .black)
         case BrandsCV:
             let productobj: ProductsVC = storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
             productobj.brandId = String(BrandCollectionviewresponse?.smart_collections[indexPath.row].id ?? 0)
@@ -221,11 +221,11 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 
 extension HomeVC {
     func showToastMessage(message: String, color: UIColor) {
-        let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 - 20, height: 30))
 
         toastLabel.textAlignment = .center
         toastLabel.backgroundColor = color
-        toastLabel.textColor = .black
+        toastLabel.textColor = .white
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10
         toastLabel.clipsToBounds = true
@@ -242,6 +242,8 @@ extension HomeVC {
     func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
+            () }))
         present(alert, animated: true, completion: nil)
     }
 }
