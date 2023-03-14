@@ -65,7 +65,7 @@ class PaymentVC: UIViewController
             processText.text = "Total Cost = \(shouldPay ?? 0.0) \nYou will Pay by your PayPal Account"
             
         case "Denied":
-processText.text = "Total Cost = \(shouldPay ?? 0.0) \nSorry but your order is too expensive to be Cash On Delivery"
+            processText.text = "Total Cost = \(shouldPay ?? 0.0) \nSorry but your order is too expensive to be Cash On Delivery"
             
         case "Cash on Delivery":
             processText.text = "Total Cost = \(shouldPay ?? 0.0) \nYou will pay in Cash when order is delivered"
@@ -132,7 +132,7 @@ extension PaymentVC: SSRadioButtonControllerDelegate
                 checkAprrovedProcces(maxNumber: 500.0)
                 
             case "EGP":
-                checkAprrovedProcces(maxNumber: 5000.0)
+                checkAprrovedProcces(maxNumber: 15000.0)
                 
             default:
                 print("Error")
