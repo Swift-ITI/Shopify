@@ -43,7 +43,7 @@ class OrderVC: UIViewController {
     var paymentDefault = UserDefaults()
     var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
-    var shouldPay : Int = 1
+    var shouldPay : Float = 0.0
     var addressExist : Bool = false
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
@@ -309,7 +309,7 @@ class OrderVC: UIViewController {
             {
             case "PayPal" as String:
                 print("start paypal")
-                shouldPay = Int(CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")) ?? 1
+                    shouldPay = Float(CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")) ?? 0.0
                 let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
                 payPalDriver.viewControllerPresentingDelegate = self
                 payPalDriver.appSwitchDelegate = self
