@@ -25,6 +25,10 @@
 		4C3B902A29AA2E7C008F15F9 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B902929AA2E7C008F15F9 /* ContactUsVC.swift */; };
 		4C521EB729AA43B3004D4BBF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C521EB629AA43B3004D4BBF /* SettingsVC.swift */; };
 		4C521EB929AA4907004D4BBF /* AddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C521EB829AA4907004D4BBF /* AddressVC.swift */; };
+		4C81B8FF29C0DE84009D1601 /* NetworkServiceFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81B8FE29C0DE84009D1601 /* NetworkServiceFetchTests.swift */; };
+		4C81B90129C0E6C8009D1601 /* MockManagerNetworkServiceForFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81B90029C0E6C8009D1601 /* MockManagerNetworkServiceForFetchTest.swift */; };
+		4C81B90529C101CF009D1601 /* MockNetworkFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81B90429C101CF009D1601 /* MockNetworkFetchTests.swift */; };
+		4C81B90729C10606009D1601 /* MockNetworkServiceForFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81B90629C10606009D1601 /* MockNetworkServiceForFetchTest.swift */; };
 		4C951B2F29AA97830052E5CC /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C951B2E29AA97830052E5CC /* AddAddressVC.swift */; };
 		4C951B3329AACF510052E5CC /* WishListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C951B3129AACF510052E5CC /* WishListCell.swift */; };
 		4C951B3429AACF510052E5CC /* WishListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C951B3229AACF510052E5CC /* WishListCell.xib */; };
@@ -121,6 +125,10 @@
 		4C3B902929AA2E7C008F15F9 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		4C521EB629AA43B3004D4BBF /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		4C521EB829AA4907004D4BBF /* AddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressVC.swift; sourceTree = "<group>"; };
+		4C81B8FE29C0DE84009D1601 /* NetworkServiceFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceFetchTests.swift; sourceTree = "<group>"; };
+		4C81B90029C0E6C8009D1601 /* MockManagerNetworkServiceForFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockManagerNetworkServiceForFetchTest.swift; sourceTree = "<group>"; };
+		4C81B90429C101CF009D1601 /* MockNetworkFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkFetchTests.swift; sourceTree = "<group>"; };
+		4C81B90629C10606009D1601 /* MockNetworkServiceForFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkServiceForFetchTest.swift; sourceTree = "<group>"; };
 		4C951B2E29AA97830052E5CC /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
 		4C951B3129AACF510052E5CC /* WishListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCell.swift; sourceTree = "<group>"; };
 		4C951B3229AACF510052E5CC /* WishListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListCell.xib; sourceTree = "<group>"; };
@@ -265,6 +273,24 @@
 				4CB4C75329AA4BA3004B9BE2 /* AddressesCell.swift */,
 			);
 			path = Addresses;
+			sourceTree = "<group>";
+		};
+		4C81B90229C0E6D1009D1601 /* NetworkServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C81B90429C101CF009D1601 /* MockNetworkFetchTests.swift */,
+				4C81B8FE29C0DE84009D1601 /* NetworkServiceFetchTests.swift */,
+			);
+			path = NetworkServiceTests;
+			sourceTree = "<group>";
+		};
+		4C81B90329C0E6FD009D1601 /* MockNetworkFetchTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C81B90029C0E6C8009D1601 /* MockManagerNetworkServiceForFetchTest.swift */,
+				4C81B90629C10606009D1601 /* MockNetworkServiceForFetchTest.swift */,
+			);
+			path = MockNetworkFetchTests;
 			sourceTree = "<group>";
 		};
 		4C951B3029AACEE60052E5CC /* WishLists */ = {
@@ -567,6 +593,8 @@
 		DED7EA7329A020AF000CC25C /* ShopifyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C81B90329C0E6FD009D1601 /* MockNetworkFetchTests */,
+				4C81B90229C0E6D1009D1601 /* NetworkServiceTests */,
 				DED7EA7429A020AF000CC25C /* ShopifyTests.swift */,
 			);
 			path = ShopifyTests;
@@ -913,6 +941,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DED7EA7529A020AF000CC25C /* ShopifyTests.swift in Sources */,
+				4C81B8FF29C0DE84009D1601 /* NetworkServiceFetchTests.swift in Sources */,
+				4C81B90729C10606009D1601 /* MockNetworkServiceForFetchTest.swift in Sources */,
+				4C81B90129C0E6C8009D1601 /* MockManagerNetworkServiceForFetchTest.swift in Sources */,
+				4C81B90529C101CF009D1601 /* MockNetworkFetchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
