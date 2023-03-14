@@ -16,7 +16,7 @@ class CartVC: UIViewController {
     var cartVM: DraftOrderViewModel?
     var draftOrder: SingleDraftOrder?
     // var product : SingleProduct?
-    var arrProducts: [Product] = []
+    var arrProducts: [Product] = [] 
 
     var productt: CatigoriesViewModel?
     var Oneproduct: Products?
@@ -92,9 +92,20 @@ class CartVC: UIViewController {
     }
 
     @IBAction func proceedToCheckout(_ sender: Any) {
-        performSegue(withIdentifier: "goToPayment", sender: self)
+        let orderDetailsVC = UIStoryboard(name: "Payment&OrderSB", bundle: nil).instantiateViewController(withIdentifier: "orderVC") as! OrderVC
+        orderDetailsVC.OrderDetailsResponse = draftOrder
+        orderDetailsVC.arrofpro = arrProducts
+        //performSegue(withIdentifier: "goToPayment", sender: self)
+        navigationController?.pushViewController(orderDetailsVC, animated: true)
         print("Proceed to checkout")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let orderVC = segue.destination as? OrderVC
+        orderVC?.OrderDetailsResponse = draftOrder
+        orderVC?.arrofpro = arrProducts
+        
+         }
 }
 
 extension CartVC: UITableViewDelegate {

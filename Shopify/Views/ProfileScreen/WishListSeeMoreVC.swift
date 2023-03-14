@@ -87,7 +87,25 @@ extension WishListSeeMoreVC: UITableViewDataSource
         
         cell.productNameLabel.text = favFromCoreData[indexPath.row].value(forKey: "title") as? String ?? ""
         cell.productPriceLabel.text = CurrencyExchanger.changeCurrency(cash: favFromCoreData[indexPath.row].value(forKey: "price") as? String ?? "")
+        
+        cell.trashButton.tag = indexPath.row
+        cell.trashButton.addTarget(self, action: #selector(deleteProducts(_:)), for: .touchUpInside)
+        
         return cell
+    }
+    
+    @objc func deleteProducts(_ sender : UIButton){
+        let alert : UIAlertController = UIAlertController(title: "Delete Item ?", message: "Are you sure that you want to delete this item from your Wishlist", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+            print("Deleted")
+            self.favcoredataobj?.managedContext.delete(self.self.favFromCoreData[sender.tag])
+            self.favFromCoreData.remove(at: sender.tag)
+            try! self.favcoredataobj?.managedContext.save()
+            self.productCollection.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+        self.productCollection.reloadData()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
