@@ -170,8 +170,9 @@ class ProductDetailsVC: UIViewController {
                             self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
                             print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                             self.getOrders()
-                            self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
-                        
+                            //self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
+                            self.showToastMessage(message: "Sucessfully added to cart", color: .white)
+                     
                         case "error":
                             print("Error Found")
                         default:
@@ -205,9 +206,11 @@ class ProductDetailsVC: UIViewController {
 
                     self.cartVM?.editDraftOrder(target: .draftOrder(id: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)), params: params)
                     coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
-                    self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
-                        self.getOrders()
-                    }
+                    self.showToastMessage(message: "Sucessfully added to cart", color: .black)
+                    self.getOrders()
+//                    self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
+//                        self.getOrders()
+//                    }
                   
                     //getOrders()
 
@@ -352,5 +355,26 @@ extension ProductDetailsVC {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action)}))
         present(alert, animated: true, completion: nil)
         
+    }
+}
+extension ProductDetailsVC
+{
+    func showToastMessage(message: String, color: UIColor) {
+        let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 120, y: view.frame.height - 130, width: 260, height: 30))
+
+        toastLabel.textAlignment = .center
+        toastLabel.backgroundColor = color
+        toastLabel.textColor = .white
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        toastLabel.text = message
+        view.addSubview(toastLabel)
+
+        UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
+            toastLabel.alpha = 0.0
+        }) { _ in
+            toastLabel.removeFromSuperview()
+        }
     }
 }
