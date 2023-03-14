@@ -175,7 +175,7 @@ class ProductDetailsVC: UIViewController {
                             print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                             self.getOrders()
                             //self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
-                            self.showToastMessage(message: "Sucessfully added to cart", color: .white)
+                            self.showToastMessage(message: "Sucessfully added to cart", color: .black)
                      
                         case "error":
                             print("Error Found")
