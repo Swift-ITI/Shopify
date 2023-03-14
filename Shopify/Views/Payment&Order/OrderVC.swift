@@ -42,6 +42,8 @@ class OrderVC: UIViewController {
     var braintreeClient: BTAPIClient?
     var shouldPay : Float = 0.0
     var addressExist : Bool = false
+    var deleteVM : DeleteDraftOrder?
+    
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
             orderDetails.delegate = self
@@ -78,6 +80,8 @@ class OrderVC: UIViewController {
         Offerviewmodel = OfferViewModel()
         
         postOrderVM = PostOrderViewModel()
+        
+        deleteVM = DeleteDraftOrder()
         
         NsDefault = UserDefaults()
         
@@ -122,6 +126,7 @@ class OrderVC: UIViewController {
 
         payMethodOutletButton.setTitle("\(paymentDefault.value(forKey: "PaymentMethod") ?? "")", for: .normal)
         customerviewmodel = UserViewModel()
+        deleteVM = DeleteDraftOrder()
         customerviewmodel?.fetchUsers(target: .searchCustomerByID(id: NsDefault?.integer(forKey: "customerID") ?? 0))
         customerviewmodel?.bindDataToVC = { () in
             DispatchQueue.main.async {
@@ -321,6 +326,7 @@ class OrderVC: UIViewController {
                         self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
                         let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                            self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.integer(forKey: "draftOrderID") ?? 0))
                             self.navigationController?.popViewController(animated: true)
                         }))
                         self.present(alert, animated: true, completion: nil)
@@ -341,6 +347,7 @@ class OrderVC: UIViewController {
                 self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
                 let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                    self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.integer(forKey: "draftOrderID") ?? 0))
                     self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true, completion: nil)

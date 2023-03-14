@@ -75,3 +75,18 @@ class PutCustomerViewModel
         })
     }
 }
+
+class DeleteDraftOrder
+{
+    var bindResultToDraftOrders: (() -> Void) = {}
+    var errors:[String:Any]?{
+        didSet{
+            bindResultToDraftOrders()
+        }
+    }
+    
+    func deleteDraftOrder(target : EndPoints)
+    {
+        NetworkServices.delete(url: target.path)
+    }
+}

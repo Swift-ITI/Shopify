@@ -85,6 +85,11 @@ class CartVC: UIViewController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.render()
+    }
+    
     func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
