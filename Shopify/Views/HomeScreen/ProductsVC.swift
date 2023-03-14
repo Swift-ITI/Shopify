@@ -196,3 +196,17 @@ extension ProductsVC : UICollectionViewDelegateFlowLayout
     
         }
 }
+
+extension ProductsVC : UITextFieldDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchbar.endEditing(true)
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchbar.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchbar.endEditing(true)
+
+       return true
+    }
+}

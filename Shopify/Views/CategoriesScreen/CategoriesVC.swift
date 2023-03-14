@@ -204,37 +204,6 @@ class CategoriesVC: UIViewController {
         self.view.addSubview(subCategory)
     }
     
-    /*func filter (flag : Int , target : EndPoints) {
-        switch flag {
-        case 0 :
-            self.catigoriesViewModel?.getProducts(target:target)
-            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }
-        case 1 :
-            self.catigoriesViewModel?.getProducts(target: target)
-            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }
-        case 2 :
-            self.catigoriesViewModel?.getProducts(target: target)
-            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }
-        case 3 :
-            self.catigoriesViewModel?.getProducts(target: target)
-            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }
-        case 4 :
-            self.catigoriesViewModel?.getProducts(target: target)
-            self.catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }
-        default : break
-            
-        }
-    }*/
     func filter (target: EndPoints)
     {
         self.catigoriesViewModel?.getProducts(target:target)
@@ -279,9 +248,8 @@ class CategoriesVC: UIViewController {
     }
     @objc func navsearch()
     {
-        print("aa")
-//        let searchobj = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchViewController
-//        self.navigationController?.pushViewController(searchobj, animated: true)
+        let searchobj = storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+        navigationController?.pushViewController(searchobj, animated: true)
     }
 }
 //MARK: extension1

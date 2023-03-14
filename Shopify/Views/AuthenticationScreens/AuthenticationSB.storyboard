@@ -72,21 +72,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtD-hf-hlT">
-                                        <rect key="frame" x="8" y="176" width="146" height="32"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Forget Password?">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="forgotPWBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zWq-vE-c28"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="KM1-za-4w8" secondAttribute="trailing" constant="16" id="1gv-Uv-uiv"/>
-                                    <constraint firstAttribute="bottom" secondItem="LtD-hf-hlT" secondAttribute="bottom" constant="5" id="6gh-Pj-GDE"/>
                                     <constraint firstItem="cYS-2I-pK4" firstAttribute="leading" secondItem="CEU-KM-Of7" secondAttribute="leading" constant="16" id="BhM-Ga-OTd"/>
                                     <constraint firstItem="O7A-uS-IRu" firstAttribute="top" secondItem="CEU-KM-Of7" secondAttribute="top" constant="20" symbolic="YES" id="NqI-re-q7Q"/>
                                     <constraint firstItem="nIg-DG-cmH" firstAttribute="top" secondItem="O7A-uS-IRu" secondAttribute="bottom" constant="8" symbolic="YES" id="Ux5-Rq-HMw"/>
@@ -94,8 +83,6 @@
                                     <constraint firstItem="KM1-za-4w8" firstAttribute="leading" secondItem="CEU-KM-Of7" secondAttribute="leading" constant="16" id="aR7-im-LD2"/>
                                     <constraint firstAttribute="trailing" secondItem="nIg-DG-cmH" secondAttribute="trailing" constant="16" id="iNQ-ag-N6B"/>
                                     <constraint firstItem="O7A-uS-IRu" firstAttribute="leading" secondItem="CEU-KM-Of7" secondAttribute="leading" constant="16" id="irK-b4-gD4"/>
-                                    <constraint firstItem="LtD-hf-hlT" firstAttribute="top" secondItem="cYS-2I-pK4" secondAttribute="bottom" constant="46" id="p4f-nK-Wkg"/>
-                                    <constraint firstItem="LtD-hf-hlT" firstAttribute="leading" secondItem="CEU-KM-Of7" secondAttribute="leading" constant="8" id="pVK-H8-MaE"/>
                                     <constraint firstItem="KM1-za-4w8" firstAttribute="top" secondItem="cYS-2I-pK4" secondAttribute="bottom" constant="8" symbolic="YES" id="v11-aZ-Fbk"/>
                                     <constraint firstItem="cYS-2I-pK4" firstAttribute="top" secondItem="nIg-DG-cmH" secondAttribute="bottom" constant="8" symbolic="YES" id="yc1-y1-LWl"/>
                                 </constraints>
@@ -306,7 +293,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-H7-8HJ">
-                                <rect key="frame" x="4" y="606" width="304.66666666666663" height="119"/>
+                                <rect key="frame" x="4" y="606" width="304.66666666666669" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="My7-Q6-JXU">
                                         <rect key="frame" x="100.66666666666669" y="48.333333333333371" width="184" height="50"/>

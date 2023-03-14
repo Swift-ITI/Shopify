@@ -151,14 +151,15 @@ class AddAddressVC: UIViewController {
     }
 }
 
-extension AddAddressVC {
-    func renderTxtFields(txtFields: [UITextField]) {
-        for txtField in txtFields {
-            txtField.layer.borderWidth = 2
-            txtField.layer.cornerRadius = 10
-            txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
-        }
+extension AddAddressVC : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
     }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func showAlert(title: String, msg: String,handler:@escaping (UIAlertAction?)->Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
 
@@ -167,5 +168,14 @@ extension AddAddressVC {
         }))
 
         present(alert, animated: true, completion: nil)
+    }
+    
+    func renderTxtFields(txtFields: [UITextField]) {
+        for txtField in txtFields {
+            txtField.delegate = self
+            txtField.layer.borderWidth = 2
+            txtField.layer.cornerRadius = 10
+            txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        }
     }
 }
