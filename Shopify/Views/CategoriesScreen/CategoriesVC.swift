@@ -303,7 +303,7 @@ extension CategoriesVC:  UICollectionViewDataSource{
         let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
         
         productCell.nameOfProduct.text = products?.products[indexPath.row].title
-        productCell.priceOfProduct.text = products?.products[indexPath.row].variants?[0].price
+        productCell.priceOfProduct.text = CurrencyExchanger.changeCurrency(cash: products?.products[indexPath.row].variants?[0].price ?? "")
         productCell.imgOfProduct.kf.setImage(with: URL(string: products?.products[indexPath.row].image?.src ?? ""))
         
         return productCell

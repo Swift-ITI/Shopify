@@ -80,7 +80,7 @@ extension WishListSeeMoreVC: UITableViewDataSource
         cell.productImage.kf.setImage(with: URL(string: favFromCoreData[indexPath.row].value(forKey: "img") as? String ?? "loading"))
         
         cell.productNameLabel.text = favFromCoreData[indexPath.row].value(forKey: "title") as? String ?? ""
-        cell.productPriceLabel.text = favFromCoreData[indexPath.row].value(forKey: "price") as? String ?? ""
+        cell.productPriceLabel.text = CurrencyExchanger.changeCurrency(cash: favFromCoreData[indexPath.row].value(forKey: "price") as? String ?? "")
         return cell
     }
     
