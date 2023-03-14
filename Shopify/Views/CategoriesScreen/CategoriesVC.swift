@@ -22,6 +22,9 @@ class CategoriesVC: UIViewController {
     
     var nsDefault = UserDefaults()
     
+    var favVMobj : FavCoreDataViewModel?
+    var favobj : FavCoreDataManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +40,13 @@ class CategoriesVC: UIViewController {
         }
         
         addIconsToFloatingActionBtn()
+        
+        favVMobj = FavCoreDataViewModel()
+        favobj = favVMobj?.getfavInstance()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        productsCollectionView.reloadData()
     }
     
     
@@ -303,11 +313,42 @@ extension CategoriesVC:  UICollectionViewDataSource{
         let productCell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
         
         productCell.nameOfProduct.text = products?.products[indexPath.row].title
-        productCell.priceOfProduct.text = CurrencyExchanger.changeCurrency(cash: products?.products[indexPath.row].variants?[0].price ?? "")
+        productCell.priceOfProduct.text = ("\(CurrencyExchanger.changeCurrency(cash: products?.products[indexPath.row].variants?[0].price ?? ""))\(nsDefault.value(forKey: "CashType") ?? "")")
         productCell.imgOfProduct.kf.setImage(with: URL(string: products?.products[indexPath.row].image?.src ?? ""))
+        
+        if (favobj?.isFav(lineItemId: products?.products[indexPath.row].id ?? 0))! {
+            productCell.heartBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        else {
+            productCell.heartBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            
+           
+        }
+      
+        productCell.heartBtn.tag = indexPath.row
+        productCell.heartBtn.addTarget(self, action: #selector(clickHeart(_:)), for: .touchUpInside)
         
         return productCell
     }
+    
+    @objc func clickHeart(_ sender: UIButton) {
+        
+        if (favobj?.isFav(lineItemId: products?.products[sender.tag].id ?? 0))! {
+            
+            favobj?.DeleteFromFav(lineitemID: products?.products[sender.tag].id ?? 0)
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        else {
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            
+            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: products?.products[sender.tag].id ?? 0, title: products?.products[sender.tag].title ?? "", price: products?.products[sender.tag].variants?[0].price ?? "", quantity: 1, img: products?.products[sender.tag].image?.src ?? "")
+            
+          
+        }
+        self.productsCollectionView.reloadData()
+    }
+    
+    
 }
 
 //MARK: extension3
