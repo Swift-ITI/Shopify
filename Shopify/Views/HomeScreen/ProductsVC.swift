@@ -141,7 +141,7 @@ extension ProductsVC : UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
         cell.nameOfProduct.text = titles?[indexPath.row].title
-        cell.priceOfProduct.text = titles?[indexPath.row].variants?[0].price
+        cell.priceOfProduct.text = CurrencyExchanger.changeCurrency(cash: titles?[indexPath.row].variants?[0].price ?? "")
         cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
         cell.vieww = self
         cell.idd = BrandproudctResponse?.products[indexPath.row].id
