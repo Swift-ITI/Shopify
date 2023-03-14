@@ -56,7 +56,7 @@
         <!--Home-->
         <scene sceneID="epf-Jc-o3P">
             <objects>
-                <viewController id="Yyx-qf-uhK" customClass="HomeVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeSB" id="Yyx-qf-uhK" customClass="HomeVC" customModule="Shopify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v1j-Xw-nvD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -473,11 +473,6 @@
             <point key="canvasLocation" x="4578" y="-184"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="NOT-9B-AyB">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ssy-D3-G48"/>
     </inferredMetricsTieBreakers>

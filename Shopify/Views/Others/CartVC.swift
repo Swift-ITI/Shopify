@@ -21,6 +21,8 @@ class CartVC: UIViewController {
     var productt: CatigoriesViewModel?
     var Oneproduct: Products?
 
+    //var detailedproduct : Product?
+    
     let nsDefault = UserDefaults()
 
     var coreDataVm: CoreDataViewModel?
@@ -135,6 +137,22 @@ extension CartVC: UITableViewDelegate {
             present(alert, animated: true, completion: nil)
         }
         tableView.reloadData()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let SecondStoryBoardObj = UIStoryboard(name: "HomeSB", bundle: nil)
+        let ProductDetailsobj = SecondStoryBoardObj.instantiateViewController(withIdentifier: "productdetails") as! ProductDetailsVC
+        for producctt in arrProducts
+        {
+            if draftOrder?.draft_order?.line_items?[indexPath.row].product_id == producctt.id
+            {
+                ProductDetailsobj.detailedProduct = producctt
+            }
+        }
+        self.navigationController?.pushViewController(ProductDetailsobj, animated: true)
+        
+        
+        
+        
     }
 
     func converttodic(arrofline: [LineItem]) -> [[String: Any]] {
