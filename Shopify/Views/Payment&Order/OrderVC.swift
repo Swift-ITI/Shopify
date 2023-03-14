@@ -1,3 +1,4 @@
+
 //
 //  OrderVC.swift
 //  Shopify
@@ -71,6 +72,13 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        orderDetails.layer.borderWidth = 2
+        orderDetails.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        
+        adresses.layer.borderWidth = 2
+        adresses.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        
         adresses.reloadData()
         paymentDefault.set("Pay Method", forKey: "PaymentMethod")
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")
@@ -92,7 +100,13 @@ class OrderVC: UIViewController {
                 self.adresses.reloadData()
             }
         }
-       // Orderdetialsviewmodel = OrderDetailsViewModel()
+        
+        self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
+                        self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
+                        self.discount.text = "0"
+                        self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+                        self.orderDetails.reloadData()
+        Orderdetialsviewmodel = OrderDetailsViewModel()
         
 //        Orderdetialsviewmodel?.getDataOfOrderDetails(target: .draftOrder(id: NsDefault?.integer(forKey: "draftOrderID") ?? 0))
 //        print(NsDefault?.integer(forKey: "draftOrderID") ?? 0)
