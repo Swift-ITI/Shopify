@@ -69,6 +69,13 @@ class OrderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        orderDetails.layer.borderWidth = 2
+        orderDetails.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        
+        adresses.layer.borderWidth = 2
+        adresses.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        
         adresses.reloadData()
         paymentDefault.set("Pay Method", forKey: "PaymentMethod")
         self.braintreeClient = BTAPIClient(authorization: "sandbox_q7ftqr99_7h4b4rgjq3fptm87")

@@ -29,8 +29,15 @@ class HomeVC: UIViewController {
             OfferCV.delegate = self
             OfferCV.dataSource = self
             OfferCV.layer.cornerRadius = 20
-            OfferCV.layer.borderWidth = 5
-            OfferCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            OfferCV.layer.borderWidth = 2
+            OfferCV.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
+            //OfferCV.layer.shadowColor = UIColor(named: "gray")?.cgColor
+            OfferCV.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+            OfferCV.layer.shadowOffset = CGSize(width: 0, height: 0)
+            OfferCV.layer.shadowRadius = 3
+            OfferCV.layer.shadowOpacity = 1
+            OfferCV.layer.masksToBounds = false
+            
         }
     }
 
@@ -38,9 +45,9 @@ class HomeVC: UIViewController {
         didSet {
             BrandsCV.dataSource = self
             BrandsCV.delegate = self
-            BrandsCV.layer.cornerRadius = 20
-            BrandsCV.layer.borderWidth = 5
-            BrandsCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            //BrandsCV.layer.cornerRadius = 20
+           // BrandsCV.layer.borderWidth = 5
+           // BrandsCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
         }
     }
 
@@ -105,7 +112,7 @@ class HomeVC: UIViewController {
 
     func addBarButtonItems() {
         let fav = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(navfav))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "white")
 
         let cart = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navcart))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "CoffeeColor")
@@ -177,8 +184,14 @@ extension HomeVC: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerbrandcell", for: indexPath) as! BrandCVCell
             cell.offerbrandimg.kf.setImage(with: URL(string: BrandCollectionviewresponse?.smart_collections[indexPath.row].image.src ?? ""), placeholder: UIImage(named: "loading.png"), options: [.keepCurrentImageWhileLoading], progressBlock: nil, completionHandler: nil)
             cell.layer.cornerRadius = 20
-            cell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            cell.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             cell.layer.borderWidth = 2
+            cell.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.layer.shadowRadius = 3
+            cell.layer.shadowOpacity = 1
+            cell.layer.masksToBounds = false
+
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)

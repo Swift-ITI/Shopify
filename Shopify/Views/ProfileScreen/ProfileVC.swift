@@ -26,7 +26,7 @@ class ProfileVC: UIViewController {
     @IBOutlet var wishListLabel: UILabel! {
         didSet {
             wishListLabel.layer.masksToBounds = true
-            wishListLabel.layer.cornerRadius = wishListLabel.frame.width / 12
+            wishListLabel.layer.cornerRadius = wishListLabel.frame.width / 15
         }
     }
 
@@ -50,9 +50,14 @@ class ProfileVC: UIViewController {
             wishListTable.delegate = self
             wishListTable.dataSource = self
             // Table Format
-            wishListTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            wishListTable.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             wishListTable.layer.borderWidth = 1.5
             wishListTable.layer.cornerRadius = 20
+            wishListLabel.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+            wishListLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+            wishListLabel.layer.shadowRadius = 3
+            wishListLabel.layer.shadowOpacity = 1
+            wishListLabel.layer.masksToBounds = false
             // NIB File
             let wishListCellNib = UINib(nibName: "WishListsCell", bundle: nil)
             wishListTable.register(wishListCellNib, forCellReuseIdentifier: "wishListsCell")
@@ -65,9 +70,14 @@ class ProfileVC: UIViewController {
             ordersTable.delegate = self
             ordersTable.dataSource = self
             // Table Format
-            ordersTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            ordersTable.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             ordersTable.layer.borderWidth = 1.5
             ordersTable.layer.cornerRadius = 20
+            ordersTable.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+            ordersTable.layer.shadowOffset = CGSize(width: 0, height: 0)
+            ordersTable.layer.shadowRadius = 3
+            ordersTable.layer.shadowOpacity = 1
+            ordersTable.layer.masksToBounds = false
             // NIB File
             let orderCellNib = UINib(nibName: "OrdersCell", bundle: nil)
             ordersTable.register(orderCellNib, forCellReuseIdentifier: "orderCell")
@@ -94,6 +104,8 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        wishListLabel.layer.masksToBounds = true
+        wishListLabel.layer.cornerRadius = wishListLabel.frame.width / 15
         //fetchCoreData()
     }
 
