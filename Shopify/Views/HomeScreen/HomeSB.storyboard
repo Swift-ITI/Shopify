@@ -473,6 +473,11 @@
             <point key="canvasLocation" x="4578" y="-184"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="NOT-9B-AyB">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="ssy-D3-G48"/>
     </inferredMetricsTieBreakers>
