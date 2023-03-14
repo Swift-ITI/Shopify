@@ -41,7 +41,7 @@ extension PreviousOrdersVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
         
-        cell.priceLabel.text = orders?[indexPath.row].current_total_price
+        cell.priceLabel.text = CurrencyExchanger.changeCurrency(cash: orders?[indexPath.row].current_total_price ?? "")
         cell.dateLabel.text = orders?[indexPath.row].created_at
         cell.itemsNumberLabel.text = "\(orders?[indexPath.row].line_items?.count ?? 0)"
         return cell

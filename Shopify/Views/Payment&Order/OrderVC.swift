@@ -97,10 +97,10 @@ class OrderVC: UIViewController {
         Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
             DispatchQueue.main.async {
                 self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
-                self.subTotal.text = self.OrderDetailsResponse?.draft_order?.subtotal_price
-                self.shippingFees.text = self.OrderDetailsResponse?.draft_order?.total_tax
+                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
+                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
                 self.discount.text = "0"
-                self.total.text = self.OrderDetailsResponse?.draft_order?.total_price
+                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
                 self.orderDetails.reloadData()
             }
         }
@@ -220,7 +220,7 @@ class OrderVC: UIViewController {
     @IBAction func paymentMethod(_ sender: Any) {
         let paymentView = storyboard?.instantiateViewController(withIdentifier: "paymentVC") as! PaymentVC
         print(Float(self.OrderDetailsResponse?.draft_order?.total_price ?? "") ?? 0.0)
-        paymentView.shouldPay = calcTotal()
+        paymentView.shouldPay = Float(CurrencyExchanger.changeCurrency(cash: String(calcTotal())))
         paymentView.modalPresentationStyle = .fullScreen
         //self.present(paymentView, animated: true, completion: nil)
         navigationController?.pushViewController(paymentView, animated: true)
@@ -299,13 +299,13 @@ class OrderVC: UIViewController {
             {
             case "PayPal" as String:
                 print("start paypal")
-                shouldPay = Int(self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "") ?? 1
+                shouldPay = Int(CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")) ?? 1
                 let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
                 payPalDriver.viewControllerPresentingDelegate = self
                 payPalDriver.appSwitchDelegate = self
                 
                 let request = BTPayPalRequest(amount: "\(shouldPay)")
-                request.currencyCode = "EGP"
+                request.currencyCode = "USD"
                 
                 payPalDriver.requestOneTimePayment(request) { (tokenizedPayPalAccount, error) in
                     if let tokenizedPayPalAccount = tokenizedPayPalAccount
@@ -381,7 +381,7 @@ class OrderVC: UIViewController {
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
             ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title ?? "" ),placeholder: UIImage(named: "loading.png"))
-            ordercell.orderprice.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].price
+            ordercell.orderprice.text = CurrencyExchanger.changeCurrency(cash: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].price ?? "")
             ordercell.ordername.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title
             ordercell.orderquantity.text = String(OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].quantity ?? 0)
             return ordercell

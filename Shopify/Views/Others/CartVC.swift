@@ -65,7 +65,7 @@ class CartVC: UIViewController {
             cartVM?.bindDraftOrderToCartVC = { () in
                 DispatchQueue.main.async {
                     self.draftOrder = self.cartVM?.draftOrderResults
-                    self.subTotal.text = "Sub Total: \(self.draftOrder?.draft_order?.subtotal_price ?? "0")"
+                    self.subTotal.text = "Sub Total: \(CurrencyExchanger.changeCurrency(cash: self.draftOrder?.draft_order?.subtotal_price ?? "0"))"
                     self.cartProducts.reloadData()
                 }
             }
@@ -182,7 +182,7 @@ extension CartVC: UITableViewDataSource {
             }
             cartProductscell.productName.text = draftOrder?.draft_order?.line_items?[indexPath.section].title
 
-            cartProductscell.productPrice.text = draftOrder?.draft_order?.line_items?[indexPath.section].price
+            cartProductscell.productPrice.text = CurrencyExchanger.changeCurrency(cash: draftOrder?.draft_order?.line_items?[indexPath.section].price ?? "")
 
             cartProductscell.quantity.text = draftOrder?.draft_order?.line_items?[indexPath.section].quantity?.formatted()
             cartProductscell.plusQuantity.tag = indexPath.section
@@ -195,7 +195,7 @@ extension CartVC: UITableViewDataSource {
         } else {
             cartProductscell.productName.text = lineItemsFromCoreData[indexPath.section].value(forKey: "title") as? String
 
-            cartProductscell.productPrice.text = (lineItemsFromCoreData[indexPath.section].value(forKey: "price") as? Int)?.formatted()
+            cartProductscell.productPrice.text = CurrencyExchanger.changeCurrency(cash: (lineItemsFromCoreData[indexPath.section].value(forKey: "price") as? Int)?.formatted() ?? "")
 
             cartProductscell.quantity.text = "1"
 
@@ -286,7 +286,7 @@ extension CartVC {
         self.cartVM?.bindDraftOrderToCartVC = { () in
             DispatchQueue.main.async {
                 self.draftOrder = self.cartVM?.draftOrderResults
-                self.subTotal.text = "Sub Total: \(self.draftOrder?.draft_order?.subtotal_price ?? "0")"
+                self.subTotal.text = "Sub Total: \(CurrencyExchanger.changeCurrency(cash: self.draftOrder?.draft_order?.subtotal_price ?? "0"))"
                 self.cartProducts.reloadData()
             }
         }

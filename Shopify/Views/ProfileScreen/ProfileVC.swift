@@ -154,8 +154,8 @@ class ProfileVC: UIViewController {
             self.ordersTable.reloadData()
         }
     }
-
-    // MARK: - IBActions Part
+    
+// MARK: - IBActions Part
 
     @IBAction func settingActionButton(_ sender: Any) {
         print("setting")
@@ -225,7 +225,7 @@ extension ProfileVC: UITableViewDataSource {
 // Orders Table
         case ordersTable:
             let cell: OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
-            cell.priceLabel.text = orderDetails?.orders[indexPath.row].current_total_price
+            cell.priceLabel.text = CurrencyExchanger.changeCurrency(cash: orderDetails?.orders[indexPath.row].current_total_price ?? "")
             cell.dateLabel.text = orderDetails?.orders[indexPath.row].created_at
             //cell.dateLabel.adjustsFontSizeToFitWidth = true
             cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
@@ -234,7 +234,7 @@ extension ProfileVC: UITableViewDataSource {
 // Wish List Table
         case wishListTable:
             let cell: WishListsCell = tableView.dequeueReusableCell(withIdentifier: "wishListsCell", for: indexPath) as! WishListsCell
-            cell.price.text = wishListItems[indexPath.row].value(forKey: "price") as? String
+            cell.price.text = CurrencyExchanger.changeCurrency(cash: wishListItems[indexPath.row].value(forKey: "price") as? String ?? "")
             cell.clothType.text = wishListItems[indexPath.row].value(forKey: "title") as? String
             cell.clothType.adjustsFontSizeToFitWidth = true
             let imageURL = URL(string: wishListItems[indexPath.row].value(forKey: "img") as? String ?? "https://img.freepik.com/premium-vector/system-software-update-upgrade-concept-loading-process-screen-vector-illustration_175838-2182.jpg?w=826")
