@@ -29,7 +29,7 @@
                         <color key="textColor" name="AccentColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Miami, Alexandria" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldk-G7-QZf">
                         <rect key="frame" x="16" y="56" width="319.66666666666669" height="28"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                         <color key="textColor" name="AccentColor"/>

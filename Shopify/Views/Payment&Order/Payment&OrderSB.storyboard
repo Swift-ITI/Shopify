@@ -166,7 +166,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-Lv-EuF">
-                                        <rect key="frame" x="16" y="842" width="360.33333333333331" height="34.333333333333371"/>
+                                        <rect key="frame" x="16" y="892" width="360.33333333333331" height="34.333333333333371"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUm-yQ-JZ0">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="34.333333333333336"/>
@@ -191,14 +191,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Kdp-on-nsQ">
-                                        <rect key="frame" x="8" y="484" width="376.33333333333331" height="100"/>
+                                        <rect key="frame" x="8" y="484" width="376.33333333333331" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="uBI-Di-g3K"/>
+                                            <constraint firstAttribute="height" constant="150" id="uBI-Di-g3K"/>
                                         </constraints>
                                     </tableView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter coupon" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-1c-oae">
-                                        <rect key="frame" x="16" y="624" width="201" height="34"/>
+                                        <rect key="frame" x="16" y="674" width="201" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="201" id="ViY-xk-FzA"/>
                                         </constraints>
@@ -206,7 +206,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ja-Q6-ckJ">
-                                        <rect key="frame" x="267.66666666666669" y="624" width="84.666666666666686" height="34.333333333333371"/>
+                                        <rect key="frame" x="267.66666666666669" y="674" width="84.666666666666686" height="34.333333333333371"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Validate"/>
                                         <connections>
@@ -214,55 +214,55 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3v-f4-3EX">
-                                        <rect key="frame" x="16" y="690" width="78.333333333333329" height="24"/>
+                                        <rect key="frame" x="16" y="740" width="78.333333333333329" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping fees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMP-T8-3ge">
-                                        <rect key="frame" x="15.999999999999993" y="722" width="119.33333333333331" height="24"/>
+                                        <rect key="frame" x="15.999999999999993" y="772" width="119.33333333333331" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW9-VN-Gyl">
-                                        <rect key="frame" x="16" y="754" width="78" height="24"/>
+                                        <rect key="frame" x="16" y="804" width="78" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awp-oa-nvj">
-                                        <rect key="frame" x="16.000000000000004" y="786" width="42.333333333333343" height="24"/>
+                                        <rect key="frame" x="16.000000000000004" y="836" width="42.333333333333343" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPp-mY-EeM">
-                                        <rect key="frame" x="215.33333333333337" y="688.33333333333337" width="97" height="24"/>
+                                        <rect key="frame" x="215.33333333333337" y="738.33333333333337" width="97" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuK-ot-UAb">
-                                        <rect key="frame" x="215.33333333333337" y="720.33333333333337" width="97" height="24"/>
+                                        <rect key="frame" x="215.33333333333337" y="770.33333333333337" width="97" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrj-fT-mBl">
-                                        <rect key="frame" x="215.33333333333337" y="752.33333333333337" width="97" height="24"/>
+                                        <rect key="frame" x="215.33333333333337" y="802.33333333333337" width="97" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kso-cf-EU7">
-                                        <rect key="frame" x="215.33333333333337" y="784.33333333333337" width="97" height="24"/>
+                                        <rect key="frame" x="215.33333333333337" y="834.33333333333337" width="97" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xql-mM-kdl">
-                                        <rect key="frame" x="141.33333333333334" y="940.33333333333337" width="110.66666666666666" height="34.333333333333371"/>
+                                        <rect key="frame" x="141.33333333333334" y="990.33333333333326" width="110.66666666666666" height="34.333333333333258"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Place order"/>
                                         <connections>
