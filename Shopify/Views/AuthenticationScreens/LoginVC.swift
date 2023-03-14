@@ -10,6 +10,7 @@ class LoginVC: UIViewController {
 
     @IBOutlet weak var passwordTxtField: UITextField!{
         didSet{
+            passwordTxtField.delegate = self
             passwordTxtField.layer.cornerRadius = 10
             passwordTxtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             passwordTxtField.layer.borderWidth = 2
@@ -17,6 +18,7 @@ class LoginVC: UIViewController {
     }
     @IBOutlet weak var emailTxtField: UITextField!{
         didSet{
+            emailTxtField.delegate = self
             emailTxtField.layer.cornerRadius = 10
             emailTxtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             emailTxtField.layer.borderWidth = 2
@@ -38,8 +40,7 @@ class LoginVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func forgotPWBtn(_ sender: Any) {
-    }
+
     @IBAction func registerBtn(_ sender: Any) {
         performSegue(withIdentifier: "goToRegister", sender: self)
     }
@@ -73,5 +74,14 @@ class LoginVC: UIViewController {
         }))
 
         present(alert, animated: true, completion: nil)
+    }
+}
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
     }
 }

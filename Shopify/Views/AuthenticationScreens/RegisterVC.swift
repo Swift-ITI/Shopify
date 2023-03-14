@@ -107,9 +107,10 @@ class RegisterVC: UIViewController {
 
 // MARK: Rendering
 
-extension RegisterVC {
+extension RegisterVC : UITextFieldDelegate{
     func renderTxtFields(txtFields: [UITextField]) {
         for txtField in txtFields {
+            txtField.delegate = self
             txtField.layer.cornerRadius = 10
             txtField.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
             txtField.layer.borderWidth = 2
@@ -124,5 +125,13 @@ extension RegisterVC {
         }))
 
         present(alert, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
     }
 }
