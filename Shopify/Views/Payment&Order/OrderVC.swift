@@ -32,6 +32,8 @@ class OrderVC: UIViewController {
     
     var arrofdiscount : [Discount]?
     
+    var arrofpro : [Product]?
+    
     let dispatchgroup = DispatchGroup()
     
     var checkcode = true
@@ -90,20 +92,20 @@ class OrderVC: UIViewController {
                 self.adresses.reloadData()
             }
         }
-        Orderdetialsviewmodel = OrderDetailsViewModel()
+       // Orderdetialsviewmodel = OrderDetailsViewModel()
         
-        Orderdetialsviewmodel?.getDataOfOrderDetails(target: .draftOrder(id: NsDefault?.integer(forKey: "draftOrderID") ?? 0))
-        print(NsDefault?.integer(forKey: "draftOrderID") ?? 0)
-        Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
-            DispatchQueue.main.async {
-                self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
-                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
-                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
-                self.discount.text = "0"
-                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
-                self.orderDetails.reloadData()
-            }
-        }
+//        Orderdetialsviewmodel?.getDataOfOrderDetails(target: .draftOrder(id: NsDefault?.integer(forKey: "draftOrderID") ?? 0))
+//        print(NsDefault?.integer(forKey: "draftOrderID") ?? 0)
+//        Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
+//            DispatchQueue.main.async {
+//                self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
+//                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
+//                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
+//                self.discount.text = "0"
+//                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+//                self.orderDetails.reloadData()
+//            }
+//        }
         print(OrderDetailsResponse)
         priceruleviewmodel = PriceRuleViewModel()
         priceruleviewmodel?.getpricerule(target: .price_rulee(id:1380100899094))
@@ -380,7 +382,19 @@ class OrderVC: UIViewController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
-            ordercell.orderimage.kf.setImage(with: URL(string: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title ?? "" ),placeholder: UIImage(named: "loading.png"))
+            
+             //salma
+            
+            for iteem in arrofpro ?? []
+            {
+                print("saloma\(arrofpro?.count)")
+                if OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].product_id == iteem.id
+                {
+                    print("salmaaa\(arrofpro?.count)")
+                    ordercell.orderimage.kf.setImage(with: URL(string: iteem.image?.src ?? ""))
+                   
+                }
+            }
             ordercell.orderprice.text = CurrencyExchanger.changeCurrency(cash: OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].price ?? "")
             ordercell.ordername.text = OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].title
             ordercell.orderquantity.text = String(OrderDetailsResponse?.draft_order?.line_items?[indexPath.section].quantity ?? 0)
