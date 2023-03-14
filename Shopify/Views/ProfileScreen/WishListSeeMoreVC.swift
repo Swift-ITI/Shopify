@@ -73,8 +73,14 @@ extension WishListSeeMoreVC: UITableViewDataSource
     {
         let cell : WishListTableCell = tableView.dequeueReusableCell(withIdentifier: "wishListTableCell", for: indexPath) as! WishListTableCell
         cell.layer.borderWidth = 1.5
-        cell.layer.borderColor = UIColor(named:"CoffeeColor")?.cgColor
+        cell.layer.borderColor = UIColor(named:"AccentColor")?.cgColor
         cell.layer.cornerRadius = CGFloat(20)
+        cell.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.shadowRadius = 3
+        cell.layer.shadowOpacity = 1
+        cell.layer.masksToBounds = false
+
         cell.productNameLabel.adjustsFontSizeToFitWidth = true
         cell.productPriceLabel.adjustsFontSizeToFitWidth = true
         cell.productImage.kf.setImage(with: URL(string: favFromCoreData[indexPath.row].value(forKey: "img") as? String ?? "loading"))

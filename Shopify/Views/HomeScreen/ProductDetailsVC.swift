@@ -22,9 +22,15 @@ class ProductDetailsVC: UIViewController {
             ItemCV.delegate = self
             ItemCV.dataSource = self
             ItemCV.layer.borderWidth = 2
-            ItemCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            ItemCV.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             ItemCV.layer.masksToBounds = true
             ItemCV.layer.cornerRadius = 15
+            ItemCV.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+            ItemCV.layer.shadowOffset = CGSize(width: 0, height: 0)
+            ItemCV.layer.shadowRadius = 3
+            ItemCV.layer.shadowOpacity = 1
+            ItemCV.layer.masksToBounds = false
+
             let nib = UINib(nibName: "BrandCVCell", bundle: nil)
             ItemCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
         }
@@ -33,7 +39,7 @@ class ProductDetailsVC: UIViewController {
         didSet {
             reviewTableView.delegate = self
             reviewTableView.dataSource = self
-            reviewTableView.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+            reviewTableView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
             reviewTableView.layer.borderWidth = 1.5
             reviewTableView.layer.cornerRadius = 20
             let nibT = UINib(nibName: "ReviewTVCell", bundle: nil)

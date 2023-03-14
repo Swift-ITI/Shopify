@@ -200,7 +200,7 @@ extension CartVC: UITableViewDataSource {
         let cartProductscell = tableView.dequeueReusableCell(withIdentifier: "cartPorducts", for: indexPath) as! CartProductCV
 
         cartProductscell.layer.borderWidth = 3
-        cartProductscell.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        cartProductscell.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
         cartProductscell.layer.cornerRadius = 20
 
         if flag {

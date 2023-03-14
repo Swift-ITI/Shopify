@@ -39,8 +39,14 @@ class ProductCVCell: UICollectionViewCell {
 //           print("Not")
 //        }
         self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+        self.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
         self.layer.cornerRadius = CGFloat(20)
+        self.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 1
+        self.layer.masksToBounds = false
+
         // Initialization code
 //        favVMobj = FavCoreDataViewModel()
 //        favobj = favVMobj?.getfavInstance()
