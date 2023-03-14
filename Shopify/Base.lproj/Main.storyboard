@@ -46,17 +46,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="AccentColor"/>
-                        <color key="tintColor" red="0.68235294120000001" green="0.56078431370000004" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" name="CoffeeColor"/>
                         <color key="barTintColor" name="CoffeeColor"/>
                         <color key="selectedImageTintColor" name="CoffeeColor"/>
                         <tabBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
-                            <color key="shadowColor" name="AccentColor"/>
+                            <color key="shadowColor" name="CoffeeColor"/>
                             <color key="selectionIndicatorTintColor" name="CoffeeColor"/>
                         </tabBarAppearance>
                         <tabBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="AccentColor"/>
-                            <color key="shadowColor" name="AccentColor"/>
+                            <color key="shadowColor" name="CoffeeColor"/>
                             <color key="selectionIndicatorTintColor" name="CoffeeColor"/>
                         </tabBarAppearance>
                     </tabBar>

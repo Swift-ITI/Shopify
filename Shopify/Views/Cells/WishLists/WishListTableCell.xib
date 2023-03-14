@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtE-0q-nWa">
-                        <rect key="frame" x="336" y="8" width="48" height="48"/>
+                        <rect key="frame" x="180.33333333333337" y="8" width="203.66666666666663" height="203.66666666666666"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="TtE-0q-nWa" secondAttribute="height" multiplier="1:1" id="Jzt-dR-026"/>
                         </constraints>
@@ -61,6 +62,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <connections>
                 <outlet property="productImage" destination="Jps-hI-29g" id="R3q-Vj-69F"/>
                 <outlet property="productNameLabel" destination="NNf-mV-kri" id="nSY-jB-tBL"/>
@@ -76,5 +78,8 @@
         <namedColor name="AccentColor">
             <color red="0.19215686274509805" green="0.36470588235294116" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

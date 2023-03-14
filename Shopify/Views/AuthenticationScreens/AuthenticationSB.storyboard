@@ -105,12 +105,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="184" id="ScC-Sg-UOP"/>
                                 </constraints>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" name="CoffeeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Login" cornerStyle="large" titleAlignment="center">
                                     <backgroundConfiguration key="background"/>
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
-                                    <color key="baseForegroundColor" name="CoffeeColor"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="loginBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="W2r-hU-9NE"/>
@@ -130,12 +130,12 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="184" id="6Cl-O7-YkH"/>
                                         </constraints>
-                                        <color key="tintColor" name="AccentColor"/>
+                                        <color key="tintColor" name="CoffeeColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Register" cornerStyle="large" titleAlignment="center">
                                             <backgroundConfiguration key="background"/>
                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
-                                            <color key="baseForegroundColor" name="CoffeeColor"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="registerBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Zms-rc-dqY"/>
@@ -294,12 +294,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="184" id="BaO-Pv-M5z"/>
                                 </constraints>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" name="CoffeeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Register" cornerStyle="large" titleAlignment="center">
                                     <backgroundConfiguration key="background"/>
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
-                                    <color key="baseForegroundColor" name="CoffeeColor"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="registerBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="flO-k4-mei"/>
@@ -313,12 +313,12 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="184" id="Noe-bz-Yhe"/>
                                         </constraints>
-                                        <color key="tintColor" name="AccentColor"/>
+                                        <color key="tintColor" name="CoffeeColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Login" cornerStyle="large" titleAlignment="center">
                                             <backgroundConfiguration key="background"/>
                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="30"/>
-                                            <color key="baseForegroundColor" name="CoffeeColor"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginBtn:" destination="sYx-sw-hfo" eventType="touchUpInside" id="xRc-d8-yOj"/>
@@ -391,7 +391,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dAB-Nd-AVe"/>
+        <segue reference="w7f-IV-od6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">

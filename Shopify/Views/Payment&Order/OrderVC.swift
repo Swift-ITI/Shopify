@@ -1,3 +1,4 @@
+
 //
 //  OrderVC.swift
 //  Shopify
@@ -99,13 +100,7 @@ class OrderVC: UIViewController {
                 self.adresses.reloadData()
             }
         }
-        
-        self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
-                        self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
-                        self.discount.text = "0"
-                        self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
-                        self.orderDetails.reloadData()
-        Orderdetialsviewmodel = OrderDetailsViewModel()
+       // Orderdetialsviewmodel = OrderDetailsViewModel()
         
 //        Orderdetialsviewmodel?.getDataOfOrderDetails(target: .draftOrder(id: NsDefault?.integer(forKey: "draftOrderID") ?? 0))
 //        print(NsDefault?.integer(forKey: "draftOrderID") ?? 0)
@@ -395,8 +390,9 @@ class OrderVC: UIViewController {
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let ordercell = collectionView.dequeueReusableCell(withReuseIdentifier: "orderdetails", for: indexPath) as! OrderDetailsCollectionViewCell
-            
-             //salma
+
+           
+        
             
             for iteem in arrofpro ?? []
             {
