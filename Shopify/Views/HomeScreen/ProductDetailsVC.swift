@@ -73,7 +73,7 @@ class ProductDetailsVC: UIViewController {
         startTimer()
         
         productname.text = detailedProduct?.title
-        productprice.text = CurrencyExchanger.changeCurrency(cash: detailedProduct?.variants?[0].price ?? "")
+        productprice.text = "\(CurrencyExchanger.changeCurrency(cash: detailedProduct?.variants?[0].price ?? ""))\(nsDefault.value(forKey: "CashType") ?? "")"
         productdescription.text = detailedProduct?.body_html
         availableQuantity.text = "Available Quantity: \((detailedProduct?.variants?[0].inventory_quantity)?.formatted() ?? "")"
         pagecontrol.numberOfPages = detailedProduct?.images?.count ?? 0

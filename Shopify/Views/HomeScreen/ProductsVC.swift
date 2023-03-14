@@ -23,6 +23,11 @@ class ProductsVC: UIViewController {
     var BrandproudctResponse : Products?
     var titles : [Product]?
     
+    var nsDefault = UserDefaults()
+    
+    var favVMobj : FavCoreDataViewModel?
+    var favobj : FavCoreDataManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +35,9 @@ class ProductsVC: UIViewController {
         searchbar.delegate = self
         ProductCV.delegate = self
         ProductCV.dataSource = self
+        
+        favVMobj = FavCoreDataViewModel()
+        favobj = favVMobj?.getfavInstance()
         
         
         let nib = UINib(nibName: "ProductCVCell", bundle: nil)
@@ -45,6 +53,9 @@ class ProductsVC: UIViewController {
             }
         }
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        ProductCV.reloadData()
     }
     
     @IBAction func storeinfav(_ sender:UIButton)
@@ -140,14 +151,41 @@ extension ProductsVC : UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCVCell
+        
         cell.nameOfProduct.text = titles?[indexPath.row].title
-        cell.priceOfProduct.text = CurrencyExchanger.changeCurrency(cash: titles?[indexPath.row].variants?[0].price ?? "")
+        cell.priceOfProduct.text = "\(CurrencyExchanger.changeCurrency(cash: titles?[indexPath.row].variants?[0].price ?? ""))\(nsDefault.value(forKey: "CashType") ?? "")"
         cell.imgOfProduct.kf.setImage(with: URL(string: titles?[indexPath.row].image?.src ?? ""))
-        cell.vieww = self
-        cell.idd = BrandproudctResponse?.products[indexPath.row].id
-        cell.img = titles?[indexPath.row].image?.src ?? ""
-      //  cell.heartBtn.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: .even)
+        
+        if (favobj?.isFav(lineItemId: BrandproudctResponse?.products[indexPath.row].id ?? 0))! {
+            cell.heartBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
+        else {
+            cell.heartBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            
+           
+        }
+      
+        cell.heartBtn.tag = indexPath.row
+        cell.heartBtn.addTarget(self, action: #selector(clickHeart(_:)), for: .touchUpInside)
+     
         return cell
+    }
+    
+    @objc func clickHeart(_ sender: UIButton) {
+        
+        if (favobj?.isFav(lineItemId: BrandproudctResponse?.products[sender.tag].id ?? 0))! {
+            
+            favobj?.DeleteFromFav(lineitemID: BrandproudctResponse?.products[sender.tag].id ?? 0)
+            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        else {
+            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            
+            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: BrandproudctResponse?.products[sender.tag].id ?? 0, title: titles?[sender.tag].title ?? "", price: titles?[sender.tag].variants?[0].price ?? "", quantity: 1, img: titles?[sender.tag].image?.src ?? "")
+            
+          
+        }
+        self.ProductCV.reloadData()
     }
 }
 
