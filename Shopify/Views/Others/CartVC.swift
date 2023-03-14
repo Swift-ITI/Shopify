@@ -35,10 +35,14 @@ class CartVC: UIViewController {
     var flag: Bool = false
 
     var arrayofdict: [[String: Any]] = []
+    var refresh = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        refresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresh.addTarget(self, action: #selector(ref), for: .valueChanged)
+        cartProducts.addSubview(refresh)
         let nib = UINib(nibName: "CartProductCV", bundle: nil)
         cartProducts.register(nib, forCellReuseIdentifier: "cartPorducts")
 
@@ -84,7 +88,10 @@ class CartVC: UIViewController {
             cartProducts.reloadData()
         }
     }
-
+    @objc func ref() {
+        self.render()
+        self.refresh.endRefreshing()
+    }
     func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
