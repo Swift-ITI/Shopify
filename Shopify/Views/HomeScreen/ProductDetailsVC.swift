@@ -365,7 +365,7 @@ extension ProductDetailsVC {
 extension ProductDetailsVC
 {
     func showToastMessage(message: String, color: UIColor) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 - 20, height: 30))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 , height: 30))
 
         toastLabel.textAlignment = .center
         toastLabel.backgroundColor = color

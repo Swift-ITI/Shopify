@@ -7,6 +7,7 @@
 
 import Kingfisher
 import UIKit
+import Reachability
 
 class HomeVC: UIViewController {
     var Brandviewmodel: BrandViewModel?
@@ -21,6 +22,8 @@ class HomeVC: UIViewController {
     var currentcellindex = 0
     var numberofdots: Int?
     // var arrimg : []?
+    
+    var reachability : Reachability!
 
     var nsDefault = UserDefaults()
     @IBOutlet var pagecontroller: UIPageControl!
@@ -53,45 +56,61 @@ class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        reachability = Reachability.forInternetConnection()
 
-        let dispatchgroup = DispatchGroup()
+        if !(reachability.isReachable()) {
+            print("not connectted")
+            showToastMessagee(message: "No Internet Connection", color: .black)
+                   }
+        else{
+            
+            reachability?.isReachableViaWiFi()
+            print("connected via WIFI")
 
-        Brandviewmodel = BrandViewModel()
+            
+            
+            let dispatchgroup = DispatchGroup()
 
-        let nib = UINib(nibName: "BrandCVCell", bundle: nil)
-        OfferCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
-        BrandsCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
+            Brandviewmodel = BrandViewModel()
 
-        Offerviewmodel = OfferViewModel()
+            let nib = UINib(nibName: "BrandCVCell", bundle: nil)
+            OfferCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
+            BrandsCV.register(nib, forCellWithReuseIdentifier: "offerbrandcell")
 
-        dispatchgroup.enter()
-        Brandviewmodel?.getdata(target: .brand)
+            Offerviewmodel = OfferViewModel()
 
-        Brandviewmodel?.bindResultOfBrandsToHomeViewController = { [self] () in
-            self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
-            dispatchgroup.leave()
-        }
+            dispatchgroup.enter()
+            Brandviewmodel?.getdata(target: .brand)
 
-        dispatchgroup.enter()
-        Offerviewmodel?.getoffer(target: .discounts)
-
-        Offerviewmodel?.bindResultOfOffersToHomeViewController = { () in
-            self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
-            self.numberofdots = self.OfferCollectionviewresponse?.discount_codes.count
-            dispatchgroup.leave()
-        }
-        nsDefault.setValue("EGP", forKey: "CashType")
-        dispatchgroup.notify(queue: .main) {
-            //  self.arrayofimg = arrayofimg2
-            self.pagecontroller.numberOfPages = self.OfferCollectionviewresponse?.discount_codes.count ?? 0
-            for img in 0 ... (self.OfferCollectionviewresponse?.discount_codes.count ?? 0) - 1 {
-                self.arrayofimg.append(arrayofimg2?[img] ?? "")
+            Brandviewmodel?.bindResultOfBrandsToHomeViewController = { [self] () in
+                self.BrandCollectionviewresponse = self.Brandviewmodel?.DataOfBrands
+                dispatchgroup.leave()
             }
-            self.BrandsCV.reloadData()
-            self.OfferCV.reloadData()
+
+            dispatchgroup.enter()
+            Offerviewmodel?.getoffer(target: .discounts)
+
+            Offerviewmodel?.bindResultOfOffersToHomeViewController = { () in
+                self.OfferCollectionviewresponse = self.Offerviewmodel?.DataOfOffers
+                self.numberofdots = self.OfferCollectionviewresponse?.discount_codes.count
+                dispatchgroup.leave()
+            }
+            nsDefault.setValue("EGP", forKey: "CashType")
+            dispatchgroup.notify(queue: .main) {
+                //  self.arrayofimg = arrayofimg2
+                self.pagecontroller.numberOfPages = self.OfferCollectionviewresponse?.discount_codes.count ?? 0
+                for img in 0 ... (self.OfferCollectionviewresponse?.discount_codes.count ?? 0) - 1 {
+                    self.arrayofimg.append(arrayofimg2?[img] ?? "")
+                }
+                self.BrandsCV.reloadData()
+                self.OfferCV.reloadData()
+            }
+            startTimer()
+            
         }
+
         addBarButtonItems()
-        startTimer()
+       
     }
 
     // MARK: PageControl
@@ -258,5 +277,27 @@ extension HomeVC {
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
             () }))
         present(alert, animated: true, completion: nil)
+    }
+}
+extension HomeVC
+{
+    func showToastMessagee(message: String, color: UIColor)
+    {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 , height: 30))
+
+        toastLabel.textAlignment = .center
+        toastLabel.backgroundColor = color
+        toastLabel.textColor = .white
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        toastLabel.text = message
+        view.addSubview(toastLabel)
+
+        UIView.animate(withDuration: 3.0, delay: 1.0, options: .curveEaseIn, animations: {
+            toastLabel.alpha = 0.0
+        }) { _ in
+            toastLabel.removeFromSuperview()
+        }
     }
 }
