@@ -175,7 +175,7 @@ class ProductDetailsVC: UIViewController {
                             print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                             self.getOrders()
                             //self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
-                            self.showToastMessage(message: "Sucessfully added to cart", color: .white)
+                            self.showToastMessage(message: "Sucessfully added to cart", color: .black)
                      
                         case "error":
                             print("Error Found")
@@ -365,7 +365,7 @@ extension ProductDetailsVC {
 extension ProductDetailsVC
 {
     func showToastMessage(message: String, color: UIColor) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 - 20, height: 30))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.bounds.size.width / 2 - 90, y: self.view.bounds.size.height - 130, width: self.view.bounds.size.width / 2 , height: 30))
 
         toastLabel.textAlignment = .center
         toastLabel.backgroundColor = color

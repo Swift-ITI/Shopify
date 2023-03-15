@@ -139,6 +139,7 @@ class SettingsVC: UIViewController
     @IBAction func logOutButtonAction(_ sender: Any)
     {
         nsDefaults.set(false, forKey: "isLogged")
+        nsDefaults.set(0, forKey: "draftOrderID")
        // coreDataManeger?.deleteAllLineItems()
         performSegue(withIdentifier: "goToLogin", sender: self)
     }

@@ -95,6 +95,9 @@ class CartVC: UIViewController {
     func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
+            ()
+        }))
         present(alert, animated: true, completion: nil)
     }
 
