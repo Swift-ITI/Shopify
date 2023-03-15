@@ -75,3 +75,9 @@ class PutCustomerViewModel
         })
     }
 }
+
+class DeleteDraftOrderViewModel {
+    func deleteDraftOrder (target : EndPoints) {
+        NetworkServices.delete(url: target.path)
+    }
+}

@@ -12,6 +12,8 @@ import Braintree
 
 class OrderVC: UIViewController {
     
+    var deleteVM : DeleteDraftOrderViewModel?
+    
     
     var Orderdetialsviewmodel : OrderDetailsViewModel?
     var OrderDetailsResponse : SingleDraftOrder?
@@ -43,7 +45,7 @@ class OrderVC: UIViewController {
     var paymentDefault = UserDefaults()
     var postOrderVM : PostOrderViewModel?
     var braintreeClient: BTAPIClient?
-    var shouldPay : Int = 1
+    var shouldPay : Float = 0.0
     var addressExist : Bool = false
     @IBOutlet weak var orderDetails: UICollectionView!{
         didSet {
@@ -107,13 +109,13 @@ class OrderVC: UIViewController {
 //        Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
 //            DispatchQueue.main.async {
 //                self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
-//                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
-//                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
-//                self.discount.text = "0"
-//                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
-//                self.orderDetails.reloadData()
 //            }
 //        }
+                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
+                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
+                self.discount.text = "0"
+                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+                self.orderDetails.reloadData()
         print(OrderDetailsResponse)
         priceruleviewmodel = PriceRuleViewModel()
         priceruleviewmodel?.getpricerule(target: .price_rulee(id:1380100899094))
@@ -309,7 +311,7 @@ class OrderVC: UIViewController {
             {
             case "PayPal" as String:
                 print("start paypal")
-                shouldPay = Int(CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")) ?? 1
+                    shouldPay = Float(CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")) ?? 0.0
                 let payPalDriver = BTPayPalDriver(apiClient: braintreeClient!)
                 payPalDriver.viewControllerPresentingDelegate = self
                 payPalDriver.appSwitchDelegate = self
@@ -331,6 +333,9 @@ class OrderVC: UIViewController {
                         self.postToOrders(id: self.NsDefault?.integer(forKey: "customerID") ?? 0)
                         let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                            self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.value(forKey: "draftOrderID") as? Int ?? 0))
+                            self.NsDefault?.set(0, forKey: "draftOrderID")
+                            self.NsDefault?.set("first", forKey: "note")
                             self.navigationController?.popViewController(animated: true)
                         }))
                         self.present(alert, animated: true, completion: nil)
@@ -351,6 +356,10 @@ class OrderVC: UIViewController {
                 self.postToOrders(id: NsDefault?.integer(forKey: "customerID") ?? 0)
                 let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
+                    self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.value(forKey: "draftOrderID") as? Int ?? 0))
+                    self.NsDefault?.set(0, forKey: "draftOrderID")
+                    self.NsDefault?.set("first", forKey: "note")
+                    
                     self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true, completion: nil)
