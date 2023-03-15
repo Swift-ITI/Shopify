@@ -107,13 +107,13 @@ class OrderVC: UIViewController {
 //        Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
 //            DispatchQueue.main.async {
 //                self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
-//                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
-//                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
-//                self.discount.text = "0"
-//                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
-//                self.orderDetails.reloadData()
 //            }
 //        }
+                self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
+                self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
+                self.discount.text = "0"
+                self.total.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_price ?? "")
+                self.orderDetails.reloadData()
         print(OrderDetailsResponse)
         priceruleviewmodel = PriceRuleViewModel()
         priceruleviewmodel?.getpricerule(target: .price_rulee(id:1380100899094))

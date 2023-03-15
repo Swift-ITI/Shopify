@@ -248,7 +248,7 @@ class CategoriesVC: UIViewController {
     }
     @objc func navsearch()
     {
-        let searchobj = storyboard?.instantiateViewController(withIdentifier: "productsid") as! ProductsVC
+        let searchobj = UIStoryboard(name: "HomeSB", bundle: nil).instantiateViewController(withIdentifier: "productsid") as! ProductsVC
         navigationController?.pushViewController(searchobj, animated: true)
     }
 }
