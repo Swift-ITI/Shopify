@@ -334,6 +334,7 @@ class OrderVC: UIViewController {
                         let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
                             self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.value(forKey: "draftOrderID") as? Int ?? 0))
+                            self.NsDefault?.set(0, forKey: "draftOrderID")
                             self.NsDefault?.set("first", forKey: "note")
                             self.navigationController?.popViewController(animated: true)
                         }))
@@ -356,6 +357,7 @@ class OrderVC: UIViewController {
                 let alert = UIAlertController(title: "Order Procced", message: "your order has been proceed succefully", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {action in
                     self.deleteVM?.deleteDraftOrder(target: .draftOrder(id: self.NsDefault?.value(forKey: "draftOrderID") as? Int ?? 0))
+                    self.NsDefault?.set(0, forKey: "draftOrderID")
                     self.NsDefault?.set("first", forKey: "note")
                     
                     self.navigationController?.popViewController(animated: true)
