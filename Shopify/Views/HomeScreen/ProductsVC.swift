@@ -173,19 +173,28 @@ extension ProductsVC : UICollectionViewDataSource
     
     @objc func clickHeart(_ sender: UIButton) {
         
-        if (favobj?.isFav(lineItemId: BrandproudctResponse?.products[sender.tag].id ?? 0))! {
+        if !((nsDefault.value(forKey: "isLogged") as? Bool) ?? false) {
+            showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
+                let logInObj = UIStoryboard(name: "AuthenticationSB", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+                self.navigationController?.pushViewController(logInObj, animated: true)
+              
+            }
+        } else{
+            if (favobj?.isFav(lineItemId: BrandproudctResponse?.products[sender.tag].id ?? 0))! {
+                
+                favobj?.DeleteFromFav(lineitemID: BrandproudctResponse?.products[sender.tag].id ?? 0)
+                sender.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            else {
+                sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                
+                favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: BrandproudctResponse?.products[sender.tag].id ?? 0, title: titles?[sender.tag].title ?? "", price: titles?[sender.tag].variants?[0].price ?? "", quantity: 1, img: titles?[sender.tag].image?.src ?? "")
+                
+              
+            }
+            self.ProductCV.reloadData()
             
-            favobj?.DeleteFromFav(lineitemID: BrandproudctResponse?.products[sender.tag].id ?? 0)
-            sender.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-        else {
-            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            
-            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: BrandproudctResponse?.products[sender.tag].id ?? 0, title: titles?[sender.tag].title ?? "", price: titles?[sender.tag].variants?[0].price ?? "", quantity: 1, img: titles?[sender.tag].image?.src ?? "")
-            
-          
-        }
-        self.ProductCV.reloadData()
     }
 }
 
@@ -208,5 +217,15 @@ extension ProductsVC : UITextFieldDelegate {
         searchbar.endEditing(true)
 
        return true
+    }
+}
+
+extension ProductsVC {
+    func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
+            () }))
+        present(alert, animated: true, completion: nil)
     }
 }

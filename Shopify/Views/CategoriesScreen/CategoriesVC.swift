@@ -226,12 +226,36 @@ class CategoriesVC: UIViewController {
          navigationItem.leftBarButtonItem = search
         
     }
+    /*
+
+ @objc func navcart() {
+     if (nsDefault.value(forKey: "isLogged") as? Bool) ?? false {
+         let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
+         let cartobj =
+             CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
+         navigationController?.pushViewController(cartobj, animated: true)
+
+     } else {
+         showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
+             self.performSegue(withIdentifier: "goToLogin", sender: self)
+         }
+     }
+ }*/
     
     @objc func navfav()
     {
-        let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
-        let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
-        self.navigationController?.pushViewController(favobj, animated: true)
+        if !nsDefault.bool(forKey: "isLogged"){
+         showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
+             let logInObj = UIStoryboard(name: "AuthenticationSB", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+             self.navigationController?.pushViewController(logInObj, animated: true)
+           
+         }
+        }else{
+            let FavouriteStoryBoardd = UIStoryboard(name: "ProfileSB", bundle: nil)
+            let favobj = FavouriteStoryBoardd.instantiateViewController(withIdentifier: "wishlistseemoreVC") as! WishListSeeMoreVC
+            self.navigationController?.pushViewController(favobj, animated: true)
+        }
+        
     }
     @objc func navcart()
     {
@@ -243,7 +267,10 @@ class CategoriesVC: UIViewController {
             self.navigationController?.pushViewController(cartobj, animated: true)
             
         }else{
-            self.performSegue(withIdentifier: "goToLogIn", sender: self)
+            showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
+                let logInObj = UIStoryboard(name: "AuthenticationSB", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+                self.navigationController?.pushViewController(logInObj, animated: true)
+            }
         }
     }
     @objc func navsearch()
@@ -301,19 +328,30 @@ extension CategoriesVC:  UICollectionViewDataSource{
     
     @objc func clickHeart(_ sender: UIButton) {
         
-        if (favobj?.isFav(lineItemId: products?.products[sender.tag].id ?? 0))! {
+        if !((nsDefault.value(forKey: "isLogged") as? Bool) ?? false) {
+            showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
+                let logInObj = UIStoryboard(name: "AuthenticationSB", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+                self.navigationController?.pushViewController(logInObj, animated: true)
+              
+            }
+        }else{
+            if (favobj?.isFav(lineItemId: products?.products[sender.tag].id ?? 0))! {
+                
+                favobj?.DeleteFromFav(lineitemID: products?.products[sender.tag].id ?? 0)
+                sender.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            else {
+                sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                
+                favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: products?.products[sender.tag].id ?? 0, title: products?.products[sender.tag].title ?? "", price: products?.products[sender.tag].variants?[0].price ?? "", quantity: 1, img: products?.products[sender.tag].image?.src ?? "")
+                
+              
+            }
+            self.productsCollectionView.reloadData()
             
-            favobj?.DeleteFromFav(lineitemID: products?.products[sender.tag].id ?? 0)
-            sender.setImage(UIImage(systemName: "heart"), for: .normal)
         }
-        else {
-            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            
-            favobj?.SaveFavtoCoreData(draftOrderID: 0, productID: products?.products[sender.tag].id ?? 0, title: products?.products[sender.tag].title ?? "", price: products?.products[sender.tag].variants?[0].price ?? "", quantity: 1, img: products?.products[sender.tag].image?.src ?? "")
-            
-          
-        }
-        self.productsCollectionView.reloadData()
+        
+      
     }
     
     
@@ -325,5 +363,15 @@ extension CategoriesVC: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: productsCollectionView.layer.frame.size.width/2 - 5, height: productsCollectionView.layer.frame.size.height/3 - 5)
+    }
+}
+
+extension CategoriesVC {
+    func showAlert(title: String, msg: String, handler: @escaping (UIAlertAction?) -> Void) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in handler(action) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
+            () }))
+        present(alert, animated: true, completion: nil)
     }
 }
