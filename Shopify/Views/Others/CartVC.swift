@@ -15,13 +15,10 @@ class CartVC: UIViewController {
 
     var cartVM: DraftOrderViewModel?
     var draftOrder: SingleDraftOrder?
-    // var product : SingleProduct?
     var arrProducts: [Product] = [] 
 
     var productt: CatigoriesViewModel?
     var Oneproduct: Products?
-
-    //var detailedproduct : Product?
     
     let nsDefault = UserDefaults()
 
@@ -75,8 +72,7 @@ class CartVC: UIViewController {
                     self.cartProducts.reloadData()
                 }
             }
-            // for item in (self.draftOrder?.draft_order?.line_items ?? []){
-
+        
         } else {
             print("Not conneted")
             flag = false
@@ -105,7 +101,7 @@ class CartVC: UIViewController {
         let orderDetailsVC = UIStoryboard(name: "Payment&OrderSB", bundle: nil).instantiateViewController(withIdentifier: "orderVC") as! OrderVC
         orderDetailsVC.OrderDetailsResponse = draftOrder
         orderDetailsVC.arrofpro = arrProducts
-        //performSegue(withIdentifier: "goToPayment", sender: self)
+       
         navigationController?.pushViewController(orderDetailsVC, animated: true)
         print("Proceed to checkout")
     }
@@ -263,8 +259,7 @@ extension CartVC: UITableViewDataSource {
             draftOrder?.draft_order?.line_items?[sender.tag].quantity! += 1
             
         }
-        
-        // print("zzz\(draftOrder?.draft_order?.line_items?[sender.tag].quantity ?? 0)")
+      
         let params = [
             "draft_order": [
                 "line_items": converttodic(arrofline: draftOrder?.draft_order?.line_items ?? []),

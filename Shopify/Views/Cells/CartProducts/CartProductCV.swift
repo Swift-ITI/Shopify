@@ -26,22 +26,4 @@ class CartProductCV: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-//    @IBAction func addQuantity(_ sender: Any) {
-//        
-//        quantity.text = String((Int(quantity.text ?? "") ?? 0) + 1)
-//    }
-//    
-//    @IBAction func minusQuantity(_ sender: Any) {
-//        
-//        quantity.text = String((Int(quantity.text ?? "") ?? 0) - 1)
-//        
-//        if (Int(quantity.text ?? "") == 1) {
-//            self.isUserInteractionEnabled = false
-//           
-//        }
-//            
-//        
-//    }
 }

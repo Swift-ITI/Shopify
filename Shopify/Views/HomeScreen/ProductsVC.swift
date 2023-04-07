@@ -93,7 +93,7 @@ class ProductsVC: UIViewController {
             UIAction(title: "Descending Sort",subtitle: "(Z-A)", handler: { (_) in
                 self.alphabetfilter(type: "Descending Sort")})])
         pulldown.showsMenuAsPrimaryAction = true
-    //pulldown.changesSelectionAsPrimaryAction = true
+    
     }
     func alphabetfilter (type : String)
     {

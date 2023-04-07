@@ -34,7 +34,6 @@ class HomeVC: UIViewController {
             OfferCV.layer.cornerRadius = 20
             OfferCV.layer.borderWidth = 2
             OfferCV.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
-            //OfferCV.layer.shadowColor = UIColor(named: "gray")?.cgColor
             OfferCV.layer.shadowColor = UIColor(named: "AccentColor")?.cgColor
             OfferCV.layer.shadowOffset = CGSize(width: 0, height: 0)
             OfferCV.layer.shadowRadius = 3
@@ -48,9 +47,7 @@ class HomeVC: UIViewController {
         didSet {
             BrandsCV.dataSource = self
             BrandsCV.delegate = self
-            //BrandsCV.layer.cornerRadius = 20
-           // BrandsCV.layer.borderWidth = 5
-           // BrandsCV.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
+
         }
     }
 

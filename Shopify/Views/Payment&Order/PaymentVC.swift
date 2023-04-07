@@ -20,17 +20,6 @@ class PaymentVC: UIViewController
     var paymentDefault = UserDefaults()
     var cashType: String?
 
-    /*@IBOutlet weak var addressTable: UITableView!{
-        didSet{
-            //addressTable.delegate = self
-            //addressTable.dataSource = self
-            let nib = UINib(nibName: "AddressesCell", bundle: nil)
-            addressTable.register(nib, forCellReuseIdentifier: "addressesCell")
-            addressTable.layer.borderColor = UIColor(named: "CoffeeColor")?.cgColor
-            addressTable.layer.borderWidth = 1.5
-            addressTable.layer.cornerRadius = 20
-        }
-    }*/
     var radioBtn: SSRadioButtonsController?
     {
         didSet
@@ -97,13 +86,11 @@ class PaymentVC: UIViewController
         {
         case 1:
             let orderObj = self.storyboard?.instantiateViewController(withIdentifier: "orderVC") as! OrderVC
-//            orderObj.paymentMethodText = paymentMethod
-//            orderObj.paymentMethodSetFlag = true
-//            orderObj.shouldPay = shouldPay
+
             paymentDefault.set("\(paymentMethod ?? "")", forKey: "PaymentMethod")
-            //dismiss(animated: true, completion: nil)
+          
             self.navigationController?.popViewController(animated: true)
-            //self.navigationController?.pushViewController(orderObj, animated: true)
+            
             
         case 2:
             let alert = UIAlertController(title: "", message: "Sorry you can't choose this payment Type", preferredStyle: UIAlertController.Style.alert)
@@ -145,13 +132,3 @@ extension PaymentVC: SSRadioButtonControllerDelegate
         }
     }
 }
-/*extension PaymentVC:UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "addressesCell", for: indexPath) as! AddressesCell
-        return cell
-    }
-}*/

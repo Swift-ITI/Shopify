@@ -26,9 +26,7 @@ class WishListSeeMoreVC: UIViewController
             productCollection.dataSource = self
             let wishListCellNib = UINib(nibName: "WishListTableCell", bundle: nil)
             productCollection.register(wishListCellNib, forCellReuseIdentifier: "wishListTableCell")
-            /*productCollection.layer.borderWidth = 3
-            productCollection.layer.borderColor = UIColor(named:"CoffeeColor")?.cgColor
-            productCollection.layer.cornerRadius = CGFloat(20)*/
+            
         }
     }
     

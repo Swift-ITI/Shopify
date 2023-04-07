@@ -95,7 +95,7 @@ class RegisterVC: UIViewController {
                 }
                 
                 
-                //performSegue(withIdentifier: "goToHome", sender: self)
+             
         } else {
             showAlert(title: "Missing Data", msg: "Fill all the fields", handler: {_ in })
         }

@@ -112,7 +112,7 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool)
     {
         fetchData()
-        //fetchCoreData()
+        
     }
     
     func fetchData()
@@ -239,7 +239,7 @@ extension ProfileVC: UITableViewDataSource {
             let cell: OrdersCell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersCell
             cell.priceLabel.text = CurrencyExchanger.changeCurrency(cash: orderDetails?.orders[indexPath.row].current_total_price ?? "")
             cell.dateLabel.text = orderDetails?.orders[indexPath.row].created_at
-            //cell.dateLabel.adjustsFontSizeToFitWidth = true
+          
             cell.itemsNumberLabel.text = "\(orderDetails?.orders[indexPath.row].line_items?.count ?? 0)"
             return cell
 
@@ -263,23 +263,3 @@ extension ProfileVC: UITableViewDataSource {
         return 90
     }
 }
-
-/*// MARK: - Core Data Extension Part
-
-extension ProfileVC
-{
-    func fetchCoreData ()
-    {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WishList")
-        do
-        {
-            wishListItems = try managedContext.fetch(fetchRequest)
-            wishListTable.reloadData()
-        } catch let error
-        {
-            print(error.localizedDescription)
-        }
-    }
-}*/

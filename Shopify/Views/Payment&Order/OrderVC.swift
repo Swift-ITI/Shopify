@@ -102,15 +102,7 @@ class OrderVC: UIViewController {
                 self.adresses.reloadData()
             }
         }
-       // Orderdetialsviewmodel = OrderDetailsViewModel()
-        
-//        Orderdetialsviewmodel?.getDataOfOrderDetails(target: .draftOrder(id: NsDefault?.integer(forKey: "draftOrderID") ?? 0))
-//        print(NsDefault?.integer(forKey: "draftOrderID") ?? 0)
-//        Orderdetialsviewmodel?.bindResultOfCartToOrderDetailsViewController = { () in
-//            DispatchQueue.main.async {
-//                self.OrderDetailsResponse = self.Orderdetialsviewmodel?.DataOfOrderDetails
-//            }
-//        }
+       
                 self.subTotal.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.subtotal_price ?? "")
                 self.shippingFees.text = CurrencyExchanger.changeCurrency(cash: self.OrderDetailsResponse?.draft_order?.total_tax ?? "")
                 self.discount.text = "0"
