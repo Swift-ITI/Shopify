@@ -16,6 +16,8 @@ class WishListSeeMoreVC: UIViewController
     
     var coredatavm : FavCoreDataViewModel?
     var favcoredataobj : FavCoreDataManager?
+    
+    var singleProduct: SingleProduct?
 
     
     @IBOutlet var productCollection: UITableView!
@@ -45,12 +47,6 @@ class WishListSeeMoreVC: UIViewController
         // Do any additional setup after loading the view.
     }
     
-//    @IBAction func cartButton(_ sender: Any)
-//    {
-//        performSegue(withIdentifier: "goToCart", sender: self)
-//        print("cart")
-//    }
-//
 }
 
 // MARK: - Table View Extension
@@ -128,5 +124,26 @@ extension WishListSeeMoreVC: UITableViewDataSource
             self.present(alert, animated: true, completion: nil)
         }
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "HomeSB", bundle: nil)
+        let productDetailsObj: ProductDetailsVC = storyBoard.instantiateViewController(withIdentifier: "productdetails") as! ProductDetailsVC
+        
+        coredatavm?.getProduct(target: .deleteProductByID(id: favFromCoreData[indexPath.row].value(forKey: "id") as? Int ?? 0))
+        coredatavm?.bindResultOfFavProductToProductDetails = {() in
+            DispatchQueue.main.async {
+                self.singleProduct = self.coredatavm?.productFromFav
+                productDetailsObj.detailedProduct = self.singleProduct?.product
+                
+                self.navigationController?.pushViewController(productDetailsObj, animated: true)
+                
+                
+            }
+        }
+        
+//        productDetailsObj.detailedProduct = singleProduct?.product
+//        
+//        self.navigationController?.pushViewController(productDetailsObj, animated: true)
     }
 }
