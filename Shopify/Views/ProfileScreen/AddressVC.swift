@@ -94,7 +94,6 @@ class AddressVC: UIViewController
             self.arrOfAddresses = self.userVM?.addresses?.addresses ?? []
             self.addressesTable.reloadData()
         }
-        //addressesTable.reloadData()
     }
     
     func changeDefault (customerID: Int, addressID: Int, defaultState: Bool)
@@ -157,7 +156,7 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return arrOfAddresses.count //userDetails?.customers.first?.addresses?.count ?? 0
+        return arrOfAddresses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -253,46 +252,4 @@ extension AddressVC : UITableViewDelegate, UITableViewDataSource
         return configuration
     }
      
-    /*func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
-    {
-        // Edit
-        let editButton = UITableViewRowAction(style: .default, title: "Edit", handler: {(rowAction, indexPath) in
-            print("Edit")
-            self.alertButtons(title: "Edit Address", buttonTitle: "Edit", message: "Are you sure that you want to Edit this saved address!", handler: {action in
-                print("edit address")
-                let addAddressView = self.storyboard?.instantiateViewController(withIdentifier: "addaddressVC") as! AddAddressVC
-                addAddressView.userID = self.userID ?? 6810321223958
-                addAddressView.flag = 2
-                addAddressView.address = self.arrOfAddresses[indexPath.row]
-                
-                self.navigationController?.pushViewController(addAddressView, animated: true)
-            })
-        })
-        editButton.backgroundColor = UIColor.systemBlue
-        
-        // Delete
-        let deleteButton = UITableViewRowAction(style: .default, title: "Delete", handler: {(rowAction, indexPath) in
-            print("Delete")
-            if self.arrOfAddresses[indexPath.row].default == false
-            {
-                self.alertButtons(title: "Delete Address", buttonTitle: "Delete", message: "Are you sure that you want to Delete this saved address!", handler: {action in
-                    self.deleteVM?.deleteAddress(target: .deleteAddress(customerID: self.userDetails?.customers.first?.id ?? 6810321223958, addressID: self.arrOfAddresses[indexPath.row].id ?? 9050959642902))
-                    print("delete address")
-                    self.arrOfAddresses.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.reloadData()
-                })
-            }
-            
-            else if self.arrOfAddresses[indexPath.row].default == true
-            {
-                //self.alertButtons(title: "Can't Delete", buttonTitle: "Cancel", message: "Sorry you can't delete your default address", handler: nil)
-                let alert = UIAlertController(title: "Delete Unavailable", message: "Sorry you can't delete your default address", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                self.present(alert, animated: true, completion: nil)
-            }
-        })
-        deleteButton.backgroundColor = UIColor.systemRed
-        return [editButton, deleteButton]
-    }*/
 }

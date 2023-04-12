@@ -20,7 +20,7 @@ class AddAddressVC: UIViewController {
 
     @IBOutlet var saveNewAddressButton: UIButton! {
         didSet {
-            // saveNewAddressButton.layer.masksToBounds = true
+            
             saveNewAddressButton.layer.cornerRadius = saveNewAddressButton.frame.width / 18
         }
     }

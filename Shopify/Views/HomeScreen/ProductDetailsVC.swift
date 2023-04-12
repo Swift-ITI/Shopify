@@ -174,7 +174,7 @@ class ProductDetailsVC: UIViewController {
                             self.nsDefault.set(draftOrderDict?["id"] as? Int, forKey: "draftOrderID")
                             print("draftOrderId=\(self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0)")
                             self.getOrders()
-                            //self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in }
+                           
                             self.showToastMessage(message: "Sucessfully added to cart", color: .black)
                      
                         case "error":
@@ -213,11 +213,6 @@ class ProductDetailsVC: UIViewController {
                     coreData?.SaveToCoreData(draftOrderId: (self.nsDefault.value(forKey: "draftOrderID") as? Int ?? 0),productId: detailedProduct?.id ?? 0, title: detailedProduct?.title ?? "", price: detailedProduct?.variants?[0].price ?? "", quantity: 1)
                     self.showToastMessage(message: "Sucessfully added to cart", color: .black)
                     self.getOrders()
-//                    self.showAlert(title: "SUCESS", msg: "successfully added to cart") {_ in
-//                        self.getOrders()
-//                    }
-                  
-                    //getOrders()
 
                 default:
                     break

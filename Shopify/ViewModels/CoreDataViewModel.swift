@@ -20,8 +20,20 @@ class  CoreDataViewModel {
 
 class FavCoreDataViewModel
 {
+    var bindResultOfFavProductToProductDetails: (() -> Void) = {}
+    var productFromFav: SingleProduct! {
+        didSet{
+            bindResultOfFavProductToProductDetails()
+        }
+    }
     func getfavInstance () -> FavCoreDataManager
     {
         return FavCoreDataManager.getFavInstance()
+    }
+    func getProduct(target: EndPoints)
+    {
+        NetworkServices.fetch(url: target.path) { result in
+            self.productFromFav = result
+        }
     }
 }

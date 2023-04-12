@@ -66,10 +66,7 @@ class CategoriesVC: UIViewController {
             default:
                 filter(target: .catigoriesProducts(id: CatigoryID.kids.id))
             }
-            /*catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.kids.id))
-            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-        }*/
+            
         case 1 :
             flag = 2
             switch subflag{
@@ -84,10 +81,7 @@ class CategoriesVC: UIViewController {
             default:
                 filter(target: .catigoriesProducts(id: CatigoryID.men.id))
             }
-           /* catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.men.id))
-            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }*/
+          
         case 2 :
             flag = 3
             switch subflag{
@@ -102,10 +96,7 @@ class CategoriesVC: UIViewController {
             default:
                 filter(target: .catigoriesProducts(id: CatigoryID.sale.id))
             }
-           /* catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.sale.id))
-            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }*/
+           
         case 3 :
             flag = 4
             switch subflag{
@@ -120,10 +111,7 @@ class CategoriesVC: UIViewController {
             default:
                 filter(target: .catigoriesProducts(id: CatigoryID.women.id))
             }
-            /*catigoriesViewModel?.getProducts(target: .catigoriesProducts(id: CatigoryID.women.id))
-            catigoriesViewModel?.bindResultOfCatigoriesToCatigorieViewController = { () in
-                self.renderView()
-            }*/
+            
         default : break
         }
     }
@@ -226,21 +214,6 @@ class CategoriesVC: UIViewController {
          navigationItem.leftBarButtonItem = search
         
     }
-    /*
-
- @objc func navcart() {
-     if (nsDefault.value(forKey: "isLogged") as? Bool) ?? false {
-         let CartStoryBoard = UIStoryboard(name: "OthersSB", bundle: nil)
-         let cartobj =
-             CartStoryBoard.instantiateViewController(withIdentifier: "cartid") as! CartVC
-         navigationController?.pushViewController(cartobj, animated: true)
-
-     } else {
-         showAlert(title: "Sorry", msg: "Please Sign in or Register to get full access") { _ in
-             self.performSegue(withIdentifier: "goToLogin", sender: self)
-         }
-     }
- }*/
     
     @objc func navfav()
     {

@@ -166,18 +166,6 @@ class CoreDataManager : CoreDataOpe{
         return false
     }
     
-//    func isFavourite(leagueKey : Int) -> Bool {
-//
-//        let fetchLeagues = fetchFromCoreData()
-//
-//        for item in fetchLeagues {
-//            if item.value(forKey: "league_key") as! Int == leagueKey {
-//               return true
-//            }
-//        }
-//        return false
-//    }
-    
 }
 class FavCoreDataManager : FavCoreData
 {
